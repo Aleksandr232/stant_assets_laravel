@@ -55,6 +55,10 @@
     padding: 20px;
   }
 
+  .card-body {
+    position: relative;
+  }
+
   
 
 

@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,11 +33,12 @@ Route::middleware('guest')->group(function () {
 
 Route::prefix('admin')->middleware('admin')->group(function () {
     Route::get('/',  [AdminController::class, 'index'])->name('admin');
-
+    Route::resource('/product', ProductController::class);
 });
 
-Route::prefix('account')->group(function () {
+Route::prefix('account')->middleware('profile')->group(function () {
     Route::get('/',  [AccountController::class, 'index'])->name('account');
+
 
 });
 

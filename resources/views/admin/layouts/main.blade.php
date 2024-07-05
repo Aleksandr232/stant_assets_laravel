@@ -11,6 +11,7 @@
 <body>
   @include('admin.inc.sidebar')
   @include('admin.inc.navbar')
+  @include('admin.inc.modal')
 <main>
     @yield('content')
 </main>

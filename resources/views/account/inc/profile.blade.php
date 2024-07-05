@@ -1,8 +1,11 @@
 <section class="profile">
     <aside class="profile_side">
         <span class="profile_side-name">
-            <img src="./assets/images/profile/profileIcon.png"/>
-            <span>Привет,<br/><span class="nickname">MegaNagibator</span></span>
+            <img src="{{ asset('site/assets/images/profile/profileIcon.png')}}"/>
+
+            <span>Привет,<br/><span class="nickname">{{$user->name}}</span></span>
+
+
         </span>
         <span class="profile_side-span active-tab" id="profileData">
             <svg width="36" height="37" class="profile-hover" viewBox="0 0 36 37" fill="white" xmlns="http://www.w3.org/2000/svg">
@@ -31,13 +34,13 @@
         <span class="profile_side-span-last">
             <div class="buttons-language-container profile-language">
                 <button class="buttons-language">
-                    <img src="./assets/images/header/EN.png" alt="ru">
+                    <img src="{{ asset('site/assets/images/header/EN.png')}}" alt="ru">
                     EN
-                    <img src="./assets/images/dropdown.svg" alt="down">
+                    <img src="{{ asset('site/assets/images/dropdown.svg')}}" alt="down">
 
                 </button>
                 <button class="buttons-language-switch">
-                    <img src="./assets/images/header/Ru.svg" alt="ru">
+                    <img src="{{ asset('site/assets/images/header/Ru.svg')}}" alt="ru">
                     RU
                     <img style="visibility: hidden;" src="./assets/images/dropdown.svg" alt="down">
 
@@ -75,7 +78,7 @@
 
             <a href="#" class="chat_list-item">
                 <span class="chat_list-item-left">
-                    <img src="./assets/images/Ellipse 2.png"/>
+                    <img src="{{ asset('site/assets/images/Ellipse 2.png')}}"/>
                     <span>
                         <label>Support</label>
                         <p>Dinner</p>
@@ -88,7 +91,7 @@
             </a>
             <a href="" class="chat_list-item">
                 <span class="chat_list-item-left">
-                    <img src="./assets/images/Ellipse 2.png"/>
+                    <img src="{{ asset('site/assets/images/Ellipse 2.png')}}"/>
                     <span>
                         <label>Support</label>
                         <p>Dinner</p>
@@ -896,12 +899,12 @@
             <div class="profile_settings-item-data">
                 <span class="profile_settings-item-data-row">
                     <span class="profile_settings-item-label">Login:</span>
-                    Login
+                    {{$user->name}}
                 </span>
 
                 <span class="profile_settings-item-data-row">
                     <span class="profile_settings-item-label">Mail:</span>
-                    Example@mail.com
+                       {{$user->email}}
                 </span>
 
             </div>
