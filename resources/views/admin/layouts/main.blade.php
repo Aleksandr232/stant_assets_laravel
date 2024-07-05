@@ -16,7 +16,7 @@
 </main>
 
 
-@if (session()->has('success'))
+{{-- @if (session()->has('success'))
     <div class="alert alert-success" id="success-alert">
         {{ session('success') }}
     </div>
@@ -34,7 +34,7 @@
             }
         });
     </script>
-@endif
+@endif --}}
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     const sidebar = document.querySelector('.sidebar');
