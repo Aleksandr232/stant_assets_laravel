@@ -8,10 +8,16 @@
         </div>
         <div class="modal-body">
           <!-- Форма для добавления категории -->
-          <form>
+          <form  method="post" action="{{ route('category') }}" enctype="multipart/form-data">
+            @csrf
             <div class="mb-3">
               <label for="categoryName" class="form-label">Название категории</label>
-              <input type="text" class="form-control" id="categoryName" placeholder="Введите название категории">
+              <input type="text" name="name_category" class="form-control" id="categoryName" placeholder="Введите название категории">
+              <label for="categoryName"  class="form-label">Описание категории</label>
+              <input type="text" name="desc_category" class="form-control" id="categoryName" placeholder="Введите описание категории">
+              <label for="categoryName" class="form-label">Фото</label>
+              <input type="file" name="file"  class="form-control" id="categoryName" placeholder="Введите название категории">
+              <input type="text" name="path"  class="form-control" id="categoryName" placeholder="Введите ссылку картинки">
             </div>
             <button type="submit" class="btn btn-primary">Сохранить</button>
           </form>

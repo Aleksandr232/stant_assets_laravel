@@ -34,6 +34,7 @@ Route::middleware('guest')->group(function () {
 Route::prefix('admin')->middleware('admin')->group(function () {
     Route::get('/',  [AdminController::class, 'index'])->name('admin');
     Route::resource('/product', ProductController::class);
+    Route::post('/create_category', [ProductController::class, 'category'])->name('category');
 });
 
 Route::prefix('account')->middleware('profile')->group(function () {
