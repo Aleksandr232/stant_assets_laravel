@@ -23,8 +23,11 @@ return new class extends Migration
             $table->text('info_returns')->nullable();
             $table->text('question_product')->nullable();
             $table->string('type_service')->nullable();
-            $table->string('path')->nullable();
+            $table->string('category')->nullable();
+            $table->string('path_img_product')->nullable();
             $table->text('param_calc')->nullable();
+            $table->unsignedBigInteger('category_id')->nullable();
+            $table->foreign('category_id')->references('id')->on('category')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -17,4 +17,9 @@ class Category extends Model
         'file',
         'path'
     ];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'category_id');
+    }
 }

@@ -23,6 +23,12 @@ class Product extends Model
         'question_product',
         'type_service',
         'param_calc',
-        'path_img_product'
+        'path_img_product',
+        'category'
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
 }
