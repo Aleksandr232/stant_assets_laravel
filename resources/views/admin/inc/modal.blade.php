@@ -46,7 +46,7 @@
             @csrf
             <div class="mb-3">
               <label for="productName" class="form-label">Название товара</label>
-              <input type="text" class="form-control" id="productName" placeholder="Введите название товара">
+              <input type="text" name="product" class="form-control" id="productName" placeholder="Введите название товара">
             </div>
             <div class="mb-3">
                 <label for="productName" class="form-label">Выбрать категорию</label>

@@ -38,5 +38,32 @@
           </div>
         </a>
       </div>
+
   </div>
+  <div style="width:500px; margin: 0 auto" >
+    <div class="table-responsive">
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Название</th>
+              <th>Действия</th>
+            </tr>
+          </thead>
+          @foreach($product as $post)
+          <tbody>
+            <tr>
+              <td>{{$post->id}}</td>
+              <td>{{$post->product}}</td>
+              <td>ivan@example.com</td>
+            </tr>
+          </tbody>
+          @endforeach
+        </table>
+      </div>
+      <div class="d-flex justify-content-center">
+        {{ $product->links('pagination::bootstrap-4') }}
+    </div>
+</div>
+
 @endsection
