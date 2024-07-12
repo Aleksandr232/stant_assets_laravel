@@ -60,6 +60,10 @@
               <label for="productPrice" class="form-label">Цена</label>
               <input type="number" name="price" class="form-control" id="productPrice" placeholder="Введите цену">
             </div>
+            <div class="mb-3">
+                <label for="productPrice" class="form-label">Фото товара</label>
+                <input type="file" name="product_img" class="form-control" id="productPrice" placeholder="Введите цену">
+              </div>
             <button type="submit" class="btn btn-primary">Сохранить</button>
           </form>
         </div>
