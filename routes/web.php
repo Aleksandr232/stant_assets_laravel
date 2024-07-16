@@ -20,6 +20,7 @@ use App\Http\Controllers\ProductController;
 
 Route::get('/', [HomePageController::class, 'index'])->name('home');
 
+
 Route::middleware('guest')->group(function () {
     Route::get('/auth', [AuthController::class, 'authorization'])->name('auth');
     Route::post('/login', [AuthController::class, 'login'])->name('login');

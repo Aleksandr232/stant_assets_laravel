@@ -8,15 +8,18 @@
                     <circle cx="9.01538" cy="9.91309" r="9.01562" fill="#00D254"/>
                     </svg>
         </button>
-        <input value="{{ request()->input('search') }}" type="text" placeholder="Поиск по играм" />
-        {{-- <form action="{{ route('site.page.index') }}" method="GET">
-            <div class="input-group">
-                <input type="text" name="search" class="form-control" placeholder="Search products..." value="{{ $searchTerm }}">
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="submit">Search</button>
-                </div>
-            </div>
+
+
+
+        {{-- <input value="#" type="text" placeholder="Поиск по играм" /> --}}
+        {{-- <form action="{{ route('home') }}" method="GET">
+            <input type="text" name="search" placeholder="Search products">
+            <button type="submit">Search</button>
         </form> --}}
+        <form id="search-form" action="{{ route('home') }}" method="GET">
+            <input type="text" id="search-input" name="search" placeholder="Поиск по играм">
+        </form>
+
 
 
     </div>
