@@ -23,11 +23,11 @@
 
     <div class="product_list_container">
         <div class="container_filter">
-            <label class="container_filter-label">Найдено 6036  товаров</label>
+            <label class="container_filter-label">Найдено {{count($product)}}  товаров</label>
             <div  class="container_filter-list">
                 <div class="container_filter-list-header mobile-filter">
                     <span>Фильтры</span>
-                    <button><img src="./assets/images/refresh.svg" alt="" /></button>
+                    <button><img src="{{ asset('site/assets/images/refresh.svg') }}" alt="" /></button>
                 </div>
 
                 <div class="filter">
@@ -212,16 +212,16 @@
                         <th><button class="head_button">
                                 Игра
                                 <div class="head_button_row">
-                                    <img src="./assets/images/sort_arrow.svg" alt="">
-                                    <img src="./assets/images/sort_arrow-down.svg" alt="">
+                                    <img src="{{ asset('site/assets/images/sort_arrow.svg') }}" alt="">
+                                    <img src="{{ asset('site/assets/images/sort_arrow-down.svg') }}" alt="">
                                 </div>
                             </button></th>
                         <th>
                             <button class="head_button">
                                 Описание
                                 <div class="head_button_row">
-                                    <img src="./assets/images/sort_arrow.svg" alt="">
-                                    <img src="./assets/images/sort_arrow-down.svg" alt="">
+                                    <img src="{{ asset('site/assets/images/sort_arrow.svg') }}" alt="">
+                                    <img src="{{ asset('site/assets/images/sort_arrow-down.svg') }}" alt="">
                                 </div>
                             </button>
                         </th>
@@ -229,8 +229,8 @@
                             <button class="head_button">
                                 Цена
                                 <div class="head_button_row">
-                                    <img src="./assets/images/sort_arrow.svg" alt="">
-                                    <img src="./assets/images/sort_arrow-down.svg" alt="">
+                                    <img src="{{ asset('site/assets/images/sort_arrow.svg') }}" alt="">
+                                    <img src="{{ asset('site/assets/images/sort_arrow-down.svg') }}" alt="">
                                 </div>
                             </button>
                         </th>
@@ -245,7 +245,7 @@
                         <td>
                             <div class="item_name">
                                 <div class="item_name-logo">
-                                    <img src="./assets/images/steam-logo.png" alt="" />
+                                    <img src="{{ asset('site/assets/images/steam-logo.png') }}" alt="" />
                                     <label>Xbox</label>
                                 </div>
                                 <span>
@@ -257,7 +257,7 @@
                             <div class="item_description">
                                 <label>{{$post->price}} руб, Торговая площадка</label>
                                 <div class="item_description-rate">
-                                    <img src="./assets/images/rate-star.svg" alt="">
+                                    <img src="{{ asset('site/assets/images/rate-star.svg') }}" alt="">
                                     <span>4.9</span>
                                 </div>
                                 <span class="item_description-purchases">Всего покупок: 48</span>
@@ -273,7 +273,7 @@
                         <td>
                             <div class="item_delivery">
                                 <div class="item_delivery-clock">
-                                    <img src="./assets/images/clock.svg" alt="clock" />
+                                    <img src="{{ asset('site/assets/images/clock.svg') }}" alt="clock" />
                                     <span>В любое время</span>
                                 </div>
                                 <span>от 1 до 12 часов</span>
@@ -284,26 +284,26 @@
                                 <div class="item_facility-container">
                                     <div class="item_facility-row">
                                         <div class="item_facility-row-img">
-                                            <img src="./assets/images/developer_icon.svg" />
+                                            <img src="{{ asset('site/assets/images/developer_icon.svg') }}" />
                                         </div>
                                         <label>Навсегда</label>
                                     </div>
                                     <div class="item_facility-row">
                                         <div class="item_facility-row-img">
-                                            <img src="./assets/images/gamepad_icon.svg" />
+                                            <img src="{{ asset('site/assets/images/gamepad_icon.svg') }}" />
                                         </div>
                                         <label>0 часов</label>
                                     </div>
                                     <div class="item_facility-row">
                                         <div class="item_facility-row-img">
-                                            <img src="./assets/images/smartphone_icon.svg" />
+                                            <img src="{{ asset('site/assets/images/smartphone_icon.svg') }}" />
 
                                         </div>
                                         <label>Родная почта</label>
                                     </div>
                                     <div class="item_facility-row">
                                         <div class="item_facility-row-img">
-                                            <img src="./assets/images/platform_icon.svg" />
+                                            <img src="{{ asset('site/assets/images/platform_icon.svg')}}" />
 
                                         </div>
                                         <label>Steam[PC]</label>
@@ -325,7 +325,7 @@
                                     </span>
                                 </a>
                                 <a href="" class="item_order-details mobile-table">
-                                    <img src="./assets/images/shuffle.svg" />
+                                    <img src="{{ asset('site/assets/images/shuffle.svg')}}" />
                                     Подробная информация
                                 </a>
                             </div>
