@@ -26,11 +26,11 @@ return new class extends Migration
             $table->string('category')->nullable();
             $table->string('path_img_product')->nullable();
             $table->text('param_calc')->nullable();
-            $table->unsignedBigInteger('category_id')->nullable();
-            $table->foreign('category_id')->references('id')->on('category')->onDelete('cascade');
             $table->timestamps();
         });
     }
+
+
 
     /**
      * Reverse the migrations.
