@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Filter;
+use App\Models\FilterPrice;
+use App\Models\FilterService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -17,9 +19,10 @@ class ProductController extends Controller
     {
         $product = Product::paginate(10);
 
-        return view('admin.product.index', compact('product'));
-    }
 
+        return view('admin.product.index', compact('product'));
+
+    }
     public function category(Request $request)
     {
         $category = new Category([
@@ -83,9 +86,19 @@ class ProductController extends Controller
 
         ]);
 
+        $filterprice = new FilterPrice([
+            'filter_price' => $request->filter_price,
+        ]);
+
+        $filterservice = new FilterService([
+            'filter_service' => $request->filter_service,
+        ]);
+
 
 
         $filter->save();
+        $filterprice->save();
+        $filterservice->save();
 
         return redirect()->route('product.index');
     }

@@ -1,3 +1,8 @@
+@php
+        use App\Models\FilterPrice;
+
+        $filterprice = FilterPrice::all();
+@endphp
 <section class="product_list">
     <div class="list-search">
         <button>
@@ -36,22 +41,22 @@
                 <div class="filter">
                     <label class="filter_header">Цена</label>
                     <ul class="filter_group">
-                        <li class="filter_group-item-right">
-                            <label class="control control-checkbox">
-                                Платные
-                                <input type="checkbox" checked="checked" />
-                                <div class="control_indicator"></div>
-                            </label>
 
-                        </li>
-                        <li class="filter_group-item-right">
-                            <label class="control control-checkbox">
-                                Бесплатные
-                                <input type="checkbox" checked="checked" />
-                                <div class="control_indicator"></div>
-                            </label>
-                        </li>
-                        
+                        <ul class="filter_group-items">
+                            @foreach($filterprice as $post)
+                                    <li class="filter_group-item-right">
+                                        <label class="control control-checkbox">
+                                            {{ $post->filter_price }}
+                                            <input type="checkbox" checked="checked" />
+                                            <div class="control_indicator"></div>
+                                        </label>
+                                    </li>
+
+                            @endforeach
+                        </ul>
+
+
+
                         <li>
                             <div class="double-slider">
                                 <div class="double-slider_container">
@@ -79,6 +84,7 @@
                 <div class="filter">
                     <label class="filter_header">Платформа</label>
                     <ul class="filter_group">
+
                         <li class="filter_group-item">
                             <label class="control control-checkbox control-right">
                                 Steam
