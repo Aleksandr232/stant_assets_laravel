@@ -41,7 +41,7 @@ Route::prefix('admin')->middleware('admin')->group(function () {
 
 Route::prefix('account')->middleware('profile')->group(function () {
     Route::get('/',  [AccountController::class, 'index'])->name('account');
-
+    Route::post('/chat/send-message', [AccountController::class, 'sendMessage']);
 
 });
 

@@ -14,4 +14,14 @@ class AccountController extends Controller
 
         return view('account.page.index', compact('user'));
     }
+
+    public function sendMessage(Request $request)
+    {
+        $message = $request->input('message');
+        $user = Auth::user();
+
+        broadcast(new \App\Events\MessageSent($user, $message))->toOthers();
+
+        return response()->json(['success' => true]);
+    }
 }

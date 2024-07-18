@@ -167,6 +167,20 @@
             </div>
             <div class="chat_footer">
                 <span>
+                   {{--  <div id="chat-messages" class="mb-3"></div>
+                <form id="chat-form">
+                    <div class="input-group">
+                        <input class="chat_footer-text" id="chat-input" type="text" placeholder="Напишите продавцу перед оплатой">
+                        <div class="image-upload">
+                            <label for="file-input">
+                                <img src="./assets/images/gallery.svg"/>
+                            </label>
+
+                             <input id="file-input" type="file"/>
+                        </div>
+                        <button type="submit">Відправити</button>
+                    </div>
+                </form> --}}
                     <input class="chat_footer-text" type="text" placeholder="Напишите продавцу перед оплатой">
                     <div class="image-upload">
                         <label for="file-input">
