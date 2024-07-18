@@ -24,7 +24,10 @@ class Product extends Model
         'type_service',
         'param_calc',
         'path_img_product',
-        'category'
+        'category',
+        'filter_price',
+        'filter_platform',
+        'filter_service'
     ];
 
     public function category()

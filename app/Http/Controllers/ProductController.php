@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Filter;
 use App\Models\FilterPrice;
 use App\Models\FilterService;
+use App\Models\FilterPlatform;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -94,11 +95,16 @@ class ProductController extends Controller
             'filter_service' => $request->filter_service,
         ]);
 
+        $filterplatform = new FilterPlatform([
+            'filter_platform' => $request->filter_platform,
+        ]);
+
 
 
         $filter->save();
         $filterprice->save();
         $filterservice->save();
+        $filterplatform->save();
 
         return redirect()->route('product.index');
     }

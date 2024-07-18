@@ -1,7 +1,11 @@
 @php
         use App\Models\FilterPrice;
+        use App\Models\FilterService;
+        use App\Models\FilterPlatform;
 
         $filterprice = FilterPrice::all();
+        $filterplatform = FilterPlatform::all();
+        $filterservice = FilterService::all();
 @endphp
 <section class="product_list">
     <div class="list-search">
@@ -43,20 +47,26 @@
                     <ul class="filter_group">
 
                         <ul class="filter_group-items">
-                            @foreach($filterprice as $post)
+                            @if(count($filterprice))
+                                @foreach($filterprice as $post)
+                                    @if($post->filter_price)
+                                        <li class="filter_group-item-right">
+                                            <label class="control control-checkbox">
+                                                {{ $post->filter_price }}
+                                                <input type="checkbox" checked="checked" />
+                                                <div class="control_indicator"></div>
+                                            </label>
+                                        </li>
+                                    @endif
+                                @endforeach
+                            @else
                                     <li class="filter_group-item-right">
                                         <label class="control control-checkbox">
-                                            {{ $post->filter_price }}
-                                            <input type="checkbox" checked="checked" />
-                                            <div class="control_indicator"></div>
+                                            нет данных
                                         </label>
                                     </li>
-
-                            @endforeach
+                            @endif
                         </ul>
-
-
-
                         <li>
                             <div class="double-slider">
                                 <div class="double-slider_container">
@@ -84,85 +94,59 @@
                 <div class="filter">
                     <label class="filter_header">Платформа</label>
                     <ul class="filter_group">
+                        @if(count($filterplatform))
+                                @foreach($filterplatform as $post)
+                                    @if($post->filter_platform)
+                                        <li class="filter_group-item">
+                                            <label class="control control-checkbox control-right">
+                                                {{ $post->filter_platform }}
+                                                <input type="checkbox" checked="checked" />
+                                                <div class="control_indicator control_indicator-right"></div>
+                                            </label>
+                                        </li>
+                                    @endif
+                                @endforeach
+                            @else
+                                    <li class="filter_group-item">
+                                        <label class="control control-checkbox control-right">
+                                            нет данных
+                                        </label>
+                                    </li>
+                            @endif
 
-                        <li class="filter_group-item">
-                            <label class="control control-checkbox control-right">
-                                Steam
-                                <input type="checkbox" />
-                                <div class="control_indicator control_indicator-right"></div>
-                            </label>
-
-                        </li>
-                        <li class="filter_group-item">
-                            <label class="control control-checkbox control-right">
-                                EpicGames
-                                <input type="checkbox" />
-                                <div class="control_indicator control_indicator-right"></div>
-                            </label>
-
-                        </li>
-                        <li class="filter_group-item">
-                            <label class="control control-checkbox control-right">
-                                Xbox
-                                <input type="checkbox" />
-                                <div class="control_indicator control_indicator-right"></div>
-                            </label>
-
-                        </li>
-                        <li class="filter_group-item">
-                            <label class="control control-checkbox control-right">
-                                PlayStation
-                                <input type="checkbox" />
-                                <div class="control_indicator control_indicator-right"></div>
-                            </label>
-
-                        </li>
-                        <li class="filter_group-item">
+                        {{-- <li class="filter_group-item">
                             <label class="control control-checkbox control-right">
                                 Другие...
                                 <input type="checkbox" />
                                 <div class="control_indicator control_indicator-right"></div>
                             </label>
 
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
 
                 <div class="filter">
                     <label class="filter_header">Услуги</label>
                     <ul class="filter_group">
-                        <li class="filter_group-item">
-                            <label class="control control-checkbox control-right">
-                                Аккаунты
-                                <input type="checkbox" checked="checked" />
-                                <div class="control_indicator control_indicator-right"></div>
-                            </label>
-
-                        </li>
-                        <li class="filter_group-item">
-                            <label class="control control-checkbox control-right">
-                                Игровой буст
-                                <input type="checkbox" />
-                                <div class="control_indicator control_indicator-right"></div>
-                            </label>
-
-                        </li>
-                        <li class="filter_group-item">
-                            <label class="control control-checkbox control-right">
-                                Игровые предметы
-                                <input type="checkbox" />
-                                <div class="control_indicator control_indicator-right"></div>
-                            </label>
-
-                        </li>
-                        <li class="filter_group-item">
-                            <label class="control control-checkbox control-right">
-                                пополнение
-                                <input type="checkbox" />
-                                <div class="control_indicator control_indicator-right"></div>
-                            </label>
-
-                        </li>
+                        @if(count($filterservice))
+                                @foreach($filterservice as $post)
+                                    @if($post->filter_service)
+                                        <li class="filter_group-item">
+                                            <label class="control control-checkbox control-right">
+                                                {{ $post->filter_service }}
+                                                <input type="checkbox" checked="checked" />
+                                                <div class="control_indicator control_indicator-right"></div>
+                                            </label>
+                                        </li>
+                                    @endif
+                                @endforeach
+                            @else
+                                    <li class="filter_group-item">
+                                        <label class="control control-checkbox control-right">
+                                            нет данных
+                                        </label>
+                                    </li>
+                            @endif
                     </ul>
                 </div>
 

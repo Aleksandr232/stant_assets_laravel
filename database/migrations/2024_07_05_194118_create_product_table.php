@@ -26,6 +26,9 @@ return new class extends Migration
             $table->string('category')->nullable();
             $table->string('path_img_product')->nullable();
             $table->text('param_calc')->nullable();
+            $table->string('filter_price')->nullable();
+            $table->string('filter_platform')->nullable();
+            $table->string('filter_service')->nullable();
             $table->timestamps();
         });
     }

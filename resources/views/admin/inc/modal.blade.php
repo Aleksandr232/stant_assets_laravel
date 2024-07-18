@@ -1,5 +1,12 @@
 @php
         use App\Models\Category;
+        use App\Models\FilterPrice;
+        use App\Models\FilterService;
+        use App\Models\FilterPlatform;
+
+        $filterprice = FilterPrice::all();
+        $filterplatform = FilterPlatform::all();
+        $filterservice = FilterService::all();
 
         $category = Category::all("name_category");
 @endphp
@@ -53,6 +60,41 @@
                 <select  class="form-control" id="productName" name="category" id="">
                     @foreach($category as $post)
                     <option value="{{$post->name_category}}">{{$post->name_category}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="productName" class="form-label">Выбрать фильтр по цене</label>
+                <select class="form-control" id="productName" name="filter_price">
+                    @foreach($filterprice as $post)
+                    @if($post->filter_price)
+                        <option value="{{$post->filter_price}}">{{$post->filter_price}}</option>
+                    @endif
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="productName" class="form-label">Выбрать фильтр по платформе</label>
+
+                <select class="form-control" id="productName" name="filter_platform">
+                    @foreach($filterplatform as $post)
+                        @if($post->filter_platform)
+                            <option value="{{$post->filter_platform}}">{{$post->filter_platform}}</option>
+                        @endif
+                    @endforeach
+                </select>
+
+            </div>
+
+            <div class="mb-3">
+                <label for="productName" class="form-label">Выбрать фильтр по услуги</label>
+
+                <select class="form-control" id="productName" name="filter_service">
+                    @foreach($filterservice as $post)
+                        @if($post->filter_service)
+                            <option value="{{$post->filter_service}}">{{$post->filter_service}}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>
