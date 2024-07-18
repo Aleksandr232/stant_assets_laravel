@@ -70,3 +70,35 @@
       </div>
     </div>
   </div>
+
+
+  <!-- Модальное окно для фильтров -->
+  <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="filterModalLabel">Добавить фильтр</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Форма для добавления товара -->
+          <form method="post" action="{{ route('filter') }}">
+            @csrf
+            <div class="mb-3">
+              <label for="filterPrice" class="form-label">Фильтр по цене</label>
+              <input type="text" name="filter_price" class="form-control" id="filterPrice" placeholder="Введите максимальную цену">
+            </div>
+            <div class="mb-3">
+              <label for="filterService" class="form-label">Фильтр по услуге</label>
+              <input type="text" name="filter_service" class="form-control" id="filterPrice" placeholder="Введите услугу">
+            </div>
+            <div class="mb-3">
+              <label for="filterPlatform" class="form-label">Фильтр по платформе</label>
+              <input type="text" name="filter_platform" class="form-control" id="filterPrice" placeholder="Введите платформу">
+            </div>
+            <button type="submit" class="btn btn-primary">Применить фильтры</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

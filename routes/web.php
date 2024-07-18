@@ -37,6 +37,7 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::resource('/product', ProductController::class);
     Route::post('/create_category', [ProductController::class, 'category'])->name('category');
     Route::post('/create_product', [ProductController::class, 'product'])->name('product');
+    Route::post('/create_filter', [ProductController::class, 'filter'])->name('filter');
 });
 
 Route::prefix('account')->middleware('profile')->group(function () {

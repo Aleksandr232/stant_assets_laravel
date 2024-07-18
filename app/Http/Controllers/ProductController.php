@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Filter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -69,6 +70,22 @@ class ProductController extends Controller
         }
 
         $product->save();
+
+        return redirect()->route('product.index');
+    }
+
+    public function filter(Request $request)
+    {
+        $filter = new Filter([
+            'filter_price' => $request->filter_price,
+            'filter_service' => $request->filter_service,
+            'filter_platform' => $request->filter_platform,
+
+        ]);
+
+
+
+        $filter->save();
 
         return redirect()->route('product.index');
     }

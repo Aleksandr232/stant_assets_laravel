@@ -51,6 +51,7 @@
                                 <div class="control_indicator"></div>
                             </label>
                         </li>
+                        
                         <li>
                             <div class="double-slider">
                                 <div class="double-slider_container">
