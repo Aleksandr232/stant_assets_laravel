@@ -109,6 +109,21 @@ class ProductController extends Controller
         return redirect()->route('product.index');
     }
 
+    public function destroy($id)
+    {
+        $product = Product::findOrFail($id);
+
+        // Удаление файла из хранилища
+        if ($product->path_img_product) {
+            Storage::disk('product')->delete($product->path_img_product);
+        }
+
+        // Удаление продукта из базы данных
+        $product->delete();
+
+        return redirect()->route('product.index')->with('success', 'Продукт успешно удален.');
+    }
+
 }
 
 

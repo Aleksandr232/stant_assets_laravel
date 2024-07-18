@@ -71,7 +71,15 @@
             <tr>
               <td>{{$post->id}}</td>
               <td>{{$post->product}}</td>
-              <td>ivan@example.com</td>
+              <td>
+                <form action="{{ route('destroy', $post->id) }}" method="POST">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+                    <button class="btn btn-danger btn-sm" type="submit">
+                        Удалить
+                    </button>
+                </form>
+              </td>
             </tr>
           </tbody>
           @endforeach
