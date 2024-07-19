@@ -62,6 +62,9 @@ class ProductController extends Controller
             'param_calc' => $request->param_calc,
             'path_img_product' => $request->path_img_product,
             'category'=>$request->category,
+            'filter_price'=>$request->filter_price,
+            'filter_service'=>$request->filter_service,
+            'filter_platform'=>$request->filter_platform,
             'category_id' => $request->category_id,
         ]);
 

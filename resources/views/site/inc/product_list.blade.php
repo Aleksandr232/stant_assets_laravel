@@ -47,25 +47,25 @@
                     <ul class="filter_group">
 
                         <ul class="filter_group-items">
-                            @if(count($filterprice))
-                                @foreach($filterprice as $post)
-                                    @if($post->filter_price)
-                                        <li class="filter_group-item-right">
-                                            <label class="control control-checkbox">
-                                                {{ $post->filter_price }}
-                                                <input type="checkbox" checked="checked" />
-                                                <div class="control_indicator"></div>
-                                            </label>
-                                        </li>
-                                    @endif
-                                @endforeach
-                            @else
+                                @if(count($filterprice))
+                                    @foreach($filterprice as $post)
+                                        @if($post->filter_price)
+                                            <li class="filter_group-item-right">
+                                                <label class="control control-checkbox">
+                                                    {{ $post->filter_price }}
+                                                    <input type="checkbox" name="filter_price[]" value="{{ $post->filter_price }}" @if(in_array($post->filter_price, request()->input('filter_price', []))) checked @endif />
+                                                    <div class="control_indicator"></div>
+                                                </label>
+                                            </li>
+                                        @endif
+                                    @endforeach
+                                @else
                                     <li class="filter_group-item-right">
                                         <label class="control control-checkbox">
                                             нет данных
                                         </label>
                                     </li>
-                            @endif
+                                @endif
                         </ul>
                         <li>
                             <div class="double-slider">
