@@ -6,6 +6,7 @@
         $filterprice = FilterPrice::all();
         $filterplatform = FilterPlatform::all();
         $filterservice = FilterService::all();
+
 @endphp
 <section class="product_list">
     <div class="list-search">
@@ -43,9 +44,9 @@
                 </div>
 
                 <div class="filter">
+                    <form action="{{ route('home') }}" method="GET">
                     <label class="filter_header">Цена</label>
                     <ul class="filter_group">
-
                         <ul class="filter_group-items">
                                 @if(count($filterprice))
                                     @foreach($filterprice as $post)
@@ -53,7 +54,7 @@
                                             <li class="filter_group-item-right">
                                                 <label class="control control-checkbox">
                                                     {{ $post->filter_price }}
-                                                    <input type="checkbox" name="filter_price[]" value="{{ $post->filter_price }}" @if(in_array($post->filter_price, request()->input('filter_price', []))) checked @endif />
+                                                    <input name="filter_price[]" type="checkbox" value="{{ $post->filter_price }}" @if(in_array($post->filter_price, request()->input('filter_price', []))) checked @endif onchange="this.form.submit()" />
                                                     <div class="control_indicator"></div>
                                                 </label>
                                             </li>
@@ -67,6 +68,7 @@
                                     </li>
                                 @endif
                         </ul>
+                    </form>
                         <li>
                             <div class="double-slider">
                                 <div class="double-slider_container">
@@ -92,27 +94,31 @@
                 </div>
 
                 <div class="filter">
-                    <label class="filter_header">Платформа</label>
-                    <ul class="filter_group">
-                        @if(count($filterplatform))
+                    {{-- <label class="filter_header">Платформа</label> --}}
+                    <form action="{{ route('home') }}" method="GET">
+                        <label class="filter_header">Платформа</label>
+                        <ul class="filter_group">
+                            @if(count($filterplatform))
                                 @foreach($filterplatform as $post)
                                     @if($post->filter_platform)
                                         <li class="filter_group-item">
                                             <label class="control control-checkbox control-right">
                                                 {{ $post->filter_platform }}
-                                                <input type="checkbox" checked="checked" />
+                                                <input name="filter_platform[]" type="checkbox" value="{{ $post->filter_platform }}" @if(in_array($post->filter_platform, request()->input('filter_platform', []))) checked @endif onchange="this.form.submit()" />
                                                 <div class="control_indicator control_indicator-right"></div>
                                             </label>
                                         </li>
                                     @endif
                                 @endforeach
                             @else
-                                    <li class="filter_group-item">
-                                        <label class="control control-checkbox control-right">
-                                            нет данных
-                                        </label>
-                                    </li>
+                                <li class="filter_group-item">
+                                    <label class="control control-checkbox control-right">
+                                        нет данных
+                                    </label>
+                                </li>
                             @endif
+                        </ul>
+                    </form>
 
                         {{-- <li class="filter_group-item">
                             <label class="control control-checkbox control-right">
@@ -126,6 +132,7 @@
                 </div>
 
                 <div class="filter">
+                    <form action="{{ route('home') }}" method="GET">
                     <label class="filter_header">Услуги</label>
                     <ul class="filter_group">
                         @if(count($filterservice))
@@ -134,7 +141,7 @@
                                         <li class="filter_group-item">
                                             <label class="control control-checkbox control-right">
                                                 {{ $post->filter_service }}
-                                                <input type="checkbox" checked="checked" />
+                                                <input name="filter_service[]" type="checkbox" value="{{ $post->filter_service }}" @if(in_array($post->filter_service, request()->input('filter_service', []))) checked @endif onchange="this.form.submit()" />
                                                 <div class="control_indicator control_indicator-right"></div>
                                             </label>
                                         </li>
@@ -148,6 +155,7 @@
                                     </li>
                             @endif
                     </ul>
+                </form>
                 </div>
 
                 <div class="filter">

@@ -16,10 +16,19 @@ class HomePageController extends Controller
         $query->where('product', 'like', '%' . $request->input('search') . '%');
     }
 
-    // Фильтрация по платформе
+    // Apply filter_platform filter
     if ($request->has('filter_platform')) {
         $query->where('filter_platform', $request->input('filter_platform'));
     }
+
+    if ($request->has('filter_service')) {
+        $query->where('filter_service', $request->input('filter_service'));
+    }
+
+    if ($request->has('filter_price')) {
+        $query->where('filter_price', $request->input('filter_price'));
+    }
+
 
     $product = $query->paginate(5);
     $category = Category::all();
