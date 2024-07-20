@@ -7,6 +7,9 @@
         $filterplatform = FilterPlatform::all();
         $filterservice = FilterService::all();
 
+        $minPrice = $product->min('price');
+        $maxPrice = $product->max('price');
+
 @endphp
 <section class="product_list">
     <div class="list-search">
@@ -70,25 +73,27 @@
                         </ul>
                     </form>
                         <li>
+                            <form action="{{ route('home') }}">
                             <div class="double-slider">
+
                                 <div class="double-slider_container">
                                     <div class="slider-track"></div>
-                                    <input type="range" min="0" max="100" value="30" id="slider-1"
-                                        oninput="slideOne()">
-                                    <input type="range" min="0" max="100" value="70" id="slider-2"
-                                        oninput="slideTwo()">
+                                    <input  type="range" min="{{ $minPrice }}" max="{{ $maxPrice }}"
+                                    value="0"  id="slider-1" oninput="slideOne()">
+                                    <input name="price[]"  type="range" min="{{ $minPrice }}" max="{{ $maxPrice }}"  value="{{ $post->price }}" @if(in_array($post->price, request()->input('price', []))) checked @endif onchange="this.form.submit()"  id="slider-2" oninput="slideTwo()">
                                 </div>
                                 <div class="double-slider_values">
                                     <span class="range-count" id="range1">
-                                        0
+                                        {{ $minPrice }}
                                     </span>
                                     <span class="range-dash"></span>
                                     <span class="range-count" id="range2">
-                                        100
+                                        {{ $maxPrice }}
                                     </span>
                                 </div>
-                            </div>
 
+                            </div>
+                        </form>
                         </li>
                     </ul>
                 </div>
