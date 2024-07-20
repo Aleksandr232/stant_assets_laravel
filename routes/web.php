@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,7 +20,7 @@ use App\Http\Controllers\ProductController;
 
 
 Route::get('/', [HomePageController::class, 'index'])->name('home');
-
+Route::get('/product/{id}/{name}', [OrderController::class, 'index'])->name('order');
 
 Route::middleware('guest')->group(function () {
     Route::get('/auth', [AuthController::class, 'authorization'])->name('auth');
