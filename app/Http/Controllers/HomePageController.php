@@ -33,6 +33,10 @@ class HomePageController extends Controller
         $query->where('price', $request->input('price'));
     }
 
+    if ($request->has('category')) {
+        $query->where('category', $request->input('category'));
+    }
+
 
     $product = $query->paginate(5);
     $category = Category::all();

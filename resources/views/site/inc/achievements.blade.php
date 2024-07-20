@@ -3,7 +3,7 @@
     <div class="achievements__row">
         <div class="achievements__row-cards">
             @foreach ($category as $post)
-            <a href="" class="achievement">
+            <a href="#"   class="achievement">
                 @if(str_starts_with($post->path, 'https://'))
                     <img src="{{$post->path}}"/>
                 @else
@@ -12,6 +12,7 @@
                 <span>{{$post->name_category}}</span>
             </a>
             @endforeach
+
         </div>
 
 
