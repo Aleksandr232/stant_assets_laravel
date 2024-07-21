@@ -30,7 +30,7 @@
             <button type="submit">Search</button>
         </form> --}}
         <form id="search-form" action="{{ route('home') }}" method="GET">
-            <input type="text" id="search-input" name="search" placeholder="Поиск по играм">
+            <input type="text"  value="{{ request()->input('search') }}" id="search-input" name="search" placeholder="Поиск по играм" onchange="this.form.submit()">
         </form>
 
 
