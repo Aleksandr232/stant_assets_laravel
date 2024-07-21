@@ -20,7 +20,7 @@ use App\Http\Controllers\OrderController;
 
 
 Route::get('/', [HomePageController::class, 'index'])->name('home');
-Route::get('/product/{id}/{name}', [OrderController::class, 'index'])->name('order');
+Route::get('/product/{id}/{name}', [OrderController::class, 'order'])->name('order');
 
 Route::middleware('guest')->group(function () {
     Route::get('/auth', [AuthController::class, 'authorization'])->name('auth');

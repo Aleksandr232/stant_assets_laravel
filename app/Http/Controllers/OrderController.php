@@ -7,7 +7,7 @@ use App\Models\Product;
 
 class OrderController extends Controller
 {
-    public function index(Request $request, $id, $name){
+    public function order(Request $request, $id, $name){
 
         $order = Product::query()->find($id);
 
