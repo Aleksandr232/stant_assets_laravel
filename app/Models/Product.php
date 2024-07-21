@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use willvincent\Rateable\Rateable;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, Rateable;
 
     protected $table = 'product';
 
@@ -27,7 +28,11 @@ class Product extends Model
         'category',
         'filter_price',
         'filter_platform',
-        'filter_service'
+        'filter_service',
+        'name',
+        'rating',
+        'comment',
+        'average_rating'
     ];
 
     public function category()

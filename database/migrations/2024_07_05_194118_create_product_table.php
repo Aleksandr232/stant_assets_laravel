@@ -29,6 +29,10 @@ return new class extends Migration
             $table->string('filter_price')->nullable();
             $table->string('filter_platform')->nullable();
             $table->string('filter_service')->nullable();
+            $table->text('rating')->nullable();
+            $table->text('name')->nullable();
+            $table->text('comment')->nullable();
+            $table->string('average_rating')->nullable();
             $table->timestamps();
         });
     }

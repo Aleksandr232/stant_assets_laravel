@@ -7,6 +7,8 @@ use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\RatingController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,7 +47,8 @@ Route::prefix('admin')->middleware('admin')->group(function () {
 Route::prefix('account')->middleware('profile')->group(function () {
     Route::get('/',  [AccountController::class, 'index'])->name('account');
     Route::post('/chat/send-message', [AccountController::class, 'sendMessage']);
-
+    Route::post('/product/{id}/rate', [RatingController::class, 'post_rate'])->name('post_rate');
+    
 });
 
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');

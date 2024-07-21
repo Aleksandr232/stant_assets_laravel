@@ -3823,6 +3823,15 @@ footer {
   width: -moz-max-content;
   width: max-content;
 }
+.feedback_container_reviews-auth {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 14px 46px;
+    border-radius: 2px;
+    background: #2C2C31;
+    width: -moz-max-content;
+    width: max-content;
+  }
 .feedback_container_main {
   margin-top: 40px;
   display: flex;

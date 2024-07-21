@@ -9,36 +9,40 @@
         </div>
 
         <div class="review_container_main">
+            <form action="{{ route('post_rate', [$order->id]) }}" method="POST">
+                @csrf
                 <div class="review_container_main-rate">
                     Оцените товар
                     <div id="ratePicker">
-                        <svg width="24" height="22" viewBox="0 0 24 22" fill="none" stroke="#6F6E6E" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="rate-star" width="24" height="22" viewBox="0 0 24 22" fill="none" stroke="#6F6E6E" xmlns="http://www.w3.org/2000/svg">
                             <path d="M11.945 1.82278L14.2654 8.70047L14.3801 9.04064H14.7391H22.1944L16.1793 13.2495L15.8725 13.4642L15.9922 13.819L18.2998 20.659L12.2317 16.4129L11.945 16.2124L11.6584 16.4129L5.59018 20.659L7.89781 13.819L8.01751 13.4642L7.7107 13.2495L1.69565 9.04064H9.1509H9.5099L9.62466 8.70047L11.945 1.82278Z"></path>
                         </svg>
-                        <svg width="24" height="22" viewBox="0 0 24 22" fill="none" stroke="#6F6E6E" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="rate-star" width="24" height="22" viewBox="0 0 24 22" fill="none" stroke="#6F6E6E" xmlns="http://www.w3.org/2000/svg">
                             <path d="M11.945 1.82278L14.2654 8.70047L14.3801 9.04064H14.7391H22.1944L16.1793 13.2495L15.8725 13.4642L15.9922 13.819L18.2998 20.659L12.2317 16.4129L11.945 16.2124L11.6584 16.4129L5.59018 20.659L7.89781 13.819L8.01751 13.4642L7.7107 13.2495L1.69565 9.04064H9.1509H9.5099L9.62466 8.70047L11.945 1.82278Z"></path>
                         </svg>
-                        <svg width="24" height="22" viewBox="0 0 24 22" fill="none" stroke="#6F6E6E" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="rate-star" width="24" height="22" viewBox="0 0 24 22" fill="none" stroke="#6F6E6E" xmlns="http://www.w3.org/2000/svg">
                             <path d="M11.945 1.82278L14.2654 8.70047L14.3801 9.04064H14.7391H22.1944L16.1793 13.2495L15.8725 13.4642L15.9922 13.819L18.2998 20.659L12.2317 16.4129L11.945 16.2124L11.6584 16.4129L5.59018 20.659L7.89781 13.819L8.01751 13.4642L7.7107 13.2495L1.69565 9.04064H9.1509H9.5099L9.62466 8.70047L11.945 1.82278Z"></path>
                         </svg>
-                        <svg width="24" height="22" viewBox="0 0 24 22" fill="none" stroke="#6F6E6E" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="rate-star" width="24" height="22" viewBox="0 0 24 22" fill="none" stroke="#6F6E6E" xmlns="http://www.w3.org/2000/svg">
                             <path d="M11.945 1.82278L14.2654 8.70047L14.3801 9.04064H14.7391H22.1944L16.1793 13.2495L15.8725 13.4642L15.9922 13.819L18.2998 20.659L12.2317 16.4129L11.945 16.2124L11.6584 16.4129L5.59018 20.659L7.89781 13.819L8.01751 13.4642L7.7107 13.2495L1.69565 9.04064H9.1509H9.5099L9.62466 8.70047L11.945 1.82278Z"></path>
                         </svg>
-                        <svg width="24" height="22" viewBox="0 0 24 22" fill="none" stroke="#6F6E6E" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="rate-star" width="24" height="22" viewBox="0 0 24 22" fill="none" stroke="#6F6E6E" xmlns="http://www.w3.org/2000/svg">
                             <path d="M11.945 1.82278L14.2654 8.70047L14.3801 9.04064H14.7391H22.1944L16.1793 13.2495L15.8725 13.4642L15.9922 13.819L18.2998 20.659L12.2317 16.4129L11.945 16.2124L11.6584 16.4129L5.59018 20.659L7.89781 13.819L8.01751 13.4642L7.7107 13.2495L1.69565 9.04064H9.1509H9.5099L9.62466 8.70047L11.945 1.82278Z"></path>
                         </svg>
                     </div>
+                    <input type="hidden" name="rating" id="rating" value="0">
                 </div>
 
                 <div class="review_container_main-comment">
                     Ваш комментарий
-                    <textarea></textarea>
+                    <textarea name="comment" required></textarea>
                 </div>
 
                 <div class="review_container_main-buttons">
                     <a>Отмена</a>
-                    <a id="sendReview">Оставить отзыв</a>
+                    <a href="#" id="sendReview" type="submit" class="submit-btn">Оставить отзыв</a>
                 </div>
+            </form>
         </div>
     </div>
 

@@ -140,15 +140,15 @@ $(document).ready(function() {
 $(document).ready(function() {
     let mySlider,mySlider2
     $('.product_info-buttons-select').click(function(e) {
-       
+
         e.preventDefault();
         if (mySlider || mySlider2) return;
         let answer = prompt('Выберите меню от 0 до 3');
         console.log(answer, typeof answer);
-        
+
         $('.product_service').show();
         $(`#product_service${answer}`).show();
-        
+
         mySlider = new rSlider({
             target: '#slider',
             values: [0, 5, 10, 15, 25, 50, 100, 1000],
@@ -160,7 +160,7 @@ $(document).ready(function() {
             width: `${$('.rank-slider').width() - 30}px`,
             onChange: updateSlider // callback
         });
-        
+
         mySlider2 = new rSlider({
             target: '#slider2',
             values: ['Silver 1>5', 'Nova 1>5', 'MGL', 'Global', 'Boost 1>5', 'Nova 1>555', 'Nova 1>5', 'Nova 1>5', 'SGL 55', 'SGL'],
@@ -172,13 +172,13 @@ $(document).ready(function() {
             width: `${$('.rank-slider2').width() - 40}px`,
             onChange: updateSlider // callback
         });
-        
-        
-       
+
+
+
     });
 
     $('.service_type-close').click(function(e) {
-        
+
         $('.product_service').hide();
         $(`#product_service0`).hide();
     });
@@ -191,11 +191,11 @@ $(document).ready(function() {
         mySlider2.destroy()
         mySlider = null;
         mySlider2 = null;
-        
+
     });
 
 
-    
+
 
      let imgCount = $('.gallery img').length;
 
@@ -205,7 +205,7 @@ $(document).ready(function() {
      }
 
      $('.gallery_footer-point:first').addClass('point-active');
-     
+
      $('.gallery_footer-point').on('click', function() {
         $('.gallery_footer-point').removeClass('point-active');
 
@@ -230,7 +230,7 @@ $(document).ready(function() {
 
     $('.gallery-next').on('click', function() {
         let $firstImage = $('.gallery img:first');
-        $firstImage.appendTo('.gallery'); 
+        $firstImage.appendTo('.gallery');
         updatePoint(1);
     });
 
@@ -251,7 +251,7 @@ $(document).ready(function() {
     });
     $('.mobile-filter').click(function(e) {
         e.preventDefault();
-      
+
         $('.product_list-filters').show();
         $('.filter').toggle();
     });
@@ -265,7 +265,7 @@ $(document).ready(function() {
 
 
     $('#loginLink').click(function(e) {
-        e.preventDefault(); 
+        e.preventDefault();
         $(this).addClass('active');
         $('#signupLink').removeClass('active');
 
@@ -277,7 +277,7 @@ $(document).ready(function() {
     });
 
     $('#signupLink').click(function(e) {
-        e.preventDefault(); 
+        e.preventDefault();
 
         $(this).addClass('active');
         $('#loginLink').removeClass('active');
@@ -286,19 +286,19 @@ $(document).ready(function() {
         $('#submitButton').text('Создать');
         $('.password-recovery').hide();
         $('.password-container').removeClass('hidden');
-        
+
     });
-    
+
     $('#password-recovery').click(function(e) {
-        e.preventDefault(); 
+        e.preventDefault();
 
 
         $('#emailInput').addClass('hidden');
         $('.password-container').addClass('hidden');
-        
+
         $('#submitButton').text('Восстановить');
         $('.password-recovery').hide();
-        
+
     });
 
     $('#togglePassword').click(function() {
@@ -306,11 +306,11 @@ $(document).ready(function() {
         const type = passwordInput.attr('type') === 'password' ? 'text' : 'password';
         passwordInput.attr('type', type);
     });
- 
+
 function handleTogglePassword($toggleButton) {
     $toggleButton.on('click', function(e) {
         const $passwordInput = $(this).siblings('.newPassword');
-        
+
         const type = $passwordInput.attr('type') === 'password' ? 'text' : 'password';
         $passwordInput.attr('type', type);
     });
@@ -353,7 +353,7 @@ $('.toggle-password').each(function() {
 
     // Функция для проверки ширины окна и скрытия/отображения элемента
     function toggleChatVisibility() {
-        let windowWidth = $(window).width(); 
+        let windowWidth = $(window).width();
 
         if (windowWidth < 1200) {
             $('.chat.profile_chat').hide();
@@ -385,7 +385,7 @@ $('.toggle-password').each(function() {
         $('.help_center-success').hide();
     });
 
-    
+
     $('.help_center_main-form-submit').click(function(e) {
         e.preventDefault();
         $('.help_center').hide();
@@ -403,11 +403,13 @@ $('#add-favourite').click(function(e) {
 
 // Обработчик клика на элемент "Оставить отзыв"
 $('#sendFeedback').click(function() {
-    
+
     $(this).addClass('active');
     $(this).next().removeClass('active');
     $('#sendReview').text('Оставить отзыв')
 });
+
+
 
 // Обработчик клика на элемент "Задать вопрос"
 $('#sendQuestion').click(function() {
@@ -420,7 +422,7 @@ $('#sendQuestion').click(function() {
 $('.review_container_header-close').click(function() {
     $('.review_container').hide();
 });
-    
+
 
 $('#ratePicker svg').click(function() {
     let starIndex = $(this).index();
@@ -434,6 +436,36 @@ $('.feedback_container_reviews-send').click(function(e) {
     $('.review_container').show();
 });
 
+// Обработчик для рейтинга
+const ratePicker = document.getElementById('ratePicker');
+const rateStars = ratePicker.getElementsByClassName('rate-star');
+const ratingInput = document.getElementById('rating');
+const submitLink = document.getElementById('sendReview');
+
+let selectedRating = 0;
+
+for (let i = 0; i < rateStars.length; i++) {
+    rateStars[i].addEventListener('click', () => {
+        selectedRating = i + 1;
+        ratingInput.value = selectedRating;
+        updateStarColors();
+    });
+}
+
+submitLink.addEventListener('click', () => {
+    document.querySelector('form').submit();
+});
+
+function updateStarColors() {
+    for (let i = 0; i < rateStars.length; i++) {
+        if (i < selectedRating) {
+            rateStars[i].style.fill = '#F44E51';
+        } else {
+            rateStars[i].style.fill = 'none';
+        }
+    }
+}
+
 
 
 $( ".item_status-update" ).click(function() {
@@ -444,37 +476,37 @@ $( ".item_status-update" ).click(function() {
     }
 
 });
-let item_information = null; 
+let item_information = null;
 
     // Показать .item_information при клике на .item_status.success
     $('.item_status .success').click(function(e) {
         e.preventDefault();
-        
+
         if (item_information) {
             $(item_information).hide();
         }
-        
+
         item_information = $(this).siblings('.item_information');
         $(item_information).show();
     });
 
     $('.item_information-close').click(function(e) {
         e.preventDefault();
-        
+
         $(item_information).hide();
-        item_information = null; 
+        item_information = null;
     });
 
     $('.language_selector-search input').on('input', function() {
-        let searchText = $(this).val().toLowerCase(); 
-        
+        let searchText = $(this).val().toLowerCase();
+
         $('.language_selector_list-item').each(function() {
-            let itemText = $(this).text().toLowerCase(); 
-            
+            let itemText = $(this).text().toLowerCase();
+
             if (itemText.includes(searchText)) {
-                $(this).show(); 
+                $(this).show();
             } else {
-                $(this).hide(); 
+                $(this).hide();
             }
         });
     });
@@ -512,15 +544,15 @@ let item_information = null;
   });
 
 
-   
-    const updateSlider = () => { 
-        
+
+    const updateSlider = () => {
+
         valueDisplay.val(mySlider.getValue());
     };
 
-    
 
-    
+
+
 });
 
 

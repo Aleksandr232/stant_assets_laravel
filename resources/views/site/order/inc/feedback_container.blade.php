@@ -2,7 +2,7 @@
 
     <div class="feedback_container_reviews">
         <div class="feedback_container_header">
-            <label>отзывы 40</label>
+            <label>40 Отзывов</label>
         <div class="reviews_rate">
             <span class="reviews_rate-stars">
                 <div>
@@ -38,9 +38,17 @@
                 </div>
                 4.7
             </span>
-            <span class="reviews_rate-count">40 отзывов</span>
+            <span class="reviews_rate-count"> отзывов</span>
         </div>
-        <a href="#" class="feedback_container_reviews-send">Оставить отзыв</a>
+        @if (Auth::check())
+            @if (Auth::user()->is_admin == 1)
+                <a  class="feedback_container_reviews-auth">Вы являетесь админом</a>
+            @else
+                <a href="#" class="feedback_container_reviews-send">Оставить отзыв</a>
+            @endif
+        @else
+            <a href="{{ route('auth') }}" class="feedback_container_reviews-auth">Оставить отзыв</a>
+        @endif
         </div>
         <div class="feedback_container_main">
             <div class="review">
@@ -218,6 +226,7 @@
             <a href="" class="feedback_container_main-more">Показать еще 20</a>
         </div>
     </div>
+
     <div class="chat">
         <div class="chat_header">
             <label>Напишите нам для уточнение товара:</label>
