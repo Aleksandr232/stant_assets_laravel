@@ -104,7 +104,7 @@
             </div>
             <div class="mb-3">
                 <label for="productPrice" class="form-label">Фото товара</label>
-                <input type="file" name="product_img" class="form-control" id="productPrice" placeholder="Введите цену">
+                <input type="file" multiple name="product_img[]" class="form-control" id="productPrice" placeholder="Введите цену">
               </div>
             <button type="submit" class="btn btn-primary">Сохранить</button>
           </form>

@@ -68,12 +68,30 @@ class ProductController extends Controller
             'category_id' => $request->category_id,
         ]);
 
-        if ($request->hasFile('product_img')) {
+        /* if ($request->hasFile('product_img')) {
             $file = $request->file('product_img');
             $path_img_product = Storage::disk('product')->putFile('products', $file);
 
             $product->product_img = $file->getClientOriginalName();
             $product->path_img_product = $path_img_product;
+        } */
+
+        if($request->hasFile('product_img'))
+        {
+            $product_img = $request->file('product_img');
+            $path_img_product_arr = [];
+            $product_img_arr = [];
+
+            foreach ($product_img as $file)
+            {
+                $path = Storage::disk('product')->putFile('products', $file);
+                $fullPath = "http://127.0.0.1:8000/product/" . $path;
+                $path_img_product_arr[] = $fullPath;
+                $product_img_arr[] = $file->getClientOriginalName();
+            }
+
+            $product->path_img_product = implode(",", $path_img_product_arr);
+            $product->product_img = implode(",", $product_img_arr);
         }
 
         $product->save();
@@ -114,7 +132,7 @@ class ProductController extends Controller
 
     public function destroy($id)
     {
-        $product = Product::findOrFail($id);
+        /* $product = Product::findOrFail($id);
 
         // Удаление файла из хранилища
         if ($product->path_img_product) {
@@ -122,6 +140,21 @@ class ProductController extends Controller
         }
 
         // Удаление продукта из базы данных
+        $product->delete();
+
+        return redirect()->route('product.index')->with('success', 'Продукт успешно удален.'); */
+
+        $product = Product::findOrFail($id);
+
+        // Удаляем файлы из хранилища
+        $path_img_product = explode(',', $product->path_img_product);
+        $product_img = explode(',', $product->product_img);
+
+        foreach ($path_img_product as $path) {
+            Storage::disk('product')->delete(str_replace('http://127.0.0.1:8000/product/', '', $path));
+        }
+
+        // Удаляем запись из базы данных
         $product->delete();
 
         return redirect()->route('product.index')->with('success', 'Продукт успешно удален.');

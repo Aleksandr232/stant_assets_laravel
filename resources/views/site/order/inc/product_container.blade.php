@@ -1,6 +1,6 @@
 <section class="product_container">
     <div class="product_container_header">
-        <h1>Купить ARK: Survival Ascended</h1>
+        <h1>Купить {{$order->product}}</h1>
         <span class="product_container_header-rate">
             <div>
                 <svg width="24" height="22" viewBox="0 0 24 22" fill="none"
@@ -44,13 +44,9 @@
             <span class="gallery-previous"></span>
             <span class="gallery-next"></span>
             <div class="gallery">
-                <img src="./assets/images/Картина 1.png"/>
-                <img src="./assets/images/Картина 2.png"/>
-                <img src="./assets/images/Картина3.png"/>
-                <img src="./assets/images/Картина 1.png"/>
-                <img src="./assets/images/Картина 2.png"/>
-                <img src="./assets/images/Картина3.png"/>
-
+                @foreach(explode(',', $order->path_img_product) as $img)
+                    <img src="{{$img}}" >
+                @endforeach
             </div>
             <div class="gallery_footer">
 
@@ -62,8 +58,9 @@
                     <label class="switch_features" for="checkbox">
                         <input type="checkbox" id="checkbox" checked disabled />
                         <div class="slider_features round"></div>
-                        <img class="slider_features-check" src="./assets/images/check.svg" />
-                        <img class="slider_features-cross" src="./assets/images/cross.svg" />
+                        <img class="slider_features-check" src="{{ asset('site/assets/images/check.svg') }}" />
+
+                        <img class="slider_features-cross" src="{{ asset('site/assets/images/cross.svg') }}" />
                     </label>
                     <span>Steam</span>
                 </span>
@@ -71,8 +68,8 @@
                     <label class="switch_features" for="checkbox">
                         <input type="checkbox" id="checkbox" />
                         <div class="slider_features round"></div>
-                        <img class="slider_features-check" src="./assets/images/check.svg" />
-                        <img class="slider_features-cross" src="./assets/images/cross.svg" />
+                        <img class="slider_features-check" src="{{ asset('site/assets/images/check.svg') }}" />
+                        <img class="slider_features-cross" src="{{ asset('site/assets/images/cross.svg') }}" />
                     </label>
                     <span>Бесплатно</span>
                 </span>
@@ -80,8 +77,8 @@
                     <label class="switch_features" for="checkbox">
                         <input type="checkbox" id="checkbox" checked />
                         <div class="slider_features round"></div>
-                        <img class="slider_features-check" src="./assets/images/check.svg" />
-                        <img class="slider_features-cross" src="./assets/images/cross.svg" />
+                        <img class="slider_features-check" src="{{ asset('site/assets/images/check.svg') }}" />
+                        <img class="slider_features-cross" src="{{ asset('site/assets/images/cross.svg') }}" />
                     </label>
                     <span>Роднная почта</span>
                 </span>
@@ -89,8 +86,8 @@
                     <label class="switch_features" for="checkbox">
                         <input type="checkbox" id="checkbox" checked />
                         <div class="slider_features round"></div>
-                        <img class="slider_features-check" src="./assets/images/check.svg" />
-                        <img class="slider_features-cross" src="./assets/images/cross.svg" />
+                        <img class="slider_features-check" src="{{ asset('site/assets/images/check.svg') }}" />
+                        <img class="slider_features-cross" src="{{ asset('site/assets/images/cross.svg') }}" />
                     </label>
                     <span>Вналичие</span>
                 </span>
@@ -98,8 +95,8 @@
                     <label class="switch_features" for="checkbox">
                         <input type="checkbox" id="checkbox" checked />
                         <div class="slider_features round"></div>
-                        <img class="slider_features-check" src="./assets/images/check.svg" />
-                        <img class="slider_features-cross" src="./assets/images/cross.svg" />
+                        <img class="slider_features-check" src="{{ asset('site/assets/images/check.svg') }}" />
+                        <img class="slider_features-cross" src="{{ asset('site/assets/images/cross.svg') }}" />
                     </label>
                     <span>Доставка 24-7</span>
                 </span>
@@ -107,8 +104,8 @@
                     <label class="switch_features" for="checkbox">
                         <input type="checkbox" id="checkbox" checked />
                         <div class="slider_features round"></div>
-                        <img class="slider_features-check" src="./assets/images/check.svg" />
-                        <img class="slider_features-cross" src="./assets/images/cross.svg" />
+                        <img class="slider_features-check" src="{{ asset('site/assets/images/check.svg') }}" />
+                        <img class="slider_features-cross" src="{{ asset('site/assets/images/cross.svg') }}" />
                     </label>
                     <span>Продажа(Навсегда)</span>
                 </span>
@@ -116,8 +113,8 @@
                     <label class="switch_features" for="checkbox">
                         <input type="checkbox" id="checkbox" />
                         <div class="slider_features round"></div>
-                        <img class="slider_features-check" src="./assets/images/check.svg" />
-                        <img class="slider_features-cross" src="./assets/images/cross.svg" />
+                        <img class="slider_features-check" src="{{ asset('site/assets/images/check.svg') }}" />
+                        <img class="slider_features-cross" src="{{ asset('site/assets/images/cross.svg') }}" />
                     </label>
                     <span>200 часов(новый аккаунт)</span>
                 </span>
@@ -126,11 +123,11 @@
             <div class="product_info">
                 <div class="product_info-price">
                     <span class="product_info-price-discont">-50%</span>
-                    <span class="product_info-price-red">5445 грн</span>
+                    <span class="product_info-price-red">{{$order->price}} грн</span>
                     <div class="buttons-dropdown">
                         <button href="" class="buttons-other">
                             USD $
-                            <img src="./assets/images/dropdown.svg" alt="down">
+                            <img src="{{ asset('site/assets/images/dropdown.svg')}}" alt="down">
 
                         </button>
                         <ul class="sub-menu">
@@ -152,7 +149,7 @@
                             <li><a href="#">
                                     <span class="payment">
                                         <span class="payment-type">
-                                            <img src="./assets/images/credit-card.png" alt="">
+                                            <img src="{{ asset('site/assets/images/credit-card.png') }}" alt="">
                                             Банковская карта
                                         </span>
                                         <span class="payment-price">
@@ -163,7 +160,7 @@
                             <li><a href="#">
                                     <span class="payment">
                                         <span class="payment-type">
-                                            <img src="./assets/images/credit-card.png" alt="">
+                                            <img src="{{ asset('site/assets/images/credit-card.png')}}" alt="">
                                             Банковская карта 2
                                         </span>
                                         <span class="payment-price">
@@ -174,7 +171,7 @@
                             <li><a href="#">
                                     <span class="payment">
                                         <span class="payment-type">
-                                            <img src="./assets/images/credit-card.png" alt="">
+                                            <img src="{{ asset('site/assets/images/credit-card.png') }}" alt="">
                                             Банковская карта 3
                                         </span>
                                         <span class="payment-price">
