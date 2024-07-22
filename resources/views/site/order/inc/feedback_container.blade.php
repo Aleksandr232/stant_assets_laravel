@@ -78,10 +78,11 @@
                             </p>
                         </div>
                     @endforeach
-                @endif
+
             </div>
 
             <a href="#" class="feedback_container_main-more">Показать еще</a>
+            @endif
         </div>
 
     </div>

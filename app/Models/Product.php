@@ -34,7 +34,8 @@ class Product extends Model
         'comment',
         'average_rating',
         'date_send_rating',
-        'count_send'
+        'count_send',
+        'count_buy'
     ];
 
     public function category()

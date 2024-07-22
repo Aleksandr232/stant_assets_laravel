@@ -436,35 +436,7 @@ $('.feedback_container_reviews-send').click(function(e) {
     $('.review_container').show();
 });
 
-// Обработчик для рейтинга
-const ratePicker = document.getElementById('ratePicker');
-const rateStars = ratePicker.getElementsByClassName('rate-star');
-const ratingInput = document.getElementById('rating');
-const submitLink = document.getElementById('sendReview');
 
-let selectedRating = 0;
-
-for (let i = 0; i < rateStars.length; i++) {
-    rateStars[i].addEventListener('click', () => {
-        selectedRating = i + 1;
-        ratingInput.value = selectedRating;
-        updateStarColors();
-    });
-}
-
-submitLink.addEventListener('click', () => {
-    document.querySelector('form').submit();
-});
-
-function updateStarColors() {
-    for (let i = 0; i < rateStars.length; i++) {
-        if (i < selectedRating) {
-            rateStars[i].style.fill = '#F44E51';
-        } else {
-            rateStars[i].style.fill = 'none';
-        }
-    }
-}
 
 
 
@@ -556,3 +528,32 @@ let item_information = null;
 });
 
 
+// Обработчик для рейтинга
+const ratePicker = document.getElementById('ratePicker');
+const rateStars = ratePicker.getElementsByClassName('rate-star');
+const ratingInput = document.getElementById('rating');
+const submitLink = document.getElementById('sendReview');
+
+let selectedRating = 0;
+
+for (let i = 0; i < rateStars.length; i++) {
+    rateStars[i].addEventListener('click', () => {
+        selectedRating = i + 1;
+        ratingInput.value = selectedRating;
+        updateStarColors();
+    });
+}
+
+submitLink.addEventListener('click', () => {
+    document.querySelector('form').submit();
+});
+
+function updateStarColors() {
+    for (let i = 0; i < rateStars.length; i++) {
+        if (i < selectedRating) {
+            rateStars[i].style.fill = '#F44E51';
+        } else {
+            rateStars[i].style.fill = 'none';
+        }
+    }
+}

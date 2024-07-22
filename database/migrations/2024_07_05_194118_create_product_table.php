@@ -35,6 +35,7 @@ return new class extends Migration
             $table->string('average_rating')->nullable();
             $table->string('date_send_rating')->nullable();
             $table->integer('count_send')->default(0)->nullable();
+            $table->integer('count_buy')->default(0)->nullable();
             $table->timestamps();
         });
     }
