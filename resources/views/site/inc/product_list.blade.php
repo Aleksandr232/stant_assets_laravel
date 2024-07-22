@@ -267,7 +267,7 @@
                                     <img src="{{ asset('site/assets/images/rate-star.svg') }}" alt="">
                                     <span>{{ $post->average_rating ? number_format($post->average_rating, 1) : '0.0' }}</span>
                                 </div>
-                                <span class="item_description-purchases">Всего покупок: 48</span>
+                                <span class="item_description-purchases">Всего покупок: {{$post->count_buy}}</span>
                             </div>
 
                         </td>

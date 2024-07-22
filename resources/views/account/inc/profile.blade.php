@@ -196,7 +196,7 @@
     </div>
 
 
-   <div style="display: none; width: 100%;" class="profile_history">
+   {{-- <div style="display: none; width: 100%;" class="profile_history">
     <table>
         <thead>
             <tr>
@@ -816,7 +816,9 @@
             </tr>
         </tbody>
     </table>
-   </div>
+   </div> --}}
+
+   @include('account.inc.table_product')
 
     <div class="profile_settings">
         <div class="profile_settings-item">

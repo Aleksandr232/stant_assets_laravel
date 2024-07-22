@@ -533,6 +533,7 @@ const ratePicker = document.getElementById('ratePicker');
 const rateStars = ratePicker.getElementsByClassName('rate-star');
 const ratingInput = document.getElementById('rating');
 const submitLink = document.getElementById('sendReview');
+const myForm = document.getElementById('myFormId'); 
 
 let selectedRating = 0;
 
@@ -545,7 +546,7 @@ for (let i = 0; i < rateStars.length; i++) {
 }
 
 submitLink.addEventListener('click', () => {
-    document.querySelector('form').submit();
+    myForm.submit();
 });
 
 function updateStarColors() {

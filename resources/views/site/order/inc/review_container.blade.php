@@ -9,7 +9,7 @@
         </div>
 
         <div class="review_container_main">
-            <form action="{{ route('post_rate', [$order->id]) }}" method="POST">
+            <form id="myFormId" action="{{ route('post_rate', [$order->id]) }}" method="POST">
                 @csrf
                 <div class="review_container_main-rate">
                     Оцените товар
