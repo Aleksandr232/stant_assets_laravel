@@ -25,19 +25,20 @@ class RatingController extends Controller
         $rating = $request->input('rating');
         $comment = $request->input('comment');
         $name = $user->name;
-
+        $date_send_rating = date('Y-m-d');
 
 
 
         $existingRatings = $send_comment->rating ? explode(',', $send_comment->rating) : [];
         $existingNames = explode(',', $send_comment->name);
         $existingComments = explode(',', $send_comment->comment);
+        $existingDateSendRatings = $send_comment->date_send_rating ? explode(',', $send_comment->date_send_rating) : [];
 
 
         $existingNames[] = $name;
         $existingComments[] = $comment;
         $existingRatings[] = $rating;
-
+        $existingDateSendRatings[] = $date_send_rating;
 
 
 
@@ -60,6 +61,12 @@ class RatingController extends Controller
 
         $existingComments = array_filter($existingComments);
         $send_comment->comment = implode(',', $existingComments);
+
+        $existingDateSendRatings = array_filter($existingDateSendRatings);
+        $send_comment->date_send_rating = implode(',', $existingDateSendRatings);
+
+        $send_comment->count_send = count($existingRatings);
+
         $send_comment->save();
 
 

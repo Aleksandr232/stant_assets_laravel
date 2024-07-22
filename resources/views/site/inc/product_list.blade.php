@@ -265,7 +265,7 @@
                                 <label>{{$post->price}} руб, Торговая площадка</label>
                                 <div class="item_description-rate">
                                     <img src="{{ asset('site/assets/images/rate-star.svg') }}" alt="">
-                                    <span>{{ number_format($post->average_rating, 1) }}</span>
+                                    <span>{{ $post->average_rating ? number_format($post->average_rating, 1) : '0.0' }}</span>
                                 </div>
                                 <span class="item_description-purchases">Всего покупок: 48</span>
                             </div>

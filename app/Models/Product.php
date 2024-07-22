@@ -32,7 +32,9 @@ class Product extends Model
         'name',
         'rating',
         'comment',
-        'average_rating'
+        'average_rating',
+        'date_send_rating',
+        'count_send'
     ];
 
     public function category()

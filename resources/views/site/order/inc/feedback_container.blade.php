@@ -2,39 +2,25 @@
 
     <div class="feedback_container_reviews">
         <div class="feedback_container_header">
-            <label>40 Отзывов</label>
+            <label>{{$order->count_send}} Отзывов</label>
         <div class="reviews_rate">
             <span class="reviews_rate-stars">
                 <div>
-                    <svg width="24" height="22" viewBox="0 0 24 22" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M11.945 1.82278L14.2654 8.70047L14.3801 9.04064H14.7391H22.1944L16.1793 13.2495L15.8725 13.4642L15.9922 13.819L18.2998 20.659L12.2317 16.4129L11.945 16.2124L11.6584 16.4129L5.59018 20.659L7.89781 13.819L8.01751 13.4642L7.7107 13.2495L1.69565 9.04064H9.1509H9.5099L9.62466 8.70047L11.945 1.82278Z"
-                            fill="#F44E51" stroke="#F44E51" />
-                    </svg>
-                    <svg width="24" height="22" viewBox="0 0 24 22" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M11.945 1.82278L14.2654 8.70047L14.3801 9.04064H14.7391H22.1944L16.1793 13.2495L15.8725 13.4642L15.9922 13.819L18.2998 20.659L12.2317 16.4129L11.945 16.2124L11.6584 16.4129L5.59018 20.659L7.89781 13.819L8.01751 13.4642L7.7107 13.2495L1.69565 9.04064H9.1509H9.5099L9.62466 8.70047L11.945 1.82278Z"
-                            fill="#F44E51" stroke="#F44E51" />
-                    </svg>
-                    <svg width="24" height="22" viewBox="0 0 24 22" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M11.945 1.82278L14.2654 8.70047L14.3801 9.04064H14.7391H22.1944L16.1793 13.2495L15.8725 13.4642L15.9922 13.819L18.2998 20.659L12.2317 16.4129L11.945 16.2124L11.6584 16.4129L5.59018 20.659L7.89781 13.819L8.01751 13.4642L7.7107 13.2495L1.69565 9.04064H9.1509H9.5099L9.62466 8.70047L11.945 1.82278Z"
-                            fill="#F44E51" stroke="#F44E51" />
-                    </svg>
-                    <svg width="24" height="22" viewBox="0 0 24 22" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M11.945 1.82278L14.2654 8.70047L14.3801 9.04064H14.7391H22.1944L16.1793 13.2495L15.8725 13.4642L15.9922 13.819L18.2998 20.659L12.2317 16.4129L11.945 16.2124L11.6584 16.4129L5.59018 20.659L7.89781 13.819L8.01751 13.4642L7.7107 13.2495L1.69565 9.04064H9.1509H9.5099L9.62466 8.70047L11.945 1.82278Z"
-                            fill="#F44E51" stroke="#F44E51" />
-                    </svg>
-                    <svg width="24" height="22" viewBox="0 0 24 22" fill="none" stroke="#6F6E6E"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M11.945 1.82278L14.2654 8.70047L14.3801 9.04064H14.7391H22.1944L16.1793 13.2495L15.8725 13.4642L15.9922 13.819L18.2998 20.659L12.2317 16.4129L11.945 16.2124L11.6584 16.4129L5.59018 20.659L7.89781 13.819L8.01751 13.4642L7.7107 13.2495L1.69565 9.04064H9.1509H9.5099L9.62466 8.70047L11.945 1.82278Z" />
-                    </svg>
+                    @php
+                        $rating = number_format($order->average_rating, 1);
+                    @endphp
+
+                    @for ($i = 1; $i <= 5; $i++)
+                        @if ($i <= $rating)
+                            <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M11.945 1.82278L14.2654 8.70047L14.3801 9.04064H14.7391H22.1944L16.1793 13.2495L15.8725 13.4642L15.9922 13.819L18.2998 20.659L12.2317 16.4129L11.945 16.2124L11.6584 16.4129L5.59018 20.659L7.89781 13.819L8.01751 13.4642L7.7107 13.2495L1.69565 9.04064H9.1509H9.5099L9.62466 8.70047L11.945 1.82278Z" fill="#F44E51" stroke="#F44E51" />
+                            </svg>
+                        @else
+                            <svg width="24" height="22" viewBox="0 0 24 22" fill="none" stroke="#6F6E6E" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M11.945 1.82278L14.2654 8.70047L14.3801 9.04064H14.7391H22.1944L16.1793 13.2495L15.8725 13.4642L15.9922 13.819L18.2998 20.659L12.2317 16.4129L11.945 16.2124L11.6584 16.4129L5.59018 20.659L7.89781 13.819L8.01751 13.4642L7.7107 13.2495L1.69565 9.04064H9.1509H9.5099L9.62466 8.70047L11.945 1.82278Z" />
+                            </svg>
+                        @endif
+                    @endfor
                 </div>
                 {{ number_format($order->average_rating, 1) }}
             </span>
@@ -55,43 +41,49 @@
                 $names = explode(',', $order->name);
                 $comments = explode(',', $order->comment);
                 $ratings = explode(',', $order->rating);
+                $date = explode(',', $order->date_send_rating);
             @endphp
 
             <div class="review-container">
-                @foreach ($names as $key => $name)
-                    <div class="review {{ $key >= 5 ? 'hidden' : '' }}">
-                        <span class="review-date">06.09.2021</span>
-                        <div class="review_info">
-                            <span>
-                                {{ $name }}
-                                <div class="review_info-stars">
-                                    @php
-                                        $rating = $ratings[$key];
-                                    @endphp
+                @if (empty($names[0]))
+                    <p>Отзывов нет</p>
+                @else
+                    @foreach ($names as $key => $name)
+                        <div class="review {{ $key >= 5 ? 'hidden' : '' }}">
+                            <span class="review-date">{{ date('d.m.Y', strtotime($date[$key])) }}</span>
+                            <div class="review_info">
+                                <span>
+                                    {{ $name }}
+                                    <div class="review_info-stars">
+                                        @php
+                                            $rating = min(max(0, $ratings[$key]), 5);
+                                        @endphp
 
-                                    @for ($i = 1; $i <= 5; $i++)
-                                        @if ($i <= $rating)
-                                            <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M11.945 1.82278L14.2654 8.70047L14.3801 9.04064H14.7391H22.1944L16.1793 13.2495L15.8725 13.4642L15.9922 13.819L18.2998 20.659L12.2317 16.4129L11.945 16.2124L11.6584 16.4129L5.59018 20.659L7.89781 13.819L8.01751 13.4642L7.7107 13.2495L1.69565 9.04064H9.1509H9.5099L9.62466 8.70047L11.945 1.82278Z" fill="#F44E51" stroke="#F44E51" />
-                                            </svg>
-                                        @else
-                                            <svg width="24" height="22" viewBox="0 0 24 22" fill="none" stroke="#6F6E6E" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M11.945 1.82278L14.2654 8.70047L14.3801 9.04064H14.7391H22.1944L16.1793 13.2495L15.8725 13.4642L15.9922 13.819L18.2998 20.659L12.2317 16.4129L11.945 16.2124L11.6584 16.4129L5.59018 20.659L7.89781 13.819L8.01751 13.4642L7.7107 13.2495L1.69565 9.04064H9.1509H9.5099L9.62466 8.70047L11.945 1.82278Z" />
-                                            </svg>
-                                        @endif
-                                    @endfor
-                                </div>
-                            </span>
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            @if ($i <= $rating)
+                                                <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M11.945 1.82278L14.2654 8.70047L14.3801 9.04064H14.7391H22.1944L16.1793 13.2495L15.8725 13.4642L15.9922 13.819L18.2998 20.659L12.2317 16.4129L11.945 16.2124L11.6584 16.4129L5.59018 20.659L7.89781 13.819L8.01751 13.4642L7.7107 13.2495L1.69565 9.04064H9.1509H9.5099L9.62466 8.70047L11.945 1.82278Z" fill="#F44E51" stroke="#F44E51" />
+                                                </svg>
+                                            @else
+                                                <svg width="24" height="22" viewBox="0 0 24 22" fill="none" stroke="#6F6E6E" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M11.945 1.82278L14.2654 8.70047L14.3801 9.04064H14.7391H22.1944L16.1793 13.2495L15.8725 13.4642L15.9922 13.819L18.2998 20.659L12.2317 16.4129L11.945 16.2124L11.6584 16.4129L5.59018 20.659L7.89781 13.819L8.01751 13.4642L7.7107 13.2495L1.69565 9.04064H9.1509H9.5099L9.62466 8.70047L11.945 1.82278Z" />
+                                                </svg>
+                                            @endif
+                                        @endfor
+                                    </div>
+                                </span>
+                            </div>
+                            <p>
+                                {{ $comments[$key] }}
+                            </p>
                         </div>
-                        <p>
-                            {{ $comments[$key] }}
-                        </p>
-                    </div>
-                @endforeach
+                    @endforeach
+                @endif
             </div>
 
             <a href="#" class="feedback_container_main-more">Показать еще</a>
         </div>
+
     </div>
 
     <div class="chat">

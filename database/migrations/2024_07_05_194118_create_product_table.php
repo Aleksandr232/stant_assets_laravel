@@ -33,6 +33,8 @@ return new class extends Migration
             $table->text('name')->nullable();
             $table->text('comment')->nullable();
             $table->string('average_rating')->nullable();
+            $table->string('date_send_rating')->nullable();
+            $table->integer('count_send')->default(0)->nullable();
             $table->timestamps();
         });
     }
