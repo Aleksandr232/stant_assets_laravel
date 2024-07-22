@@ -2182,6 +2182,7 @@ button {
   background: rgba(248, 248, 248, 0.05);
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 .profile_side .exit-profile:hover {
   background: rgba(248, 248, 248, 0.1);
