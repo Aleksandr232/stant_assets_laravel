@@ -3823,6 +3823,10 @@ footer {
   width: -moz-max-content;
   width: max-content;
 }
+.review.hidden {
+    display: none;
+}
+
 .feedback_container_reviews-auth {
     font-size: 12px;
     font-weight: 500;

@@ -98,5 +98,31 @@ chatForm.addEventListener('submit', (e) => {
     });
 });
    </script>
+   <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const reviewContainers = document.querySelectorAll('.review');
+        const showMoreButton = document.querySelector('.feedback_container_main-more');
+        let currentlyShown = 5;
+
+        // Изначально показываем только 5 отзывов
+        for (let i = 5; i < reviewContainers.length; i++) {
+            reviewContainers[i].classList.add('hidden');
+        }
+
+        showMoreButton.addEventListener('click', function(event) {
+            event.preventDefault();
+
+            for (let i = currentlyShown; i < currentlyShown + 5 && i < reviewContainers.length; i++) {
+                reviewContainers[i].classList.remove('hidden');
+            }
+
+            currentlyShown += 5;
+
+            if (currentlyShown >= reviewContainers.length) {
+                this.classList.add('hidden');
+            }
+        });
+    });
+</script>
 </body>
 </html>

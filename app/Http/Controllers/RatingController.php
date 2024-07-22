@@ -29,7 +29,7 @@ class RatingController extends Controller
 
 
 
-        $existingRatings = $send_comment->rating ? explode(',', $send_comment->ratings) : [];
+        $existingRatings = $send_comment->rating ? explode(',', $send_comment->rating) : [];
         $existingNames = explode(',', $send_comment->name);
         $existingComments = explode(',', $send_comment->comment);
 
