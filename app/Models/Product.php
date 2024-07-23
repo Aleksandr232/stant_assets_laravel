@@ -35,11 +35,12 @@ class Product extends Model
         'average_rating',
         'date_send_rating',
         'count_send',
-        'count_buy'
+        'count_buy',
+        'category_id'
     ];
 
     public function category()
     {
-        return $this->belongsTo(Category::class, 'category_id');
+        return $this->belongsTo(Category::class);
     }
 }

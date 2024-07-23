@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\ProductCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,7 @@ use App\Http\Controllers\PurchaseController;
 
 Route::get('/', [HomePageController::class, 'index'])->name('home');
 Route::get('/product/{id}/{name}', [OrderController::class, 'order'])->name('order');
+Route::get('/product_category/{id}/{name}', [ProductCategoryController::class, 'product_category'])->name('product_category');
 
 Route::middleware('guest')->group(function () {
     Route::get('/auth', [AuthController::class, 'authorization'])->name('auth');

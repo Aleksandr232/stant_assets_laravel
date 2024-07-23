@@ -48,6 +48,8 @@ class ProductController extends Controller
 
     public function product(Request $request)
     {
+        $category = Category::where('name_category', $request->category)->first();
+
         $product = new Product([
             'product' => $request->product,
             'image_platform' => $request->image_platform,
@@ -65,7 +67,7 @@ class ProductController extends Controller
             'filter_price'=>$request->filter_price,
             'filter_service'=>$request->filter_service,
             'filter_platform'=>$request->filter_platform,
-            'category_id' => $request->category_id,
+            'category_id' => $category ? $category->id : null,
         ]);
 
         /* if ($request->hasFile('product_img')) {

@@ -3,7 +3,7 @@
     <div class="achievements__row">
         <div class="achievements__row-cards">
             @foreach ($category as $post)
-            <a href="#"   class="achievement">
+            <a href="{{ route('product_category', [$post->id, $post->name_category]) }}"   class="achievement">
                 @if(str_starts_with($post->path, 'https://'))
                     <img src="{{$post->path}}"/>
                 @else
