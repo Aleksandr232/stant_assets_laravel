@@ -10,8 +10,13 @@ class ProductCategoryController extends Controller
 {
     public function product_category(Request $request, $id, $name)
     {
-        $product_category = Product::query()->where('category_id', $id)->get();
-        
+        $query = Product::query()->where('category_id', $id);
+
+        /* if ($request->has('search')) {
+            $query->where('product', 'like', '%' . $request->input('search') . '%');
+        } */
+
+        $product_category = $query->paginate(10);
 
         return view('site.product_category.index', compact('product_category', 'name'));
     }
