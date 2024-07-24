@@ -38,7 +38,7 @@
     </div>
 
     <div class="product_list_container">
-        <div class="container_filter">
+        {{-- <div class="container_filter">
             <label class="container_filter-label">Найдено {{count($product_category)}}  товаров</label>
             <div  class="container_filter-list">
                 <div class="container_filter-list-header mobile-filter">
@@ -99,7 +99,6 @@
                 </div>
 
                 <div class="filter">
-                    {{-- <label class="filter_header">Платформа</label> --}}
                     <form action="{{ route('home') }}" method="GET">
                         <label class="filter_header">Платформа</label>
                         <ul class="filter_group">
@@ -124,15 +123,6 @@
                             @endif
                         </ul>
                     </form>
-
-                        {{-- <li class="filter_group-item">
-                            <label class="control control-checkbox control-right">
-                                Другие...
-                                <input type="checkbox" />
-                                <div class="control_indicator control_indicator-right"></div>
-                            </label>
-
-                        </li> --}}
                     </ul>
                 </div>
 
@@ -211,7 +201,7 @@
                 </div>
 
             </div>
-        </div>
+        </div> --}}
         <div class="container_main">
             <table class="container_products">
                 <thead class="container_products_head">

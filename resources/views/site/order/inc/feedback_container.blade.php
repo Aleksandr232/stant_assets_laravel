@@ -87,7 +87,7 @@
 
     </div>
 
-    <div class="chat">
+    {{-- <div class="chat">
         <div class="chat_header">
             <label>Напишите нам для уточнение товара:</label>
         <span class="chat_header_to">
@@ -183,5 +183,5 @@
                 <button>Відправити</button>
             </span>
         </div>
-    </div>
+    </div> --}}
 </section>
