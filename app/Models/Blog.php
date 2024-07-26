@@ -7,11 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Blog extends Model
 {
+    use HasFactory;
+
     protected $table = 'blog';
 
     protected $fillable = [
-        'content_blog'
+        'content_blog',
+        'name_post',
+        'img_post',
+        'path_img_post',
     ];
 
-    use HasFactory;
+
 }

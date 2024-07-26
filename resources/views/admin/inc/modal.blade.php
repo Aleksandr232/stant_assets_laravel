@@ -154,7 +154,21 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <!-- Форма для добавления товара -->
+            <form method="post" action="{{ route('create_blog') }}" enctype="multipart/form-data">
+                @csrf
+                <div class="mb-3">
+                  <label for="filterPrice" class="form-label">Название поста</label>
+                  <input type="text" name="name_post" class="form-control" id="filterPrice" placeholder="Введите название">
+                </div>
+                <div class="mb-3">
+                  <label for="filterService" class="form-label">Добавить картинки</label>
+                  <input type="file" multiple name="img_post[]" class="form-control" id="productPrice">
+                </div>
+                <div class="mb-3">
+                    <textarea name="content_blog" id="summernote" cols="30" rows="10"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Cохранить</button>
+              </form>
 
         </div>
       </div>

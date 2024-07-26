@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -15,51 +16,32 @@ class BlogController extends Controller
         return view('admin.blog.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function create_blog(Request $request)
     {
-        //
+        $blog = new Blog([
+            'content_blog' => $request->content_blog,
+            'name_post' => $request->name_post,
+        ]);
+
+        if ($request->hasFile('img_post')) {
+            $img_post = $request->file('img_post');
+            $path_img_post_arr = [];
+            $img_post_arr = [];
+
+            foreach ($img_post as $file) {
+                $path = Storage::disk('blog')->putFile('posts', $file);
+                $fullPath = "http://127.0.0.1:8000/blog/" . $path;
+                $path_img_post_arr[] = $fullPath;
+                $img_post_arr[] = $file->getClientOriginalName();
+            }
+
+            $blog->path_img_post = implode(",", $path_img_post_arr);
+            $blog->img_post = implode(",", $img_post_arr);
+        }
+
+        $blog->save();
+
+        return redirect()->route('blog.index');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Blog $blog)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Blog $blog)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Blog $blog)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Blog $blog)
-    {
-        //
-    }
 }
