@@ -106,6 +106,7 @@
                 <label for="productPrice" class="form-label">Фото товара</label>
                 <input type="file" multiple name="product_img[]" class="form-control" id="productPrice" placeholder="Введите цену">
               </div>
+              {{-- <div id="summernote"><p>Hello Summernote</p></div> --}}
             <button type="submit" class="btn btn-primary">Сохранить</button>
           </form>
         </div>
