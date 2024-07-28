@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Blog;
 
 
 class ProductCategoryController extends Controller
@@ -17,8 +18,9 @@ class ProductCategoryController extends Controller
         } */
 
         $product_category = $query->paginate(10);
+        $blog = Blog::all();
 
-        return view('site.product_category.index', compact('product_category', 'name'));
+        return view('site.product_category.index', compact('product_category', 'name', 'blog'));
     }
 
 }

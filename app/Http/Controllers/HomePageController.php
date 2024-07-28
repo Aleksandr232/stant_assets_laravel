@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Blog;
 use Illuminate\Http\Request;
 
 class HomePageController extends Controller
@@ -40,9 +41,10 @@ class HomePageController extends Controller
 
     $product = $query->paginate(5);
     $category = Category::all();
+    $blog = Blog::all();
 
 
-        return view('site.page.index', compact('category', 'product'));
+        return view('site.page.index', compact('category', 'product', 'blog'));
     }
 
 
