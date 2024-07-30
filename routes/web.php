@@ -11,6 +11,7 @@ use App\Http\Controllers\RatingController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\PoliticsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,10 +45,12 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::get('/',  [AdminController::class, 'index'])->name('admin');
     Route::resource('/product', ProductController::class);
     Route::resource('/blog', BlogController::class);
+    Route::resource('/politics', PoliticsController::class);
     Route::post('/create_category', [ProductController::class, 'category'])->name('category');
     Route::post('/create_product', [ProductController::class, 'product'])->name('product');
     Route::post('/create_filter', [ProductController::class, 'filter'])->name('filter');
     Route::post('/create_blog', [BlogController::class, 'create_blog'])->name('create_blog');
+    Route::post('/create_politics', [PoliticsController::class, 'create_politics'])->name('create_politics');
     Route::delete('/delete_product/{id}', [ProductController::class, 'destroy'])->name('destroy');
 });
 

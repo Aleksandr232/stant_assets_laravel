@@ -174,3 +174,25 @@
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="politicsModal" tabindex="-1" aria-labelledby="politicsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="politicsModalLabel">Добавить политику конфиденциальности</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form method="post" action="{{ route('create_politics') }}" enctype="multipart/form-data">
+                @csrf
+
+                <div class="mb-3">
+                    <textarea name="content_politics" id="redactor" cols="30" rows="10"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Cохранить</button>
+            </form>
+
+        </div>
+      </div>
+    </div>
+</div>
