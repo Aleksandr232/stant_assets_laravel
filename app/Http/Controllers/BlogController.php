@@ -44,4 +44,11 @@ class BlogController extends Controller
         return redirect()->route('blog.index');
     }
 
+    public function blog(Request $request, $id, $name){
+
+        $blog = Blog::query()->find($id);
+
+        return view('site.blog.blog', compact('blog', 'name'));
+    }
+
 }

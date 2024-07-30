@@ -418,7 +418,7 @@
     @include('site.order.inc.product_share')
 
     <div class="product_guide">
-        <img src="./assets/images/guide.png"/>
+        <img src="{{ asset('site/assets/images/guide.png')}}"/>
     </div>
 
     @include('site.order.inc.review_container')

@@ -33,7 +33,7 @@
                         $monthName = $monthNames[$date->format('F')];
                         echo $date->format('j')  . ' ' . $monthName;
                     ?>
-                    <a href="" class="blog_container_list-item-info-footer-button">Подробнее</a>
+                    <a href="{{ route('blog', [$post->id, $post->name_post]) }}" class="blog_container_list-item-info-footer-button">Подробнее</a>
                 </div>
             </div>
             <span class="blog_container_list-item-popup">Онлайн курсы по маркетингу</span>
