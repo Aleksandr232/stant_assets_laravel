@@ -29,6 +29,7 @@ Route::get('/', [HomePageController::class, 'index'])->name('home');
 Route::get('/product/{id}/{name}', [OrderController::class, 'order'])->name('order');
 Route::get('/product_category/{id}/{name}', [ProductCategoryController::class, 'product_category'])->name('product_category');
 Route::get('/blog/{id}/{name}', [BlogController::class, 'blog'])->name('blog');
+Route::get('/politics/{id}', [PoliticsController::class, 'politics'])->name('politics');
 
 Route::middleware('guest')->group(function () {
     Route::get('/auth', [AuthController::class, 'authorization'])->name('auth');

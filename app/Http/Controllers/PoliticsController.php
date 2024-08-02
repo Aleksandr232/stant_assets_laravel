@@ -28,5 +28,12 @@ class PoliticsController extends Controller
         return redirect()->route('politics.index');
     }
 
+    public function politics(Request $request, $id){
+
+        $politics = Politics::query()->find($id);
+
+        return view('site.politics.index', compact('politics'));
+    }
+
 
 }

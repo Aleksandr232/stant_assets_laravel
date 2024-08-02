@@ -51,9 +51,8 @@
             @foreach($purchases as $post)
             <tr>
                 <td>
-                    <div class="item_data">
-                        {{$post->date_purchase}}
-                        <span>19:55</span>
+                    <div class="item_data"> 
+                        <span>{{$post->date_purchase}}</span>
                     </div>
                 </td>
                 <td>
