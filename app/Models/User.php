@@ -23,7 +23,8 @@ class User extends Authenticatable
         'password',
         'google_id',
         'avatar',
-        "is_admin"
+        "is_admin",
+        'balance'
     ];
 
     /**

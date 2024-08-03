@@ -12,6 +12,7 @@ use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\PoliticsController;
+use App\Http\Controllers\DataUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,7 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::resource('/product', ProductController::class);
     Route::resource('/blog', BlogController::class);
     Route::resource('/politics', PoliticsController::class);
+    Route::resource('/users', DataUserController::class);
     Route::post('/create_category', [ProductController::class, 'category'])->name('category');
     Route::post('/create_product', [ProductController::class, 'product'])->name('product');
     Route::post('/create_filter', [ProductController::class, 'filter'])->name('filter');

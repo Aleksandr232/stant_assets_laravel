@@ -52,7 +52,7 @@
                         <path d="M18.4167 14.0833H14.0833V18.4167H11.9167V14.0833H7.58333V11.9167H11.9167V7.58333H14.0833V11.9167H18.4167V14.0833ZM20.5833 3.25H5.41667C4.21417 3.25 3.25 4.21417 3.25 5.41667V20.5833C3.25 21.158 3.47827 21.7091 3.8846 22.1154C4.29093 22.5217 4.84203 22.75 5.41667 22.75H20.5833C21.158 22.75 21.7091 22.5217 22.1154 22.1154C22.5217 21.7091 22.75 21.158 22.75 20.5833V5.41667C22.75 4.84203 22.5217 4.29093 22.1154 3.8846C21.7091 3.47827 21.158 3.25 20.5833 3.25Z" fill="white"/>
                       </svg>
                 </span>
-                <span class="balance-current">12323 <s>BS</s></span>
+                <span class="balance-current">{{$user->balance}} <s>BS</s></span>
 
             </div>
             <a href="" class="notification-icon">
@@ -197,7 +197,7 @@
 
 
    @include('account.inc.table_product')
-   
+
 
     <div class="profile_settings">
         <div class="profile_settings-item">

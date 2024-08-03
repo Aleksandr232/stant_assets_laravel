@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('avatar')->nullable();
             $table->string('google_id')->nullable();
+            $table->string('balance')->nullable();
             $table->tinyInteger('is_admin')->default(0);
             $table->string('password');
             $table->rememberToken();

@@ -15,11 +15,11 @@
         </a>
     </div>
     <div class="col-md-3">
-        <a  class="text-decoration-none">
+        <a href="{{ route('users.index')}}"  class="text-decoration-none">
             <div class="card shadow-sm">
                 <div class="card-body">
                     <h5 class="card-title mb-3">Пользователи</h5>
-
+                    <i class="fas fa-user me-2"></i>
                 </div>
             </div>
         </a>
