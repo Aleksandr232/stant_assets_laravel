@@ -1,6 +1,6 @@
 @extends('admin.layouts.main')
 
-@section('title', 'Пользователи')
+@section('title', 'Покупки')
 
 @section('content')
 
@@ -9,20 +9,20 @@
         <table class="table table-sm">
             <thead>
                 <tr>
-                    <th>Имя</th>
-                    <th>Email</th>
-                    <th>Баланс</th>
-                    <th>Покупки</th>
+                    <th>Номер покупки</th>
+                    <th>Продукт</th>
+                    <th>Цена</th>
+                    <th>Дата покупки</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($users as $user)
+                @foreach ($purchases as $data)
                 <tr>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td>{{ $user->balance }}</td>
+                    <td>{{ $data->transaction_purchase }}</td>
+                    <td>{{ $data->product_purchase  }}</td>
+                    <td>{{ $data->price_purchase }}</td>
                     <td>
-                        <a href="{{ route('data', $user->id) }}">Посмотреть</a>
+                        {{ $data->date_purchase }}
                     </td>
                 </tr>
                 @endforeach

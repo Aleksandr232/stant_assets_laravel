@@ -19,7 +19,19 @@ class DataUserController extends Controller
         ]);
     }
 
-    
+
+    public function data($id)
+    {
+        $user = User::findOrFail($id);
+        $purchases = $user->purchases()->get();
+
+        return view('admin.user.data', [
+            'user' => $user,
+            'purchases' => $purchases,
+        ]);
+    }
+
+
 
 
 
