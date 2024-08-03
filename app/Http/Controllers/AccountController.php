@@ -12,7 +12,7 @@ class AccountController extends Controller
     public function index(){
 
         $user = Auth::user();
-        $purchases = $user->purchases()->paginate(11);
+        $purchases = $user->purchases()->paginate(5);
 
         return view('account.page.index', compact('user', 'purchases'));
     }

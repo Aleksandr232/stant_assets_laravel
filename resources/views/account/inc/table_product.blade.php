@@ -51,7 +51,7 @@
             @foreach($purchases as $post)
             <tr>
                 <td>
-                    <div class="item_data"> 
+                    <div class="item_data">
                         <span>{{$post->date_purchase}}</span>
                     </div>
                 </td>
@@ -128,5 +128,11 @@
             @endforeach
         </tbody>
     </table>
+    
+    <div class="container_pages">
+        <div class="d-flex justify-content-center">
+            {{ $purchases->links('vendor.pagination.custom') }}
+        </div>
+    </div>
    </div>
 
