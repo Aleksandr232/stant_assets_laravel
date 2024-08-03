@@ -25,9 +25,9 @@ class PurchaseController extends Controller
         $product = Product::findOrFail($id);
 
         // Проверяем, есть ли у пользователя достаточно средств для покупки
-        /* if (Auth::user()->balance < $product->price) {
-            return redirect()->back()->with('error', 'У вас недостаточно средств для совершения этой покупки.');
-        } */
+        if (Auth::user()->balance < $product->price) {
+            return redirect()->route('account');
+        }
 
         $transaction_number = str_pad(mt_rand(1, 999999), 6, '0', STR_PAD_LEFT);
 
@@ -44,9 +44,10 @@ class PurchaseController extends Controller
         $purchase->date_purchase = date('d.m.Y H:i');
         $purchase->save();
         $product->save();
+
         // Уменьшаем баланс пользователя на стоимость покупки
-        /* Auth::user()->balance -= $product->price;
-        Auth::user()->save(); */
+        Auth::user()->balance -= $product->price;
+        Auth::user()->save();
 
         // Перенаправляем пользователя обратно
         return redirect()->back()->with('success', 'Покупка успешно совершена!');

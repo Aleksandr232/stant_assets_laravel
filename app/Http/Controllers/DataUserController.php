@@ -10,7 +10,7 @@ class DataUserController extends Controller
 {
     public function index()
     {
-        $users = User::where('is_admin', 0)->get();
+        $users = User::where('is_admin', 0)->paginate(5);
         $purchases = Purchase::whereIn('user_id', $users->pluck('id'))->get();
 
         return view('admin.user.index', [
@@ -19,11 +19,10 @@ class DataUserController extends Controller
         ]);
     }
 
-
     public function data($id)
     {
         $user = User::findOrFail($id);
-        $purchases = $user->purchases()->get();
+        $purchases = $user->purchases()->paginate(5);
 
         return view('admin.user.data', [
             'user' => $user,

@@ -30,7 +30,7 @@
         </table>
       </div>
       <div class="d-flex justify-content-center">
-        {{-- {{ $product->links('pagination::bootstrap-4') }} --}}
+        {{ $users->links('pagination::bootstrap-4') }}
     </div>
 </div>
 
