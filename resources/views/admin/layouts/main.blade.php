@@ -81,6 +81,22 @@
       ]
     });
   </script>
+  <script>
+    $(document).ready(function() {
+        $('.btn-edit').click(function() {
+            var userId = $(this).data('user-id');
+            var userName = $(this).data('user-name');
+            var userEmail = $(this).data('user-email');
+            var userBalance = $(this).data('user-balance');
+
+            $('#name').val(userName);
+            $('#email').val(userEmail);
+            $('#balance').val(userBalance);
+
+            $('#editForm').attr('action', '{{ route("update_data", ":id") }}'.replace(':id', userId));
+        });
+    });
+  </script>
 
 </body>
 </html>

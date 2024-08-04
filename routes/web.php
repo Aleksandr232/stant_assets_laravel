@@ -50,6 +50,7 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::resource('/politics', PoliticsController::class);
     Route::resource('/users', DataUserController::class);
     Route::get('/user/{id}/data', [DataUserController::class, 'data'])->name('data');
+    Route::post('/user/{id}', [DataUserController::class, 'update_data'])->name('update_data');
     Route::post('/create_category', [ProductController::class, 'category'])->name('category');
     Route::post('/create_product', [ProductController::class, 'product'])->name('product');
     Route::post('/create_filter', [ProductController::class, 'filter'])->name('filter');

@@ -4,7 +4,7 @@
 
 @section('content')
 
-  <div style="width:500px; margin: 0 auto" >
+  <div style="width:700px; margin: 0 auto" >
     <div class="table-responsive">
         <table class="table table-sm">
             <thead>
@@ -13,6 +13,7 @@
                     <th>Email</th>
                     <th>Баланс</th>
                     <th>Покупки</th>
+                    <th>Действия</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,6 +24,9 @@
                     <td>{{ $user->balance }}</td>
                     <td>
                         <a href="{{ route('data', $user->id) }}">Посмотреть</a>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm btn-edit" data-user-id="{{ $user->id }}" data-user-name="{{ $user->name }}" data-user-email="{{ $user->email }}" data-user-balance="{{ $user->balance }}" data-bs-toggle="modal" data-bs-target="#editModal">Изменить</button>
                     </td>
                 </tr>
                 @endforeach

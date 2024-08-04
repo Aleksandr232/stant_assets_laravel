@@ -30,6 +30,19 @@ class DataUserController extends Controller
         ]);
     }
 
+    public function update_data(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->balance = $request->input('balance');
+        $user->save();
+
+
+
+        return redirect()->back();
+    }
 
 
 
