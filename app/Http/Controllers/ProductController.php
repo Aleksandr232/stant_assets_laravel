@@ -87,7 +87,7 @@ class ProductController extends Controller
             foreach ($product_img as $file)
             {
                 $path = Storage::disk('product')->putFile('products', $file);
-                $fullPath = "http://127.0.0.1:8000/product/" . $path;
+                $fullPath = "https://co19736.tw1.ru/product/" . $path;
                 $path_img_product_arr[] = $fullPath;
                 $product_img_arr[] = $file->getClientOriginalName();
             }
@@ -153,7 +153,7 @@ class ProductController extends Controller
         $product_img = explode(',', $product->product_img);
 
         foreach ($path_img_product as $path) {
-            Storage::disk('product')->delete(str_replace('http://127.0.0.1:8000/product/', '', $path));
+            Storage::disk('product')->delete(str_replace('https://co19736.tw1.ru/product/', '', $path));
         }
 
         // Удаляем запись из базы данных

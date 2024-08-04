@@ -30,7 +30,7 @@ class BlogController extends Controller
 
             foreach ($img_post as $file) {
                 $path = Storage::disk('blog')->putFile('posts', $file);
-                $fullPath = "http://127.0.0.1:8000/blog/" . $path;
+                $fullPath = "https://co19736.tw1.ru/blog/" . $path;
                 $path_img_post_arr[] = $fullPath;
                 $img_post_arr[] = $file->getClientOriginalName();
             }
