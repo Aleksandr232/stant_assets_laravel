@@ -80,7 +80,7 @@
                                     <div class="slider-track"></div>
                                     <input  type="range" min="{{ $minPrice }}" max="{{ $maxPrice }}"
                                     value="0"  id="slider-1" oninput="slideOne()">
-                                    <input name="price[]"  type="range" min="{{ $minPrice }}" max="{{ $maxPrice }}"  value="{{ $post->price }}" @if(in_array($post->price, request()->input('price', []))) checked @endif onchange="this.form.submit()"  id="slider-2" oninput="slideTwo()">
+                                    <input name="price[]" type="range" min="{{ $minPrice }}" max="{{ $maxPrice }}" value="{{ request()->input('price', [])['0'] ?? '' }}" @if(in_array(request()->input('price', [])['0'] ?? '', request()->input('price', []))) checked @endif onchange="this.form.submit()" id="slider-2" oninput="slideTwo()">
                                 </div>
                                 <div class="double-slider_values">
                                     <span class="range-count" id="range1">
