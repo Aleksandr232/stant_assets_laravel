@@ -128,11 +128,13 @@
             @endforeach
         </tbody>
     </table>
-    
+
     <div class="container_pages">
         <div class="d-flex justify-content-center">
-            {{ $purchases->links('vendor.pagination.custom') }}
+            {{ $purchases->links('vendor.pagination.custom-profile-pagination') }}
         </div>
     </div>
+
+
    </div>
 
