@@ -200,7 +200,7 @@
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form id="editForm" method="post" action="{{ route('update_data', $user->id) }}">
+            <form id="editForm" method="post" {{-- action="{{ route('update_data', $user->id) }}" --}}>
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">
