@@ -51,25 +51,25 @@
                     <label class="filter_header">Цена</label>
                     <ul class="filter_group">
                         <ul class="filter_group-items">
-                                @if(count($filterprice))
-                                    @foreach($filterprice as $post)
-                                        @if($post->filter_price)
-                                            <li class="filter_group-item-right">
-                                                <label class="control control-checkbox">
-                                                    {{ $post->filter_price }}
-                                                    <input name="filter_price[]" type="checkbox" value="{{ $post->filter_price }}" @if(in_array($post->filter_price, request()->input('filter_price', []))) checked @endif onchange="this.form.submit()" />
-                                                    <div class="control_indicator"></div>
-                                                </label>
-                                            </li>
-                                        @endif
-                                    @endforeach
-                                @else
+                            @if(count($filterprice))
+                            @foreach($filterprice as $post)
+                                @if($post->filter_price)
                                     <li class="filter_group-item-right">
                                         <label class="control control-checkbox">
-                                            нет данных
+                                            {{ $post->filter_price }}
+                                            <input name="filter_price[]" type="checkbox" value="{{ $post->filter_price }}" @if(in_array($post->filter_price, request()->input('filter_price', []))) checked @endif onchange="this.form.submit()" />
+                                            <div class="control_indicator"></div>
                                         </label>
                                     </li>
                                 @endif
+                            @endforeach
+                        @elseif(count($filterprice) == 0)
+                            <li class="filter_group-item-right">
+                                <label class="control control-checkbox">
+                                    нет данных
+                                </label>
+                            </li>
+                        @endif
                         </ul>
                     </form>
                         <li>
