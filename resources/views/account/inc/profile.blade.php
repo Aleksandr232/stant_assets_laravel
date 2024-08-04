@@ -308,30 +308,25 @@
         <div class="profile_settings-item">
             <label>Изменить пароль</label>
             <a id="changePassword" href="">Изменить</a>
-            <form style="display: none;" class="password_change">
-
-                    <label for="">Старый пароль</label>
+            <form style="display: none;" class="password_change" action="{{ route('changePassword') }}" method="post">
+                @csrf
+                <label for="">Старый пароль</label>
+                <div class="password-container">
+                    <input type="password" name="old_password" id="passwordInput" autocomplete="current-password" placeholder="Введите пароль">
+                </div>
+                <span class="password_change-new">
+                    <label for="newPassword">Новый пароль</label>
                     <div class="password-container">
-                        <input type="password" id="passwordInput" autocomplete="current-password" placeholder="Введите пароль">
-
+                        <input type="password" name="new_password" id="newPassword" class="newPassword" autocomplete="new-password" placeholder="Введите пароль">
+                        <i class="password-icon toggle-password"><img src="{{ asset('site/assets/images/password-eye.svg')}}" alt=""></i>
                     </div>
-                    <span class="password_change-new">
-                        <label for="newPassword">Новый пароль</label>
-                        <div class="password-container">
-                            <input type="password" id="newPassword" class="newPassword" autocomplete="new-password" placeholder="Введите пароль">
-                            <i class="password-icon toggle-password"><img src="./assets/images/password-eye.svg" alt=""></i>
-                        </div>
-                        <label for="confirmPassword">Повторите новый пароль</label>
-                        <div class="password-container">
-                            <input type="password" id="confirmPassword" class="newPassword" autocomplete="new-password" placeholder="Введите пароль">
-                            <i class="password-icon toggle-password"><img src="./assets/images/password-eye.svg" alt=""></i>
-                        </div>
-                    </span>
-
-                    <a href="" class="password_change-submit"> Изменить</a>
-
-
-
+                    <label for="confirmPassword">Повторите новый пароль</label>
+                    <div class="password-container">
+                        <input type="password" name="new_password_confirmation" id="confirmPassword" class="newPassword" autocomplete="new-password" placeholder="Введите пароль">
+                        <i class="password-icon toggle-password"><img src="{{ asset('site/assets/images/password-eye.svg') }}" alt=""></i>
+                    </div>
+                </span>
+                <button type="submit" class="password_change-submit"> Изменить</button>
             </form>
         </div>
     </div>
