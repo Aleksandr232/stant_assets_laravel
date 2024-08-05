@@ -11,6 +11,89 @@ body {
   font-weight: 700;
 }
 
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .modal-content {
+    background-color: rgba(0, 0, 0, 0.5);;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 70%;
+    backdrop-filter: blur(30px);
+  }
+
+  .form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .form-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form-container input,
+  .form-container button {
+    margin: 10px 0;
+  }
+
+  .balance-form input{
+    width: 100%;
+    height: 50px;
+    border: 1px solid #BFBFBF;
+    background: rgba(248, 248, 248, 0.1);
+    padding-left: 20px;
+    color: #F8F8F8;
+    outline: none;
+}
+.balance-form .btn_balance {
+    align-self: center;
+    color: #F8F8F8;
+    font-size: 18px;
+    font-weight: 700;
+    width: 160px;
+    height: 42px;
+    border-radius: 6px;
+    border: 2px solid #FFF;
+    margin-top: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.balance-form .btn_balance:hover {
+    background:#06B25F;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+  .close-button {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close-button:hover,
+  .close-button:focus {
+    color: #06B25F;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
 a {
   color: #fff;
   font-family: "Montserrat";
@@ -2581,6 +2664,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 .profile_settings-item .password_change-submit:hover {
   transition: all 0.3s ease;

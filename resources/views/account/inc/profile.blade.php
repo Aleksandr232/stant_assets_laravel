@@ -48,7 +48,7 @@
             </div>
             <div class="profile_side-span-last-balance">
                 <span class="balance-add">Баланс
-                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+                    <svg id="openModal"  xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
                         <path d="M18.4167 14.0833H14.0833V18.4167H11.9167V14.0833H7.58333V11.9167H11.9167V7.58333H14.0833V11.9167H18.4167V14.0833ZM20.5833 3.25H5.41667C4.21417 3.25 3.25 4.21417 3.25 5.41667V20.5833C3.25 21.158 3.47827 21.7091 3.8846 22.1154C4.29093 22.5217 4.84203 22.75 5.41667 22.75H20.5833C21.158 22.75 21.7091 22.5217 22.1154 22.1154C22.5217 21.7091 22.75 21.158 22.75 20.5833V5.41667C22.75 4.84203 22.5217 4.29093 22.1154 3.8846C21.7091 3.47827 21.158 3.25 20.5833 3.25Z" fill="white"/>
                       </svg>
                 </span>
@@ -197,7 +197,7 @@
 
 
    @include('account.inc.table_product')
-
+   @include('account.inc.modal_balance')
 
     <div class="profile_settings">
         <div class="profile_settings-item">
