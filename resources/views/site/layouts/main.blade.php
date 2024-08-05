@@ -143,5 +143,18 @@ window.onclick = function(event) {
   }
 }
 </script>
+<script>
+    document.querySelectorAll('.feedback_container_reviews-send').forEach(link => {
+  link.addEventListener('click', (event) => {
+    event.preventDefault(); // Отменяем стандартное поведение ссылки
+
+    const targetElement = document.getElementById('feedback_container');
+    targetElement.scrollIntoView({
+      behavior: 'smooth', // Плавный скролл
+      block: 'start' // Прокручиваем до верха элемента
+    });
+  });
+});
+</script>
 </body>
 </html>

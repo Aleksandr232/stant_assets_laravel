@@ -1,5 +1,5 @@
 <div style="display: none;" class="review_container">
-    <div class="review_container-wrapper">
+    <div class="review_container-wrapper" id="feedback_container">
         <div class="review_container_header">
             <span class="active" id="sendFeedback">Оставить отзыв</span>
             <span id="sendQuestion">Задать вопрос</span>
@@ -8,7 +8,7 @@
             </svg>
         </div>
 
-        <div class="review_container_main">
+        <div class="review_container_main" >
             <form id="myFormId" action="{{ route('post_rate', [$order->id]) }}" method="POST">
                 @csrf
                 <div class="review_container_main-rate">
