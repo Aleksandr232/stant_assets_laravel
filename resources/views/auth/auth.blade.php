@@ -39,3 +39,12 @@
 @section('footer')
     @include('site.inc.footer_auth')
 @endsection
+
+@if(isset($scrollToForm) && $scrollToForm)
+<script>
+    window.onload = function() {
+        var authForm = document.getElementById('authorizationForm');
+        authForm.scrollIntoView({ behavior: 'smooth' });
+    };
+</script>
+@endif

@@ -13,7 +13,7 @@ class AuthController extends Controller
 
     public function authorization()
     {
-        return view('auth.auth');
+        return view('auth.auth',  ['scrollToForm' => true]);
     }
 
 
