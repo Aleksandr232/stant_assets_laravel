@@ -48,7 +48,7 @@ class BlogController extends Controller
 
         $blog = Blog::query()->find($id);
 
-        return view('site.blog.blog', compact('blog', 'name'));
+        return view('site.blog.blog', compact('blog', 'name'), ['scrollToBlog' => true]);
     }
 
 }

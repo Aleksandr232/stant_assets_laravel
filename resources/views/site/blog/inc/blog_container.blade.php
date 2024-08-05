@@ -1,4 +1,4 @@
-<section class="product_container">
+<section class="product_container" id="blog">
     <div class="product_container_header">
         <h1>{{$blog->name_post}}</h1>
 
@@ -22,3 +22,12 @@
         </div>
 
 </section>
+
+@if(isset($scrollToBlog) && $scrollToBlog)
+<script>
+    window.onload = function() {
+        var scroll = document.getElementById('blog');
+        scroll.scrollIntoView({ behavior: 'smooth' });
+    };
+</script>
+@endif
