@@ -2,13 +2,13 @@
 
 
 @section('content')
-<main class="autorization">
-<section class="autorization_container">
+<main class="autorization" >
+<section class="autorization_container" id="autorization_container_main">
     <span class="autorization_container_header">
         <img src="{{ asset('site/assets/images/logoAuth.svg')}}"/>
         SITE NAME
     </span>
-    <div class="autorization_container_main">
+    <div class="autorization_container_main" >
         <span class="autorization_container_main-nav">
             <a href="#" id="loginLink" class="active">Войти</a>
             <a href="#" id="signupLink">Создать аккаунт</a>
@@ -43,7 +43,7 @@
 @if(isset($scrollToForm) && $scrollToForm)
 <script>
     window.onload = function() {
-        var authForm = document.getElementById('authorizationForm');
+        var authForm = document.getElementById('autorization_container_main');
         authForm.scrollIntoView({ behavior: 'smooth' });
     };
 </script>
