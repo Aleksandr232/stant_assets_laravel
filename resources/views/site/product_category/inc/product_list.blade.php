@@ -11,6 +11,7 @@
         $maxPrice = $product_category->max('price');
 
 @endphp
+
 <section class="product_list">
     {{-- <div class="list-search">
         <button>
@@ -34,7 +35,7 @@
         </form>
     </div> --}}
 
-    <div class="product_list_container">
+    <div class="product_list_container" id="category">
         {{-- <div class="container_filter">
             <label class="container_filter-label">Найдено {{count($product_category)}}  товаров</label>
             <div  class="container_filter-list">
@@ -349,3 +350,11 @@
 
     </div>
 </section>
+@if(isset($scrollToCategory) && $scrollToCategory)
+<script>
+    window.onload = function() {
+        var scroll = document.getElementById('category');
+        scroll.scrollIntoView({ behavior: 'smooth' });
+    };
+</script>
+@endif

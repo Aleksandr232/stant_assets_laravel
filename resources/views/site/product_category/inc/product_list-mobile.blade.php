@@ -1,4 +1,4 @@
-<section  style="display: none;" class="product_list-mobile">
+<section  style="display: none;" class="product_list-mobile" id="category">
     <div class="product_list_header">
          <label>Найдено 6036 курсов</label>
          <a href="" class="mobile-filter"> Фильтры
@@ -433,3 +433,11 @@
          </div>
      </div>
  </section>
+ @if(isset($scrollToCategory) && $scrollToCategory)
+ <script>
+     window.onload = function() {
+         var scroll = document.getElementById('category');
+         scroll.scrollIntoView({ behavior: 'smooth' });
+     };
+ </script>
+ @endif

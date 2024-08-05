@@ -15,3 +15,5 @@
 @section('footer')
     @include('site.product_category.inc.footer_home')
 @endsection
+
+
