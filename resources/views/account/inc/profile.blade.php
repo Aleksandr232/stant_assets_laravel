@@ -1,5 +1,5 @@
 <section class="profile">
-    <aside class="profile_side">
+    <aside class="profile_side" id="account">
         <span class="profile_side-name">
             <img src="{{ asset('site/assets/images/profile/profileIcon.png')}}"/>
 
@@ -332,3 +332,11 @@
     </div>
 
 </section>
+@if(isset($scrollToAccount) && $scrollToAccount)
+<script>
+    window.onload = function() {
+        var scroll = document.getElementById('account');
+        scroll.scrollIntoView({ behavior: 'smooth' });
+    };
+</script>
+@endif

@@ -15,7 +15,7 @@ class AccountController extends Controller
         $user = Auth::user();
         $purchases = $user->purchases()->paginate(5);
 
-        return view('account.page.index', compact('user', 'purchases'));
+        return view('account.page.index', compact('user', 'purchases'), ['scrollToAccount' => true]);
     }
 
     public function sendMessage(Request $request)
