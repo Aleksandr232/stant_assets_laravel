@@ -37,7 +37,7 @@
 
     </div>
 
-    <div class="product_list_container">
+    <div class="product_list_container" id="filter">
         <div class="container_filter">
             <label class="container_filter-label">Найдено {{count($product)}}  товаров</label>
             <div  class="container_filter-list">
@@ -362,3 +362,11 @@
 
     </div>
 </section>
+@if(isset($scrollToFilter) && $scrollToFilter)
+<script>
+    window.onload = function() {
+        var scroll = document.getElementById('filter');
+        scroll.scrollIntoView({ behavior: 'smooth' });
+    };
+</script>
+@endif
