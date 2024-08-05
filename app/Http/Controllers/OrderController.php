@@ -11,6 +11,6 @@ class OrderController extends Controller
 
         $order = Product::query()->find($id);
 
-        return view('site.order.order', compact('order', 'name'));
+        return view('site.order.order', compact('order', 'name'), ['scrollToProduct' => true]);
     }
 }

@@ -1,4 +1,4 @@
-<section class="product_container">
+<section class="product_container" id="product">
     <div class="product_container_header">
         <h1>Купить {{$order->product}}</h1>
         <span class="product_container_header-rate">
@@ -358,3 +358,11 @@
     </div>
 
 </section>
+@if(isset($scrollToProduct) && $scrollToProduct)
+<script>
+    window.onload = function() {
+        var scroll = document.getElementById('product');
+        scroll.scrollIntoView({ behavior: 'smooth' });
+    };
+</script>
+@endif
