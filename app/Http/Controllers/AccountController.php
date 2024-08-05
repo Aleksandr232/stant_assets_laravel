@@ -46,4 +46,19 @@ class AccountController extends Controller
 
         return redirect()->route('account')->with('success', 'Password changed successfully.');
     }
+
+    public function addBalance(Request $request)
+    {
+        $user = Auth::user();
+
+        $request->validate([
+            'amount' => 'required',
+        ]);
+
+        $user->balance += $request->amount;
+        $user->save();
+
+
+        return redirect()->route('account')->with('success', 'Balance added successfully.');
+    }
 }
