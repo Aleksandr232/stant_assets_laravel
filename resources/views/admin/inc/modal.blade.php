@@ -299,4 +299,62 @@
     </div>
   </div>
 
+  <div class="modal fade" id="purchaseModal" tabindex="-1" aria-labelledby="purchaseModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="purchaseModalLabel">Подвердить покупку</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="purchaseForm" method="post"  >
+            @csrf
+
+            <div class="mb-3">
+                <label for="productPrice" class="form-label">Статус доставки</label>
+                <select name="status_purchase" class="form-control" id="productName">
+                            <option value="Доставлен">Доставлен</option>
+                            <option value="Неудача">Неудача</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="productPrice" class="form-label">Статус оплаты</label>
+                <select name="account_details_purchase" class="form-control" id="productName">
+                            <option value="Оплачен">Оплачен</option>
+                            <option value="503 ERROR">503 ERROR</option>
+                            <option value="Отправить аккаунт">Отправить аккаунт</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="productName" class="form-label">Account ID</label>
+                <input type="text" name="account_id" class="form-control"  placeholder="Введите данные аккаунта">
+              </div>
+              <div class="mb-3">
+                <label for="productPrice" class="form-label">Password</label>
+                <input type="text" name="account_password" class="form-control"  placeholder="Введите данные аккаунта">
+              </div>
+              <div class="mb-3">
+                <label for="productPrice" class="form-label">Account email</label>
+                <input type="text" name="account_email" class="form-control"  placeholder="Введите данные аккаунта">
+              </div>
+              <div class="mb-3">
+                <label for="productPrice" class="form-label">Email password</label>
+                <input type="text" name="email_password" class="form-control"  placeholder="Введите данные аккаунта">
+              </div>
+              <div class="mb-3">
+                <label for="productPrice" class="form-label">Email link</label>
+                <input type="text" name="email_link" class="form-control"  placeholder="Введите данные аккаунта">
+              </div>
+              <div class="mb-3">
+                <label for="productPrice" class="form-label">Additional note</label>
+                <textarea name="additional" id="purchase_textarea" cols="30" rows="10"></textarea>
+              </div>
+
+              {{-- <div id="summernote"><p>Hello Summernote</p></div> --}}
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 

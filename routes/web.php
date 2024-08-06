@@ -51,6 +51,7 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::resource('/users', DataUserController::class);
     Route::get('/user/{id}/data', [DataUserController::class, 'data'])->name('data');
     Route::post('/user/{id}', [DataUserController::class, 'update_data'])->name('update_data');
+    Route::post('/user/purchase/{id}', [DataUserController::class, 'update_purchases'])->name('update_purchases');
     Route::post('/create_category', [ProductController::class, 'category'])->name('category');
     Route::post('/create_product', [ProductController::class, 'product'])->name('product');
     Route::post('/update_product/{id}', [ProductController::class, 'update_product'])->name('update_product');

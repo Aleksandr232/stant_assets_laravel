@@ -80,6 +80,20 @@
         ['view', ['fullscreen', 'codeview', 'help']]
       ]
     });
+    $('#purchase_textarea').summernote({
+      placeholder: 'Введите дополнительно про аккаунт',
+      tabsize: 2,
+      height: 120,
+      toolbar: [
+        ['style', ['style']],
+        ['font', ['bold', 'underline', 'clear']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['table', ['table']],
+        ['insert', ['link', 'picture', 'video']],
+        ['view', ['fullscreen', 'codeview', 'help']]
+      ]
+    });
   </script>
   <script>
     $(document).ready(function() {
@@ -115,6 +129,17 @@
 
 
 
+  </script>
+
+<script>
+    $(document).ready(function() {
+        $('.btn-purchase').click(function() {
+            var purchaseId= $(this).data('purchase-id');
+
+
+            $('#purchaseForm').attr('action', '{{ route("update_purchases", ":id") }}'.replace(':id', purchaseId));
+        });
+    });
   </script>
 
 </body>

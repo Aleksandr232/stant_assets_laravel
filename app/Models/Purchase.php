@@ -19,7 +19,13 @@ class Purchase extends Model
         'account_details_purchase',
         'status_purchase',
         'user_id',
-        'product_id'
+        'product_id',
+        'account_id',
+        'account_password',
+        'account_email',
+        'email_password',
+        'email_link',
+        'additional'
 
     ];
 
