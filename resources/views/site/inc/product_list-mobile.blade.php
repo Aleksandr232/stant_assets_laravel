@@ -233,7 +233,7 @@
         </div>
      </div>
  </section>
- @if(isset($scrollToCategory) && $scrollToCategory)
+ @if(isset($scrollToFilter) && $scrollToFilter)
  <script>
      window.onload = function() {
          var scroll = document.getElementById('filter');
