@@ -3,13 +3,13 @@
 @section('title', '404')
 
 @section('content')
-    <div class="lost">
+    <div class="lost" id="error">
         <img src="{{ asset('site/assets/images/404/404.png')}}">
         <div class="lost__block">
             <div class="lost__title">
                 <h1>it looks like you are lost</h1>
             </div>
-            <a class="lost__button" href="#">return to homepage</a>
+            <a class="lost__button" href="{{ route("home") }}">return to homepage</a>
         </div>
     </div>
 
@@ -100,3 +100,11 @@
     @include('site.inc.contacts')
 @endsection
 
+@if(isset($scrollToError) && $scrollToError)
+<script>
+    window.onload = function() {
+        var scroll = document.getElementById('error');
+        scroll.scrollIntoView({ behavior: 'smooth' });
+    };
+</script>
+@endif

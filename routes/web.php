@@ -72,5 +72,5 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 
 Route::get('/404', function () {
-    return view('site.errors.404');
+    return view('site.errors.404', ['scrollToError' => true]);
 })->name('404');
