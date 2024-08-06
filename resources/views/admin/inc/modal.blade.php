@@ -225,4 +225,78 @@
     </div>
 </div>
 
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="updateModalLabel">Обновить товар</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Форма для добавления товара -->
+          <form id="updateForm" method="post" enctype="multipart/form-data" >
+            @csrf
+            <div class="mb-3">
+              <label for="productName" class="form-label">Название товара</label>
+              <input type="text" name="product" class="form-control" id="product" placeholder="Введите название товара">
+            </div>
+            <div class="mb-3">
+                <label for="productName" class="form-label">Выбрать категорию</label>
+                <select  class="form-control" id="productName" name="category" id="">
+                    @foreach($category as $post)
+                    <option value="{{$post->name_category}}">{{$post->name_category}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="productName" class="form-label">Выбрать фильтр по цене</label>
+                <select class="form-control" id="productName" name="filter_price">
+                    @foreach($filterprice as $post)
+                    @if($post->filter_price)
+                        <option value="{{$post->filter_price}}">{{$post->filter_price}}</option>
+                    @endif
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="productName" class="form-label">Выбрать фильтр по платформе</label>
+
+                <select class="form-control" id="productName" name="filter_platform">
+                    @foreach($filterplatform as $post)
+                        @if($post->filter_platform)
+                            <option value="{{$post->filter_platform}}">{{$post->filter_platform}}</option>
+                        @endif
+                    @endforeach
+                </select>
+
+            </div>
+
+            <div class="mb-3">
+                <label for="productName" class="form-label">Выбрать фильтр по услуги</label>
+
+                <select class="form-control" id="productName" name="filter_service">
+                    @foreach($filterservice as $post)
+                        @if($post->filter_service)
+                            <option value="{{$post->filter_service}}">{{$post->filter_service}}</option>
+                        @endif
+                    @endforeach
+                </select>
+            </div>
+            <div class="mb-3">
+              <label for="productPrice" class="form-label">Цена</label>
+              <input type="number" name="price" class="form-control" id="price" placeholder="Введите цену">
+            </div>
+            <div class="mb-3">
+                <label for="productPrice" class="form-label">Фото товара</label>
+                <input type="file" multiple name="product_img[]" class="form-control" id="productPrice" placeholder="Введите цену">
+              </div>
+              {{-- <div id="summernote"><p>Hello Summernote</p></div> --}}
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
 

@@ -98,5 +98,24 @@
     });
   </script>
 
+<script>
+    $(document).ready(function() {
+        $('.btn-update').click(function() {
+            var productId= $(this).data('product-id');
+            var productName = $(this).data('product-name');
+            var productPrice = $(this).data('product-price');
+
+            $('#product').val(productName);
+            $('#price').val(productPrice);
+
+            $('#updateForm').attr('action', '{{ route("update_product", ":id") }}'.replace(':id', productId));
+        });
+    });
+
+
+
+
+  </script>
+
 </body>
 </html>

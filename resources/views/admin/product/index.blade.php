@@ -72,13 +72,16 @@
               <td>{{$post->id}}</td>
               <td>{{$post->product}}</td>
               <td>
-                <form action="{{ route('destroy', $post->id) }}" method="POST">
-                    {{ csrf_field() }}
-                    {{ method_field('DELETE') }}
-                    <button class="btn btn-danger btn-sm" type="submit">
-                        Удалить
-                    </button>
-                </form>
+                <div style="display: flex; gap: 10px">
+                    <button type="button" data-product-id="{{ $post->id }}" data-product-name="{{ $post->product }}" data-product-price="{{ $post->price }}" class="btn btn-primary btn-sm btn-update"  data-bs-toggle="modal" data-bs-target="#updateModal">Изменить</button>
+                    <form action="{{ route('destroy', $post->id) }}" method="POST">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                        <button class="btn btn-danger btn-sm" type="submit">
+                            Удалить
+                        </button>
+                    </form>
+                </div>
               </td>
             </tr>
           </tbody>
