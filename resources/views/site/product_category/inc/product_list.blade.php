@@ -13,7 +13,7 @@
 @endphp
 
 <section class="product_list">
-    {{-- <div class="list-search">
+    <div class="list-search">
         <button>
             <svg xmlns="http://www.w3.org/2000/svg" width="34" height="20" viewBox="0 0 34 20" fill="none">
                 <path d="M33.3065 7.0006L24.8917 1.14248C24.4222 0.815707 23.6611 0.815805 23.1917 1.14268C22.9664 1.29959 22.8398 1.5123 22.8397 1.73419V4.24481H14.425C13.7611 4.24481 13.2229 4.61949 13.2229 5.08169C13.2229 5.5439 13.7611 5.91858 14.425 5.91858H24.0419C24.7058 5.91858 25.244 5.5439 25.244 5.08169V3.75435L30.7569 7.59226L25.244 11.4302V10.1029C25.244 9.64067 24.7058 9.26599 24.0419 9.26599H10.8187V6.75537C10.8185 6.29316 10.2802 5.91858 9.61633 5.91868C9.29768 5.91873 8.99206 6.00685 8.76666 6.16371L0.351985 12.0218C-0.117328 12.3487 -0.117328 12.8784 0.351985 13.2052L8.76674 19.0633C8.99213 19.2202 9.29782 19.3085 9.61661 19.3085C9.7746 19.3088 9.93118 19.2872 10.077 19.2449C10.5261 19.1153 10.8188 18.8101 10.8187 18.4716V15.961H19.2334C19.8973 15.961 20.4355 15.5863 20.4355 15.1241C20.4355 14.6619 19.8973 14.2872 19.2334 14.2872H9.61661C8.95269 14.2872 8.41449 14.6619 8.41449 15.1241V16.4514L2.90162 12.6135L8.41449 8.77558V10.1029C8.41449 10.5651 8.95269 10.9398 9.61661 10.9398H22.8397V13.4504C22.8399 13.9126 23.3782 14.2872 24.0421 14.2871C24.3607 14.287 24.6663 14.1989 24.8917 14.042L33.3065 8.18392C33.7757 7.8571 33.7757 7.32737 33.3065 7.0006Z" fill="#2B2B2B"/>
@@ -25,18 +25,21 @@
 
 
 
-        <input value="#" type="text" placeholder="Поиск по играм" />
-        <form action="{{ route('home') }}" method="GET">
+        {{-- <input value="#" type="text" placeholder="Поиск по играм" /> --}}
+        {{-- <form action="{{ route('home') }}" method="GET">
             <input type="text" name="search" placeholder="Search products">
             <button type="submit">Search</button>
-        </form>
+        </form> --}}
         <form id="search-form" action="{{ route('home') }}" method="GET">
             <input type="text"  value="{{ request()->input('search') }}" id="search-input" name="search" placeholder="Поиск по играм" onchange="this.form.submit()">
         </form>
-    </div> --}}
+
+
+
+    </div>
 
     <div class="product_list_container" id="category">
-        {{-- <div class="container_filter">
+        <div class="container_filter">
             <label class="container_filter-label">Найдено {{count($product_category)}}  товаров</label>
             <div  class="container_filter-list">
                 <div class="container_filter-list-header mobile-filter">
@@ -199,7 +202,7 @@
                 </div>
 
             </div>
-        </div> --}}
+        </div>
         <div class="container_main">
             <table class="container_products">
                 <thead class="container_products_head">
@@ -339,11 +342,11 @@
                 <button class="container_pages-button">9</button>
             </div> --}}
 
-            {{-- <div class="container_pages">
+            <div class="container_pages">
                 <div class="d-flex justify-content-center">
-                    {{ $product->links('vendor.pagination.custom') }}
+                    {{ $product_category->links('vendor.pagination.custom') }}
                 </div>
-            </div> --}}
+            </div>
 
 
         </div>
