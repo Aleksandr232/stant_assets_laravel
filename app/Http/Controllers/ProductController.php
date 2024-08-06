@@ -101,6 +101,89 @@ class ProductController extends Controller
         return redirect()->route('product.index');
     }
 
+    public function update_product(Request $request, $id)
+    {
+        $product = Product::findOrFail($id);
+
+        if ($request->has('product')) {
+            $product->product = $request->product;
+        }
+
+        if ($request->has('image_platform')) {
+            $product->image_platform = $request->image_platform;
+        }
+
+        if ($request->has('desc_product')) {
+            $product->desc_product = $request->desc_product;
+        }
+
+        if ($request->has('price')) {
+            $product->price = $request->price;
+        }
+
+        if ($request->has('product_param')) {
+            $product->product_param = $request->product_param;
+        }
+
+        if ($request->has('info_shop')) {
+            $product->info_shop = $request->info_shop;
+        }
+
+        if ($request->has('info_returns')) {
+            $product->info_returns = $request->info_returns;
+        }
+
+        if ($request->has('question_product')) {
+            $product->question_product = $request->question_product;
+        }
+
+        if ($request->has('type_service')) {
+            $product->type_service = $request->type_service;
+        }
+
+        if ($request->has('param_calc')) {
+            $product->param_calc = $request->param_calc;
+        }
+
+        if ($request->has('category')) {
+            $category = Category::where('name_category', $request->category)->first();
+            $product->category = $request->category;
+            $product->category_id = $category ? $category->id : null;
+        }
+
+        if ($request->has('filter_price')) {
+            $product->filter_price = $request->filter_price;
+        }
+
+        if ($request->has('filter_service')) {
+            $product->filter_service = $request->filter_service;
+        }
+
+        if ($request->has('filter_platform')) {
+            $product->filter_platform = $request->filter_platform;
+        }
+
+        if ($request->hasFile('product_img')) {
+            $product_img = $request->file('product_img');
+            $path_img_product_arr = explode(',', $product->path_img_product);
+            $product_img_arr = explode(',', $product->product_img);
+
+            foreach ($product_img as $file) {
+                $path = Storage::disk('product')->putFile('products', $file);
+                $fullPath = "https://co19736.tw1.ru/product/" . $path;
+                $path_img_product_arr[] = $fullPath;
+                $product_img_arr[] = $file->getClientOriginalName();
+            }
+
+            $product->path_img_product = implode(",", $path_img_product_arr);
+            $product->product_img = implode(",", $product_img_arr);
+        }
+
+        $product->save();
+
+        return redirect()->route('product.index');
+    }
+
     public function filter(Request $request)
     {
         $filter = new Filter([
