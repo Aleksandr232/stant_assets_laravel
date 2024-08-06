@@ -11,7 +11,7 @@
         $maxPrice = $product->max('price');
 
 @endphp
-<section  style="display: none;" class="product_list-mobile" id="filter">
+<section  style="display: none;" class="product_list-mobile" id="filter_mobile">
     <div class="product_list_header">
          <label>{{count($product)}}  товаров</label>
          <a href="" class="mobile-filter"> Фильтры
@@ -233,10 +233,10 @@
         </div>
      </div>
  </section>
- @if(isset($scrollToFilter) && $scrollToFilter)
+ @if(isset($scrollToFilterMobile) && $scrollToFilterMobile)
  <script>
      window.onload = function() {
-         var scroll = document.getElementById('filter');
+         var scroll = document.getElementById('filter_mobile');
          scroll.scrollIntoView({ behavior: 'smooth' });
      };
  </script>

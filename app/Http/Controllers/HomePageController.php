@@ -44,7 +44,7 @@ class HomePageController extends Controller
     $blog = Blog::all();
 
 
-        return view('site.page.index', compact('category', 'product', 'blog'), ['scrollToFilter' => true] );
+        return view('site.page.index', compact('category', 'product', 'blog'), ['scrollToFilter' => true], ['scrollToFilterMobile' => true] );
     }
 
 
