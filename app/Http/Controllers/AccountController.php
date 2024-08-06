@@ -44,7 +44,7 @@ class AccountController extends Controller
         $user->password = Hash::make($request->new_password);
         $user->save();
 
-        return redirect()->route('account')->with('success', 'Password changed successfully.');
+        return redirect()->route('account')->with('success', 'Пароль успешно изменен');
     }
 
     public function addBalance(Request $request)
@@ -59,6 +59,6 @@ class AccountController extends Controller
         $user->save();
 
 
-        return redirect()->route('account')->with('success', 'Balance added successfully.');
+        return redirect()->route('account')->with('success', 'Баланс пополнен');
     }
 }

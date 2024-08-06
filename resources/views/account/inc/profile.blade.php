@@ -5,7 +5,26 @@
 
             <span>Привет,<br/><span class="nickname">{{$user->name}}</span></span>
 
+            @if (session()->has('success'))
+                <div id="success-message" style="color:#06B25F">
+                    {{ session('success') }}
+                </div>
+            @elseif(session()->has('error'))
+                <div id="success-message" style="color:red">
+                    {{ session('error') }}
+                </div>
+                <script>
+                    // Получаем элемент сообщения
+                    var successMessage = document.getElementById('success-message');
 
+                    // Если сообщение существует, то скрываем его через 5 секунд
+                    if (successMessage) {
+                        setTimeout(function() {
+                            successMessage.style.display = 'none';
+                        }, 5000); // 5000 миллисекунд = 5 секунд
+                    }
+                </script>
+            @endif
         </span>
         <span class="profile_side-span active-tab" id="profileData">
             <svg width="36" height="37" class="profile-hover" viewBox="0 0 36 37" fill="white" xmlns="http://www.w3.org/2000/svg">

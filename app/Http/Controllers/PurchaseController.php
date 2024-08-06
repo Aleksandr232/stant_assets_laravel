@@ -26,7 +26,7 @@ class PurchaseController extends Controller
 
         // Проверяем, есть ли у пользователя достаточно средств для покупки
         if (Auth::user()->balance < $product->price) {
-            return redirect()->route('account');
+            return redirect()->route('account')->with('error', 'Недостаточно средств!');;
         }
 
         $transaction_number = str_pad(mt_rand(1, 999999), 6, '0', STR_PAD_LEFT);
@@ -50,6 +50,6 @@ class PurchaseController extends Controller
         Auth::user()->save();
 
         // Перенаправляем пользователя обратно
-        return redirect()->back()->with('success', 'Покупка успешно совершена!');
+        return redirect()->route('account')->with('success', 'Покупка успешно совершена!');
     }
 }
