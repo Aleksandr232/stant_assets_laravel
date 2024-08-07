@@ -53,7 +53,7 @@
             </button>
         </div>
         <div class="help_center_main">
-            <img src="./assets/images/ask_person.svg"/>
+            <img src="{{asset('site/assets/images/ask_person.svg')}}"/>
             <textarea placeholder="Пожалуйста, введите ваш вопрос"></textarea>
             <div class="help_center_main-form">
                 <span class="help_center_main-form-email">
