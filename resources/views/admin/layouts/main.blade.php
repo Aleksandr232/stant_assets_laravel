@@ -136,12 +136,13 @@
 
             $('#product').val(productName);
             $('#price').val(productPrice);
-            $('#desc').val(productDesc);
+            /* $('#desc').val(productDesc); */
 
             $('#desc').summernote({
             placeholder: 'Введите описание товара',
             tabsize: 2,
             height: 120,
+            value: productDesc,
             toolbar: [
                 ['style', ['style']],
                 ['font', ['bold', 'underline', 'clear']],
@@ -150,7 +151,8 @@
                 ['table', ['table']],
                 ['insert', ['link', 'picture', 'video']],
                 ['view', ['fullscreen', 'codeview', 'help']]
-            ]
+            ],
+
         });
 
             $('#updateForm').attr('action', '{{ route("update_product", ":id") }}'.replace(':id', productId));
