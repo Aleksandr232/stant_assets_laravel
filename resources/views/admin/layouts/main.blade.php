@@ -108,7 +108,7 @@
         ['view', ['fullscreen', 'codeview', 'help']]
       ]
     });
-    $('#desc').summernote({
+    /* $('#desc').summernote({
       placeholder: 'Введите описание товара',
       tabsize: 2,
       height: 120,
@@ -121,7 +121,7 @@
         ['insert', ['link', 'picture', 'video']],
         ['view', ['fullscreen', 'codeview', 'help']]
       ]
-    });
+    }); */
   </script>
   <script>
     $(document).ready(function() {
@@ -151,6 +151,21 @@
             $('#product').val(productName);
             $('#price').val(productPrice);
             $('#desc').val(productDesc);
+
+            $('#desc').summernote({
+            placeholder: 'Введите описание товара',
+            tabsize: 2,
+            height: 120,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+        });
 
             $('#updateForm').attr('action', '{{ route("update_product", ":id") }}'.replace(':id', productId));
         });
