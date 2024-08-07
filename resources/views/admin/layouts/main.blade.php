@@ -136,7 +136,7 @@
 
             $('#product').val(productName);
             $('#price').val(productPrice);
-            $('#product_desc').val(productDesc);
+            $('.desc').val(productDesc);
 
             $('#updateForm').attr('action', '{{ route("update_product", ":id") }}'.replace(':id', productId));
         });
