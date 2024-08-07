@@ -62,42 +62,7 @@
         });
     </script>
 
-   <script>
-     var pusher = new Pusher('13d5f420787d5aa468b8', {
-    cluster: 'eu',
-    encrypted: true
-});
-
-// Subscribe to the 'chat' channel
-var channel = pusher.subscribe('chat');
-
-// Listen for the 'MessageSent' event
-channel.bind('MessageSent', function(data) {
-    const chatMessages = document.querySelector('#chat-messages');
-    chatMessages.innerHTML += `
-        <div class="alert alert-primary">
-            <strong>${data.user.name}:</strong> ${data.message}
-        </div>
-    `;
-});
-
-const chatForm = document.querySelector('#chat-form');
-chatForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const chatInput = document.querySelector('#chat-input');
-    fetch('/chat/send-message', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-        },
-        body: JSON.stringify({ message: chatInput.value })
-    })
-    .then(() => {
-        chatInput.value = '';
-    });
-});
-   </script>
+   
    <script>
     document.addEventListener('DOMContentLoaded', function() {
         const reviewContainers = document.querySelectorAll('.review');
