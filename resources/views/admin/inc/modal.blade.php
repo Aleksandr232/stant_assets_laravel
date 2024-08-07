@@ -104,7 +104,7 @@
             </div>
             <div class="mb-3">
                 <label for="productPrice" class="form-label">Описание товара</label>
-                <textarea name="desc_product" id="summernote" cols="30" rows="10"></textarea>
+                <textarea name="desc_product" id="product_desc" cols="30" rows="10"></textarea>
 
               </div>
             <div class="mb-3">
@@ -292,10 +292,14 @@
               <input type="number" name="price" class="form-control" id="price" placeholder="Введите цену">
             </div>
             <div class="mb-3">
+                <label for="productPrice" class="form-label">Описание товара</label>
+                <textarea name="desc_product" id="product_desc" cols="30" rows="10"></textarea>
+            </div>
+            <div class="mb-3">
                 <label for="productPrice" class="form-label">Фото товара</label>
                 <input type="file" multiple name="product_img[]" class="form-control" id="productPrice" placeholder="Введите цену">
               </div>
-              {{-- <div id="summernote"><p>Hello Summernote</p></div> --}}
+        
             <button type="submit" class="btn btn-primary">Сохранить</button>
           </form>
         </div>
