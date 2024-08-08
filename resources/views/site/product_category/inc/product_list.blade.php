@@ -301,12 +301,12 @@
                                     </div>
                                     <div class="item_facility-row">
                                         <div class="item_facility-row-img">
-                                            @if($post->image_platform === 'Steam')
+                                            {{-- @if($post->image_platform === 'Steam')
                                                 <img src="{{ asset('site/assets/images/platform_icon.svg')}}" />
                                             @elseif($post->image_platform === 'PS')
                                                 <img src="{{ asset('site/assets/images/PS.png')}}" />
-                                            @endif
-
+                                            @endif --}}
+                                            <img src="{{ asset('site/assets/images/platform_icon.svg')}}" />
                                         </div>
                                         @if($post->image_platform === 'Steam')
                                             <label>Steam[PC]</label>
