@@ -259,6 +259,8 @@
                                         <img src="{{ asset('site/assets/images/PS.png')}}" />
                                     @elseif($post->image_platform === 'Epic Games')
                                         <img src="{{ asset('site/assets/images/EPIC.png')}}" />
+                                    @elseif($post->image_platform === 'Ubisoft')
+                                        <img src="{{ asset('site/assets/images/ubisoft.png')}}" />
                                     @endif
                                     <label>{{$post->image_platform}}</label>
                                 </div>
@@ -326,9 +328,11 @@
                                         @elseif($post->image_platform === 'PS')
                                             <label>PS Store[PS]</label>
                                         @elseif($post->image_platform === 'XBOX')
-                                            <label>Xbox Store[XBOX]</label>
+                                            <label>XboxStore[XBOX]</label>
                                         @elseif($post->image_platform === 'Epic Games')
-                                            <label>Epic Games[PC]</label>
+                                            <label>EpicGames[PC]</label>
+                                        @elseif($post->image_platform === 'Ubisoft')
+                                            <label>Ubisoft[PC]</label>
                                         @endif
                                     </div>
                                 </div>
