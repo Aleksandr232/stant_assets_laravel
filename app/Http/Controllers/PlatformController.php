@@ -15,7 +15,7 @@ class PlatformController extends Controller
         $platform = Platform::all();
 
 
-        return view('admin.platform.index');
+        return view('admin.settings.index');
 
     }
 
