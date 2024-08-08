@@ -304,7 +304,15 @@
                                             <img src="{{ asset('site/assets/images/platform_icon.svg')}}" />
 
                                         </div>
-                                        <label>Steam[PC]</label>
+                                        @if($post->image_platform === 'Steam')
+                                            <label>Steam[PC]</label>
+                                        @elseif($post->image_platform === 'Origin')
+                                            <label>Origin[PC]</label>
+                                        @elseif($post->image_platform === 'PS')
+                                            <label>PS Store[PS]</label>
+                                        @elseif($post->image_platform === 'XBOX')
+                                            <label>Xbox Store[XBOX]</label>
+                                        @endif
                                     </div>
                                 </div>
 
