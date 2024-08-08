@@ -244,7 +244,7 @@
                             <div class="item_name">
                                 <div class="item_name-logo">
                                     @if($post->image_platform === 'Steam')
-                                        <img src="{{ asset('site/assets/images/steam-logo.png')}}" />
+                                        <img src="{{ asset('site/assets/images/STEAM.png')}}" />
                                     @elseif($post->image_platform === 'PS')
                                         <img src="{{ asset('site/assets/images/PS.png')}}" />
                                     @endif
