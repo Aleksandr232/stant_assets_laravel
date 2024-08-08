@@ -133,10 +133,12 @@
             var productName = $(this).data('product-name');
             var productPrice = $(this).data('product-price');
             var productDesc = $(this).data('product-desc');
+            var infoShop = $(this).data('product-shop');
 
             $('#product').val(productName);
             $('#price').val(productPrice);
             $('#desc').val(productDesc);
+            $('#info').val(infoShop);
 
 
 
