@@ -305,7 +305,7 @@
             </div>
             <div class="mb-3">
                 <label for="productPrice" class="form-label">Доставка</label>
-                <input type="text"  name="info_shop" class="form-control" id="shop" placeholder="Введите иноформацию про доставку">
+                <input type="text"  name="info_shop" class="form-control" id="info_shop" placeholder="Введите иноформацию про доставку">
               </div>
             <div class="mb-3">
                 <label for="productPrice" class="form-label">Возврат обмен</label>

@@ -134,13 +134,13 @@
             var productPrice = $(this).data('product-price');
             var productDesc = $(this).data('product-desc');
             var infoShop = $(this).data('product-shop');
-            var infoReturn = $(this).data('product-return')
+            var infoReturn = $(this).data('product-return');
 
 
             $('#product').val(productName);
             $('#price').val(productPrice);
             $('#desc').val(productDesc);
-            $('#info').val(infoShop);
+            $('#info_shop').val(infoShop);
             $('#product_return').val(infoReturn);
 
 
