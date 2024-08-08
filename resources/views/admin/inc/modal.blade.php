@@ -109,7 +109,11 @@
               </div>
             <div class="mb-3">
                 <label for="productPrice" class="form-label">Доставка</label>
-                <input type="text"  name="info_shop" class="form-control" id="productPrice" placeholder="Введите цену">
+                <input type="text"  name="info_shop" class="form-control" id="productPrice" placeholder="Введите иноформацию про доставку">
+              </div>
+              <div class="mb-3">
+                <label for="productPrice" class="form-label">Возврат обмен</label>
+                <input type="text"  name="info_returns" class="form-control" id="productPrice" placeholder="Введите иноформацию про возврат">
               </div>
             <div class="mb-3">
                 <label for="productPrice" class="form-label">Фото товара</label>
@@ -301,8 +305,12 @@
             </div>
             <div class="mb-3">
                 <label for="productPrice" class="form-label">Доставка</label>
-                <input type="text"  name="info_shop" class="form-control" id="shop" placeholder="Введите цену">
+                <input type="text"  name="info_shop" class="form-control" id="shop" placeholder="Введите иноформацию про доставку">
               </div>
+            <div class="mb-3">
+                <label for="productPrice" class="form-label">Возврат обмен</label>
+                <input type="text"  name="info_returns" class="form-control" id="product_return" placeholder="Введите иноформацию про возврат">
+            </div>
             <div class="mb-3">
                 <label for="productPrice" class="form-label">Фото товара</label>
                 <input type="file" multiple name="product_img[]" class="form-control" id="productPrice" placeholder="Введите цену">

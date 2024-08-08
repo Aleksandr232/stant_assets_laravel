@@ -73,7 +73,7 @@
               <td>{{$post->product}}</td>
               <td>
                 <div style="display: flex; gap: 10px">
-                    <button type="button" data-product-id="{{ $post->id }}" data-product-desc="{{ $post->desc_product }}" data-product-name="{{ $post->product }}" data-product-price="{{ $post->price }}" class="btn btn-primary btn-sm btn-update"  data-bs-toggle="modal" data-bs-target="#updateModal">Изменить</button>
+                    <button type="button" data-product-id="{{ $post->id }}" data-product-shop="{{$post->info_shop}}" data-product-return="{{$post->info_returns}}" data-product-desc="{{ $post->desc_product }}" data-product-name="{{ $post->product }}" data-product-price="{{ $post->price }}" class="btn btn-primary btn-sm btn-update"  data-bs-toggle="modal" data-bs-target="#updateModal">Изменить</button>
                     <form action="{{ route('destroy', $post->id) }}" method="POST">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
