@@ -301,7 +301,11 @@
                                     </div>
                                     <div class="item_facility-row">
                                         <div class="item_facility-row-img">
-                                            <img src="{{ asset('site/assets/images/platform_icon.svg')}}" />
+                                            @if($post->image_platform === 'Steam')
+                                                <img src="{{ asset('site/assets/images/platform_icon.svg')}}" />
+                                            @elseif($post->image_platform === 'PS')
+                                                <img src="{{ asset('site/assets/images/PS.png')}}" />
+                                            @endif
 
                                         </div>
                                         @if($post->image_platform === 'Steam')
