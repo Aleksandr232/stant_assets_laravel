@@ -238,11 +238,10 @@
                 <div class="product_info-list">
                     <span>
                         Описание товара
-                        <p>
-                            <b>Описание товара</b>
-                            <br/>
+                        
+
                             {!! $order->desc_product !!}
-                        </p>
+
                     </span>
                     <span>
                         Доставка
