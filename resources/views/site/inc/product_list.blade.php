@@ -253,7 +253,7 @@
                             <div class="item_name">
                                 <div class="item_name-logo">
                                     <img src="{{ asset('site/assets/images/steam-logo.png') }}" alt="" />
-                                    <label>Xbox</label>
+                                    <label>{{$post->image_platform}}</label>
                                 </div>
                                 <span>
                                     {{$post->product}}
