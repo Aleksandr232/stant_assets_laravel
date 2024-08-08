@@ -243,8 +243,12 @@
                         <td>
                             <div class="item_name">
                                 <div class="item_name-logo">
-                                    <img src="{{ asset('site/assets/images/steam-logo.png') }}" alt="" />
-                                    <label>Xbox</label>
+                                    @if($post->image_platform === 'Steam')
+                                        <img src="{{ asset('site/assets/images/steam-logo.png')}}" />
+                                    @elseif($post->image_platform === 'PS')
+                                        <img src="{{ asset('site/assets/images/PS.png')}}" />
+                                    @endif
+                                    <label>{{$post->image_platform}}</label>
                                 </div>
                                 <span>
                                     {{$post->product}}
@@ -301,11 +305,7 @@
                                     </div>
                                     <div class="item_facility-row">
                                         <div class="item_facility-row-img">
-                                            {{-- @if($post->image_platform === 'Steam')
-                                                <img src="{{ asset('site/assets/images/platform_icon.svg')}}" />
-                                            @elseif($post->image_platform === 'PS')
-                                                <img src="{{ asset('site/assets/images/PS.png')}}" />
-                                            @endif --}}
+
                                             <img src="{{ asset('site/assets/images/platform_icon.svg')}}" />
                                         </div>
                                         @if($post->image_platform === 'Steam')
