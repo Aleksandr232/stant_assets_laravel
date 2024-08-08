@@ -25,7 +25,7 @@
         </a>
     </div>
     <div class="col-md-3">
-        <a  class="text-decoration-none">
+        <a href="{{ route('platform.index')}}"  class="text-decoration-none">
             <div class="card shadow-sm">
                 <div class="card-body">
                     <h5 class="card-title mb-3">Настройки</h5>

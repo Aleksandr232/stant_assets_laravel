@@ -13,6 +13,7 @@ use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\PoliticsController;
 use App\Http\Controllers\DataUserController;
+use App\Http\Controllers\PlatformController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,10 +50,12 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::resource('/blog', BlogController::class);
     Route::resource('/politics', PoliticsController::class);
     Route::resource('/users', DataUserController::class);
+    Route::resource('/platform', PlatformController::class);
     Route::get('/user/{id}/data', [DataUserController::class, 'data'])->name('data');
     Route::post('/user/{id}', [DataUserController::class, 'update_data'])->name('update_data');
     Route::post('/user/purchase/{id}', [DataUserController::class, 'update_purchases'])->name('update_purchases');
     Route::post('/create_category', [ProductController::class, 'category'])->name('category');
+    Route::post('/create_platform', [PlatformController::class, 'create_platform'])->name('create_platform');
     Route::post('/create_product', [ProductController::class, 'product'])->name('product');
     Route::post('/update_product/{id}', [ProductController::class, 'update_product'])->name('update_product');
     Route::post('/create_filter', [ProductController::class, 'filter'])->name('filter');

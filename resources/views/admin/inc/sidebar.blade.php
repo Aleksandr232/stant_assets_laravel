@@ -7,7 +7,7 @@
       <li><a href="{{ route('blog.index') }}"><i class="fas fa-pencil me-2"></i> Блог</a></li>
       <li><a href="{{ route('politics.index') }}"><i class="fas fa-edit me-2"></i> Политика</a></li>
       <li><a href="#"><i class="fas fa-language me-2"></i>Языки</a></li>
-      <li><a href="#"><i class="fas fa-cogs me-2"></i>Настройки</a></li>
+      <li><a href="{{ route('platform.index') }}"><i class="fas fa-cogs me-2"></i>Настройки</a></li>
       <li>
         <form style="position:absolute; left:50px" method="POST" action="{{ route('logout') }}">
           @csrf

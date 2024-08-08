@@ -3,10 +3,12 @@
         use App\Models\FilterPrice;
         use App\Models\FilterService;
         use App\Models\FilterPlatform;
+        use App\Models\Platform;
 
         $filterprice = FilterPrice::all();
         $filterplatform = FilterPlatform::all();
         $filterservice = FilterService::all();
+        $platform = Platform::all();
 
         $category = Category::all("name_category");
 @endphp
@@ -54,6 +56,16 @@
             <div class="mb-3">
               <label for="productName" class="form-label">Название товара</label>
               <input type="text" name="product" class="form-control" id="productName" placeholder="Введите название товара">
+            </div>
+            <div class="mb-3">
+                <label for="productName" class="form-label">Выбрать платформу</label>
+                <select  class="form-control" id="productName" name="image_platform" id="">
+                @foreach($platform as $post)
+                    @if($post->platform)
+                        <option value="{{$post->platform}}">{{$post->platform}}</option>
+                    @endif
+                @endforeach
+                </select>
             </div>
             <div class="mb-3">
                 <label for="productName" class="form-label">Выбрать категорию</label>
@@ -253,6 +265,16 @@
               <input type="text" name="product" class="form-control" id="product" placeholder="Введите название товара">
             </div>
             <div class="mb-3">
+                <label for="productName" class="form-label">Выбрать платформу</label>
+                <select  class="form-control" id="productName" name="image_platform" id="">
+                @foreach($platform as $post)
+                    @if($post->platform)
+                        <option value="{{$post->platform}}">{{$post->platform}}</option>
+                    @endif
+                @endforeach
+                </select>
+            </div>
+            <div class="mb-3">
                 <label for="productName" class="form-label">Выбрать категорию</label>
                 <select  class="form-control" id="productName" name="category" id="">
                     @foreach($category as $post)
@@ -382,3 +404,25 @@
     </div>
   </div>
 
+  <div class="modal fade" id="platformModal" tabindex="-1" aria-labelledby="platformModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="platformModalLabel">Добавить платформу</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Форма для добавления категории -->
+          <form  method="post" action="{{ route('create_platform') }}">
+            @csrf
+            <div class="mb-3">
+              <label for="categoryName" class="form-label">Название платформы</label>
+              <input type="text" name="platform" class="form-control" id="categoryName" placeholder="Введите название платформы">
+
+            </div>
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
