@@ -47,7 +47,9 @@
 
                         <img class="slider_features-cross" src="{{ asset('site/assets/images/cross.svg') }}" />
                     </label>
-                    <span>Steam</span>
+                    <span>
+                        {{$order->image_platform}}
+                    </span>
                 </span>
                 <span class="product_features_item">
                     <label class="switch_features" for="checkbox">
