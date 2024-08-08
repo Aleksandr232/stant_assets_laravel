@@ -136,12 +136,12 @@
 
             $('#product').val(productName);
             $('#price').val(productPrice);
-            /* $('#desc').val(productDesc); */
+            $('#desc').val(productDesc);
 
 
 
             $('#desc').summernote({
-            placeholder: 'Введите описание товара',
+            placeholder:productDesc ,
             tabsize: 2,
             height: 120,
             value:productDesc,
