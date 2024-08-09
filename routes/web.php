@@ -14,6 +14,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\PoliticsController;
 use App\Http\Controllers\DataUserController;
 use App\Http\Controllers\PlatformController;
+use App\Http\Controllers\ChatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,6 +72,7 @@ Route::prefix('account')->middleware('profile')->group(function () {
     Route::post('/chat/send-message', [AccountController::class, 'sendMessage']);
     Route::post('/product/{id}/rate', [RatingController::class, 'post_rate'])->name('post_rate');
     Route::post('/purchase/{id}', [PurchaseController::class, 'post_purchase'])->name('post_purchase');
+    Route::post('/send-message', [ChatController::class, 'sendMessage'])->name('sendMessage');
 });
 
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');

@@ -35,6 +35,7 @@
     <script src="{{ asset('site/js/share.js') }}"></script>
    {{--  <script src="{{ mix('js/app.js') }}"></script> --}}
     <script src="{{ asset('site/js/index.js')}}?v={{ time() }}"></script>
+    <script src="{{ asset('site/js/chat.js')}}?v={{ time() }}"></script>
     <script>
         const loginLink = document.getElementById('loginLink');
         const signupLink = document.getElementById('signupLink');
@@ -62,7 +63,7 @@
         });
     </script>
 
-   
+
    <script>
     document.addEventListener('DOMContentLoaded', function() {
         const reviewContainers = document.querySelectorAll('.review');
