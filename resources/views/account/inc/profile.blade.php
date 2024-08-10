@@ -140,13 +140,13 @@
             <div class="chat_header">
 
             <span class="chat_header_to">
-                <img src="https://content.freelancehunt.com/profile/photo/225/bonzaznob.png"/>
+                {{-- <img src="https://content.freelancehunt.com/profile/photo/225/bonzaznob.png"/> --}}
                 <span>Admin</span>
             </span>
             <span class="chat_header-underline"></span>
             </div>
             <div class="chat_main">
-                <div class="chat_main_from">
+                {{-- <div class="chat_main_from">
                     <label class="chat_main_from-date">Сьогодні о 7:15</label>
                     <span>
                         <img src="https://content.freelancehunt.com/profile/photo/225/bonzaznob.png"/>
@@ -157,8 +157,8 @@
                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis</p>
                     </span>
 
-                </div>
-                <div class="chat_main_to">
+                </div> --}}
+                {{-- <div class="chat_main_to">
                     <label class="chat_main_to-date">Сьогодні о 7:15</label>
                     <span>
                         <img src="https://content.freelancehunt.com/profile/photo/225/bonzaznob.png"/>
@@ -169,17 +169,17 @@
                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis</p>
                     </span>
 
-                </div>
+                </div> --}}
 
                 <div class="chat_main_from">
                     <label class="chat_main_from-date">Сьогодні о 7:15</label>
                     <span>
-                        <img src="https://content.freelancehunt.com/profile/photo/225/bonzaznob.png"/>
-                        <p>Lorem ipsum dolor sit amet, consectetuer</p>
+                        {{-- <img src="https://content.freelancehunt.com/profile/photo/225/bonzaznob.png"/> --}}
+                        <p>123</p>
                     </span>
                     <span>
-                        <img src=""/>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis</p>
+                        {{-- <img src=""/> --}}
+                        {{-- <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis</p> --}}
                     </span>
 
                 </div>
