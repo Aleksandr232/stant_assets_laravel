@@ -138,7 +138,7 @@ window.onclick = function(event) {
 
     var channel = pusher.subscribe('chat');
 
-    $.ajax({
+    /* $.ajax({
         url: '{{ route('getUsers') }}',
         type: 'GET',
         success: function(data) {
@@ -162,7 +162,7 @@ window.onclick = function(event) {
                 chatList.append(chatItem);
             });
         }
-    });
+    }); */
 
     $('#send-button').click(function(e) {
         e.preventDefault();
