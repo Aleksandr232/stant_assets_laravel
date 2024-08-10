@@ -159,7 +159,7 @@ window.onclick = function(event) {
     });
 
     // Получение сообщений в реальном времени
-    channel.bind('MessageSent', function(data) {
+    channel.bind('stant', function(data) {
         console.log('User:', data.user);
         console.log('Message:', data.message.message);
     });
