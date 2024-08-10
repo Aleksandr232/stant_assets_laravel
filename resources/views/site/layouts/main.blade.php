@@ -124,19 +124,19 @@ window.onclick = function(event) {
 });
 </script>
 <script>
-        // Инициализация Pusher
-        Pusher.logToConsole = true;
+    // Инициализация Pusher
+    Pusher.logToConsole = true;
 
-        var pusher = new Pusher('13d5f420787d5aa468b8', {
-            cluster: 'eu'
-        });
+    var pusher = new Pusher('13d5f420787d5aa468b8', {
+        cluster: 'eu'
+    });
 
-        var channel = pusher.subscribe('chat');
+    var channel = pusher.subscribe('chat');
 
-        // Получение сообщений в реальном времени
-        channel.bind('MessageSent', function(data) {
-            alert(JSON.stringify(data.message));
-            });
+    // Получение сообщений в реальном времени
+    channel.bind('MessageSent', function(data) {
+        console.log('Received message:', data.message, data.auth);
+    });
 </script>
 <script>
     $(document).ready(function() {
