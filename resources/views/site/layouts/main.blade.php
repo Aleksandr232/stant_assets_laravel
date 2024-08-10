@@ -139,7 +139,7 @@ window.onclick = function(event) {
         console.log('Received message:', data.message, data.auth);
     });
 </script> --}}
-<script>
+{{-- <script>
     window.Echo = new Echo({
         broadcaster: 'pusher',
         key: '13d5f420787d5aa468b8',
@@ -151,31 +151,36 @@ window.onclick = function(event) {
         .listen('MessageSent', (e) => {
             console.log('Received message:', e.message, e.auth);
         });
-</script>
+</script> --}}
 <script>
-    $(document).ready(function() {
-        // Загрузка сообщений
+   $(document).ready(function() {
+    // Загрузка сообщений
 
 
-        // Отправка сообщения
-        $('#chat-form').submit(function(e) {
-            e.preventDefault();
-            var message = $('#message').val();
-            $.ajax({
-                url: '{{ route('sendMessage') }}',
-                type: 'POST',
-                data: { message: message },
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function(data) {
-                    $('#message').val('');
-                }
-            });
+    // Отправка сообщения
+    $('#chat-form').submit(function(e) {
+        e.preventDefault();
+        var message = $('#message').val();
+        $.ajax({
+            url: '{{ route('sendMessage') }}',
+            type: 'POST',
+            data: { message: message },
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(data) {
+                console.log('Sent message:', data.message, data.auth);
+                $('#message').val('');
+            }
         });
-
-
     });
+
+    // Получение сообщений в реальном времени
+    window.Echo.channel('chat')
+        .listen('MessageSent', (e) => {
+            console.log('Received message:', e.message, e.auth);
+        });
+});
 </script>
 
 </body>
