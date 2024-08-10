@@ -136,7 +136,7 @@ window.onclick = function(event) {
         cluster: 'eu'
     });
 
-    var channel = pusher.subscribe('chat');
+
 
 
     $('#send-button').click(function(e) {
@@ -171,6 +171,7 @@ window.onclick = function(event) {
 
 
     // Получение сообщений в реальном времени
+    var channel = pusher.subscribe('chat.' + 3);
     channel.bind('App\\Events\\MessageSent', function(data) {
     console.log('Received data:', data);
     addMessageToChat(data);
