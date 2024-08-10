@@ -171,16 +171,13 @@ window.onclick = function(event) {
     });
 
     function addMessageToChat(data) {
-        if (data && data.data && data.data.message && data.data.message.message) {
             var chatElement = $('<div class="chat_main_to"></div>');
             var dateElement = $('<label class="chat_main_to-date">Сьогодні о 7:15</label>');
-            var messageElement = $('<span><img src=""/><p>' + data.data.message.message + '</p></span>');
+            var messageElement = $('<span><img src=""/><p>' + data.message.message + '</p></span>');
             chatElement.append(dateElement);
             chatElement.append(messageElement);
             $('.chat_main_to').first().before(chatElement);
-        } else {
-            console.error('Invalid data received:', data);
-        }
+
     }
 });
 
