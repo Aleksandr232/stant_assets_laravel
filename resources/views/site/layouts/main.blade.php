@@ -165,7 +165,7 @@ window.onclick = function(event) {
     });
 
     // Получение сообщений в реальном времени
-    channel.bind('MessageSent', function(data) {
+    channel.bind('App\\Events\\MessageSent', function(data) {
     console.log('Received data:', data);
     addMessageToChat(data);
     });
