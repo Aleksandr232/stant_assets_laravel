@@ -35,7 +35,7 @@ class ChatController extends Controller
 
     public function getUsers()
     {
-        $users = Auth::user()->allUsers();
+        $users = Auth::user()->users;
 
         return response()->json($users);
     }
