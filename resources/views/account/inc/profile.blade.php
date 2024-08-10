@@ -186,8 +186,8 @@
             </div>
             <div class="chat_footer">
                 <span>
-                    <form method="post" id="chat-form">
-                        @csrf
+                    {{-- <form method="post" id="chat-form">
+                        @csrf --}}
 
                     <input class="chat_footer-text" id="message" type="text" placeholder="Напишите продавцу перед оплатой">
                     <div class="image-upload">
@@ -197,9 +197,9 @@
 
                         {{-- <input id="file-input" type="file"/> --}}
                     </div>
-                    <button>Відправити</button>
+                    <button id="send-button">Відправити</button>
 
-                    </form>
+                    {{-- </form> --}}
                 </span>
             </div>
         </div>
