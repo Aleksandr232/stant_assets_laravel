@@ -137,7 +137,7 @@ window.onclick = function(event) {
     });
 
     var channel = pusher.subscribe('chat');
-    /* var userId = {{ auth()->user()->id }}; */
+    
     var adminId = '1';
 
     $.ajax({
