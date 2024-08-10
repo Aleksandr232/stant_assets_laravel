@@ -152,7 +152,7 @@ window.onclick = function(event) {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function(data) {
-                console.log('Sent message:', data.message.message, data.user.name);
+                console.log('Sent message:', data.message.message, data.user);
                 $('#message').val('');
             }
         });
@@ -160,8 +160,8 @@ window.onclick = function(event) {
 
     // Получение сообщений в реальном времени
     channel.bind('MessageSent', function(data) {
-        console.log('User:', data.user.name);
-        console.log('Message:', data.message.message);
+        console.log('User:', data.user);
+        console.log('Message:', data.message);
     });
 });
 
