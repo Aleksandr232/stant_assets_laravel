@@ -69,10 +69,10 @@ Route::prefix('account')->middleware('profile')->group(function () {
     Route::get('/',  [AccountController::class, 'index'])->name('account');
     Route::post('/account/change-password', [AccountController::class, 'changePassword'])->name('changePassword');
     Route::post('/account/add-balance', [AccountController::class, 'addBalance'])->name('addBalance');
-    Route::post('/chat/send-message', [AccountController::class, 'sendMessage']);
     Route::post('/product/{id}/rate', [RatingController::class, 'post_rate'])->name('post_rate');
     Route::post('/purchase/{id}', [PurchaseController::class, 'post_purchase'])->name('post_purchase');
     Route::post('/send-message', [ChatController::class, 'sendMessage'])->name('sendMessage');
+    Route::get('/chat/user', [ChatController::class, 'getUsers'])->name('getUsers');
 });
 
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
