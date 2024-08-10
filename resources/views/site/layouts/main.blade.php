@@ -184,7 +184,7 @@ window.onclick = function(event) {
     formData.append('channel_id', channelId);
 
     $.ajax({
-        url: '{{ route('sendMessage', ['id' => $channelId]) }}',
+        url: '{{ route('sendMessage', ['channel_id' => $channelId]) }}',
         type: 'POST',
         data: formData,
         processData: false,
