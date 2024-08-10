@@ -31,7 +31,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     enabledTransports: ['ws', 'wss'],
 // });
 
-import Echo from 'laravel-echo';
+/* import Echo from 'laravel-echo';
 
 window.Pusher = require('pusher-js');
 
@@ -40,4 +40,15 @@ window.Echo = new Echo({
     key: process.env.MIX_PUSHER_APP_KEY,
     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
     forceTLS: true
-});
+}); */
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: '13d5f420787d5aa468b8',
+    cluster: 'eu',
+    forceTLS: true
+  });
+
+  var channel = Echo.channel('chat');
+  channel.listen('MessageSent', function(data) {
+    alert(JSON.stringify(data));
+  });
