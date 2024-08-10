@@ -186,8 +186,8 @@
             </div>
             <div class="chat_footer">
                 <span>
-                    <form method="post" id="chat-form">
-                        @csrf
+                    {{-- <form method="post" id="chat-form">
+                        @csrf --}}
                     <input class="chat_footer-text" id="message" type="text" placeholder="Напишите продавцу перед оплатой">
                     <div class="image-upload">
                         <label for="file-input">
@@ -197,7 +197,7 @@
                         {{-- <input id="file-input" type="file"/> --}}
                     </div>
                     <button>Відправити</button>
-                    </form>
+                    {{-- </form> --}}
                     {{-- <form method="post" action="{{route('sendMessage')}}">
                         @csrf
                         <input name="message" class="chat_footer-text" type="text" placeholder="Напишите продавцу перед оплатой">
