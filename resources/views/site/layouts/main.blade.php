@@ -137,27 +137,6 @@ window.onclick = function(event) {
 
     var channel = pusher.subscribe('chat');
 
-    // Загрузка сообщений
-
-
-    // Отправка сообщения
-   /*  $('#chat-form').submit(function(e) {
-        e.preventDefault();
-        var message = $('#message').val();
-        $.ajax({
-            url: '{{ route('sendMessage') }}',
-            type: 'POST',
-            data: { message: message },
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            success: function(data) {
-                console.log('Sent message:', data.message.message, data.user);
-                $('#message').val('');
-            }
-        });
-    }); */
-
     $('#send-button').click(function(e) {
     e.preventDefault();
     var message = $('#message').val();
@@ -188,7 +167,17 @@ window.onclick = function(event) {
     channel.bind('MessageSent', function(data) {
         console.log('User:', data.user);
         console.log('Message:', data.message.message);
+        addMessageToChat(data.user, data.message.message);
     });
+
+    function addMessageToChat(user, message) {
+        var chatElement = $('<div class="chat_main_to"></div>');
+        var dateElement = $('<label class="chat_main_to-date">Сьогодні о 7:15</label>');
+        var messageElement = $('<span><img src=""/><p>' + message + '</p></span>');
+        chatElement.append(dateElement);
+        chatElement.append(messageElement);
+        $('.chat_main_to').first().before(chatElement);
+    }
 });
 
 </script>
