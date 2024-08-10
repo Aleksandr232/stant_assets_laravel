@@ -94,33 +94,6 @@
 
     <div style="display: none;" class="profile_support">
         <div class="chat_list">
-
-            <a href="#" class="chat_list-item">
-                <span class="chat_list-item-left">
-                    <img src="{{ asset('site/assets/images/Ellipse 2.png')}}"/>
-                    <span>
-                        <label>Support</label>
-                        <p>Dinner</p>
-                    </span>
-                </span>
-                <span class="chat_list-item-right">
-                    <span>Today, 8:56pm</span>
-                    <div class="chat_list-item-right-messages">2</div>
-                </span>
-            </a>
-            <a href="" class="chat_list-item">
-                <span class="chat_list-item-left">
-                    <img src="{{ asset('site/assets/images/Ellipse 2.png')}}"/>
-                    <span>
-                        <label>Support</label>
-                        <p>Dinner</p>
-                    </span>
-                </span>
-                <span class="chat_list-item-right">
-                    <span>Today, 8:56pm</span>
-                    <div class="chat_list-item-right-messages">2</div>
-                </span>
-            </a>
             <a href="" class="chat_list-item">
                 <span class="chat_list-item-left">
                     <img src="./assets/images/Ellipse 2.png"/>
