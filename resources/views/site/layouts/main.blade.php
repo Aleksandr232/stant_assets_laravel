@@ -166,13 +166,12 @@ window.onclick = function(event) {
 
     // Получение сообщений в реальном времени
     channel.bind('MessageSent', function(data) {
-        console.log('User:', data.user.name);
-        console.log('Message:', data.message.message);
+    console.log('Received data:', data);
     addMessageToChat(data);
     });
 
     function addMessageToChat(data) {
-        if (data.user && data.message) {
+        if (data.message) {
             var chatElement = $('<div class="chat_main_to"></div>');
             var dateElement = $('<label class="chat_main_to-date">Сьогодні о 7:15</label>');
             var messageElement = $('<span><img src=""/><p>' + data.message.message + '</p></span>');
