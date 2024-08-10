@@ -136,60 +136,34 @@ window.onclick = function(event) {
         cluster: 'eu'
     });
 
+    
+
     $.ajax({
-        url: '{{ route("getAllUsers") }}',
-        type: 'GET',
-        success: function(data) {
-            // Populate the HTML structure with the user data
-            var chatList = $('.chat_list');
-            chatList.empty(); // Clear any existing content
+    url: '{{ route("getAllUsers") }}',
+    type: 'GET',
+    success: function(data) {
+        // Очистить существующий список
+        $('#chat_list').empty();
 
-            $.each(data, function(index, user) {
-                var chatItem = $('<a>', {
-                    href: '',
-                    class: 'chat_list-item',
-                    'data-user-id': user.id
-                });
+        // Использовать шаблонизатор для создания элементов списка
+        var template = Handlebars.compile($('#user-list-template').html());
+        $.each(data, function(index, user) {
+            $('#chat_list').append(template(user));
+        });
 
-                var chatItemLeft = $('<span>', {
-                    class: 'chat_list-item-left'
-                });
-
-                var userImage = $('<img>', {
-                    src: '{{ asset("assets/images/Ellipse 2.png") }}'
-                });
-
-                var userInfo = $('<span>');
-                var userName = $('<label>').text(user.name);
-                var userEmail = $('<p>').text(user.email);
-
-                userInfo.append(userName, userEmail);
-                chatItemLeft.append(userImage, userInfo);
-
-                var chatItemRight = $('<span>', {
-                    class: 'chat_list-item-right'
-                });
-
-                var timestamp = $('<span>').text('Today, 8:56pm');
-                var unreadMessages = $('<div>', {
-                    class: 'chat_list-item-right-messages'
-                }).text('2');
-
-                chatItemRight.append(timestamp, unreadMessages);
-                chatItem.append(chatItemLeft, chatItemRight);
-                chatList.append(chatItem);
-            });
-        },
-        error: function(xhr, status, error) {
-            console.error('Error fetching user data:', error);
-        }
-    });
-
-    $('.chat_list-item').click(function() {
-    var userId = $(this).data('user-id');
-    console.log('Нажато на пользователя с ID:', userId);
-    // Выполнить дополнительные действия на основе идентификатора пользователя
-    });
+        // Добавить обработчик клика на элементы списка
+        $('#chat_list').on('click', '.chat_list-item', function() {
+            var userId = $(this).data('user-id');
+            console.log('Нажато на пользователя с ID:', userId);
+            // Выполнить дополнительные действия на основе идентификатора пользователя
+        });
+    },
+    error: function(xhr, status, error) {
+        console.error('Error fetching user data:', error);
+        // Отобразить сообщение об ошибке пользователю
+        $('#error-message').text('Произошла ошибка при загрузке данных. Пожалуйста, попробуйте еще раз позже.');
+    }
+});
 
 
     $('#send-button').click(function(e) {
