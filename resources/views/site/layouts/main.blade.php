@@ -166,21 +166,21 @@ window.onclick = function(event) {
 
     // Получение сообщений в реальном времени
     channel.bind('MessageSent', function(data) {
-        console.log('User:', data.message.name);
+        console.log('User:', data.user.name);
         console.log('Message:', data.message.message);
-        addMessageToChat(data.message.user, data.message.message);
+    addMessageToChat(data);
     });
 
-    function addMessageToChat(user, message) {
-        if (user && message) {
+    function addMessageToChat(data) {
+        if (data.user && data.message) {
             var chatElement = $('<div class="chat_main_to"></div>');
             var dateElement = $('<label class="chat_main_to-date">Сьогодні о 7:15</label>');
-            var messageElement = $('<span><img src=""/><p>' + message + '</p></span>');
+            var messageElement = $('<span><img src=""/><p>' + data.message.message + '</p></span>');
             chatElement.append(dateElement);
             chatElement.append(messageElement);
             $('.chat_main_to').first().before(chatElement);
         } else {
-            console.error('Invalid data received:', user, message);
+            console.error('Invalid data received:', data);
         }
     }
 });
