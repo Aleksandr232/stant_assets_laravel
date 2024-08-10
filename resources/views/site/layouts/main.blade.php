@@ -152,7 +152,7 @@ window.onclick = function(event) {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function(data) {
-                console.log('Sent message:', data.message, data.auth);
+                console.log('Sent message:', data.message.message, data.user.name);
                 $('#message').val('');
             }
         });
