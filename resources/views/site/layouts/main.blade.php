@@ -137,6 +137,8 @@ window.onclick = function(event) {
     });
 
     var channel = pusher.subscribe('chat');
+    var userId = {{ auth()->user()->id }};
+    var adminId = '1';
 
     $.ajax({
         url: '{{ route('getAdminUsers') }}',
@@ -177,9 +179,11 @@ window.onclick = function(event) {
 
         var formData = new FormData();
         formData.append('message', message);
+        formData.append('user_id', userId);
         /* formData.append('file', file); */
+        /* formData.append('channel_id', channelId); */
 
-        /* $.ajax({
+        $.ajax({
             url: '{{ route('sendMessage') }}',
             type: 'POST',
             data: formData,
@@ -193,7 +197,7 @@ window.onclick = function(event) {
                 $('#message').val('');
                 addMessageToChat(data.user, data.message.message);
             }
-        }); */
+        });
     });
 
     // Получение сообщений в реальном времени
