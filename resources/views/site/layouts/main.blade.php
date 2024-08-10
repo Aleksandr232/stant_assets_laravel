@@ -137,6 +137,32 @@ window.onclick = function(event) {
 
     var channel = pusher.subscribe('chat');
 
+    $.ajax({
+        url: '{{ route('getUsers') }}',
+        type: 'GET',
+        success: function(data) {
+            // Populate the chat list
+            var chatList = $('.chat_list');
+            chatList.empty();
+
+            $.each(data, function(index, user) {
+                var chatItem = $('<a href="" class="chat_list-item"></a>');
+
+                var chatItemLeft = $('<span class="chat_list-item-left"></span>');
+                chatItemLeft.append('<img src="' + user.avatar + '"/>');
+                chatItemLeft.append('<span><label>' + user.name + '</label><p>' + user.message + '</p></span>');
+                chatItem.append(chatItemLeft);
+
+                var chatItemRight = $('<span class="chat_list-item-right"></span>');
+                chatItemRight.append('<span>Today, ' + user.time + '</span>');
+                chatItemRight.append('<div class="chat_list-item-right-messages">' + user.unread_messages + '</div>');
+                chatItem.append(chatItemRight);
+
+                chatList.append(chatItem);
+            });
+        }
+    });
+
     $('#send-button').click(function(e) {
         e.preventDefault();
         var message = $('#message').val();
@@ -170,15 +196,7 @@ window.onclick = function(event) {
     addMessageToChat(data);
     });
 
-    /* function addMessageToChat(data) {
-            var chatElement = $('<div class="chat_main_to"></div>');
-            var dateElement = $('<label class="chat_main_to-date">Сьогодні о 7:15</label>');
-            var messageElement = $('<span><img src=""/><p>' + data.message.message + '</p></span>');
-            chatElement.append(dateElement);
-            chatElement.append(messageElement);
-            $('.chat_main_to').first().before(chatElement);
 
-    } */
     function addMessageToChat(data) {
     // Get the current date
     var today = new Date();
