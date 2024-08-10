@@ -170,7 +170,7 @@ window.onclick = function(event) {
     addMessageToChat(data);
     });
 
-    function addMessageToChat(data) {
+    /* function addMessageToChat(data) {
             var chatElement = $('<div class="chat_main_to"></div>');
             var dateElement = $('<label class="chat_main_to-date">Сьогодні о 7:15</label>');
             var messageElement = $('<span><img src=""/><p>' + data.message.message + '</p></span>');
@@ -178,6 +178,23 @@ window.onclick = function(event) {
             chatElement.append(messageElement);
             $('.chat_main_to').first().before(chatElement);
 
+    } */
+    function addMessageToChat(data) {
+    // Get the current date
+    var today = new Date();
+    var messageDate = new Date(data.message.date);
+
+    // Check if the message is from the current day
+    if (messageDate.getDate() === today.getDate() &&
+        messageDate.getMonth() === today.getMonth() &&
+        messageDate.getFullYear() === today.getFullYear()) {
+        var chatElement = $('<div class="chat_main_to"></div>');
+        var dateElement = $('<label class="chat_main_to-date">Сьогодні о ' + messageDate.getHours() + ':' + messageDate.getMinutes() + '</label>');
+        var messageElement = $('<span><img src=""/><p>' + data.message.message + '</p></span>');
+        chatElement.append(dateElement);
+        chatElement.append(messageElement);
+        $('.chat_main_to').first().before(chatElement);
+    }
     }
 });
 
