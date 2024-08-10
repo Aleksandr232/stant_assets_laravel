@@ -72,7 +72,7 @@ Route::prefix('account')->middleware('profile')->group(function () {
     Route::post('/product/{id}/rate', [RatingController::class, 'post_rate'])->name('post_rate');
     Route::post('/purchase/{id}', [PurchaseController::class, 'post_purchase'])->name('post_purchase');
     Route::post('/send-message/{id}', [ChatController::class, 'sendMessage'])->name('sendMessage');
-    Route::get('/admin-users', [ChatController::class, 'getAdminUsers'])->name('getAdminUsers');
+    Route::get('/all-users', [ChatController::class, 'getAllUsers'])->name('getAllUsers');
 
 });
 

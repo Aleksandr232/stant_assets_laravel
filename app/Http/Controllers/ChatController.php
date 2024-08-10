@@ -29,10 +29,10 @@ class ChatController extends Controller
         return response()->json(['message' => 'Message sent successfully']);
     }
 
-    public function getAdminUsers()
+    public function getAllUsers()
     {
-        $adminUsers = User::where('is_admin', 1)->get();
-        return response()->json($adminUsers);
+        $users = User::all();
+        return response()->json($users);
     }
 
 
