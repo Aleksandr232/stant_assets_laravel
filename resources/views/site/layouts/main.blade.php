@@ -132,6 +132,11 @@ window.onclick = function(event) {
         });
 
         var channel = pusher.subscribe('chat');
+
+        // Получение сообщений в реальном времени
+        channel.bind('MessageSent', function(data) {
+            alert(JSON.stringify(data));
+            });
 </script>
 <script>
     $(document).ready(function() {
@@ -155,10 +160,7 @@ window.onclick = function(event) {
             });
         });
 
-        // Получение сообщений в реальном времени
-        channel.bind('MessageSent', function(data) {
-            $('#messages').append('<div><strong>' + data.user.name + ':</strong> ' + data.message.message + '</div>');
-        });
+
     });
 </script>
 
