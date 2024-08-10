@@ -35,7 +35,7 @@
     <script src="{{ asset('site/js/share.js') }}"></script>
    {{--  <script src="{{ mix('js/app.js') }}"></script> --}}
     <script src="{{ asset('site/js/index.js')}}?v={{ time() }}"></script>
-    {{-- <script src="{{ asset('site/js/chat.js')}}?v={{ time() }}"></script> --}}
+    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
     <script>
         const loginLink = document.getElementById('loginLink');
         const signupLink = document.getElementById('signupLink');
@@ -122,5 +122,49 @@ window.onclick = function(event) {
   });
 });
 </script>
+<script>
+        // Инициализация Pusher
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher('13d5f420787d5aa468b8', {
+            cluster: 'eu'
+        });
+
+        var channel = pusher.subscribe('private-chat');
+</script>
+<script>
+    $(document).ready(function() {
+        // Загрузка сообщений
+       /*  $.ajax({
+            url: '{{ route('chat.get-messages') }}',
+            type: 'GET',
+            success: function(data) {
+                data.forEach(function(message) {
+                    $('#messages').append('<div><strong>' + message.user.name + ':</strong> ' + message.message + '</div>');
+                });
+            }
+        }); */
+
+        // Отправка сообщения
+        $('#chat-form').submit(function(e) {
+            e.preventDefault();
+            var message = $('#message').val();
+            $.ajax({
+                url: '{{ route('sendMessage') }}',
+                type: 'POST',
+                data: { message: message },
+                success: function(data) {
+                    $('#message').val('');
+                }
+            });
+        });
+
+        // Получение сообщений в реальном времени
+        channel.bind('MessageSent', function(data) {
+            $('#messages').append('<div><strong>' + data.user.name + ':</strong> ' + data.message.message + '</div>');
+        });
+    });
+</script>
+
 </body>
 </html>
