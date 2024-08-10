@@ -158,6 +158,7 @@ window.onclick = function(event) {
         success: function(data) {
             console.log('Sent message:', data.message.message, data.user);
             $('#message').val('');
+            addMessageToChat(data.user, data.message.message);
             /* $('#file-input').val(''); */
         }
     });
