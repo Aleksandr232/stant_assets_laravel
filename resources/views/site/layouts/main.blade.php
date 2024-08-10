@@ -124,7 +124,7 @@ window.onclick = function(event) {
   });
 });
 </script>
-{{-- <script>
+<script>
     // Инициализация Pusher
     Pusher.logToConsole = true;
 
@@ -138,20 +138,8 @@ window.onclick = function(event) {
     channel.bind('MessageSent', function(data) {
         console.log('Received message:', data.message, data.auth);
     });
-</script> --}}
-<script>
-    window.Echo = new Echo({
-        broadcaster: 'pusher',
-        key: '13d5f420787d5aa468b8',
-        cluster: 'eu',
-        forceTLS: true
-    });
-
-    window.Echo.channel('chat')
-        .listen('MessageSent', (e) => {
-            console.log('Received message:', e.message, e.auth);
-        });
 </script>
+
 <script>
    $(document).ready(function() {
     // Загрузка сообщений
@@ -176,10 +164,9 @@ window.onclick = function(event) {
     });
 
     // Получение сообщений в реальном времени
-    window.Echo.channel('chat')
-        .listen('MessageSent', (e) => {
-            console.log('Received message:', e.message, e.auth);
-        });
+    channel.bind('MessageSent', function(data) {
+        console.log('Received message:', data.message, data.auth);
+    });
 });
 </script>
 
