@@ -138,41 +138,36 @@ window.onclick = function(event) {
 
     var channel = pusher.subscribe('chat');
 
-    var adminId = '1';
+
+    $('#send-button').click(function(e) {
+    e.preventDefault();
+    var message = $('#message').val();
+
+
+    var formData = new FormData();
+    formData.append('message', message);
+
 
     $.ajax({
-        url: '{{ route('getAdminUsers') }}',
-        type: 'GET',
+        url: '{{ route('sendMessage/1') }}',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         success: function(data) {
-            // Loop through the users and create the HTML elements
-            data.users.forEach(function(user) {
-                var chatListItem = $('<a href="" class="chat_list-item"></a>');
-                var chatListItemLeft = $('<span class="chat_list-item-left"></span>');
-                var chatListItemRight = $('<span class="chat_list-item-right"></span>');
-
-                // Create the left part of the chat list item
-                var userImage = $('<img src="./assets/images/Ellipse 2.png" />');
-                var userInfo = $('<span></span>');
-                var userLabel = $('<label>' + user.name + '</label>');
-                var userMessage = $('<p>' + user.email + '</p>');
-                userInfo.append(userLabel, userMessage);
-                chatListItemLeft.append(userImage, userInfo);
-
-                // Create the right part of the chat list item
-                var lastMessage = $('<span>Today, 8:56pm</span>');
-                var unreadMessages = $('<div class="chat_list-item-right-messages">2</div>');
-                chatListItemRight.append(lastMessage, unreadMessages);
-
-                // Append the elements to the chat list item
-                chatListItem.append(chatListItemLeft, chatListItemRight);
-
-                // Append the chat list item to the container
-                $('.chat_list').append(chatListItem);
-            });
+            console.log('Sent message:', data.message.message, data.user);
+            $('#message').val('');
+            addMessageToChat(data.user, data.message.message);
         }
+        // Add error handling if needed
     });
+});
 
-    
+
+
 
     // Получение сообщений в реальном времени
     channel.bind('App\\Events\\MessageSent', function(data) {
