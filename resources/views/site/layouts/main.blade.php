@@ -171,7 +171,7 @@ window.onclick = function(event) {
     });
 
     function addMessageToChat(data) {
-        if (data.message) {
+        if (data.message.message) {
             var chatElement = $('<div class="chat_main_to"></div>');
             var dateElement = $('<label class="chat_main_to-date">Сьогодні о 7:15</label>');
             var messageElement = $('<span><img src=""/><p>' + data.message.message + '</p></span>');
