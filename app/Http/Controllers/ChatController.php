@@ -11,9 +11,9 @@ use App\Events\MessageSent;
 
 class ChatController extends Controller
 {
-   
-    
-    public function sendMessage(Request $request, $chatId)
+
+
+    public function sendMessage(Request $request)
     {
         $this->validate($request, [
             'message' => 'required',
