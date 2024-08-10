@@ -138,7 +138,7 @@ searchInput.on('keyup', function() {
 
     // Отправляем AJAX-запрос на маршрут '/chats' методом POST
     $.ajax({
-        url: '{{ route('searchChats') }}',
+        url: '{{ route('createChat') }}',
         type: 'POST',
         data: {
             search: searchTerm
