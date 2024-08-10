@@ -135,15 +135,7 @@ window.onclick = function(event) {
 <script>
     $(document).ready(function() {
         // Загрузка сообщений
-       /*  $.ajax({
-            url: '{{ route('chat.get-messages') }}',
-            type: 'GET',
-            success: function(data) {
-                data.forEach(function(message) {
-                    $('#messages').append('<div><strong>' + message.user.name + ':</strong> ' + message.message + '</div>');
-                });
-            }
-        }); */
+       
 
         // Отправка сообщения
         $('#chat-form').submit(function(e) {
