@@ -128,47 +128,7 @@ window.onclick = function(event) {
 
 <script>
    $(document).ready(function() {
-    // Получаем ссылку на поле ввода
-const searchInput = $('#createChat');
-
-// Добавляем обработчик события "keyup" на поле ввода
-searchInput.on('keyup', function() {
-    // Получаем значение из поля ввода
-    const searchTerm = $(this).val();
-
-    // Отправляем AJAX-запрос на маршрут '/chats' методом POST
-    $.ajax({
-        url: '{{ route('createChat') }}',
-        type: 'POST',
-        data: {
-            search: searchTerm
-        },
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        success: function(data) {
-            // Обрабатываем ответ от сервера
-            console.log('Search results:', data);
-            updateChatList(data);
-        },
-        error: function(xhr, status, error) {
-            // Обрабатываем ошибки
-            console.error(error);
-        }
-    });
-});
-
-// Функция для обновления списка чатов
-function updateChatList(chats) {
-    // Очищаем существующий список
-    $('#chat-list').empty();
-
-    // Добавляем новые чаты в список
-    chats.forEach(function(chat) {
-        $('#chat-list').append('<li>' + chat.name + '</li>');
-    });
-}
-
+    
     // Инициализация Pusher
     Pusher.logToConsole = true;
 
