@@ -93,6 +93,7 @@
     </aside>
 
     <div style="display: none;" class="profile_support">
+        <input  id="createChat" type="text" placeholder="Поиск">
         <div class="chat_list">
             <a href="" class="chat_list-item">
                 <span class="chat_list-item-left">

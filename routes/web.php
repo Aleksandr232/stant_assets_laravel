@@ -72,6 +72,7 @@ Route::prefix('account')->middleware('profile')->group(function () {
     Route::post('/product/{id}/rate', [RatingController::class, 'post_rate'])->name('post_rate');
     Route::post('/purchase/{id}', [PurchaseController::class, 'post_purchase'])->name('post_purchase');
     Route::post('/send-message', [ChatController::class, 'sendMessage'])->name('sendMessage');
+    Route::post('/chats', [ChatController::class, 'createChat'])->name('createChat');
     Route::get('/chat/user', [ChatController::class, 'getUsers'])->name('getUsers');
 });
 
