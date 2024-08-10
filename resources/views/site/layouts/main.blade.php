@@ -137,7 +137,7 @@ window.onclick = function(event) {
     });
 
     var channel = pusher.subscribe('chat');
-    
+
     var adminId = '1';
 
     $.ajax({
@@ -172,34 +172,7 @@ window.onclick = function(event) {
         }
     });
 
-    /* $('#send-button').click(function(e) {
-    e.preventDefault();
-    var message = $('#message').val();
-    var channelId = $(this).data('channel-id');
-    var channelId = 1;
-
-    var formData = new FormData();
-    formData.append('message', message);
-    formData.append('user_id', userId);
-    formData.append('channel_id', channelId);
-
-    $.ajax({
-        url: '{{ route('sendMessage', ['id' => $channelId]) }}',
-        type: 'POST',
-        data: formData,
-        processData: false,
-        contentType: false,
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        success: function(data) {
-            console.log('Sent message:', data.message.message, data.user);
-            $('#message').val('');
-            addMessageToChat(data.user, data.message.message);
-        }
-        // Add error handling if needed
-    });
-}); */
+    
 
     // Получение сообщений в реальном времени
     channel.bind('App\\Events\\MessageSent', function(data) {
