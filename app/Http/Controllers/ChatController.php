@@ -13,21 +13,22 @@ class ChatController extends Controller
 
 
     public function sendMessage(Request $request, $recipientId)
-    {
-        $this->validate($request, [
-            'message' => 'required',
-        ]);
+{
+    $this->validate($request, [
+        'message' => 'required',
+    ]);
 
-        $message = new Message(); // Create a new instance of the Message model
-        $message->user_id = $recipientId;
-        $message->message = $request->input('message');
-        $message->save(); // Save the message to the database
+    $message = new Message();
+    $message->user_id = Auth::id();
+    $message->message = $request->input('message');
+    $message->recipient_id = $recipientId;
+    $message->save();
 
-        $user = Auth::user();
-        broadcast(new MessageSent($message, $user, $recipientId))->toOthers();
+    $user = Auth::user();
+    broadcast(new MessageSent($message, $user, $recipientId))->toChannel('chat.' . $recipientId);
 
-        return response()->json(['message' => 'Message sent successfully']);
-    }
+    return response()->json(['message' => 'Message sent successfully']);
+}
 
     public function getAllUsers()
     {
