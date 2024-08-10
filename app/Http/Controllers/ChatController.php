@@ -19,8 +19,10 @@ class ChatController extends Controller
             'message' => 'required',
         ]);
 
+        $message = new Message(); // Create a new instance of the Message model
         $message->user_id = Auth::id();
         $message->message = $request->input('message');
+        $message->save(); // Save the message to the database
 
         $user = Auth::user();
         broadcast(new MessageSent($message, $user))->toOthers();
