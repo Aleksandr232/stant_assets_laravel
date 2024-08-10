@@ -33,6 +33,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/laravel-echo/dist/echo.js"></script>
     <script src="{{ asset('site/js/share.js') }}"></script>
    {{--  <script src="{{ mix('js/app.js') }}"></script> --}}
     <script src="{{ asset('site/js/index.js')}}?v={{ time() }}"></script>
@@ -123,7 +124,7 @@ window.onclick = function(event) {
   });
 });
 </script>
-<script>
+{{-- <script>
     // Инициализация Pusher
     Pusher.logToConsole = true;
 
@@ -137,6 +138,19 @@ window.onclick = function(event) {
     channel.bind('MessageSent', function(data) {
         console.log('Received message:', data.message, data.auth);
     });
+</script> --}}
+<script>
+    window.Echo = new Echo({
+        broadcaster: 'pusher',
+        key: '13d5f420787d5aa468b8',
+        cluster: 'eu',
+        forceTLS: true
+    });
+
+    window.Echo.channel('chat')
+        .listen('MessageSent', (e) => {
+            console.log('Received message:', e.message, e.auth);
+        });
 </script>
 <script>
     $(document).ready(function() {
