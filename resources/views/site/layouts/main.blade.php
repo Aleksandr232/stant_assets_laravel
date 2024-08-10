@@ -149,7 +149,7 @@ window.onclick = function(event) {
 
 
     $.ajax({
-        url: '{{ route('sendMessage/1') }}',
+        url: '{{ route('sendMessage') }}',
         type: 'POST',
         data: formData,
         processData: false,
