@@ -139,7 +139,7 @@ window.onclick = function(event) {
         console.log('Received message:', data.message, data.auth);
     });
 </script> --}}
-{{-- <script>
+<script>
     window.Echo = new Echo({
         broadcaster: 'pusher',
         key: '13d5f420787d5aa468b8',
@@ -151,7 +151,7 @@ window.onclick = function(event) {
         .listen('MessageSent', (e) => {
             console.log('Received message:', e.message, e.auth);
         });
-</script> --}}
+</script>
 <script>
    $(document).ready(function() {
     // Загрузка сообщений
