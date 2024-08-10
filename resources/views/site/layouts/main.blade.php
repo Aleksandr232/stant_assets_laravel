@@ -179,7 +179,7 @@ window.onclick = function(event) {
         formData.append('message', message);
         /* formData.append('file', file); */
 
-        $.ajax({
+        /* $.ajax({
             url: '{{ route('sendMessage') }}',
             type: 'POST',
             data: formData,
@@ -193,7 +193,7 @@ window.onclick = function(event) {
                 $('#message').val('');
                 addMessageToChat(data.user, data.message.message);
             }
-        });
+        }); */
     });
 
     // Получение сообщений в реальном времени
