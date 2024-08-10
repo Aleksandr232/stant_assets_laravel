@@ -175,13 +175,13 @@ window.onclick = function(event) {
     $('#send-button').click(function(e) {
     e.preventDefault();
     var message = $('#message').val();
-    /* var file = $('#file-input')[0].files[0]; */
+    /* var channelId = $(this).data('channel-id'); */
+    var channelId = 1;
 
     var formData = new FormData();
     formData.append('message', message);
     formData.append('user_id', userId);
-    /* formData.append('file', file); */
-    /* formData.append('channel_id', channelId); */
+    formData.append('channel_id', channelId);
 
     $.ajax({
         url: '{{ route('sendMessage', ['id' => $channelId]) }}',
@@ -197,6 +197,7 @@ window.onclick = function(event) {
             $('#message').val('');
             addMessageToChat(data.user, data.message.message);
         }
+        // Add error handling if needed
     });
 });
 
