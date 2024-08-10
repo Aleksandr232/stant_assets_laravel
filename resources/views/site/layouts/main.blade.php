@@ -135,7 +135,7 @@ window.onclick = function(event) {
 
         // Получение сообщений в реальном времени
         channel.bind('MessageSent', function(data) {
-            alert(JSON.stringify(data));
+            alert(JSON.stringify(data.message));
             });
 </script>
 <script>
