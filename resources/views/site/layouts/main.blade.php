@@ -134,10 +134,10 @@ window.onclick = function(event) {
 
     var channel = pusher.subscribe('chat');
 
-    // Получение сообщений в реальном времени
+    /* // Получение сообщений в реальном времени
     channel.bind('MessageSent', function(data) {
         console.log('Received message:', data.message, data.auth);
-    });
+    }); */
 </script>
 
 <script>
@@ -165,9 +165,11 @@ window.onclick = function(event) {
 
     // Получение сообщений в реальном времени
     channel.bind('MessageSent', function(data) {
-        console.log('Received message:', data.message, data.auth);
+        console.log('User:', data.user.name);
+        console.log('Message:', data.message.message);
     });
 });
+
 </script>
 
 </body>
