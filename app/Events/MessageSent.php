@@ -1,11 +1,8 @@
 <?php
-
 namespace App\Events;
 
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
@@ -16,12 +13,15 @@ class MessageSent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $user;
     public $message;
-
+    public $user;
 
     /**
      * Create a new event instance.
+     *
+     * @param  \App\Models\Message  $message
+     * @param  \App\Models\User  $user
+     * @return void
      */
     public function __construct(Message $message, User $user)
     {
@@ -32,20 +32,10 @@ class MessageSent implements ShouldBroadcast
     /**
      * Get the channels the event should broadcast on.
      *
-     * @return array<int, \Illuminate\Broadcasting\Channel>
+     * @return \Illuminate\Broadcasting\Channel|array
      */
-    public function broadcastOn(): array
+    public function broadcastOn()
     {
-        return [
-            new PrivateChannel('chat'),
-        ];
+        return new Channel('chat');
     }
-
-    /* public function broadcastWith()
-    {
-        return [
-            'message' => $this->message,
-            'user' => $this->user,
-        ];
-    } */
 }
