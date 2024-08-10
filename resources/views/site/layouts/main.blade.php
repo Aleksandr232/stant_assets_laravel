@@ -173,32 +173,32 @@ window.onclick = function(event) {
     });
 
     $('#send-button').click(function(e) {
-        e.preventDefault();
-        var message = $('#message').val();
-        /* var file = $('#file-input')[0].files[0]; */
+    e.preventDefault();
+    var message = $('#message').val();
+    /* var file = $('#file-input')[0].files[0]; */
 
-        var formData = new FormData();
-        formData.append('message', message);
-        formData.append('user_id', userId);
-        /* formData.append('file', file); */
-        /* formData.append('channel_id', channelId); */
+    var formData = new FormData();
+    formData.append('message', message);
+    formData.append('user_id', userId);
+    /* formData.append('file', file); */
+    /* formData.append('channel_id', channelId); */
 
-        $.ajax({
-            url: '{{ route('sendMessage') }}',
-            type: 'POST',
-            data: formData,
-            processData: false,
-            contentType: false,
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            success: function(data) {
-                console.log('Sent message:', data.message.message, data.user);
-                $('#message').val('');
-                addMessageToChat(data.user, data.message.message);
-            }
-        });
+    $.ajax({
+        url: '{{ route('sendMessage', ['id' => $channelId]) }}',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(data) {
+            console.log('Sent message:', data.message.message, data.user);
+            $('#message').val('');
+            addMessageToChat(data.user, data.message.message);
+        }
     });
+});
 
     // Получение сообщений в реальном времени
     channel.bind('App\\Events\\MessageSent', function(data) {
