@@ -15,18 +15,21 @@ class MessageSent implements ShouldBroadcast
 
     public $message;
     public $user;
+    public $recipientId;
 
     /**
      * Create a new event instance.
      *
      * @param  \App\Models\Message  $message
      * @param  \App\Models\User  $user
+     * @param  int  $recipientId
      * @return void
      */
-    public function __construct(Message $message, User $user)
+    public function __construct(Message $message, User $user, int $recipientId)
     {
         $this->message = $message;
         $this->user = $user;
+        $this->recipientId = $recipientId;
     }
 
     /**
@@ -36,6 +39,6 @@ class MessageSent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('chat');
+        return new Channel('chat' . $this->recipientId);
     }
 }

@@ -71,9 +71,9 @@ Route::prefix('account')->middleware('profile')->group(function () {
     Route::post('/account/add-balance', [AccountController::class, 'addBalance'])->name('addBalance');
     Route::post('/product/{id}/rate', [RatingController::class, 'post_rate'])->name('post_rate');
     Route::post('/purchase/{id}', [PurchaseController::class, 'post_purchase'])->name('post_purchase');
-    Route::post('/send-message', [ChatController::class, 'sendMessage'])->name('sendMessage');
-    
-    
+    Route::post('/send-message/{id}', [ChatController::class, 'sendMessage'])->name('sendMessage');
+    Route::get('/admin-users', [ChatController::class, 'getAdminUsers'])->name('getAdminUsers');
+
 });
 
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
