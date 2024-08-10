@@ -21,8 +21,8 @@ return new class extends Migration
      
              $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
      
-             if (Schema::hasTable('chats')) {
-                 $table->foreign('chat_id')->references('id')->on('chats')->onDelete('cascade');
+             if (Schema::hasTable('chat')) {
+                 $table->foreign('chat_id')->references('id')->on('chat')->onDelete('cascade');
              }
          });
      }
