@@ -182,7 +182,7 @@ window.onclick = function(event) {
     function addMessageToChat(data) {
     // Get the current date
     var today = new Date();
-    var messageDate = new Date(data.message.date);
+    var messageDate = new Date(data.message.created_at);
 
     // Check if the message is from the current day
     if (messageDate.getDate() === today.getDate() &&
