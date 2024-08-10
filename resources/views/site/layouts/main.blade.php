@@ -149,21 +149,22 @@ window.onclick = function(event) {
 
 
     $.ajax({
-        url: '{{ route('sendMessage') }}',
-        type: 'POST',
-        data: formData,
-        processData: false,
-        contentType: false,
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        success: function(data) {
-            console.log('Sent message:', data.message.message, data.user);
-            $('#message').val('');
-            addMessageToChat(data.user, data.message.message);
-        }
-        // Add error handling if needed
-    });
+    url: '{{ route('sendMessage', ['id' => $user->id]) }}',
+    type: 'POST',
+    data: formData,
+    processData: false,
+    contentType: false,
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    success: function(data) {
+        console.log('Sent message:', data.message.message, data.user);
+        $('#message').val('');
+        addMessageToChat(data.user, data.message.message);
+    },
+    error: function(xhr, status, error) {
+        console.error('Error sending message:', error);
+    }
 });
 
 
