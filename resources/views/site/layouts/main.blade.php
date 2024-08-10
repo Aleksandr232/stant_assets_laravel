@@ -124,7 +124,10 @@ window.onclick = function(event) {
   });
 });
 </script>
+
+
 <script>
+   $(document).ready(function() {
     // Инициализация Pusher
     Pusher.logToConsole = true;
 
@@ -134,14 +137,6 @@ window.onclick = function(event) {
 
     var channel = pusher.subscribe('chat');
 
-    /* // Получение сообщений в реальном времени
-    channel.bind('MessageSent', function(data) {
-        console.log('Received message:', data.message, data.auth);
-    }); */
-</script>
-
-<script>
-   $(document).ready(function() {
     // Загрузка сообщений
 
 
