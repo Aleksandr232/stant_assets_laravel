@@ -19,6 +19,17 @@ class ChatChannel
      */
     public function join(User $user): array|bool
     {
-        return auth()->check();
+        // Проверяем, авторизован ли пользователь
+        if (!auth()->check()) {
+            return false;
+        }
+
+        
+
+        // Возвращаем данные пользователя
+        return [
+            'id' => $user->id,
+            'name' => $user->name
+        ];
     }
 }
