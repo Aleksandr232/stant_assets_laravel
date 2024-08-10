@@ -130,12 +130,12 @@ window.onclick = function(event) {
             cluster: 'eu'
         });
 
-        var channel = pusher.subscribe('private-chat');
+        var channel = pusher.subscribe('chat');
 </script>
 <script>
     $(document).ready(function() {
         // Загрузка сообщений
-       
+
 
         // Отправка сообщения
         $('#chat-form').submit(function(e) {
