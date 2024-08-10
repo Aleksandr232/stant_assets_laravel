@@ -128,7 +128,7 @@ window.onclick = function(event) {
 
 <script>
    $(document).ready(function() {
-    
+
     // Инициализация Pusher
     Pusher.logToConsole = true;
 
@@ -138,7 +138,7 @@ window.onclick = function(event) {
 
     var channel = pusher.subscribe('chat');
 
-    
+
 
     $('#send-button').click(function(e) {
         e.preventDefault();
@@ -162,7 +162,6 @@ window.onclick = function(event) {
                 console.log('Sent message:', data.message.message, data.user);
                 $('#message').val('');
                 addMessageToChat(data.user, data.message.message);
-                /* $('#file-input').val(''); */
             }
         });
     });
