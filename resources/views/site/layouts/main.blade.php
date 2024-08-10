@@ -172,10 +172,10 @@ window.onclick = function(event) {
         }
     });
 
-    $('#send-button').click(function(e) {
+    /* $('#send-button').click(function(e) {
     e.preventDefault();
     var message = $('#message').val();
-    /* var channelId = $(this).data('channel-id'); */
+    var channelId = $(this).data('channel-id');
     var channelId = 1;
 
     var formData = new FormData();
@@ -184,7 +184,7 @@ window.onclick = function(event) {
     formData.append('channel_id', channelId);
 
     $.ajax({
-        url: '{{ route('sendMessage', ['channel_id' => $channelId]) }}',
+        url: '{{ route('sendMessage', ['id' => $channelId]) }}',
         type: 'POST',
         data: formData,
         processData: false,
@@ -199,7 +199,7 @@ window.onclick = function(event) {
         }
         // Add error handling if needed
     });
-});
+}); */
 
     // Получение сообщений в реальном времени
     channel.bind('App\\Events\\MessageSent', function(data) {
