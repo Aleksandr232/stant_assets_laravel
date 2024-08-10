@@ -145,6 +145,9 @@ window.onclick = function(event) {
                 url: '{{ route('sendMessage') }}',
                 type: 'POST',
                 data: { message: message },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
                 success: function(data) {
                     $('#message').val('');
                 }
