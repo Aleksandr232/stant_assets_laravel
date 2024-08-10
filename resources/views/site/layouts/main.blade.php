@@ -138,31 +138,7 @@ window.onclick = function(event) {
 
     var channel = pusher.subscribe('chat');
 
-    /* $.ajax({
-        url: '{{ route('getUsers') }}',
-        type: 'GET',
-        success: function(data) {
-            // Populate the chat list
-            var chatList = $('.chat_list');
-            chatList.empty();
-
-            $.each(data, function(index, user) {
-                var chatItem = $('<a href="" class="chat_list-item"></a>');
-
-                var chatItemLeft = $('<span class="chat_list-item-left"></span>');
-                chatItemLeft.append('<img src="' + user.avatar + '"/>');
-                chatItemLeft.append('<span><label>' + user.name + '</label><p>' + user.message + '</p></span>');
-                chatItem.append(chatItemLeft);
-
-                var chatItemRight = $('<span class="chat_list-item-right"></span>');
-                chatItemRight.append('<span>Today, ' + user.time + '</span>');
-                chatItemRight.append('<div class="chat_list-item-right-messages">' + user.unread_messages + '</div>');
-                chatItem.append(chatItemRight);
-
-                chatList.append(chatItem);
-            });
-        }
-    }); */
+    
 
     $('#send-button').click(function(e) {
         e.preventDefault();
