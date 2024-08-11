@@ -135,44 +135,7 @@ $(document).ready(function() {
         cluster: 'eu'
     });
 
-    $.ajax({
-        url: '{{ route("getAllUsers") }}',
-        type: 'GET',
-        success: function(data) {
-            // Очистить существующий список
-            $('.chat_list').empty();
 
-            // Создать элементы списка пользователей
-            $.each(data, function(index, user) {
-                var $listItem = $('<a>').addClass('chat_list-item').attr('data-user-id', user.id);
-                var $leftSpan = $('<span>').addClass('chat_list-item-left');
-                var $img = $('<img>').attr('src', './assets/images/Ellipse 2.png');
-                var $nameLabel = $('<label>').text(user.name);
-                var $emailParagraph = $('<p>').text(user.email);
-                var $rightSpan = $('<span>').addClass('chat_list-item-right');
-                var $timeSpan = $('<span>').text('Today, 8:56pm');
-                var $messagesDiv = $('<div>').addClass('chat_list-item-right-messages').text('2');
-
-                $leftSpan.append($img, $('<span>').append($nameLabel, $emailParagraph));
-                $rightSpan.append($timeSpan, $messagesDiv);
-                $listItem.append($leftSpan, $rightSpan);
-                $('.chat_list').append($listItem);
-            });
-
-            // Добавить обработчик клика на элементы списка
-            $('.chat_list').on('click', '.chat_list-item', function() {
-                var userId = $(this).data('user-id');
-                sendMessage(message, userId);
-                console.log('Нажато на пользователя с ID:', userId);
-                // Выполнить дополнительные действия на основе идентификатора пользователя
-            });
-        },
-        error: function(xhr, status, error) {
-            console.error('Error fetching user data:', error);
-            // Отобразить сообщение об ошибке пользователю
-            $('#error-message').text('Произошла ошибка при загрузке данных. Пожалуйста, попробуйте еще раз позже.');
-        }
-    });
 
     function sendMessage(message, userId) {
         var formData = new FormData();
@@ -180,7 +143,7 @@ $(document).ready(function() {
         formData.append('userId', userId);
 
         $.ajax({
-            url: '{{ route('sendMessage', ['id' => 'userId']) }}',
+            url: '{{ route('sendMessage', ['id' => '3']) }}',
             type: 'POST',
             data: formData,
             processData: false,
@@ -206,7 +169,7 @@ $(document).ready(function() {
     });
 
     // Получение сообщений в реальном времени
-    var channel = pusher.subscribe('chat.' + {{ $userId }});
+    var channel = pusher.subscribe('chat.' + 3);
     channel.bind('App\\Events\\MessageSent', function(data) {
         console.log('Received data:', data);
         addMessageToChat(data);
