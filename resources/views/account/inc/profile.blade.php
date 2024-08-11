@@ -95,7 +95,7 @@
     <div style="display: none;" class="profile_support">
 
         <div  class="chat_list">
-            @foreach($onlineUsers as $post)
+            @foreach($onlineUsers->is_admin === '1' as $post)
             <a href="" class="chat_list-item">
                 <span class="chat_list-item-left">
                     <img src="./assets/images/Ellipse 2.png"/>
