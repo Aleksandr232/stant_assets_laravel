@@ -23,7 +23,7 @@ class AccountController extends Controller
         ->map(function ($session) {
             return User::find($session->user_id);
         }); */
-    $onlineUsers = User::all();
+        $onlineUsers = User::where('is_admin', '1')->get();
 
     return view('account.page.index', compact('user', 'purchases', 'onlineUsers'), ['scrollToAccount' => true]);
 }
