@@ -136,8 +136,6 @@ window.onclick = function(event) {
         cluster: 'eu'
     });
 
-    
-
     $.ajax({
     url: '{{ route("getAllUsers") }}',
     type: 'GET',
