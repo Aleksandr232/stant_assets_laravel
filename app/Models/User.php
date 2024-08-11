@@ -24,6 +24,7 @@ class User extends Authenticatable
         'google_id',
         'avatar',
         "is_admin",
+        "last_activity",
         'balance'
     ];
 
