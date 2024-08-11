@@ -141,16 +141,27 @@ window.onclick = function(event) {
     type: 'GET',
     success: function(data) {
         // Очистить существующий список
-        $('#chat_list').empty();
+        $('.chat_list').empty();
 
-        // Использовать шаблонизатор для создания элементов списка
-        var template = Handlebars.compile($('#user-list-template').html());
+        // Создать элементы списка пользователей
         $.each(data, function(index, user) {
-            $('#chat_list').append(template(user));
+            var $listItem = $('<a>').addClass('chat_list-item').attr('data-user-id', user.id);
+            var $leftSpan = $('<span>').addClass('chat_list-item-left');
+            var $img = $('<img>').attr('src', './assets/images/Ellipse 2.png');
+            var $nameLabel = $('<label>').text(user.name);
+            var $emailParagraph = $('<p>').text(user.email);
+            var $rightSpan = $('<span>').addClass('chat_list-item-right');
+            var $timeSpan = $('<span>').text('Today, 8:56pm');
+            var $messagesDiv = $('<div>').addClass('chat_list-item-right-messages').text('2');
+
+            $leftSpan.append($img, $('<span>').append($nameLabel, $emailParagraph));
+            $rightSpan.append($timeSpan, $messagesDiv);
+            $listItem.append($leftSpan, $rightSpan);
+            $('.chat_list').append($listItem);
         });
 
         // Добавить обработчик клика на элементы списка
-        $('#chat_list').on('click', '.chat_list-item', function() {
+        $('.chat_list').on('click', '.chat_list-item', function() {
             var userId = $(this).data('user-id');
             console.log('Нажато на пользователя с ID:', userId);
             // Выполнить дополнительные действия на основе идентификатора пользователя

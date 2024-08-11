@@ -94,12 +94,12 @@
 
     <div style="display: none;" class="profile_support">
 
-        <div id="user-list-template" class="chat_list">
-            <a href="" class="chat_list-item" data-user-id="{{ id }}">
+        <div  class="chat_list">
+            <a href="" class="chat_list-item">
                 <span class="chat_list-item-left">
                     <img src="./assets/images/Ellipse 2.png"/>
                     <span>
-                        <label>{{ name }}</label>
+                        <label></label>
                         <p>Dinner</p>
                     </span>
                 </span>
