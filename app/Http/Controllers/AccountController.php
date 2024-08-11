@@ -14,7 +14,8 @@ class AccountController extends Controller
 
         $user = Auth::user();
         $purchases = $user->purchases()->paginate(5);
-        $onlineUsers = Auth::users()->where('last_activity', '>=', now()->subMinutes(5)->toDateTimeString());
+        $onlineUsers = auth()->userProvider()->users()
+                ->where('last_activity', '>=', now()->subMinutes(5)->toDateTimeString());
 
         return view('account.page.index', compact('user', 'purchases', 'onlineUsers'), ['scrollToAccount' => true]);
     }
