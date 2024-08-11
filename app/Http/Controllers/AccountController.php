@@ -13,19 +13,19 @@ use Carbon\Carbon;
 
 class AccountController extends Controller
 {
-    public function index(){
-
-        $user = Auth::user();
-        $purchases = $user->purchases()->paginate(5);
-        $onlineUsers = DB::table('sessions')
+    public function index()
+{
+    $user = Auth::user();
+    $purchases = $user->purchases()->paginate(5);
+    $onlineUsers = DB::table('sessions')
         ->where('last_activity', '>=', Carbon::now()->subMinutes(5))
         ->get()
         ->map(function ($session) {
-            return App\Models\User::find($session->user_id);
+            return User::find($session->user_id);
         });
 
-        return view('account.page.index', compact('user', 'purchases', 'onlineUsers'), ['scrollToAccount' => true]);
-    }
+    return view('account.page.index', compact('user', 'purchases', 'onlineUsers'), ['scrollToAccount' => true]);
+}
 
 
 
