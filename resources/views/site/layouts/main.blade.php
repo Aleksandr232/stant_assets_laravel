@@ -163,7 +163,7 @@ window.onclick = function(event) {
         // Добавить обработчик клика на элементы списка
         $('.chat_list').on('click', '.chat_list-item', function() {
             var userId = $(this).data('user-id');
-            sendMessage(userId);
+            sendMessage(message, userId);
             console.log('Нажато на пользователя с ID:', userId);
             // Выполнить дополнительные действия на основе идентификатора пользователя
         });
@@ -204,38 +204,13 @@ function sendMessage(message, userId) {
     $('#send-button').click(function(e) {
     e.preventDefault();
     var message = $('#message').val();
-    sendMessage(message, {{ $userId }}); 
-    /* var message = $('#message').val();
-
-
-    var formData = new FormData();
-    formData.append('message', message);
-
-
-    $.ajax({
-    url: '{{ route('sendMessage', ['id' => 3]) }}',
-    type: 'POST',
-    data: formData,
-    processData: false,
-    contentType: false,
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
-    success: function(data) {
-        console.log('Sent message:', data.message.message, data.user);
-        $('#message').val('');
-        addMessageToChat(data.user, data.message.message);
-    },
-    error: function(xhr, status, error) {
-        console.error('Error sending message:', error);
-    }
-}); */
-
+    sendMessage(message, {{ $userId }});
+    /* var message = $('#message').val(); */
 
 
 
     // Получение сообщений в реальном времени
-    var channel = pusher.subscribe('chat.' + 3);
+    var channel = pusher.subscribe('chat.' + {{ $userId }});
     channel.bind('App\\Events\\MessageSent', function(data) {
     console.log('Received data:', data);
     addMessageToChat(data);
