@@ -141,6 +141,7 @@ $(document).ready(function() {
     e.preventDefault();
     var message = $('#message').val();
     var userId = $('.chat_list-item.active').data('user-id');
+    console.log(userId);
 
     var formData = new FormData();
     formData.append('message', message);
