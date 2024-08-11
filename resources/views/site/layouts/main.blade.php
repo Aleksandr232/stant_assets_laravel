@@ -182,7 +182,7 @@ $(document).ready(function() {
             addMessageToChat(data);
         });
     });
-
+/* фв */
     function addMessageToChat(data) {
         // Get the current date
         var today = new Date();
