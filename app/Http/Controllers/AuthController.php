@@ -99,7 +99,6 @@ class AuthController extends Controller
         $credentials = $request->only('name', 'password');
 
         if (Auth::attempt($credentials)) {
-            $request->session()->put('user', Auth::user());
             if (Auth::user()->is_admin) {
                 session()->flash('success', 'Добро пожаловать, ' . Auth::user()->name . '!');
                 return redirect()->route('admin');
