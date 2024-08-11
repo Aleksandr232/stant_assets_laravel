@@ -93,13 +93,13 @@
     </aside>
 
     <div style="display: none;" class="profile_support">
-        
-        <div class="chat_list">
-            <a href="" class="chat_list-item">
+
+        <div id="user-list-template" class="chat_list">
+            <a href="" class="chat_list-item" data-user-id="{{ id }}">
                 <span class="chat_list-item-left">
                     <img src="./assets/images/Ellipse 2.png"/>
                     <span>
-                        <label>Support</label>
+                        <label>{{ name }}</label>
                         <p>Dinner</p>
                     </span>
                 </span>
