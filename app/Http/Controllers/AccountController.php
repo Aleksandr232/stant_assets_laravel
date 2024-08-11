@@ -17,12 +17,13 @@ class AccountController extends Controller
 {
     $user = Auth::user();
     $purchases = $user->purchases()->paginate(5);
-    $onlineUsers = DB::table('sessions')
+    /* $onlineUsers = DB::table('sessions')
         ->where('last_activity', '>=', Carbon::now()->subMinutes(5))
         ->get()
         ->map(function ($session) {
             return User::find($session->user_id);
-        });
+        }); */
+    $onlineUsers = User::all();
 
     return view('account.page.index', compact('user', 'purchases', 'onlineUsers'), ['scrollToAccount' => true]);
 }
