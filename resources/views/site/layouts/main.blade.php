@@ -166,7 +166,7 @@ $(document).ready(function() {
     // Получение сообщений в реальном времени
     $('.chat_list-item').click(function() {
         var userId = $(this).data('user-id');
-        var channel = pusher.subscribe('chat.' + userId);
+        var channel = pusher.subscribe('chat.' + 1);
         channel.bind('App\\Events\\MessageSent', function(data) {
             console.log('Received data:', data);
             addMessageToChat(data);
