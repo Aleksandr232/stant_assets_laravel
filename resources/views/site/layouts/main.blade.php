@@ -127,6 +127,8 @@ window.onclick = function(event) {
 
 
 <script>
+var currentActiveUserId;
+
 $(document).ready(function() {
     // Инициализация Pusher
     Pusher.logToConsole = true;
@@ -139,7 +141,7 @@ $(document).ready(function() {
     var activeUserId = $('.chat_list-item.active').data('user-id');
 
     // Сохраняем активный ID пользователя в переменной
-    var currentActiveUserId = activeUserId;
+    currentActiveUserId = activeUserId;
 
     // Обновляем активный ID пользователя, когда элемент списка чата нажимается
     $('.chat_list-item').click(function() {
