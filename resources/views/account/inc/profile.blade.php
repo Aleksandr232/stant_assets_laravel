@@ -95,11 +95,12 @@
     <div style="display: none;" class="profile_support">
 
         <div  class="chat_list">
+            @foreach($onlineUsers as $post)
             <a href="" class="chat_list-item">
                 <span class="chat_list-item-left">
                     <img src="./assets/images/Ellipse 2.png"/>
                     <span>
-                        <label></label>
+                        <label>{{ $post->name}}</label>
                         <p>Dinner</p>
                     </span>
                 </span>
@@ -108,6 +109,7 @@
                     <div class="chat_list-item-right-messages">2</div>
                 </span>
             </a>
+            @endforeach
         </div>
 
         <div class="chat profile_chat">
