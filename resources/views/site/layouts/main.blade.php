@@ -165,7 +165,7 @@ $(document).ready(function() {
     $('#send-button').click(function(e) {
         e.preventDefault();
         var message = $('#message').val();
-        sendMessage(message, {{ $userId }});
+        sendMessage(message, 3);
     });
 
     // Получение сообщений в реальном времени
