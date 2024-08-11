@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Purchase;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class AccountController extends Controller
 {
@@ -14,7 +16,12 @@ class AccountController extends Controller
 
         $user = Auth::user();
         $purchases = $user->purchases()->paginate(5);
-        $onlineUsers = \App\Models\User::where('last_activity', '>=', now()->subMinutes(5)->toDateTimeString())->get();
+        $onlineUsers = DB::table('sessions')
+        ->where('last_activity', '>=', now()->subMinutes(5)->toDateTimeString())
+        ->get()
+        ->map(function ($session) {
+            return App\Models\User::find($session->user_id);
+        });
 
         return view('account.page.index', compact('user', 'purchases', 'onlineUsers'), ['scrollToAccount' => true]);
     }
