@@ -135,18 +135,28 @@ $(document).ready(function() {
         cluster: 'eu'
     });
 
+    // Получаем активный ID пользователя, когда страница загружается
+    var activeUserId = $('.chat_list-item.active').data('user-id');
+
+    // Сохраняем активный ID пользователя в переменной
+    var currentActiveUserId = activeUserId;
+
+    // Обновляем активный ID пользователя, когда элемент списка чата нажимается
+    $('.chat_list-item').click(function() {
+        currentActiveUserId = $(this).data('user-id');
+    });
 
 
     $('#send-button').click(function(e) {
     e.preventDefault();
     var message = $('#message').val();
-    var userId = $('.chat_list-item.active').data('user-id');
-    console.log(userId);
 
     var formData = new FormData();
     formData.append('message', message);
+    formData.append('userId', currentActiveUserId);
+
     $.ajax({
-    url: '{{ route('sendMessage', ['id' => '1']) }}',
+    url: '{{ route('sendMessage', ['id' => currentActiveUserId]) }}',
     type: 'POST',
     data: formData,
     processData: false,
@@ -165,13 +175,13 @@ $(document).ready(function() {
 });
     // Получение сообщений в реальном времени
 
-        var userId = $(this).data('user-id');
-        var channel = pusher.subscribe('chat.' + 1);
+
+        var channel = pusher.subscribe('chat.' + activeUserId);
         channel.bind('App\\Events\\MessageSent', function(data) {
             console.log('Received data:', data);
             addMessageToChat(data);
         });
-    
+
 
     function addMessageToChat(data) {
     // Get the current date
