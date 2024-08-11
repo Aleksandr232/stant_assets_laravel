@@ -146,48 +146,46 @@ $(document).ready(function() {
         currentActiveUserId = $(this).data('user-id');
     });
 
-
     $('#send-button').click(function(e) {
-    e.preventDefault();
-    var message = $('#message').val();
+        e.preventDefault();
+        var message = $('#message').val();
 
-    var formData = new FormData();
-    formData.append('message', message);
-    formData.append('recipient_id', currentActiveUserId);
+        var formData = new FormData();
+        formData.append('message', message);
+        formData.append('recipient_id', currentActiveUserId);
 
-    $.ajax({
-    url: '{{ route('sendMessage', ['recipient_id' => currentActiveUserId]) }}',
-    type: 'POST',
-    data: formData,
-    processData: false,
-    contentType: false,
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
-    success: function(data) {
-        console.log('Sent message:', data.message.message, data.user);
-        $('#message').val('');
-        addMessageToChat(data.user, data.message.message);
-    },
-    error: function(xhr, status, error) {
-        console.error('Error sending message:', error);
-    }
-});
-    // Получение сообщений в реальном времени
+        $.ajax({
+            url: '{{ route('sendMessage', ['recipient_id' => currentActiveUserId]) }}',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(data) {
+                console.log('Sent message:', data.message.message, data.user);
+                $('#message').val('');
+                addMessageToChat(data.user, data.message.message);
+            },
+            error: function(xhr, status, error) {
+                console.error('Error sending message:', error);
+            }
+        });
 
-
+        // Получение сообщений в реальном времени
         var channel = pusher.subscribe('chat.' + activeUserId);
         channel.bind('App\\Events\\MessageSent', function(data) {
             console.log('Received data:', data);
             addMessageToChat(data);
         });
-
+    });
 
     function addMessageToChat(data) {
-    // Get the current date
-    var today = new Date();
-    var messageDate = new Date(data.message.created_at);
-    // Check if the message is from the current day
+        // Get the current date
+        var today = new Date();
+        var messageDate = new Date(data.message.created_at);
+        // Check if the message is from the current day
         if (messageDate.getDate() === today.getDate() &&
             messageDate.getMonth() === today.getMonth() &&
             messageDate.getFullYear() === today.getFullYear()) {
@@ -195,8 +193,8 @@ $(document).ready(function() {
             var dateElement = null;
             // Show the time only for the first message of the day
             if ($('.chat_main_to-date').length === 0) {
-            dateElement = $('<label class="chat_main_to-date">Сьогодні о ' + messageDate.getHours() + ':' + messageDate.getMinutes() + '</label>');
-            chatElement.append(dateElement);
+                dateElement = $('<label class="chat_main_to-date">Сьогодні о ' + messageDate.getHours() + ':' + messageDate.getMinutes() + '</label>');
+                chatElement.append(dateElement);
             }
             var messageElement = $('<span><img src=""/><p>' + data.message.message + '</p></span>');
             chatElement.append(messageElement);
@@ -204,8 +202,6 @@ $(document).ready(function() {
             $('.chat_main_to').last().after(chatElement);
         }
     }
-});
-
 });
 
 
