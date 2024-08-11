@@ -18,10 +18,10 @@ class AccountController extends Controller
         $purchases = $user->purchases()->paginate(5);
         $onlineUsers = DB::table('sessions')
         ->where('last_activity', '>=', now()->subMinutes(5)->toDateTimeString())
-        ->get()
-        ->map(function ($session) {
+        ->get();
+        /* ->map(function ($session) {
             return App\Models\User::find($session->user_id);
-        });
+        }); */
 
         return view('account.page.index', compact('user', 'purchases', 'onlineUsers'), ['scrollToAccount' => true]);
     }
