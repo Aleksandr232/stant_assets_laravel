@@ -100,7 +100,7 @@
                 <span class="chat_list-item-left">
                     <img src="./assets/images/Ellipse 2.png"/>
                     <span>
-                        <label>{{ $post->name}}</label>
+                        <label>{{ $post->name ?? '' }}</label>
                         <p>Dinner</p>
                     </span>
                 </span>
