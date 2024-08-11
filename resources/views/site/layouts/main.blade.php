@@ -127,8 +127,7 @@ window.onclick = function(event) {
 
 
 <script>
-   $(document).ready(function() {
-
+$(document).ready(function() {
     // Инициализация Pusher
     Pusher.logToConsole = true;
 
@@ -137,92 +136,88 @@ window.onclick = function(event) {
     });
 
     $.ajax({
-    url: '{{ route("getAllUsers") }}',
-    type: 'GET',
-    success: function(data) {
-        // Очистить существующий список
-        $('.chat_list').empty();
-
-        // Создать элементы списка пользователей
-        $.each(data, function(index, user) {
-            var $listItem = $('<a>').addClass('chat_list-item').attr('data-user-id', user.id);
-            var $leftSpan = $('<span>').addClass('chat_list-item-left');
-            var $img = $('<img>').attr('src', './assets/images/Ellipse 2.png');
-            var $nameLabel = $('<label>').text(user.name);
-            var $emailParagraph = $('<p>').text(user.email);
-            var $rightSpan = $('<span>').addClass('chat_list-item-right');
-            var $timeSpan = $('<span>').text('Today, 8:56pm');
-            var $messagesDiv = $('<div>').addClass('chat_list-item-right-messages').text('2');
-
-            $leftSpan.append($img, $('<span>').append($nameLabel, $emailParagraph));
-            $rightSpan.append($timeSpan, $messagesDiv);
-            $listItem.append($leftSpan, $rightSpan);
-            $('.chat_list').append($listItem);
-        });
-
-        // Добавить обработчик клика на элементы списка
-        $('.chat_list').on('click', '.chat_list-item', function() {
-            var userId = $(this).data('user-id');
-            sendMessage(message, userId);
-            console.log('Нажато на пользователя с ID:', userId);
-            // Выполнить дополнительные действия на основе идентификатора пользователя
-        });
-    },
-    error: function(xhr, status, error) {
-        console.error('Error fetching user data:', error);
-        // Отобразить сообщение об ошибке пользователю
-        $('#error-message').text('Произошла ошибка при загрузке данных. Пожалуйста, попробуйте еще раз позже.');
-    }
-});
-
-function sendMessage(message, userId) {
-    var formData = new FormData();
-    formData.append('message', message);
-    formData.append('userId', userId);
-
-    $.ajax({
-        url: '{{ route('sendMessage', ['id' => 'userId']) }}',
-        type: 'POST',
-        data: formData,
-        processData: false,
-        contentType: false,
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
+        url: '{{ route("getAllUsers") }}',
+        type: 'GET',
         success: function(data) {
-            console.log('Sent message:', data.message.message, data.user);
-            $('#message').val('');
-            addMessageToChat(data.user, data.message.message);
+            // Очистить существующий список
+            $('.chat_list').empty();
+
+            // Создать элементы списка пользователей
+            $.each(data, function(index, user) {
+                var $listItem = $('<a>').addClass('chat_list-item').attr('data-user-id', user.id);
+                var $leftSpan = $('<span>').addClass('chat_list-item-left');
+                var $img = $('<img>').attr('src', './assets/images/Ellipse 2.png');
+                var $nameLabel = $('<label>').text(user.name);
+                var $emailParagraph = $('<p>').text(user.email);
+                var $rightSpan = $('<span>').addClass('chat_list-item-right');
+                var $timeSpan = $('<span>').text('Today, 8:56pm');
+                var $messagesDiv = $('<div>').addClass('chat_list-item-right-messages').text('2');
+
+                $leftSpan.append($img, $('<span>').append($nameLabel, $emailParagraph));
+                $rightSpan.append($timeSpan, $messagesDiv);
+                $listItem.append($leftSpan, $rightSpan);
+                $('.chat_list').append($listItem);
+            });
+
+            // Добавить обработчик клика на элементы списка
+            $('.chat_list').on('click', '.chat_list-item', function() {
+                var userId = $(this).data('user-id');
+                sendMessage(message, userId);
+                console.log('Нажато на пользователя с ID:', userId);
+                // Выполнить дополнительные действия на основе идентификатора пользователя
+            });
         },
         error: function(xhr, status, error) {
-            console.error('Error sending message:', error);
+            console.error('Error fetching user data:', error);
+            // Отобразить сообщение об ошибке пользователю
+            $('#error-message').text('Произошла ошибка при загрузке данных. Пожалуйста, попробуйте еще раз позже.');
         }
     });
-}
 
+    function sendMessage(message, userId) {
+        var formData = new FormData();
+        formData.append('message', message);
+        formData.append('userId', userId);
+
+        $.ajax({
+            url: '{{ route('sendMessage', ['id' => 'userId']) }}',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(data) {
+                console.log('Sent message:', data.message.message, data.user);
+                $('#message').val('');
+                addMessageToChat(data.user, data.message.message);
+            },
+            error: function(xhr, status, error) {
+                console.error('Error sending message:', error);
+            }
+        });
+    }
 
     $('#send-button').click(function(e) {
-    e.preventDefault();
-    var message = $('#message').val();
-    sendMessage(message, {{ $userId }});
-    /* var message = $('#message').val(); */
-
-
+        e.preventDefault();
+        var message = $('#message').val();
+        sendMessage(message, {{ $userId }});
+    });
 
     // Получение сообщений в реальном времени
     var channel = pusher.subscribe('chat.' + {{ $userId }});
     channel.bind('App\\Events\\MessageSent', function(data) {
-    console.log('Received data:', data);
-    addMessageToChat(data);
+        console.log('Received data:', data);
+        addMessageToChat(data);
     });
 
-
     function addMessageToChat(data) {
-    // Get the current date
-    var today = new Date();
-    var messageDate = new Date(data.message.created_at);
+        // Get the current date
+        var today = new Date();
+        var messageDate = new Date(data.message.created_at);
 
-    // Check if the message is from the current day
+        // Check if the message is from the current day
         if (messageDate.getDate() === today.getDate() &&
             messageDate.getMonth() === today.getMonth() &&
             messageDate.getFullYear() === today.getFullYear()) {
@@ -231,8 +226,8 @@ function sendMessage(message, userId) {
 
             // Show the time only for the first message of the day
             if ($('.chat_main_to-date').length === 0) {
-            dateElement = $('<label class="chat_main_to-date">Сьогодні о ' + messageDate.getHours() + ':' + messageDate.getMinutes() + '</label>');
-            chatElement.append(dateElement);
+                dateElement = $('<label class="chat_main_to-date">Сьогодні о ' + messageDate.getHours() + ':' + messageDate.getMinutes() + '</label>');
+                chatElement.append(dateElement);
             }
 
             var messageElement = $('<span><img src=""/><p>' + data.message.message + '</p></span>');
@@ -243,7 +238,9 @@ function sendMessage(message, userId) {
         }
     }
 });
-   })
+
+
+
 </script>
 
 </body>
