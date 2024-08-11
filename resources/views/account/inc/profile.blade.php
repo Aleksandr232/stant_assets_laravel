@@ -96,7 +96,7 @@
 
         <div  class="chat_list">
             @foreach($onlineUsers as $post)
-            <a href="" class="chat_list-item">
+            <a href="" class="chat_list-item" data-user-id="{{ $post->id }}">
                 <span class="chat_list-item-left">
                     <img src="./assets/images/Ellipse 2.png"/>
                     <span>

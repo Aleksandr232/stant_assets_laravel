@@ -140,10 +140,12 @@ $(document).ready(function() {
     $('#send-button').click(function(e) {
     e.preventDefault();
     var message = $('#message').val();
+    var userId = $('.chat_list-item.active').data('user-id');
+
     var formData = new FormData();
     formData.append('message', message);
     $.ajax({
-    url: '{{ route('sendMessage', ['id' => 3]) }}',
+    url: '{{ route('sendMessage', ['id' => ':userId'])) }}',
     type: 'POST',
     data: formData,
     processData: false,
@@ -161,11 +163,15 @@ $(document).ready(function() {
     }
 });
     // Получение сообщений в реальном времени
-    var channel = pusher.subscribe('chat.' + 3);
-    channel.bind('App\\Events\\MessageSent', function(data) {
-    console.log('Received data:', data);
-    addMessageToChat(data);
+    $('.chat_list-item').click(function() {
+        var userId = $(this).data('user-id');
+        var channel = pusher.subscribe('chat.' + userId);
+        channel.bind('App\\Events\\MessageSent', function(data) {
+            console.log('Received data:', data);
+            addMessageToChat(data);
+        });
     });
+
     function addMessageToChat(data) {
     // Get the current date
     var today = new Date();
@@ -188,7 +194,7 @@ $(document).ready(function() {
         }
     }
 });
-   
+
 });
 
 
