@@ -11,8 +11,8 @@ class ChatAdminController extends Controller
 {
     public function index(){
 
-        $chat = User::all();
-
+        $chat = User::all()->where('is_admin', 0);
+        
         return view('admin.chat.index', compact('chat'));
     }
 }
