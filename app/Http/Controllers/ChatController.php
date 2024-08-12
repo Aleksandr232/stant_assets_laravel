@@ -24,7 +24,7 @@ class ChatController extends Controller
     $message->recipient_id = $recipientId;
     $message->save();
 
-    $user = auth()->user();
+    $user = $request->user();
     broadcast(new MessageSent($message, $user, $recipientId))->toOthers();
 
     return response()->json(['message' => 'Message sent successfully']);
