@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="row mb-4 justify-content-center mt-5">
-    <div class="col-md-3">
+    {{-- <div class="col-md-3"> --}}
         <div  class="profile_support">
 
             <div  class="chat_list">
@@ -56,6 +56,6 @@
                 </div>
             </div>
         </div>
-      </div>
+      {{-- </div> --}}
   </div>
 @endsection
