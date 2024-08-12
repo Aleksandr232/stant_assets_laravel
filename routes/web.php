@@ -73,6 +73,7 @@ Route::prefix('account')->middleware('profile')->group(function () {
     Route::post('/purchase/{id}', [PurchaseController::class, 'post_purchase'])->name('post_purchase');
     Route::post('/send-message/{id}', [ChatController::class, 'sendMessage'])->name('sendMessage');
     Route::get('/all-users', [ChatController::class, 'getAllUsers'])->name('getAllUsers');
+    Route::get('/chat/{userId}/{recipientId}', [ChatController::class, 'getMessages'])->name('getMessages');
 
 });
 
