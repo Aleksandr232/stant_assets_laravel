@@ -95,8 +95,11 @@
     <div style="display: none;" class="profile_support">
 
         <div  class="chat_list">
+            @php
+                $authUserId = auth()->user()->id;
+            @endphp
             @foreach($onlineUsers as $post)
-            <a href="" class="chat_list-item" data-user-id="{{ $post->id }}">
+            <a href="" class="chat_list-item" data-user-id="{{ $post->id }}" data-auth-id="{{ $authUserId }}">
                 <span class="chat_list-item-left">
                     <img src="./assets/images/Ellipse 2.png"/>
                     <span>
