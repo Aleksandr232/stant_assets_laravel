@@ -96,7 +96,11 @@
 
         <div  class="chat_list">
             @php
+                use App\Models\User;
+
                 $authUserId = auth()->user()->id;
+
+                $userId = User::all('id');
             @endphp
             @foreach($onlineUsers as $post)
             <a href="" class="chat_list-item" data-user-id="{{ $post->id }}" data-auth-id="{{ $authUserId }}">
