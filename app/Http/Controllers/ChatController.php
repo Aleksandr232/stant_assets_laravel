@@ -63,7 +63,11 @@ public function getMessages($userId, $recipientId)
     ->orderBy('created_at', 'asc')
     ->get();
 
-    return view('account.page.index', compact('messages', 'userId', 'recipientId'));
+    return view('account.page.index', [
+        'messages' => $messages,
+        'userId' => $userId,
+        'recipientId' => $recipientId
+    ]);
 }
 
 
