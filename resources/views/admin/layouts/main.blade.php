@@ -266,23 +266,35 @@
     // Get the current date
     var today = new Date();
     var messageDate = new Date(data.message.created_at);
+    var currentUserId = '{{ auth()->id() }}'; // Replace with the actual current user ID
+
     // Check if the message is from the current day
-        if (messageDate.getDate() === today.getDate() &&
-            messageDate.getMonth() === today.getMonth() &&
-            messageDate.getFullYear() === today.getFullYear()) {
-            var chatElement = $('<div class="chat_main_to"></div>');
-            var dateElement = null;
-            // Show the time only for the first message of the day
-            if ($('.chat_main_to-date').length === 0) {
+    if (messageDate.getDate() === today.getDate() &&
+        messageDate.getMonth() === today.getMonth() &&
+        messageDate.getFullYear() === today.getFullYear()) {
+        var chatElement = null;
+        var dateElement = null;
+
+        // Determine the chat element based on the sender's ID
+        if (data.message.user_id === currentUserId) {
+            chatElement = $('<div class="chat_main_to"></div>');
+        } else {
+            chatElement = $('<div class="chat_main_from"></div>');
+        }
+
+        // Show the time only for the first message of the day
+        if ($('.chat_main_to-date, .chat_main_from-date').length === 0) {
             dateElement = $('<label class="chat_main_to-date">Сьогодні о ' + messageDate.getHours() + ':' + messageDate.getMinutes() + '</label>');
             chatElement.append(dateElement);
-            }
-            var messageElement = $('<span><img src=""/><p>' + data.message.message + '</p></span>');
-            chatElement.append(messageElement);
-            // Append the new message to the bottom of the chat
-            $('.chat_main_to').last().after(chatElement);
         }
+
+        var messageElement = $('<span><img src=""/><p>' + data.message.message + '</p></span>');
+        chatElement.append(messageElement);
+
+        // Append the new message to the bottom of the chat
+        $('.chat_main_to, .chat_main_from').last().after(chatElement);
     }
+}
 
 
 });
