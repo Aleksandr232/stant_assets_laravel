@@ -189,7 +189,7 @@ window.onclick = function(event) {
             });
         });
 
-        function loadMessages(userId, recipientId) {
+        /* function loadMessages(userId, recipientId) {
             $.ajax({
                 url: '{{ route('getMessages', [':userId', ':recipientId']) }}'.replace(':userId', userId).replace(':recipientId', recipientId),
                 type: 'GET',
@@ -203,7 +203,7 @@ window.onclick = function(event) {
                     console.error('Error loading messages:', error);
                 }
             });
-        }
+        } */
 
         function addMessageToChat(data) {
             // Get the current date
