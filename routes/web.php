@@ -15,6 +15,7 @@ use App\Http\Controllers\PoliticsController;
 use App\Http\Controllers\DataUserController;
 use App\Http\Controllers\PlatformController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\ChatAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,8 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::resource('/politics', PoliticsController::class);
     Route::resource('/users', DataUserController::class);
     Route::resource('/platform', PlatformController::class);
+    Route::resource('/chat', ChatAdminController::class);
+    Route::post('/send-message/{id}', [ChatController::class, 'sendMessage'])->name('sendMessage');
     Route::get('/user/{id}/data', [DataUserController::class, 'data'])->name('data');
     Route::post('/user/{id}', [DataUserController::class, 'update_data'])->name('update_data');
     Route::post('/user/purchase/{id}', [DataUserController::class, 'update_purchases'])->name('update_purchases');
