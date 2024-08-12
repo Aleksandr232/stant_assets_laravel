@@ -147,15 +147,15 @@
                 </div>
 
                 <div class="chat_main_from">
-                    <label class="chat_main_from-date">Сьогодні о 7:15</label>
+                    {{-- <label class="chat_main_from-date">Сьогодні о 7:15</label>
                     <span>
-                        {{-- <img src="https://content.freelancehunt.com/profile/photo/225/bonzaznob.png"/> --}}
+                        <img src="https://content.freelancehunt.com/profile/photo/225/bonzaznob.png"/>
                         <p>123</p>
                     </span>
                     <span>
-                        {{-- <img src=""/> --}}
-                        {{-- <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis</p> --}}
-                    </span>
+                        <img src=""/>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis</p>
+                    </span> --}}
 
                 </div>
             </div>
