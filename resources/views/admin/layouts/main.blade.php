@@ -276,7 +276,7 @@
         var dateElement = null;
 
         // Determine the chat element based on the sender's ID
-        if (data.message.user_id === currentUserId) {
+        if (data.message.recipient_id === currentUserId) {
             chatElement = $('<div class="chat_main_to"></div>');
         } else {
             chatElement = $('<div class="chat_main_from"></div>');
