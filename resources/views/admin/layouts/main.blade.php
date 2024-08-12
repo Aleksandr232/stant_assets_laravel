@@ -262,27 +262,26 @@
     }
 
     function addMessageToChat(data) {
-        var messageDiv = document.createElement('div');
-        messageDiv.classList.add('chat_main');
-
-        if (data.user.user_id === authId) {
-            // Message is from the current user
-            var fromDiv = document.createElement('div');
-            fromDiv.classList.add('chat_main_from');
-            fromDiv.textContent = data.message;
-            messageDiv.appendChild(fromDiv);
-        } else {
-            // Message is from another user
-            var toDiv = document.createElement('div');
-            toDiv.classList.add('chat_main_to');
-            toDiv.textContent = data.message;
-            messageDiv.appendChild(toDiv);
+    // Get the current date
+    var today = new Date();
+    var messageDate = new Date(data.message.created_at);
+    // Check if the message is from the current day
+        if (messageDate.getDate() === today.getDate() &&
+            messageDate.getMonth() === today.getMonth() &&
+            messageDate.getFullYear() === today.getFullYear()) {
+            var chatElement = $('<div class="chat_main_to"></div>');
+            var dateElement = null;
+            // Show the time only for the first message of the day
+            if ($('.chat_main_to-date').length === 0) {
+            dateElement = $('<label class="chat_main_to-date">Сьогодні о ' + messageDate.getHours() + ':' + messageDate.getMinutes() + '</label>');
+            chatElement.append(dateElement);
+            }
+            var messageElement = $('<span><img src=""/><p>' + data.message.message + '</p></span>');
+            chatElement.append(messageElement);
+            // Append the new message to the bottom of the chat
+            $('.chat_main_to').last().after(chatElement);
         }
-
-        // Append the message div to the chat container
-        var chatContainer = document.getElementById('chat-container');
-        chatContainer.appendChild(messageDiv);
-        }
+    }
 
 
 });
