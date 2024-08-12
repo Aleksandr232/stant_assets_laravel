@@ -143,6 +143,8 @@ $(document).ready(function() {
     // Сохраняем активный ID пользователя в переменной
     currentActiveUserId = activeUserId;
 
+    console.log(currentActiveUserId);
+
     // Обновляем активный ID пользователя, когда элемент списка чата нажимается
     $('.chat_list-item').click(function() {
         currentActiveUserId = $(this).data('user-id');
