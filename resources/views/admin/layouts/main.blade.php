@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-  {{-- <link rel="stylesheet" href="{{ asset('site/assets/scss/style.css')}}?v={{ time() }}"> --}}
+  <link rel="stylesheet" href="{{ asset('admin_panel/css/chat.css')}}?v={{ time() }}">
   <link rel="stylesheet" href="{{asset('admin_panel/css/style.css')}}?v={{ time() }}">
 </head>
 <body>
