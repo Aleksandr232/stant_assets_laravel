@@ -265,7 +265,7 @@
         var messageDiv = document.createElement('div');
         messageDiv.classList.add('chat_main');
 
-        if (data.user_id === authId) {
+        if (data.message.user_id === authId) {
             // Message is from the current user
             var fromDiv = document.createElement('div');
             fromDiv.classList.add('chat_main_from');
