@@ -138,14 +138,7 @@ window.onclick = function(event) {
             cluster: 'eu'
         });
 
-        window.Pusher = Pusher;
-
-        window.Echo = new Echo({
-            broadcaster: 'pusher',
-            key: '13d5f420787d5aa468b8',
-            cluster: 'eu',
-            forceTLS: true
-        });
+        
 
         // Получаем активный ID пользователя, когда страница загружается
         var activeUserId = $('.chat_list-item').data('user-id');
