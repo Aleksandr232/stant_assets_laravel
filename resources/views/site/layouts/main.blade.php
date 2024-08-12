@@ -189,21 +189,22 @@ window.onclick = function(event) {
             });
         });
 
-        /* function loadMessages(userId, recipientId) {
+        function loadMessages(userId, recipientId) {
             $.ajax({
                 url: '{{ route('getMessages', [':userId', ':recipientId']) }}'.replace(':userId', userId).replace(':recipientId', recipientId),
                 type: 'GET',
                 success: function(data) {
-                    $('.chat_main').empty();
+                    /* $('.chat_main').empty();
                     $.each(data, function(index, message) {
                         addMessageToChat(message);
-                    });
+                    }); */
+                    addMessageToChat(data);
                 },
                 error: function(xhr, status, error) {
                     console.error('Error loading messages:', error);
                 }
             });
-        } */
+        }
 
         function addMessageToChat(data) {
             // Get the current date
