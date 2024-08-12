@@ -160,7 +160,7 @@ $(document).ready(function() {
             url: '{{ route('sendMessage', ['id' => '1']) }}',
             type: 'POST',
             data: {
-             formData: formData
+              formData
             },
             processData: false,
             contentType: false,
