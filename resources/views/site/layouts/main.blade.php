@@ -182,7 +182,7 @@ $(document).ready(function() {
 
     // Получение сообщений в реальном времени
         var channel = pusher.subscribe('chat.' + currentActiveUserId + '-' + authId);
-        channel.bind('App\\Events\\MessageSent' + currentActiveUserId + 'And' + authId, function(data) {
+        channel.bind('App\\Events\\MessageSent' + currentActiveUserId + '-' + authId, function(data) {
             console.log('Received data:', data);
             addMessageToChat(data);
         });
