@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Purchase;
 use App\Models\User;
+use App\Models\Message;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
@@ -17,16 +18,13 @@ class AccountController extends Controller
 {
     $user = Auth::user();
     $purchases = $user->purchases()->paginate(5);
-    /* $onlineUsers = DB::table('sessions')
-        ->where('last_activity', '>=', Carbon::now()->subMinutes(5))
-        ->get()
-        ->map(function ($session) {
-            return User::find($session->user_id);
-        }); */
-        $onlineUsers = User::where('is_admin', '1')->get();
+
+    $onlineUsers = User::where('is_admin', '1')->get();
+
+    $chat = Message::all();
 
 
-    return view('account.page.index', compact('user', 'purchases', 'onlineUsers'), ['scrollToAccount' => true]);
+    return view('account.page.index', compact('user', 'purchases', 'onlineUsers', 'chat'), ['scrollToAccount' => true]);
 }
 
 
