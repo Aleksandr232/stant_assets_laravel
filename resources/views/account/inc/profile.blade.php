@@ -96,11 +96,7 @@
 
         <div  class="chat_list">
             @php
-                use App\Models\User;
-
                 $authUserId = auth()->user()->id;
-
-                $userId = User::all('id');
             @endphp
             @foreach($onlineUsers as $post)
             <a href="" class="chat_list-item" data-user-id="{{ $post->id }}" data-auth-id="{{ $authUserId }}">
@@ -134,8 +130,8 @@
             </div> --}}
             <div class="chat_main">
                 <div class="chat_main_from">
-                    @foreach ($chat as $message)
-                        @if ($message->user_id != $userId)
+                    @foreach ($messages as $message)
+                        @if ($message->user_id != auth()->id())
                             <span>
                                 <img src="https://content.freelancehunt.com/profile/photo/225/bonzaznob.png" />
                                 <p>{{ $message->message }}</p>
@@ -144,8 +140,8 @@
                     @endforeach
                 </div>
                 <div class="chat_main_to">
-                    @foreach ($chat as $message)
-                        @if ($message->user_id == $userId)
+                    @foreach ($messages as $message)
+                        @if ($message->user_id == auth()->id())
                             <span>
                                 <img src="" />
                                 <p>{{ $message->message }}</p>
