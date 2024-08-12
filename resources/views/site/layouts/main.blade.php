@@ -157,7 +157,7 @@ $(document).ready(function() {
         formData.append('userId', currentActiveUserId);
 
         $.ajax({
-            url: '{{ route('sendMessage', ['id' => '2']) }}',
+            url: '{{ route('sendMessage', ['id' => '1']) }}',
             type: 'POST',
             data: {
              formData: formData
@@ -178,7 +178,7 @@ $(document).ready(function() {
         });
 
         // Получение сообщений в реальном времени
-        var channel = pusher.subscribe('chat.' + activeUserId);
+        var channel = pusher.subscribe('chat.' + 1);
         channel.bind('App\\Events\\MessageSent', function(data) {
             console.log('Received data:', data);
             addMessageToChat(data);
