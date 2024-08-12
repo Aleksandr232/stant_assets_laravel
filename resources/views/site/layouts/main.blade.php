@@ -190,23 +190,22 @@ window.onclick = function(event) {
         });
 
         function loadMessages(userId, recipientId) {
-            $.ajax({
-                url: '{{ route('getMessages', [':userId', ':recipientId']) }}'.replace(':userId', userId).replace(':recipientId', recipientId),
-                type: 'GET',
-                success: function(data) {
-                    /* $('.chat_main').empty();
-                    $.each(data, function(index, message) {
-                        addMessageToChat(message);
-                    }); */
-                    addMessageToChat(data);
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error loading messages:', error);
-                }
-            });
-        }
+        $.ajax({
+            url: '{{ route('getMessages', [':userId', ':recipientId']) }}'.replace(':userId', userId).replace(':recipientId', recipientId),
+            type: 'GET',
+            success: function(data) {
+                $('.chat_main').empty(); // Clear the existing messages
+                $.each(data, function(index, message) {
+                    addMessageToChat(message);
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error('Error loading messages:', error);
+            }
+        });
+    }
 
-        function addMessageToChat(data) {
+        function addMessageToChat(data, message) {
             // Get the current date
             var today = new Date();
             var messageDate = new Date(data.message.created_at);
