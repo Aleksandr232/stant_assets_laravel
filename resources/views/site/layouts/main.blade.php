@@ -138,7 +138,7 @@ $(document).ready(function() {
     });
 
     // Получаем активный ID пользователя, когда страница загружается
-    var activeUserId = $('.chat_list-item.active').data('user-id');
+    var activeUserId = $('.chat_list-item').data('user-id');
 
     // Сохраняем активный ID пользователя в переменной
     currentActiveUserId = activeUserId;
