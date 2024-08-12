@@ -14,5 +14,7 @@ use App\Broadcasting\ChatChannel;
 |
 */
 
-Broadcast::channel('chat', ChatChannel::class);
+Broadcast::channel('chat', function ($user) {
+    return Auth::check();
+});
 
