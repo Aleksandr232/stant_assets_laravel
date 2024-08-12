@@ -10,6 +10,9 @@ use App\Models\Message;
 class ChatAdminController extends Controller
 {
     public function index(){
-        return view('admin.chat.index');
+
+        $chat = User::all();
+
+        return view('admin.chat.index', compact('chat'));
     }
 }
