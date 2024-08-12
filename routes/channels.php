@@ -16,7 +16,7 @@ use App\Broadcasting\ChatChannel;
 
 /* Broadcast::channel('chat', ChatChannel::class); */
 
-Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
+Broadcast::channel('chat.{recipientId}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
-Broadcast::channel('chat.{recipientId}', fn () => true);
+
