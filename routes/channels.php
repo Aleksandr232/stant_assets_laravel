@@ -14,5 +14,5 @@ use App\Broadcasting\ChatChannel;
 |
 */
 
-Broadcast::channel('private-chat', ChatChannel::class);
+Broadcast::channel('chat', ChatChannel::class);
 
