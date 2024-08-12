@@ -149,35 +149,33 @@ $(document).ready(function() {
     });
 
     $('#send-button').click(function(e) {
-        e.preventDefault();
-        var message = $('#message').val();
+    e.preventDefault();
+    var message = $('#message').val();
 
-        var formData = new FormData();
-        formData.append('message', message);
-        formData.append('userId', currentActiveUserId);
+    var formData = new FormData();
+    formData.append('message', message);
+    formData.append('userId', currentActiveUserId);
 
-        $.ajax({
-            url: '{{ route('sendMessage', ['id' => '1']) }}',
-            type: 'POST',
-            data: {
-              formData
-            },
-            processData: false,
-            contentType: false,
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            success: function(data) {
-                console.log('Sent message:', data.message.message, data.user);
-                $('#message').val('');
-                addMessageToChat(data.user, data.message.message);
-            },
-            error: function(xhr, status, error) {
-                console.error('Error sending message:', error);
-            }
-        });
+    $.ajax({
+        url: '{{ route('sendMessage', ['id' => '1']) }}',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(data) {
+            console.log('Sent message:', data.message.message, data.user);
+            $('#message').val('');
+            addMessageToChat(data.user, data.message.message);
+        },
+        error: function(xhr, status, error) {
+            console.error('Error sending message:', error);
+        }
+    });
 
-        // Получение сообщений в реальном времени
+    // Получение сообщений в реальном времени
         var channel = pusher.subscribe('chat.' + 1);
         channel.bind('App\\Events\\MessageSent', function(data) {
             console.log('Received data:', data);
