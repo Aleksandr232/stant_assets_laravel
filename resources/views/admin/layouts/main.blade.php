@@ -193,7 +193,8 @@
         Pusher.logToConsole = true;
 
         var pusher = new Pusher('13d5f420787d5aa468b8', {
-            cluster: 'eu'
+            cluster: 'eu',
+            encrypted: true,
         });
 
         // Получаем активный ID пользователя, когда страница загружается
