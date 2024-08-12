@@ -5,7 +5,7 @@
 @section('content')
 <div class="row mb-4 justify-content-center mt-5">
     <div class="col-md-3">
-        <div style="display: none;" class="profile_support">
+        <div  class="profile_support">
 
             <div  class="chat_list">
                 @php
