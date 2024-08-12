@@ -96,6 +96,8 @@
 
         <div  class="chat_list">
             @php
+                use App\Models\Message;
+                
                 $messages = Message::where(function ($query) use ($authUserId, $recipientId) {
                     $query->where('user_id', $authUserId)
                         ->where('recipient_id', $recipientId);
