@@ -21,18 +21,10 @@ class AccountController extends Controller
 
     $onlineUsers = User::where('is_admin', '1')->get();
 
-    $messages = Message::where(function ($query) use ($userId, $recipientId) {
-        $query->where('user_id', $userId)
-              ->where('recipient_id', $recipientId);
-    })->orWhere(function ($query) use ($userId, $recipientId) {
-        $query->where('user_id', $recipientId)
-              ->where('recipient_id', $userId);
-    })
-    ->orderBy('created_at', 'asc')
-    ->get();
 
 
-    return view('account.page.index', compact('user', 'purchases', 'onlineUsers', 'messages'), ['scrollToAccount' => true]);
+
+    return view('account.page.index', compact('user', 'purchases', 'onlineUsers'), ['scrollToAccount' => true]);
 }
 
 
