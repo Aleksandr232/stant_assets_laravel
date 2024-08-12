@@ -188,7 +188,7 @@ $(document).ready(function() {
         });
     });
 /* фв */
-    function addMessageToChat(data) {
+    /* function addMessageToChat(data) {
         // Get the current date
         var today = new Date();
         var messageDate = new Date(data.message.created_at);
@@ -208,9 +208,9 @@ $(document).ready(function() {
             // Append the new message to the bottom of the chat
             $('.chat_main_to').last().after(chatElement);
         }
-    }
+    } */
 
-    /* function addMessageToChat(data) {
+    function addMessageToChat(data) {
     // Get the current date
     var today = new Date();
     var messageDate = new Date(data.message.created_at);
@@ -236,7 +236,7 @@ $(document).ready(function() {
         // Append the new message to the bottom of the chat
         $('.chat_main_to, .chat_main_from').last().after(chatElement);
     }
-} */
+}
 });
 
 
