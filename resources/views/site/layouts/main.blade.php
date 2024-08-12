@@ -157,9 +157,12 @@ $(document).ready(function() {
         formData.append('userId', currentActiveUserId);
 
         $.ajax({
-            url: '{{ route('sendMessage', ['id' => currentActiveUserId]) }}',
+            url: '{{ route('sendMessage') }}',
             type: 'POST',
-            data: formData,
+            data: {
+             id: {{ $currentActiveUserId }},
+             formData: formData
+            },
             processData: false,
             contentType: false,
             headers: {
