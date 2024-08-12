@@ -4,8 +4,8 @@
 
 @section('content')
 <div class="row mb-4 justify-content-center mt-5">
+    <section class="profile">
 
-        
 
             <div  class="chat_list">
                 @php
@@ -56,6 +56,7 @@
                 </div>
             </div>
 
+        </section>
 
   </div>
 @endsection
