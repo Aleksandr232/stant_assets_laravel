@@ -97,7 +97,7 @@
         <div  class="chat_list">
             @php
                 use App\Models\Message;
-                
+
                 $messages = Message::where(function ($query) use ($authUserId, $recipientId) {
                     $query->where('user_id', $authUserId)
                         ->where('recipient_id', $recipientId);
@@ -108,10 +108,10 @@
                 ->orderBy('created_at', 'asc')
                 ->get();
 
-                $authUserId = auth()->user()->id;
+                $authUsersId = auth()->user()->id;
             @endphp
             @foreach($onlineUsers as $post)
-            <a href="" class="chat_list-item" data-user-id="{{ $post->id }}" data-auth-id="{{ $authUserId }}">
+            <a href="" class="chat_list-item" data-user-id="{{ $post->id }}" data-auth-id="{{ $authUsersId }}">
                 <span class="chat_list-item-left">
                     <img src="./assets/images/Ellipse 2.png"/>
                     <span>
