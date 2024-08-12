@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="row mb-4 justify-content-center mt-5">
-    {{-- <div class="container-fluid">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-4 chat_list">
                 @php
@@ -52,7 +52,7 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
 
 
 
