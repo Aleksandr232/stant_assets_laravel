@@ -160,7 +160,6 @@ $(document).ready(function() {
             url: '{{ route('sendMessage', ['id' => '2']) }}',
             type: 'POST',
             data: {
-             id: {{ $currentActiveUserId }},
              formData: formData
             },
             processData: false,
