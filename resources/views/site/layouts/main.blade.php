@@ -156,7 +156,7 @@ $(document).ready(function() {
 
     var formData = new FormData();
     formData.append('message', message);
-    formData.append('userId', currentActiveUserId);
+    formData.append('recipient_id', currentActiveUserId);
 
     $.ajax({
         url: '{{ route('sendMessage', 'currentActiveUserId') }}',
