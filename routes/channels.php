@@ -14,8 +14,5 @@ use App\Broadcasting\ChatChannel;
 |
 */
 
-Broadcast::channel('chat.{recipientId}', function ($user, $recipientId) {
-    $recipient = App\Models\User::findOrFail($recipientId);
-    return $user->canChatWith($recipient);
-});
+Broadcast::channel('private-chat.{recipientId}', ChatChannel::class);
 
