@@ -138,7 +138,7 @@ window.onclick = function(event) {
             cluster: 'eu'
         });
 
-        
+
 
         // Получаем активный ID пользователя, когда страница загружается
         var activeUserId = $('.chat_list-item').data('user-id');
@@ -185,17 +185,18 @@ window.onclick = function(event) {
 
             // Получение сообщений в реальном времени
             /* var channel = pusher.subscribe('chat.' + currentActiveUserId + '-' + authId); */
-            /* var channel = pusher.subscribe('chat.' + currentActiveUserId);
+            var channel = pusher.subscribe('chat.' + currentActiveUserId);
             channel.bind('App\\Events\\MessageSent', function(data) {
                 console.log('Received data:', data);
                 addMessageToChat(data);
-            }); */
+            });
 
-            Echo.private('chat.' + currentActiveUserId)
-    .listen('App\\Events\\MessageSent', (event) => {
-        console.log('Received data:', event.data);
-        addMessageToChat(event.data);
-    });
+            pusher.trigger('chat.' + currentActiveUserId, 'App\\Events\\MessageSent', {
+            message: 'New message from user',
+            user_id: currentActiveUserId
+        });
+
+
         });
 
             function loadMessages(userId, recipientId) {
