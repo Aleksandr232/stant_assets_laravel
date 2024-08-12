@@ -36,7 +36,7 @@ class ChatController extends Controller
         return response()->json($users);
     }
 
- /*    public function getMessages($userId, $recipientId)
+    public function getMessages($userId, $recipientId)
 {
     $messages = Message::where(function ($query) use ($userId, $recipientId) {
         $query->where('user_id', $userId)
@@ -49,26 +49,9 @@ class ChatController extends Controller
     ->get();
 
     return response()->json($messages);
-} */
-
-public function getMessages($userId, $recipientId)
-{
-    $messages = Message::where(function ($query) use ($userId, $recipientId) {
-        $query->where('user_id', $userId)
-              ->where('recipient_id', $recipientId);
-    })->orWhere(function ($query) use ($userId, $recipientId) {
-        $query->where('user_id', $recipientId)
-              ->where('recipient_id', $userId);
-    })
-    ->orderBy('created_at', 'asc')
-    ->get();
-
-    return view('account.page.index', [
-        'messages' => $messages,
-        'userId' => $userId,
-        'recipientId' => $recipientId
-    ]);
 }
+
+
 
 
 }

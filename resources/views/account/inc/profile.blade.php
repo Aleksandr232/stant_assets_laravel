@@ -96,18 +96,6 @@
 
         <div  class="chat_list">
             @php
-                use App\Models\Message;
-
-                $messages = Message::where(function ($query) use ($authUserId, $recipientId) {
-                    $query->where('user_id', $authUserId)
-                        ->where('recipient_id', $recipientId);
-                })->orWhere(function ($query) use ($authUserId, $recipientId) {
-                    $query->where('user_id', $recipientId)
-                        ->where('recipient_id', $authUserId);
-                })
-                ->orderBy('created_at', 'asc')
-                ->get();
-
                 $authUsersId = auth()->user()->id;
             @endphp
             @foreach($onlineUsers as $post)
@@ -136,31 +124,9 @@
             </span>
             <span class="chat_header-underline"></span>
             </div>
-            {{-- <div class="chat_main">
+            <div class="chat_main">
                 <div class="chat_main_to"></div>
                 <div class="chat_main_from"></div>
-            </div> --}}
-            <div class="chat_main">
-                <div class="chat_main_from">
-                    @foreach ($messages as $message)
-                        @if ($message->user_id != auth()->id())
-                            <span class="d-flex align-items-center">
-                                <img src="https://content.freelancehunt.com/profile/photo/225/bonzaznob.png" class="rounded-circle mr-2" width="40" height="40" />
-                                <p class="mb-0">{{ $message->content }}</p>
-                            </span>
-                        @endif
-                    @endforeach
-                </div>
-                <div class="chat_main_to">
-                    @foreach ($messages as $message)
-                        @if ($message->user_id == auth()->id())
-                            <span class="d-flex align-items-center justify-content-end">
-                                <p class="mb-0">{{ $message->content }}</p>
-                                <img src="" class="rounded-circle ml-2" width="40" height="40" />
-                            </span>
-                        @endif
-                    @endforeach
-                </div>
             </div>
             <div class="chat_footer">
                 <span>
