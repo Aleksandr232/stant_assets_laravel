@@ -96,6 +96,16 @@
 
         <div  class="chat_list">
             @php
+                $messages = Message::where(function ($query) use ($authUserId, $recipientId) {
+                    $query->where('user_id', $authUserId)
+                        ->where('recipient_id', $recipientId);
+                })->orWhere(function ($query) use ($authUserId, $recipientId) {
+                    $query->where('user_id', $recipientId)
+                        ->where('recipient_id', $authUserId);
+                })
+                ->orderBy('created_at', 'asc')
+                ->get();
+
                 $authUserId = auth()->user()->id;
             @endphp
             @foreach($onlineUsers as $post)
