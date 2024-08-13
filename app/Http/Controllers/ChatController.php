@@ -36,23 +36,16 @@ class ChatController extends Controller
     return response()->json($auth);
 }
 
-    public function sendMessage(Request $request, $recipientId)
-{
-    $this->validate($request, [
-        'message' => 'required',
-    ]);
+    public function sendMessage(Request $request)
+    {
+        $message = $request->user()
+                ->messages()
+                ->create($request->validated());
 
-    $message = new Message();
-    $message->user_id = Auth::id();
-    $message->message = $request->input('message');
-    $message->recipient_id = $recipientId;
-    $message->save();
+            broadcast(new MessageSent($request->user(), $message));
 
-    $user = Auth::user();
-    broadcast(new MessageSent($message, $user, $recipientId))->toOthers();
-
-    return response()->json(['message' => 'Message sent successfully']);
-}
+            return $message;
+    }
 
     public function getAllUsers()
     {
