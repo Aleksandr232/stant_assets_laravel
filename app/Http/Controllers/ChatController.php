@@ -15,7 +15,27 @@ class ChatController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
+    public function pusherAuth(Request $request)
+{
+    $pusher = new \Pusher\Pusher(
+        config('broadcasting.connections.pusher.key'),
+        config('broadcasting.connections.pusher.secret'),
+        config('broadcasting.connections.pusher.app_id'),
+        [
+            'cluster' => config('broadcasting.connections.pusher.cluster'),
+            'encrypted' => true,
+        ]
+    );
+
+    $channelName = 'private-' . Auth::user()->id;
+    $socketId = $request->input('socket_id');
+
+    $auth = $pusher->authorizeChannel($channelName, $socketId);
+
+    return response()->json($auth);
+}
+
     public function sendMessage(Request $request, $recipientId)
 {
     $this->validate($request, [

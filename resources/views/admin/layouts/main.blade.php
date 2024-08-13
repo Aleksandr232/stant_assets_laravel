@@ -267,7 +267,7 @@
 
             var channel = pusher.subscribe('private-chat.' + currentActiveUserId, {
             auth: {
-                endpoint: '/pusher/auth',
+                endpoint: '{{ route("pusher.auth") }}',
                 params: {
                 user_id: currentActiveUserId
                 }
