@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\MessageForm;
 use App\Models\User;
 use App\Models\Message;
 use App\Events\MessageSent;
@@ -36,7 +37,7 @@ class ChatController extends Controller
     return response()->json($auth);
 }
 
-    public function sendMessage(Request $request)
+    public function sendMessage(MessageFormRequest $request)
     {
         $message = $request->user()
                 ->messages()
