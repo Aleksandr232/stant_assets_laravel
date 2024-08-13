@@ -248,7 +248,7 @@
                 addMessageToChat(data);
             }); */
 
-            var channel = pusher.subscribe('chat.' + currentActiveUserId);
+            var channel = pusher.subscribe('private-chat.' + currentActiveUserId);
             channel.bind('App\\Events\\MessageSent', function(data) {
                 console.log('Received data:', data);
                 addMessageToChat(data);
@@ -256,7 +256,7 @@
 
             var message = messageInput.value.trim();
             if (message) {
-                pusher.trigger('chat.' + currentActiveUserId, 'App\\Events\\MessageSent', {
+                pusher.trigger('private-chat.' + currentActiveUserId, 'App\\Events\\MessageSent', {
                     message: message,
                     user_id: currentActiveUserId
                 });

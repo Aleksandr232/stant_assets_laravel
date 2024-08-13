@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
 
 /* Broadcast::channel('chat', ChatChannel::class); */
 
-Broadcast::channel('chat.{recipientId}', function ($user) {
+Broadcast::channel('private-chat.{recipientId}', function ($user) {
     return Auth::check();
   });
 
