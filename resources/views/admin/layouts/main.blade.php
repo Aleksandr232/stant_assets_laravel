@@ -280,7 +280,7 @@
     }
 
     function addMessageToChat(data) {
-    if (!data.message) return;
+    /* if (!data.message) return; */
 
     var today = new Date();
     var messageDate = new Date(data.message.created_at);
