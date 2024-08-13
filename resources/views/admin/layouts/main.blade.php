@@ -255,7 +255,7 @@
                 addMessageToChat(data);
             });
 
-            channel.trigger('chat.' + currentActiveUserId, 'App\\Events\\MessageSent', data, function(response) {
+            channel.trigger('App\\Events\\MessageSent', data, function(response) {
                 if (response.successful) {
                     console.log('Trigger successful:', response.message);
                 } else {
