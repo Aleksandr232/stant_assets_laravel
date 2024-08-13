@@ -288,7 +288,7 @@
     if (messageDate.getDate() === today.getDate() &&
         messageDate.getMonth() === today.getMonth() &&
         messageDate.getFullYear() === today.getFullYear()) {
-        var chatElement = $('<div class="chat_main_' + (data.message.user_id === authId ? 'to' : 'from') + '"></div>');
+        var chatElement = $('<div class="chat_main_' + (data.message.message.user_id === authId ? 'to' : 'from') + '"></div>');
         var dateElement = null;
 
         if ($('.chat_main_to-date, .chat_main_from-date').length === 0) {
