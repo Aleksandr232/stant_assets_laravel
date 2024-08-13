@@ -187,12 +187,12 @@ window.onclick = function(event) {
             /* var channel = pusher.subscribe('chat.' + currentActiveUserId + '-' + authId); */
             var channel = pusher.subscribe('chat.' + currentActiveUserId);
 
-            channel.bind('message_sent', function(data) {
+            channel.bind('App\Events\MessageSent', function(data) {
                 console.log('Received data:', data.message);
                 addMessageToChat(data);
             });
 
-            channel.trigger('message_sent', function(data) {
+            channel.trigger('App\Events\MessageSent', function(data) {
                 .then(() => {
                     console.log('Trigger successful' data.message);
                 })
