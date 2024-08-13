@@ -254,7 +254,7 @@
                 addMessageToChat(data);
             });
 
-            var message = messageInput.value.trim();
+           /*  var message = messageInput.value.trim();
             if (message) {
                 pusher.trigger('private-chat.' + currentActiveUserId, 'App\\Events\\MessageSent', {
                     message: message,
@@ -266,7 +266,7 @@
                     message: message,
                     user_id: currentActiveUserId
                 });
-            }
+            } */
         });
 
             function loadMessages(userId, recipientId) {
