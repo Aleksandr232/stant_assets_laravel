@@ -254,7 +254,7 @@
                 addMessageToChat(data);
             }); */
 
-            var channel = pusher.subscribe('private-chat.' + currentActiveUserId);
+            var channel = pusher.subscribe('chat.' + currentActiveUserId);
             channel.bind('App\\Events\\MessageSent', function(data) {
                     console.log('Received data:', data.message);
                     addMessageToChat(data);
