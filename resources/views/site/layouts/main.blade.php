@@ -136,13 +136,6 @@ window.onclick = function(event) {
 
         var pusher = new Pusher('13d5f420787d5aa468b8', {
             cluster: 'eu',
-            
-            auth: {
-                headers: {
-                "Authorization": "Bearer WHsdsp6UFfLvQnFTwyL0PNfV6zKgOwENnHgGBpZhPb6WGzmTH3OSXV2s2CrR",
-                "Access-Control-Allow-Origin": "*"
-                }
-            }
         });
 
 
@@ -192,7 +185,7 @@ window.onclick = function(event) {
 
             // Получение сообщений в реальном времени
             /* var channel = pusher.subscribe('chat.' + currentActiveUserId + '-' + authId); */
-            /* var channel = pusher.subscribe('chat.' + currentActiveUserId);
+            var channel = pusher.subscribe('chat.' + currentActiveUserId);
             channel.bind('App\\Events\\MessageSent', function(data) {
                 console.log('Received data:', data);
                 addMessageToChat(data);
@@ -201,13 +194,9 @@ window.onclick = function(event) {
             pusher.trigger('chat.' + currentActiveUserId, 'App\\Events\\MessageSent', function(data) {
                 console.log('trigger:', data);
                 addMessageToChat(data);
-            }); */
-
-            var channel = pusher.subscribe('private-chat.' + currentActiveUserId);
-            channel.bind('App\\Events\\MessageSent', function(data) {
-                console.log('Received data:', data);
-                addMessageToChat(data);
             });
+
+
 
 
         });
