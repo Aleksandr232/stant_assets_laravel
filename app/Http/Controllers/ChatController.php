@@ -40,12 +40,12 @@ class ChatController extends Controller
     public function sendMessage(MessageForm $request)
     {
         $message = $request->user()
-                ->messages()
-                ->create($request->validated());
+            ->messages()
+            ->create($request->validated());
 
-            broadcast(new MessageSent($request->user(), $message));
+        broadcast(new MessageSent($message));
 
-            return $message;
+        return $message;
     }
 
     public function getAllUsers()

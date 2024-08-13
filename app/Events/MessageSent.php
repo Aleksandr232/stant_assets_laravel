@@ -16,7 +16,7 @@ class MessageSent implements ShouldBroadcast
 
     public $message;
     public $user;
-    public $recipientId;
+    
 
     /**
      * Create a new event instance.
@@ -30,7 +30,7 @@ class MessageSent implements ShouldBroadcast
     {
         $this->message = $message;
         $this->user = $user;
-       
+
     }
 
     /**
