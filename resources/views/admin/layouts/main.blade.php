@@ -251,7 +251,7 @@
             var channel = pusher.subscribe('chat.' + currentActiveUserId);
 
             channel.bind('App\Events\MessageSent', function(data) {
-                console.log('Received data:', data.message);
+                console.log('Received data:', data);
                 addMessageToChat(data);
             });
 
