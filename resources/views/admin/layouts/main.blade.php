@@ -248,41 +248,19 @@
                 addMessageToChat(data);
             }); */
 
-            /* var channel = pusher.subscribe('chat.' + currentActiveUserId);
+            var channel = pusher.subscribe('chat.' + currentActiveUserId);
             channel.bind('App\\Events\\MessageSent', function(data) {
                 console.log('Received data:', data);
                 addMessageToChat(data);
-            }); */
-
-            /* var channel = pusher.subscribe('private-chat.' + currentActiveUserId);
-            channel.bind('App\\Events\\MessageSent', function(data) {
-                    console.log('Received data:', data.message);
-                    addMessageToChat(data);
             });
+
 
             pusher.trigger('private-chat.' + currentActiveUserId, 'App\\Events\\MessageSent', function(data) {
                 console.log('trigger:', data);
                 addMessageToChat(data);
-            }); */
-
-            var channel = pusher.subscribe('private-chat.' + currentActiveUserId, {
-            auth: {
-                endpoint: '{{ route("pusher.auth") }}',
-                params: {
-                user_id: currentActiveUserId
-                }
-            }
             });
 
-            channel.bind('App\\Events\\MessageSent', function(data) {
-            console.log('Received data:', data.message);
-            addMessageToChat(data);
-            });
 
-            pusher.trigger('private-chat.' + currentActiveUserId, 'App\\Events\\MessageSent', function(data) {
-            console.log('trigger:', data);
-            addMessageToChat(data);
-            });
         });
 
             function loadMessages(userId, recipientId) {
