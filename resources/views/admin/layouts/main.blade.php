@@ -250,12 +250,11 @@
 
             var channel = pusher.subscribe('chat.' + currentActiveUserId);
             channel.bind('App\\Events\\MessageSent', function(data) {
-                console.log('Received data:', data);
-                addMessageToChat(data);
+                    console.log('Received data:', data.message);
+                    addMessageToChat(data);
             });
 
-
-            pusher.trigger('private-chat.' + currentActiveUserId, 'App\\Events\\MessageSent', function(data) {
+            pusher.trigger('chat.' + authId, 'App\\Events\\MessageSent', function(data) {
                 console.log('trigger:', data);
                 addMessageToChat(data);
             });
