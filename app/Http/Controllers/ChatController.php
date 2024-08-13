@@ -37,7 +37,7 @@ class ChatController extends Controller
     return response()->json($auth);
 }
 
-    public function sendMessage(MessageFormRequest $request)
+    public function sendMessage(MessageForm $request)
     {
         $message = $request->user()
                 ->messages()
