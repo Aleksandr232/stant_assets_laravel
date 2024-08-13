@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Broadcast;
 use App\Broadcasting\ChatChannel;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,7 @@ use App\Broadcasting\ChatChannel;
 
 /* Broadcast::channel('chat', ChatChannel::class); */
 
-Broadcast::channel('chat.{recipientId}', function ($user, $id) {
-    return (int) $user->id === (int) $id;
-});
+Broadcast::channel('chat.{recipientId}', function ($user) {
+    return Auth::check();
+  });
 

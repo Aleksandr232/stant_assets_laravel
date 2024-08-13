@@ -11,7 +11,11 @@ use App\Events\MessageSent;
 class ChatController extends Controller
 {
 
-
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function sendMessage(Request $request, $recipientId)
 {
     $this->validate($request, [
