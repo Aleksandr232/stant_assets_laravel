@@ -249,7 +249,7 @@
                     addMessageToChat(data);
             });
 
-            pusher.trigger('private-chat.' + currentActiveUserId, 'App\\Events\\MessageSent', function(data) {
+            channel.trigger('private-chat.' + currentActiveUserId, 'App\\Events\\MessageSent', function(data) {
                 console.log('trigger:', data);
                 addMessageToChat(data);
             });
