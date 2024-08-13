@@ -250,18 +250,18 @@
 
             var channel = pusher.subscribe('chat.' + currentActiveUserId);
 
-            channel.bind('App\\Events\\MessageSent', function(data) {
+            channel.bind('message_sent', function(data) {
                 console.log('Received data:', data.message);
                 addMessageToChat(data);
             });
 
-            channel.trigger('App\\Events\\MessageSent', data, function(response) {
-                if (response.successful) {
-                    console.log('Trigger successful:', response.message);
-                } else {
-                    console.error('Trigger failed:', response.message);
-                }
-            });
+            channel.trigger('message_sent', data)
+                .then(() => {
+                    console.log('Trigger successful' data.message);
+                })
+                .catch((error) => {
+                    console.error('Trigger failed:', error);
+                });
 
 
         });

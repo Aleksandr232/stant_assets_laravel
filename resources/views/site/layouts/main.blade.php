@@ -194,7 +194,7 @@ window.onclick = function(event) {
 
             channel.trigger('message_sent', data)
                 .then(() => {
-                    console.log('Trigger successful');
+                    console.log('Trigger successful' data.message);
                 })
                 .catch((error) => {
                     console.error('Trigger failed:', error);
