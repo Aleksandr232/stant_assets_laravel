@@ -243,7 +243,7 @@
 
             // Получение сообщений в реальном времени
             /* var channel = pusher.subscribe('chat.' + currentActiveUserId + '-' + authId); */
-            var channel = pusher.subscribe('chat.' + currentActiveUserId);
+            /* var channel = pusher.subscribe('chat.' + currentActiveUserId);
             channel.bind('App\\Events\\MessageSent', function(data) {
                     console.log('Received data:', data.message);
                     addMessageToChat(data);
@@ -273,6 +273,39 @@
         });
     }
 
+ */
+
+ var channel = pusher.subscribe('chat.' + currentActiveUserId);
+
+channel.bind('App\Events\MessageSent', function(data) {
+    console.log('Received data:', data);
+    addMessageToChat(data);
+});
+
+channel.trigger('App\Events\MessageSent', data)
+.then(() => {
+    console.log('Trigger successful', data);
+    // Отправляем сообщение отправителя на клиент
+    echo.broadcast('App\Events\MessageSent', data);
+})
+.catch((error) => {
+    console.error('Trigger failed:', error);
+});
+
+function loadMessages(userId, recipientId) {
+    $.ajax({
+        url: '{{ route('getMessages', [':userId', ':recipientId']) }}'.replace(':userId', userId).replace(':recipientId', recipientId),
+        type: 'GET',
+        success: function(data) {
+            console.log(data);
+            // Отправляем сообщения получателя на клиент
+            echo.broadcast('App\Events\MessageSent', data);
+        },
+        error: function(xhr, status, error) {
+            console.error('Error loading messages:', error);
+        }
+    });
+}
         function addMessageToChat(data) {
             // Get the current date
             var today = new Date();
