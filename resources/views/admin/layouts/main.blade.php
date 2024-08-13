@@ -194,8 +194,9 @@
 
         var pusher = new Pusher('13d5f420787d5aa468b8', {
             cluster: 'eu',
-            encrypted: true,
         });
+
+
 
         // Получаем активный ID пользователя, когда страница загружается
         var activeUserId = $('.chat_list-item').data('user-id');
@@ -222,7 +223,7 @@
             formData.append('recipient_id', currentActiveUserId);
 
             $.ajax({
-                url: '{{ route('sendMessageAdmin', ':userId') }}'.replace(':userId', currentActiveUserId),
+                url: '{{ route('sendMessage', ':userId') }}'.replace(':userId', currentActiveUserId),
                 type: 'POST',
                 data: formData,
                 processData: false,
@@ -242,71 +243,63 @@
 
             // Получение сообщений в реальном времени
             /* var channel = pusher.subscribe('chat.' + currentActiveUserId + '-' + authId); */
-            /* var channel = pusher.subscribe('chat.' + currentActiveUserId);
-            channel.bind('App\\Events\\MessageSent', function(data) {
-                console.log('Received data:', data);
-                addMessageToChat(data);
-            }); */
-
             var channel = pusher.subscribe('chat.' + currentActiveUserId);
+            channel.bind('App\\Events\\MessageSent', function(data) {
+                    console.log('Received data:', data.message);
+                    addMessageToChat(data);
+            });
 
-channel.bind('App\Events\MessageSent', function(data) {
-    console.log('Received data:', data);
-    addMessageToChat(data);
-});
+            pusher.trigger('private-chat.' + currentActiveUserId, 'App\\Events\\MessageSent', function(data) {
+                console.log('trigger:', data);
+                addMessageToChat(data);
+            });
 
-channel.trigger('App\Events\MessageSent', data)
-.then(() => {
-    console.log('Trigger successful', data);
-    // Отправляем сообщение отправителя на клиент
-    echo.broadcast('App\Events\MessageSent', data);
-})
-.catch((error) => {
-    console.error('Trigger failed:', error);
-});
 
-function loadMessages(userId, recipientId) {
-    $.ajax({
-        url: '{{ route('getMessages', [':userId', ':recipientId']) }}'.replace(':userId', userId).replace(':recipientId', recipientId),
-        type: 'GET',
-        success: function(data) {
-            console.log(data);
-            // Отправляем сообщения получателя на клиент
-            echo.broadcast('App\Events\MessageSent', data);
-        },
-        error: function(xhr, status, error) {
-            console.error('Error loading messages:', error);
+
+
+        });
+
+            function loadMessages(userId, recipientId) {
+            $.ajax({
+            url: '{{ route('getMessages', [':userId', ':recipientId']) }}'.replace(':userId', userId).replace(':recipientId', recipientId),
+            type: 'GET',
+            success: function(data) {
+                console.log(data);
+            },
+            error: function(xhr, status, error) {
+                console.error('Error loading messages:', error);
+
+            }
+        });
+    }
+
+        function addMessageToChat(data) {
+            // Get the current date
+            var today = new Date();
+            var messageDate = new Date(data.message.created_at);
+            // Check if the message is from the current day
+            if (messageDate.getDate() === today.getDate() &&
+                messageDate.getMonth() === today.getMonth() &&
+                messageDate.getFullYear() === today.getFullYear()) {
+                var chatElement;
+                var dateElement = null;
+                // Check if the message is from the current user
+                if (data.message.user_id === authId) {
+                    chatElement = $('<div class="chat_main_to"></div>');
+                } else if(data.message.recipient_id === authId) {
+                    chatElement = $('<div class="chat_main_from"></div>');
+                }
+                // Show the time only for the first message of the day
+                if ($('.chat_main_to-date, .chat_main_from-date').length === 0) {
+                    dateElement = $('<label class="chat_main_to-date chat_main_from-date">Сьогодні о ' + messageDate.getHours() + ':' + messageDate.getMinutes() + '</label>');
+                    chatElement.append(dateElement);
+                }
+                var messageElement = $('<span><img src=""/><p>' + data.message.message + '</p></span>');
+            chatElement.append(messageElement);
+            // Append the new message to the bottom of the chat
+            $('.chat_main_to, .chat_main_from').last().after(chatElement);
         }
-    });
-}
-
-    function addMessageToChat(data) {
-  // Get the current date
-  var today = new Date();
-  var messageDate = new Date(data.message.created_at);
-  // Check if the message is from the current day
-  if (messageDate.getDate() === today.getDate() &&
-      messageDate.getMonth() === today.getMonth() &&
-      messageDate.getFullYear() === today.getFullYear()) {
-    var chatElement;
-    var dateElement = null;
-    // Check if the message is from the current user
-    if (data.message.user_id === authId) {
-      chatElement = $('<div class="chat_main_to"></div>');
-    } else if (data.message.recipient_id === authId) {
-      chatElement = $('<div class="chat_main_from"></div>');
     }
-    // Show the time only for the first message of the day
-    if ($('.chat_main_to-date, .chat_main_from-date').length === 0) {
-      dateElement = $('<label class="chat_main_to-date chat_main_from-date">Сьогодні о ' + messageDate.getHours() + ':' + messageDate.getMinutes() + '</label>');
-      chatElement.append(dateElement);
-    }
-    var messageElement = $('<span><img src=""/><p>' + data.message.message + '</p></span>');
-    chatElement.append(messageElement);
-    // Append the new message to the bottom of the chat
-    $('.chat_main_to, .chat_main_from').last().after(chatElement);
-  }
-}
 
 
 });
