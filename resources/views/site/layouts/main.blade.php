@@ -187,10 +187,8 @@ window.onclick = function(event) {
             /* var channel = pusher.subscribe('chat.' + currentActiveUserId + '-' + authId); */
             var channel = pusher.subscribe('chat.' + currentActiveUserId);
             channel.bind('App\\Events\\MessageSent', function(data) {
-                if (data.message.user_id === authId ) {
-                    console.log('Received data:', data.message.user_id);
+                    console.log('Received data:', data.message);
                     addMessageToChat(data);
-                }
             });
 
             pusher.trigger('private-chat.' + currentActiveUserId, 'App\\Events\\MessageSent', function(data) {
@@ -230,7 +228,7 @@ window.onclick = function(event) {
                 // Check if the message is from the current user
                 if (data.message.user_id === authId) {
                     chatElement = $('<div class="chat_main_to"></div>');
-                } else {
+                } else if(data.message.recipient_id === authId) {
                     chatElement = $('<div class="chat_main_from"></div>');
                 }
                 // Show the time only for the first message of the day
