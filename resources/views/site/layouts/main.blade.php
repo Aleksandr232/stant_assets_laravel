@@ -191,7 +191,9 @@ window.onclick = function(event) {
                     addMessageToChat(data);
             });
 
-            pusher.trigger('chat.' + currentActiveUserId, 'App\\Events\\MessageSent', data);
+            pusher.trigger('chat.' + currentActiveUserId, 'App\\Events\\MessageSent', data, function(data) {
+                console.log('Trigger data:', data.message);
+            });
 
 
 
