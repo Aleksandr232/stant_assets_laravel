@@ -242,11 +242,11 @@
 
             // Получение сообщений в реальном времени
             /* var channel = pusher.subscribe('chat.' + currentActiveUserId + '-' + authId); */
-            /* var channel = pusher.subscribe('chat.' + currentActiveUserId);
+            var channel = pusher.subscribe('chat.' + currentActiveUserId);
             channel.bind('App\\Events\\MessageSent', function(data) {
                 console.log('Received data:', data);
                 addMessageToChat(data);
-            }); */
+            });
 
             /* var channel = pusher.subscribe('chat.' + currentActiveUserId);
 
