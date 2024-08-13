@@ -242,11 +242,31 @@
 
             // Получение сообщений в реальном времени
             /* var channel = pusher.subscribe('chat.' + currentActiveUserId + '-' + authId); */
+            /* var channel = pusher.subscribe('chat.' + currentActiveUserId);
+            channel.bind('App\\Events\\MessageSent', function(data) {
+                console.log('Received data:', data);
+                addMessageToChat(data);
+            }); */
+
             var channel = pusher.subscribe('chat.' + currentActiveUserId);
             channel.bind('App\\Events\\MessageSent', function(data) {
                 console.log('Received data:', data);
                 addMessageToChat(data);
             });
+
+            var message = messageInput.value.trim();
+            if (message) {
+                pusher.trigger('chat.' + currentActiveUserId, 'App\\Events\\MessageSent', {
+                    message: message,
+                    user_id: currentActiveUserId
+                });
+                messageInput.value = '';
+                // Add the message to the chat UI
+                addMessageToChat({
+                    message: message,
+                    user_id: currentActiveUserId
+                });
+            }
         });
 
             function loadMessages(userId, recipientId) {
