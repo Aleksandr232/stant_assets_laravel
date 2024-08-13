@@ -15,8 +15,8 @@ class MessageSent implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $message;
-    public $user;
-    
+
+
 
     /**
      * Create a new event instance.
@@ -26,10 +26,10 @@ class MessageSent implements ShouldBroadcast
      * @param  int  $recipientId
      * @return void
      */
-    public function __construct(Message $message, User $user)
+    public function __construct(Message $message)
     {
         $this->message = $message;
-        $this->user = $user;
+
 
     }
 
