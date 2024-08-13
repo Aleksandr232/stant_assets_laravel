@@ -187,8 +187,10 @@ window.onclick = function(event) {
             /* var channel = pusher.subscribe('chat.' + currentActiveUserId + '-' + authId); */
             var channel = pusher.subscribe('chat.' + currentActiveUserId);
             channel.bind('App\\Events\\MessageSent', function(data) {
-                console.log('Received data:', data);
-                addMessageToChat(data);
+                if (data.user_id === '{{ auth()->user()->id }}') {
+                    console.log('Received data:', data);
+                    addMessageToChat(data);
+                }
             });
 
             pusher.trigger('private-chat.' + currentActiveUserId, 'App\\Events\\MessageSent', function(data) {
