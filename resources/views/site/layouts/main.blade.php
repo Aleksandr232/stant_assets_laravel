@@ -187,7 +187,7 @@ window.onclick = function(event) {
             /* var channel = pusher.subscribe('chat.' + currentActiveUserId + '-' + authId); */
             var channel = pusher.subscribe('chat.' + currentActiveUserId);
             channel.bind('App\\Events\\MessageSent', function(data) {
-                if (data?.message.user_id === '{{ auth()->user()->id }}') {
+                if (data.message.user_id === authId ) {
                     console.log('Received data:', data);
                     addMessageToChat(data);
                 }
