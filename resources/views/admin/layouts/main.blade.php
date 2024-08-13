@@ -248,14 +248,14 @@
                 addMessageToChat(data);
             }); */
 
-            var channel = pusher.subscribe('chat.' + currentActiveUserId);
+            /* var channel = pusher.subscribe('chat.' + currentActiveUserId);
 
             channel.bind('App\Events\MessageSent', function(data) {
                 console.log('Received data:', data.message);
                 addMessageToChat(data);
             });
 
-            /* channel.trigger('App\Events\MessageSent', function(data) {
+            channel.trigger('App\Events\MessageSent', function(data) {
                 .then(() => {
                     console.log('Trigger successful' data);
                 })
