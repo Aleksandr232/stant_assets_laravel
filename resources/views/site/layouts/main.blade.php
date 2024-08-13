@@ -135,7 +135,14 @@ window.onclick = function(event) {
         Pusher.logToConsole = true;
 
         var pusher = new Pusher('13d5f420787d5aa468b8', {
-            cluster: 'eu'
+            cluster: 'eu',
+            
+            auth: {
+                headers: {
+                "Authorization": "Bearer WHsdsp6UFfLvQnFTwyL0PNfV6zKgOwENnHgGBpZhPb6WGzmTH3OSXV2s2CrR",
+                "Access-Control-Allow-Origin": "*"
+                }
+            }
         });
 
 
@@ -201,20 +208,6 @@ window.onclick = function(event) {
                 console.log('Received data:', data);
                 addMessageToChat(data);
             });
-
-            var message = messageInput.value.trim();
-            if (message) {
-                pusher.trigger('private-chat.' + currentActiveUserId, 'App\\Events\\MessageSent', {
-                    message: message,
-                    user_id: currentActiveUserId
-                });
-                messageInput.value = '';
-                // Add the message to the chat UI
-                addMessageToChat({
-                    message: message,
-                    user_id: currentActiveUserId
-                });
-            }
 
 
         });
