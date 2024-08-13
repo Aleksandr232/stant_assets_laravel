@@ -192,13 +192,14 @@ window.onclick = function(event) {
                 addMessageToChat(data);
             });
 
-            channel.trigger('message_sent', data)
+            channel.trigger('message_sent', function(data) {
                 .then(() => {
                     console.log('Trigger successful' data.message);
                 })
                 .catch((error) => {
                     console.error('Trigger failed:', error);
                 });
+            });
 
 
 
