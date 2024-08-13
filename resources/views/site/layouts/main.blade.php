@@ -127,62 +127,46 @@ window.onclick = function(event) {
 
 
 <script>
+$(document).ready(function() {
+    // Инициализация Pusher
+    Pusher.logToConsole = true;
 
+    var pusher = new Pusher('13d5f420787d5aa468b8', {
+        cluster: 'eu',
+    });
 
-    $(document).ready(function() {
-        // Инициализация Pusher
-        Pusher.logToConsole = true;
+    $('#send-button').click(function(e) {
+        e.preventDefault();
+        var message = $('#message').val();
 
-        var pusher = new Pusher('13d5f420787d5aa468b8', {
-            cluster: 'eu',
+        var formData = new FormData();
+        formData.append('message', message);
+
+        $.ajax({
+            url: '{{ route('sendMessage') }}',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(data) {
+                console.log('Sent message:', data.message.message, data.user);
+                $('#message').val('');
+            },
+            error: function(xhr, status, error) {
+                console.error('Error sending message:', error);
+            }
         });
 
+        var channel = pusher.subscribe('chat');
 
-
-
-
-        $('#send-button').click(function(e) {
-            e.preventDefault();
-            var message = $('#message').val();
-
-            var formData = new FormData();
-            formData.append('message', message);
-
-            $.ajax({
-                url: '{{ route('sendMessage') }}',
-                type: 'POST',
-                data: formData,
-                processData: false,
-                contentType: false,
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function(data) {
-                    console.log('Sent message:', data.message.message, data.user);
-                    $('#message').val('');
-
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error sending message:', error);
-                }
-            });
-
-
-            var channel = pusher.subscribe('chat');
-
-            channel.bind('App\Events\MessageSent', function(data) {
-                console.log('Received data:', data.message);
-            });
-
-
-
-
-
-
-
-
+        channel.bind('App\Events\MessageSent', function(data) {
+            console.log('Received data:', data.message);
         });
     });
+});
 </script>
 
 </body>
