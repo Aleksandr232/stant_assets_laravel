@@ -185,7 +185,7 @@ window.onclick = function(event) {
 
             // Получение сообщений в реальном времени
             /* var channel = pusher.subscribe('chat.' + currentActiveUserId + '-' + authId); */
-            var channel = pusher.subscribe('chat.' + currentActiveUserId);
+            var channel = pusher.subscribe('private-chat.' + currentActiveUserId);
             channel.bind('App\\Events\\MessageSent', function(data) {
                     console.log('Received data:', data.message);
                     addMessageToChat(data);
