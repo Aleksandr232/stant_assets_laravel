@@ -255,14 +255,13 @@
                 addMessageToChat(data);
             });
 
-           /*  channel.trigger('App\Events\MessageSent', function(data) {
-                .then(() => {
-                    console.log('Trigger successful' data);
-                })
-                .catch((error) => {
-                    console.error('Trigger failed:', error);
-                });
-            }); */
+            channel.trigger('App\Events\MessageSent', data)
+            .then(() => {
+                console.log('Trigger successful', data);
+            })
+            .catch((error) => {
+                console.error('Trigger failed:', error);
+            });
 
         });
 
