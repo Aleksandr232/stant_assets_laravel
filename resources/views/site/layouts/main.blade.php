@@ -186,13 +186,18 @@ window.onclick = function(event) {
             // Получение сообщений в реальном времени
             /* var channel = pusher.subscribe('chat.' + currentActiveUserId + '-' + authId); */
             var channel = pusher.subscribe('chat.' + currentActiveUserId);
+
             channel.bind('App\\Events\\MessageSent', function(data) {
-                    console.log('Received data:', data.message);
-                    addMessageToChat(data);
+                console.log('Received data:', data.message);
+                addMessageToChat(data);
             });
 
-            channel.trigger('chat.' + currentActiveUserId, 'App\\Events\\MessageSent', data, function(data) {
-                console.log('Trigger data:', data.message);
+            channel.trigger('chat.' + currentActiveUserId, 'App\\Events\\MessageSent', data, function(response) {
+                if (response.successful) {
+                    console.log('Trigger successful:', response.message);
+                } else {
+                    console.error('Trigger failed:', response.message);
+                }
             });
 
 
