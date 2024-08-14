@@ -264,7 +264,7 @@
             var channel = pusher.subscribe(getChatChannelName(currentActiveUserId, authId));
             channel.bind('App\\Events\\MessageSent', function(data) {
                 // Проверяем, является ли текущий пользователь отправителем или получателем сообщения
-                if (data.message.sender_id === authId || data.message.recipient_id === currentActiveUserId) {
+                if (data.message.sender_id === currentActiveUserId || data.message.recipient_id === authId ) {
                     // Проверяем, было ли это сообщение уже добавлено в чат
                     if ($('.chat_main_to, .chat_main_from').find('span[data-message-id="' + data.message.id + '"]').length === 0) {
                         // Если нет, то добавляем сообщение в чат
