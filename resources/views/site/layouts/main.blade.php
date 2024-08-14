@@ -204,8 +204,11 @@ window.onclick = function(event) {
             /* var channel = pusher.subscribe('private-chat.' + currentActiveUserId + '.' + authId); */
             var channel = pusher.subscribe(getChatChannelName(currentActiveUserId, authId));
             channel.bind('App\\Events\\MessageSent', function(data) {
-                    /* console.log('Отправленны:', data); */
+                // Проверяем, является ли текущий пользователь отправителем или получателем сообщения
+                if (data.senderId === authId || data.recipientId === currentActiveUserId) {
+                    // Если да, то добавляем сообщение в чат
                     addMessageToChat(data);
+                }
             });
 
         });
