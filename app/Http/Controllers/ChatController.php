@@ -67,6 +67,22 @@ class ChatController extends Controller
     return response()->json($messages);
 } */
 
+public function getMessages($userId)
+{
+    $messages = Message::whereIn('chat_id', function ($query) use ($userId) {
+        $query->select('chat_id')
+            ->from('chat_messages')
+            ->where(function ($query) use ($userId) {
+                $query->where('sender_id', $userId)
+                    ->orWhere('recipient_id', $userId);
+            });
+    })
+    ->orderBy('created_at', 'asc')
+    ->get();
+
+    return response()->json($messages);
+}
+
 
 
 
