@@ -238,15 +238,15 @@ window.onclick = function(event) {
 
         // Check if the message is from the current user
         if (data.message.user_id === authId) {
-        chatElement = $('<div class="chat_main_to"></div>');
+            chatElement = $('<div class="chat_main_to"></div>');
         } else {
-        chatElement = $('<div class="chat_main_from"></div>');
+            chatElement = $('<div class="chat_main_from"></div>');
         }
 
         // Show the time only for the first message of the day
-        if ($('.chat_main_to-date, .chat_main_from-date').length === 0) {
-        dateElement = $('<label class="chat_main_to-date chat_main_from-date">Сьогодні о ' + messageDate.getHours() + ':' + messageDate.getMinutes() + '</label>');
-        chatElement.append(dateElement);
+        if ($('.chat_main_to-date, .chat_main_from-date').length === 0 || $('.chat_main_to-date, .chat_main_from-date').last().text() !== 'Сьогодні о ' + messageDate.getHours() + ':' + messageDate.getMinutes()) {
+            dateElement = $('<label class="chat_main_to-date chat_main_from-date">Сьогодні о ' + messageDate.getHours() + ':' + messageDate.getMinutes() + '</label>');
+            chatElement.append(dateElement);
         }
 
         var messageElement = $('<span><img src=""/><p>' + data.message.message + '</p></span>');
@@ -255,7 +255,7 @@ window.onclick = function(event) {
         // Append the new message to the bottom of the chat
         $('.chat_main_to, .chat_main_from').last().after(chatElement);
     }
-    }
+}
 
 
 });
