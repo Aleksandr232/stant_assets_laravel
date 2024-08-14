@@ -206,8 +206,11 @@ window.onclick = function(event) {
             channel.bind('App\\Events\\MessageSent', function(data) {
                 // Проверяем, является ли текущий пользователь отправителем или получателем сообщения
                 if (data.message.sender_id === authId || data.message.recipient_id === currentActiveUserId) {
-                    // Если да, то добавляем сообщение в чат
-                    addMessageToChat(data);
+                    // Проверяем, было ли это сообщение уже добавлено в чат
+                    if ($('.chat_main_to, .chat_main_from').find('span[data-message-id="' + data.message.id + '"]').length === 0) {
+                        // Если нет, то добавляем сообщение в чат
+                        addMessageToChat(data);
+                    }
                 }
             });
 
@@ -220,7 +223,10 @@ window.onclick = function(event) {
             success: function(data) {
                 console.log(data);
                 for (var i = 0; i < data.length; i++) {
-                    addMessageToChat(data[i]);
+                    // Проверяем, было ли это сообщение уже добавлено в чат
+                    if ($('.chat_main_to, .chat_main_from').find('span[data-message-id="' + data[i].id + '"]').length === 0) {
+                        addMessageToChat(data[i]);
+                    }
                 }
             },
             error: function(xhr, status, error) {
@@ -254,7 +260,7 @@ window.onclick = function(event) {
             chatElement.append(dateElement);
         }
 
-        var messageElement = $('<span><img src=""/><p>' + data.message.message + '</p></span>');
+        var messageElement = $('<span data-message-id="' + data.message.id + '"><img src=""/><p>' + data.message.message + '</p></span>');
         chatElement.append(messageElement);
 
         // Append the new message to the bottom of the chat
