@@ -166,7 +166,7 @@ $(document).ready(function() {
             console.log('Received data:', data.message);
         }); */
 
-        window.Echo.private('chat')
+        Echo.private('chat')
         .listen('MessageSent', (data) => {
             console.log('Received data:', data);
         });
