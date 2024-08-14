@@ -184,7 +184,7 @@
         });
     });
   </script>
-  <script>
+ <script>
     var currentActiveUserId;
     var authId;
 
@@ -249,14 +249,14 @@
                 }
             });
 
-            // Получение сообщений в реальном времени
-            /* var channel = pusher.subscribe('chat.' + currentActiveUserId + '-' + authId); */
             function getChatChannelName(currentActiveUserId, authId) {
             // Сортируем userId1 и userId2, чтобы порядок всегда был одинаковым
             const sortedIds = [currentActiveUserId, authId].sort((a, b) => a - b);
             return `private-chat.${sortedIds[0]}.${sortedIds[1]}`;
             }
 
+            // Получение сообщений в реальном времени
+            /* var channel = pusher.subscribe('chat.' + currentActiveUserId + '-' + authId); */
             /* var channel = pusher.subscribe('private-chat.' + currentActiveUserId + '.' + authId); */
             var channel = pusher.subscribe(getChatChannelName(currentActiveUserId, authId));
             channel.bind('App\\Events\\MessageSent', function(data) {
