@@ -245,12 +245,6 @@
                 $('#message').val('');
                 addMessageToChat(data.user, data.message.message);
 
-                // Отправляем событие Pusher
-                var channel = pusher.subscribe(getChatChannelName(currentActiveUserId, authId));
-                channel.trigger('App\\Events\\MessageSent', {
-                    message: data.message.message,
-                    user: data.user
-                });
             },
             error: function(xhr, status, error) {
                 console.error('Error sending message:', error);
@@ -264,6 +258,12 @@
             }
 
             // Получение сообщений в реальном времени
+            var channelSend = pusher.subscribe(getChatChannelName( authId, currentActiveUserId));
+            channelSend.bind('App\\Events\\MessageSent', function(data) {
+                console.log('Send data:', data);
+
+            });
+
 
             var channel = pusher.subscribe(getChatChannelName(currentActiveUserId, authId));
             channel.bind('App\\Events\\MessageSent', function(data) {
