@@ -160,7 +160,14 @@ $(document).ready(function() {
             }
         });
 
-        var channel = pusher.subscribe('private-chat');
+        var channel = pusher.subscribe('private-chat', {
+            authEndpoint: '/pusher/auth',
+            auth: {
+                headers: {
+                    'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                }
+            }
+        });
 
         channel.bind('App\Events\MessageSent', function(data) {
             console.log('Received data:', data.message);

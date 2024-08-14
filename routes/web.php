@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use Pusher\Pusher;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomePageController;
@@ -55,7 +57,24 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::resource('/platform', PlatformController::class);
     Route::resource('/chat', ChatAdminController::class);
     Route::post('/send-message/{id}', [ChatController::class, 'sendMessage'])->name('sendMessageAdmin');
-    Route::post('/pusher/auth', [ChatController::class, 'pusherAuth'])->name('pusher.auth');
+    Route::post('/pusher/auth', function (Request $request) {
+        $pusher = new Pusher(
+            config('broadcasting.connections.pusher.key'),
+            config('broadcasting.connections.pusher.secret'),
+            config('broadcasting.connections.pusher.app_id'),
+            [
+                'cluster' => config('broadcasting.connections.pusher.options.cluster'),
+                'encrypted' => true,
+            ]
+        );
+
+        $socketId = $request->input('socket_id');
+        $channelName = $request->input('channel_name');
+
+        $authResponse = $pusher->authorizeChannel($socketId, $channelName);
+
+        return response($authResponse);
+    });
     Route::get('/user/{id}/data', [DataUserController::class, 'data'])->name('data');
     Route::post('/user/{id}', [DataUserController::class, 'update_data'])->name('update_data');
     Route::post('/user/purchase/{id}', [DataUserController::class, 'update_purchases'])->name('update_purchases');
