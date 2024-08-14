@@ -205,30 +205,31 @@ window.onclick = function(event) {
             var channel = pusher.subscribe(getChatChannelName(currentActiveUserId, authId));
             channel.bind('App\\Events\\MessageSent', function(data) {
                     console.log('Отправленны:', data);
-                    addMessageToChat(data);
+                    addMessageToChat(data.message);
             });
 
         });
 
-            function loadMessages(userId, recipientId) {
-            $.ajax({
+        function loadMessages(userId, recipientId) {
+        $.ajax({
             url: '{{ route('getMessages', [':userId', ':recipientId']) }}'.replace(':userId', userId).replace(':recipientId', recipientId),
             type: 'GET',
             success: function(data) {
                 console.log(data);
-                addMessageToChat(data);
+                for (var i = 0; i < data.length; i++) {
+                    addMessageToChat(data[i]);
+                }
             },
             error: function(xhr, status, error) {
                 console.error('Error loading messages:', error);
-
             }
         });
     }
 
-    function addMessageToChat(data) {
+    function addMessageToChat(message) {
     // Get the current date
     var today = new Date();
-    var messageDate = new Date(data.message.created_at);
+    var messageDate = new Date(message.created_at);
 
     // Check if the message is from the current day
     if (messageDate.getDate() === today.getDate() &&
@@ -238,7 +239,7 @@ window.onclick = function(event) {
         var dateElement = null;
 
         // Check if the message is from the current user
-        if (data.message.user_id === authId) {
+        if (message.user_id === authId) {
             chatElement = $('<div class="chat_main_to"></div>');
         } else {
             chatElement = $('<div class="chat_main_from"></div>');
@@ -250,7 +251,7 @@ window.onclick = function(event) {
             chatElement.append(dateElement);
         }
 
-        var messageElement = $('<span><img src=""/><p>' + data.message.message + '</p></span>');
+        var messageElement = $('<span><img src=""/><p>' + message.message + '</p></span>');
         chatElement.append(messageElement);
 
         // Append the new message to the bottom of the chat
