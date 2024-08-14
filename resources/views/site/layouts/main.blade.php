@@ -191,9 +191,9 @@ window.onclick = function(event) {
                 }
             });
 
-            function getChatChannelName(userId1, userId2) {
+            function getChatChannelName(currentActiveUserId, userId2) {
             // Сортируем userId1 и userId2, чтобы порядок всегда был одинаковым
-            const sortedIds = [userId1, userId2].sort((a, b) => a - b);
+            const sortedIds = [currentActiveUserId, authId].sort((a, b) => a - b);
             return `private-chat.${sortedIds[0]}.${sortedIds[1]}`;
             }
 
