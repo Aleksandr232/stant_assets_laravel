@@ -224,32 +224,37 @@ window.onclick = function(event) {
         });
     }
 
-        function addMessageToChat(data) {
-            // Get the current date
-            var today = new Date();
-            var messageDate = new Date(data.message.created_at);
-            // Check if the message is from the current day
-            if (messageDate.getDate() === today.getDate() &&
-                messageDate.getMonth() === today.getMonth() &&
-                messageDate.getFullYear() === today.getFullYear()) {
-                var chatElement;
-                var dateElement = null;
-                // Check if the message is from the current user
-                if (data.message.user_id === authId) {
-                    chatElement = $('<div class="chat_main_to"></div>');
-                } else if(data.message.sender_id === currentActiveUserId) {
-                    chatElement = $('<div class="chat_main_from"></div>');
-                }
-                // Show the time only for the first message of the day
-                if ($('.chat_main_to-date, .chat_main_from-date').length === 0) {
-                    dateElement = $('<label class="chat_main_to-date chat_main_from-date">Сьогодні о ' + messageDate.getHours() + ':' + messageDate.getMinutes() + '</label>');
-                    chatElement.append(dateElement);
-                }
-                var messageElement = $('<span><img src=""/><p>' + data.message.message + '</p></span>');
-            chatElement.append(messageElement);
-            // Append the new message to the bottom of the chat
-            $('.chat_main_to, .chat_main_from').last().after(chatElement);
+    function addMessageToChat(data) {
+    // Get the current date
+    var today = new Date();
+    var messageDate = new Date(data.message.created_at);
+
+    // Check if the message is from the current day
+    if (messageDate.getDate() === today.getDate() &&
+        messageDate.getMonth() === today.getMonth() &&
+        messageDate.getFullYear() === today.getFullYear()) {
+        var chatElement;
+        var dateElement = null;
+
+        // Check if the message is from the current user
+        if (data.message.user_id === authId) {
+        chatElement = $('<div class="chat_main_to"></div>');
+        } else {
+        chatElement = $('<div class="chat_main_from"></div>');
         }
+
+        // Show the time only for the first message of the day
+        if ($('.chat_main_to-date, .chat_main_from-date').length === 0) {
+        dateElement = $('<label class="chat_main_to-date chat_main_from-date">Сьогодні о ' + messageDate.getHours() + ':' + messageDate.getMinutes() + '</label>');
+        chatElement.append(dateElement);
+        }
+
+        var messageElement = $('<span><img src=""/><p>' + data.message.message + '</p></span>');
+        chatElement.append(messageElement);
+
+        // Append the new message to the bottom of the chat
+        $('.chat_main_to, .chat_main_from').last().after(chatElement);
+    }
     }
 
 
