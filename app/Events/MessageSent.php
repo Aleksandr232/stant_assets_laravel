@@ -51,7 +51,7 @@ class MessageSent implements ShouldBroadcast
             'message' => $this->message,
             'sender_id' => $this->senderId,
             'recipient_id' => $this->recipientId,
-            'created_at' => $this->created_at->format('Y-m-d H:i:s')
+            
         ];
     }
 
