@@ -251,7 +251,7 @@ window.onclick = function(event) {
             chatElement.append(dateElement);
         }
 
-        var messageElement = $('<span><img src=""/><p>' + message.message + '</p></span>');
+        var messageElement = $('<span><img src=""/><p>' + data.message.message + '</p></span>');
         chatElement.append(messageElement);
 
         // Append the new message to the bottom of the chat
