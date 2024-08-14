@@ -19,7 +19,7 @@ class ChatController extends Controller
 
 
 
-    public function sendMessage(MessageForm $request, $recipientId, $senderId)
+    /* public function sendMessage(MessageForm $request, $recipientId, $senderId)
     {
         $message = $request->user()
             ->messages()
@@ -31,6 +31,33 @@ class ChatController extends Controller
         broadcast(new MessageSent($message, $recipientId, $senderId));
 
         return $message;
+    } */
+
+    public function sendMessage(MessageForm $request, $recipientId, $senderId)
+    {
+        $chatId = $this->getChatId($recipientId, $senderId);
+
+        $message = $request->user()
+            ->messages()
+            ->create(array_merge($request->validated(), [
+                'recipient_id' => $recipientId,
+                'sender_id' => $senderId,
+            ]));
+
+        $chatMessage = $message->chatMessage()->create([
+            'chat_id' => 'chat_id' . $chatId . $senderId,
+        ]);
+
+        broadcast(new MessageSent($message, $recipientId, $senderId));
+
+        return $message;
+    }
+
+    private function getChatId($recipientId, $senderId)
+    {
+        $participants = [$recipientId, $senderId];
+        sort($participants);
+        return implode('-', $participants);
     }
 
     public function getAllUsers()
@@ -54,31 +81,7 @@ class ChatController extends Controller
     return response()->json($messages);
 } */
 
-public function getMessages($userId, $recipientId)
-{
-    $messages = Message::where(function ($query) use ($userId, $recipientId) {
-        $query->where('user_id', $userId)
-              ->where('recipient_id', $recipientId)
-              ->orWhere(function ($query) use ($userId, $recipientId) {
-                  $query->where('user_id', $recipientId)
-                        ->where('recipient_id', $userId);
-              });
-    })
-    ->orderBy('created_at', 'asc')
-    ->get()
-    ->map(function ($message) use ($userId) {
-        return [
-            'id' => $message->id,
-            'text' => $message->text,
-            'created_at' => $message->created_at->format('Y-m-d H:i:s'),
-            'sender_id' => $message->user_id,
-            'recipient_id' => $message->recipient_id,
-            'is_sent_by_user' => $message->user_id == $userId,
-        ];
-    });
 
-    return response()->json($messages);
-}
 
 
 }

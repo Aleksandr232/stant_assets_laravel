@@ -21,8 +21,8 @@ class Message extends Model
         return $this->belongsTo(User::class);
     }
 
-    /* public function chat()
+    public function chatMessage()
     {
-        return $this->belongsTo(Chat::class);
-    } */
+        return $this->hasOne(ChatMessage::class);
+    }
 }
