@@ -231,8 +231,8 @@
 
             $.ajax({
                 url: '{{ route('sendMessageAdmin', [':id', ':userId']) }}'
-                .replace(':id', authId)
-                .replace(':userId', currentActiveUserId),
+                .replace(':id', currentActiveUserId),
+                .replace(':userId', authId),
                 type: 'POST',
                 data: formData,
                 processData: false,
