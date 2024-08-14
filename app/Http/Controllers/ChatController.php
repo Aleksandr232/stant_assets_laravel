@@ -67,7 +67,11 @@ public function getMessages($userId, $recipientId)
     ->orderBy('created_at', 'asc')
     ->get();
 
-    $formattedMessages = $messages->map(function ($message) use ($userId) {
+    $formattedMessages = $messages->filter(function ($message) use ($userId, $recipientId) {
+        return ($message->user_id == $userId && $message->recipient_id == $recipientId) ||
+               ($message->user_id == $recipientId && $message->recipient_id == $userId);
+    })
+    ->map(function ($message) use ($userId) {
         return [
             'id' => $message->id,
             'text' => $message->text,
