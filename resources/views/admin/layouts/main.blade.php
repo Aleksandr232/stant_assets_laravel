@@ -44,6 +44,7 @@
   <script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
   <script src="{{ asset('site/js/index.js')}}?v={{ time() }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/laravel-echo/dist/echo.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
   <script>
     const sidebar = document.querySelector('.sidebar');
