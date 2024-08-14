@@ -205,7 +205,7 @@ window.onclick = function(event) {
             var channel = pusher.subscribe(getChatChannelName(currentActiveUserId, authId));
             channel.bind('App\\Events\\MessageSent', function(data) {
                     console.log('Отправленны:', data);
-                    addMessageToChat(data.message);
+                    addMessageToChat(data);
             });
 
         });
@@ -226,10 +226,10 @@ window.onclick = function(event) {
         });
     }
 
-    function addMessageToChat(message) {
+    function addMessageToChat(data) {
     // Get the current date
     var today = new Date();
-    var messageDate = new Date(message.created_at);
+    var messageDate = new Date(data.message.created_at);
 
     // Check if the message is from the current day
     if (messageDate.getDate() === today.getDate() &&
@@ -239,7 +239,7 @@ window.onclick = function(event) {
         var dateElement = null;
 
         // Check if the message is from the current user
-        if (message.user_id === authId) {
+        if (data.message.user_id === authId) {
             chatElement = $('<div class="chat_main_to"></div>');
         } else {
             chatElement = $('<div class="chat_main_from"></div>');
