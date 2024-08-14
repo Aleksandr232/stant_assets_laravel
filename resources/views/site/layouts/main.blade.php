@@ -167,8 +167,11 @@ $(document).ready(function() {
         }); */
 
         Echo.private('chat')
-        .listen('MessageSent', (data) => {
-            console.log('Received data:', data);
+        .listen('MessageSent', (e) => {
+            console.log({
+                message: e.message.message,
+                user: e.user
+            });
         });
     });
 });
