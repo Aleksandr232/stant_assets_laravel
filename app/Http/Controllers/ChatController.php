@@ -58,19 +58,14 @@ public function getMessages($userId, $recipientId)
 {
     $messages = Message::where(function ($query) use ($userId, $recipientId) {
         $query->where('user_id', $userId)
-              ->where('recipient_id', $recipientId);
-    })
-    ->orWhere(function ($query) use ($userId, $recipientId) {
-        $query->where('user_id', $recipientId)
-              ->where('recipient_id', $userId);
+              ->where('recipient_id', $recipientId)
+              ->orWhere(function ($query) use ($userId, $recipientId) {
+                  $query->where('user_id', $recipientId)
+                        ->where('recipient_id', $userId);
+              });
     })
     ->orderBy('created_at', 'asc')
-    ->get();
-
-    $formattedMessages = $messages->filter(function ($message) use ($userId, $recipientId) {
-        return ($message->user_id == $userId && $message->recipient_id == $recipientId) ||
-               ($message->user_id == $recipientId && $message->recipient_id == $userId);
-    })
+    ->get()
     ->map(function ($message) use ($userId) {
         return [
             'id' => $message->id,
@@ -82,7 +77,7 @@ public function getMessages($userId, $recipientId)
         ];
     });
 
-    return response()->json($formattedMessages);
+    return response()->json($messages);
 }
 
 
