@@ -229,7 +229,7 @@
             formData.append('recipient_id', currentActiveUserId);
 
             $.ajax({
-                url: '{{ route('sendMessage', ':userId') }}'.replace(':userId', currentActiveUserId),
+                url: '{{ route('sendMessageAdmin', ':userId') }}'.replace(':userId', currentActiveUserId),
                 type: 'POST',
                 data: formData,
                 processData: false,
@@ -249,7 +249,7 @@
 
             // Получение сообщений в реальном времени
             /* var channel = pusher.subscribe('chat.' + currentActiveUserId + '-' + authId); */
-            var channel = pusher.subscribe('private-chat');
+            var channel = pusher.subscribe('private-chat.' + currentActiveUserId);
             channel.bind('App\\Events\\MessageSent', function(data) {
                     console.log('Received data:', data.message);
                     addMessageToChat(data);

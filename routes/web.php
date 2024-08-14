@@ -57,24 +57,6 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::resource('/platform', PlatformController::class);
     Route::resource('/chat', ChatAdminController::class);
     Route::post('/send-message/{id}', [ChatController::class, 'sendMessage'])->name('sendMessageAdmin');
-    Route::post('/pusher/auth', function (Request $request) {
-        $pusher = new Pusher(
-            config('broadcasting.connections.pusher.key'),
-            config('broadcasting.connections.pusher.secret'),
-            config('broadcasting.connections.pusher.app_id'),
-            [
-                'cluster' => config('broadcasting.connections.pusher.options.cluster'),
-                'encrypted' => true,
-            ]
-        );
-
-        $socketId = $request->input('socket_id');
-        $channelName = $request->input('channel_name');
-
-        $authResponse = $pusher->authorizeChannel($socketId, $channelName);
-
-        return response($authResponse);
-    });
     Route::get('/user/{id}/data', [DataUserController::class, 'data'])->name('data');
     Route::post('/user/{id}', [DataUserController::class, 'update_data'])->name('update_data');
     Route::post('/user/purchase/{id}', [DataUserController::class, 'update_purchases'])->name('update_purchases');
@@ -94,7 +76,7 @@ Route::prefix('account')->middleware('profile')->group(function () {
     Route::post('/account/add-balance', [AccountController::class, 'addBalance'])->name('addBalance');
     Route::post('/product/{id}/rate', [RatingController::class, 'post_rate'])->name('post_rate');
     Route::post('/purchase/{id}', [PurchaseController::class, 'post_purchase'])->name('post_purchase');
-    Route::post('/send-message', [ChatController::class, 'sendMessage'])->name('sendMessage');
+    Route::post('/send-message/{id}', [ChatController::class, 'sendMessage'])->name('sendMessage');
     Route::get('/all-users', [ChatController::class, 'getAllUsers'])->name('getAllUsers');
     Route::get('/chat/{userId}/{recipientId}', [ChatController::class, 'getMessages'])->name('getMessages');
 

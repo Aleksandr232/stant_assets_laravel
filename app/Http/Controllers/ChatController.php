@@ -17,15 +17,15 @@ class ChatController extends Controller
         $this->middleware('auth');
     }
 
-   
 
-    public function sendMessage(MessageForm $request)
+
+    public function sendMessage(MessageForm $request, $recipientId)
     {
         $message = $request->user()
             ->messages()
             ->create($request->validated());
 
-        broadcast(new MessageSent($message));
+        broadcast(new MessageSent($message, $recipientId));
 
         return $message;
     }
