@@ -243,12 +243,34 @@ window.onclick = function(event) {
         messageDate.getFullYear() === today.getFullYear()) {
         var chatElement;
         var dateElement = null;
+        var avatarElement = null;
+        var nameElement = null;
 
         // Check if the message is from the current user
         if (data.message.user_id === authId) {
             chatElement = $('<div class="chat_main_to"></div>');
-        } else {
+        } else if (data.message.recipient_id === currentActiveUserId) {
             chatElement = $('<div class="chat_main_from"></div>');
+
+            // Add the current active user's avatar and name
+            avatarElement = $('<img src="' + currentActiveUserAvatar + '" alt="' + currentActiveUserName + '">');
+            nameElement = $('<span class="chat_main_from-name">' + currentActiveUserName + '</span>');
+            chatElement.append(avatarElement, nameElement);
+        } else {
+            // This is a message from another user, handle it as before
+            chatElement = $('<div class="chat_main_from"></div>');
+
+            // Fetch the recipient's information using the recipient_id
+            getRecipientInfo(data.message.recipient_id)
+                .done(function(recipient) {
+                    // Add the recipient's avatar and name
+                    avatarElement = $('<img src="' + recipient.avatar + '" alt="' + recipient.name + '">');
+                    nameElement = $('<span class="chat_main_from-name">' + recipient.name + '</span>');
+                    chatElement.append(avatarElement, nameElement);
+                })
+                .fail(function(xhr, status, error) {
+                    console.error('Error fetching recipient information:', error);
+                });
         }
 
         // Show the time only for the first message of the day
@@ -257,7 +279,7 @@ window.onclick = function(event) {
             chatElement.append(dateElement);
         }
 
-        var messageElement = $('<span data-message-id="' + data.message.id + '"><img src=""/><p>' + data.message.message + '</p></span>');
+        var messageElement = $('<span data-message-id="' + data.message.id + '"><p>' + data.message.message + '</p></span>');
         chatElement.append(messageElement);
 
         // Append the new message to the bottom of the chat
