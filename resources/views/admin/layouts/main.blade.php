@@ -250,18 +250,7 @@
                 }
             });
 
-            function getChatChannelNameSend(authId,currentActiveUserId) {
-            // Сортируем userId1 и userId2, чтобы порядок всегда был одинаковым
-            const sortedIds = [authId, currentActiveUserId].sort((a, b) => a - b);
-            return `private-chat.${sortedIds[0]}.${sortedIds[1]}`;
-            }
-
-            // Получение сообщений в реальном времени
-            var channelSend = pusher.subscribe(getChatChannelNameSend( authId, currentActiveUserId));
-            channelSend.bind('App\\Events\\MessageSent', function(datas) {
-                console.log('Полученны:', datas);
-
-            });
+            
 
             function getChatChannelName(currentActiveUserId, authId) {
             // Сортируем userId1 и userId2, чтобы порядок всегда был одинаковым
