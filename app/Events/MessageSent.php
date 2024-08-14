@@ -31,8 +31,8 @@ class MessageSent implements ShouldBroadcast
     public function __construct(Message $message, $recipientId, $senderId)
     {
         $this->message = $message;
-        $this->recipientId = $recipientId;
-        $this->senderId = $senderId;
+        $this->recipient_id= $recipientId;
+        $this->sender_id = $senderId;
     }
 
     /**
@@ -51,7 +51,7 @@ class MessageSent implements ShouldBroadcast
             'message' => $this->message,
             'sender_id' => $this->senderId,
             'recipient_id' => $this->recipientId,
-            
+
         ];
     }
 
