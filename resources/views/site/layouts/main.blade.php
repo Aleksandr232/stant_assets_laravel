@@ -216,19 +216,26 @@ window.onclick = function(event) {
 
         });
 
-        function loadMessages(userId, recipientId) {
+            function loadMessages(userId, recipientId) {
         $.ajax({
             url: '{{ route('getMessages', [':userId', ':recipientId']) }}'.replace(':userId', userId).replace(':recipientId', recipientId),
             type: 'GET',
             success: function(data) {
                 // Loop through the data and call addMessageToChat for each message
                 data.forEach(function(message) {
-                    addMessageToChat({ message: message });
+                    addMessageToChat({ message: message, recipient_id: message.recipient_id });
                 });
             },
             error: function(xhr, status, error) {
                 console.error('Error loading messages:', error);
             }
+        });
+    }
+
+    function getRecipientInfo(recipientId) {
+        return $.ajax({
+            url: '{{ route('getRecipient', ':recipientId') }}'.replace(':recipientId', recipientId),
+            type: 'GET',
         });
     }
 
@@ -249,15 +256,7 @@ window.onclick = function(event) {
         // Check if the message is from the current user
         if (data.message.user_id === authId) {
             chatElement = $('<div class="chat_main_to"></div>');
-        } else if (data.message.recipient_id === currentActiveUserId) {
-            chatElement = $('<div class="chat_main_from"></div>');
-
-            // Add the current active user's avatar and name
-            avatarElement = $('<img src="' + currentActiveUserAvatar + '" alt="' + currentActiveUserName + '">');
-            nameElement = $('<span class="chat_main_from-name">' + currentActiveUserName + '</span>');
-            chatElement.append(avatarElement, nameElement);
         } else {
-            // This is a message from another user, handle it as before
             chatElement = $('<div class="chat_main_from"></div>');
 
             // Fetch the recipient's information using the recipient_id
