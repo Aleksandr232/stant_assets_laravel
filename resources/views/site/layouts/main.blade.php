@@ -232,12 +232,7 @@ window.onclick = function(event) {
         });
     }
 
-    function getRecipientInfo(recipientId) {
-        return $.ajax({
-            url: '{{ route('getRecipient', ':recipientId') }}'.replace(':recipientId', recipientId),
-            type: 'GET',
-        });
-    }
+
 
     function addMessageToChat(data) {
     // Get the current date
@@ -259,17 +254,6 @@ window.onclick = function(event) {
         } else {
             chatElement = $('<div class="chat_main_from"></div>');
 
-            // Fetch the recipient's information using the recipient_id
-            getRecipientInfo(data.message.recipient_id)
-                .done(function(recipient) {
-                    // Add the recipient's avatar and name
-                    avatarElement = $('<img src="' + recipient.avatar + '" alt="' + recipient.name + '">');
-                    nameElement = $('<span class="chat_main_from-name">' + recipient.name + '</span>');
-                    chatElement.append(avatarElement, nameElement);
-                })
-                .fail(function(xhr, status, error) {
-                    console.error('Error fetching recipient information:', error);
-                });
         }
 
         // Show the time only for the first message of the day
