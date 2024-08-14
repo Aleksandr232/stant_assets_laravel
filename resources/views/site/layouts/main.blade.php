@@ -160,14 +160,19 @@ $(document).ready(function() {
             }
         });
 
-        var channel = pusher.subscribe('chat');
+        /* var channel = pusher.subscribe('chat');
 
         channel.bind('App\Events\MessageSent', function(data) {
+            console.log('Received data:', data.message);
+        }); */
+
+        window.Echo.channel('chat')
+        .listen('App\\Events\\MessageSent', (data) => {
             console.log('Received data:', data.message);
         });
     });
 });
 </script>
-
+<script src="{{ mix('/js/app.js') }}" defer></script>
 </body>
 </html>
