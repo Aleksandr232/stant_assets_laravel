@@ -216,6 +216,7 @@ window.onclick = function(event) {
             type: 'GET',
             success: function(data) {
                 console.log(data);
+                addMessageToChat(data);
             },
             error: function(xhr, status, error) {
                 console.error('Error loading messages:', error);
