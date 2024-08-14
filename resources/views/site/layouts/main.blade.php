@@ -221,13 +221,10 @@ window.onclick = function(event) {
             url: '{{ route('getMessages', [':userId', ':recipientId']) }}'.replace(':userId', userId).replace(':recipientId', recipientId),
             type: 'GET',
             success: function(data) {
-                console.log(data);
-                for (var i = 0; i < data.length; i++) {
-                    // Проверяем, было ли это сообщение уже добавлено в чат
-                    if ($('.chat_main_to, .chat_main_from').find('span[data-message-id="' + data[i].id + '"]').length === 0) {
-                        addMessageToChat(data[i]);
-                    }
-                }
+                // Loop through the data and call addMessageToChat for each message
+                data.forEach(function(message) {
+                    addMessageToChat({ message: message });
+                });
             },
             error: function(xhr, status, error) {
                 console.error('Error loading messages:', error);
