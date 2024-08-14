@@ -19,20 +19,6 @@ class ChatController extends Controller
 
 
 
-    /* public function sendMessage(MessageForm $request, $recipientId, $senderId)
-    {
-        $message = $request->user()
-            ->messages()
-            ->create(array_merge($request->validated(), [
-                'recipient_id' => $recipientId,
-                'sender_id' => $senderId,
-            ]));
-
-        broadcast(new MessageSent($message, $recipientId, $senderId));
-
-        return $message;
-    } */
-
     public function sendMessage(MessageForm $request, $recipientId, $senderId)
     {
         $chatId = $this->getChatId($recipientId, $senderId);
