@@ -10,7 +10,8 @@ class ChatMessage extends Model
     use HasFactory;
 
     protected $fillable = [
-        'chat_id'
+        'chat_id',
+        'message_id'
     ];
 
 
