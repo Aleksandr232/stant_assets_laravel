@@ -259,8 +259,8 @@
 
             // Получение сообщений в реальном времени
             var channelSend = pusher.subscribe(getChatChannelNameSend( authId, currentActiveUserId));
-            channelSend.bind('App\\Events\\MessageSent', function(data) {
-                console.log('Полученны:', data);
+            channelSend.bind('App\\Events\\MessageSent', function(data_send) {
+                console.log('Полученны:', data_send);
 
             });
 
@@ -274,14 +274,14 @@
             /* var channel = pusher.subscribe('chat.' + currentActiveUserId + '-' + authId); */
             /* var channel = pusher.subscribe('private-chat.' + currentActiveUserId + '.' + authId); */
             var channel = pusher.subscribe(getChatChannelName(currentActiveUserId, authId));
-            channel.bind('App\\Events\\MessageSent', function(data) {
-                    console.log('Отправленны:', data);
+            channel.bind('App\\Events\\MessageSent', function(data_send) {
+                    console.log('Отправленны:', data_send);
                     /* addMessageToChat(data); */
             });
 
         });
 
-        
+
 
             function loadMessages(userId, recipientId) {
             $.ajax({
