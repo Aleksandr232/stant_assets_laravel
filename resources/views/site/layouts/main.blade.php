@@ -171,7 +171,9 @@ window.onclick = function(event) {
             formData.append('recipient_id', currentActiveUserId);
 
             $.ajax({
-                url: '{{ route('sendMessage', ':userId') }}'.replace(':userId', currentActiveUserId),
+                url: '{{ route('sendMessage', ':userId', ':authId') }}'
+                .replace(':userId', currentActiveUserId)
+                .replace(':authId', authId),
                 type: 'POST',
                 data: formData,
                 processData: false,

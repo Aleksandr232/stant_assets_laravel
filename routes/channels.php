@@ -21,9 +21,10 @@ use Illuminate\Support\Facades\Auth;
     return Auth::check();
   }); */
 
- /*  Broadcast::channel('chat.{recipientId}.{senderId}', ChatChannel::class); */
+  Broadcast::channel('chat.{recipientId}.{senderId}', ChatChannel::class);
 
 
-  Broadcast::channel('chat.{recipientId}.{senderId}', function ($user, $recipientId, $senderId) {
+ /*  Broadcast::channel('chat.{recipientId}.{senderId}', function ($user, $recipientId, $senderId) {
     return ($user->id == $recipientId|| $user->id == $senderId);
 });
+ */

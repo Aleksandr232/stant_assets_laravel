@@ -19,13 +19,13 @@ class ChatController extends Controller
 
 
 
-    public function sendMessage(MessageForm $request, $recipientId)
+    public function sendMessage(MessageForm $request, $recipientId, $senderId)
     {
         $message = $request->user()
             ->messages()
             ->create($request->validated());
 
-        $senderId = Auth::id();
+        /* $senderId = Auth::id(); */
 
         broadcast(new MessageSent($message, $recipientId, $senderId));
 
