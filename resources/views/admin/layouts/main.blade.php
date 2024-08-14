@@ -185,7 +185,7 @@
         });
     });
   </script>
- <script>
+<script>
     var currentActiveUserId;
     var authId;
 
@@ -230,28 +230,27 @@
             formData.append('recipient_id', currentActiveUserId);
 
             $.ajax({
-            url: '{{ route('sendMessageAdmin', [':id', ':userId']) }}'
+                url: '{{ route('sendMessageAdmin', [':id', ':userId']) }}'
                 .replace(':id', currentActiveUserId)
                 .replace(':userId', authId),
-            type: 'POST',
-            data: formData,
-            processData: false,
-            contentType: false,
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            success: function(data_send) {
-                console.log('Sent message:', data_send);
-                $('#message').val('');
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(data) {
+                    console.log('Sent message:', data.message.message, data.user);
+                    $('#message').val('');
+                    /* addMessageToChat(data.user, data.message.message); */
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error sending message:', error);
+                }
+            });
 
-
-            },
-            error: function(xhr, status, error) {
-                console.error('Error sending message:', error);
-            }
-        });
-
-        function getChatChannelNameSend(authId,currentActiveUserId) {
+            function getChatChannelNameSend(authId,currentActiveUserId) {
             // Сортируем userId1 и userId2, чтобы порядок всегда был одинаковым
             const sortedIds = [authId, currentActiveUserId].sort((a, b) => a - b);
             return `private-chat.${sortedIds[0]}.${sortedIds[1]}`;
@@ -259,8 +258,8 @@
 
             // Получение сообщений в реальном времени
             var channelSend = pusher.subscribe(getChatChannelNameSend( authId, currentActiveUserId));
-            channelSend.bind('App\\Events\\MessageSent', function(data_send) {
-                console.log('Полученны:', data_send);
+            channelSend.bind('App\\Events\\MessageSent', function(data) {
+                console.log('Полученны:', data);
 
             });
 
@@ -274,14 +273,12 @@
             /* var channel = pusher.subscribe('chat.' + currentActiveUserId + '-' + authId); */
             /* var channel = pusher.subscribe('private-chat.' + currentActiveUserId + '.' + authId); */
             var channel = pusher.subscribe(getChatChannelName(currentActiveUserId, authId));
-            channel.bind('App\\Events\\MessageSent', function(data_send) {
-                    console.log('Отправленны:', data_send);
+            channel.bind('App\\Events\\MessageSent', function(data) {
+                    console.log('Отправленны:', data);
                     /* addMessageToChat(data); */
             });
 
         });
-
-
 
             function loadMessages(userId, recipientId) {
             $.ajax({
