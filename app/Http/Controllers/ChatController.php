@@ -54,23 +54,23 @@ class ChatController extends Controller
     return response()->json($messages);
 } */
 
-    public function getMessages($userId, $recipientId)
-    {
-        $messages = Message::where(function ($query) use ($userId, $recipientId) {
-            $query->where(function ($subQuery) use ($userId, $recipientId) {
-                $subQuery->where('user_id', $userId)
-                        ->where('recipient_id', $recipientId);
-            })
-            ->orWhere(function ($subQuery) use ($userId, $recipientId) {
-                $subQuery->where('user_id', $recipientId)
-                        ->where('recipient_id', $userId);
-            });
+public function getMessages($userId, $recipientId)
+{
+    $messages = Message::where(function ($query) use ($userId, $recipientId) {
+        $query->where(function ($subQuery) use ($userId, $recipientId) {
+            $subQuery->where('user_id', $userId)
+                     ->where('recipient_id', $recipientId);
         })
-        ->orderBy('created_at', 'asc')
-        ->get();
+        ->orWhere(function ($subQuery) use ($userId, $recipientId) {
+            $subQuery->where('user_id', $recipientId)
+                     ->where('recipient_id', $userId);
+        });
+    })
+    ->orderBy('created_at', 'asc')
+    ->get();
 
-        return response()->json($messages);
-    }
+    return response()->json($messages);
+}
 
 
 
