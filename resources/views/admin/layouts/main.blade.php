@@ -260,14 +260,14 @@
             // Получение сообщений в реальном времени
             var channelSend = pusher.subscribe(getChatChannelNameSend( authId, currentActiveUserId));
             channelSend.bind('App\\Events\\MessageSent', function(data) {
-                console.log('Send data:', data);
+                console.log('Отправлены:', data);
 
             });
 
 
             var channel = pusher.subscribe(getChatChannelName(currentActiveUserId, authId));
             channel.bind('App\\Events\\MessageSent', function(data) {
-                console.log('Received data:', data);
+                console.log('Получены:', data);
                 addMessageToChat(data.user, data.message);
             });
 
