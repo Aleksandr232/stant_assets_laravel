@@ -240,8 +240,8 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                success: function(data) {
-                    console.log('Sent message:', data.message.message, data.user);
+                success: function(datas) {
+                    console.log('Sent message:', datas);
                     $('#message').val('');
                     /* addMessageToChat(data.user, data.message.message); */
                 },
@@ -258,8 +258,8 @@
 
             // Получение сообщений в реальном времени
             var channelSend = pusher.subscribe(getChatChannelNameSend( authId, currentActiveUserId));
-            channelSend.bind('App\\Events\\MessageSent', function(data) {
-                console.log('Полученны:', data);
+            channelSend.bind('App\\Events\\MessageSent', function(datas) {
+                console.log('Полученны:', datas);
 
             });
 
