@@ -160,7 +160,7 @@ $(document).ready(function() {
             }
         });
 
-        var channel = pusher.subscribe('chat');
+        var channel = pusher.subscribe('private-chat');
 
         channel.bind('App\Events\MessageSent', function(data) {
             console.log('Received data:', data.message);
