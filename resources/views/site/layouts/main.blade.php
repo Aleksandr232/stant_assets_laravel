@@ -237,7 +237,7 @@ window.onclick = function(event) {
                 // Check if the message is from the current user
                 if (data.sender_id === authId) {
                     chatElement = $('<div class="chat_main_to"></div>');
-                } else if(data.recipient_id === currentActiveUserId) {
+                } else if(data.message.user_id === currentActiveUserId) {
                     chatElement = $('<div class="chat_main_from"></div>');
                 }
                 // Show the time only for the first message of the day
