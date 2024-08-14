@@ -40,13 +40,11 @@
         });
     </script>
 @endif --}}
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-  <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
-  <script src="{{ asset('site/js/index.js')}}?v={{ time() }}"></script>
-  <script src="https://cdn.jsdelivr.net/npm/laravel-echo/dist/echo.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+<script src="{{ asset('site/js/index.js')}}?v={{ time() }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
   <script>
     const sidebar = document.querySelector('.sidebar');
     const toggleSidebarBtn = document.getElementById('toggleSidebar');
@@ -261,7 +259,7 @@
 
             var channel = pusher.subscribe(getChatChannelName(currentActiveUserId, authId));
             channel.bind('App\\Events\\MessageSent', function(data) {
-                    console.log('Received data:', data;)
+                    console.log('Received data:', data);
                     addMessageToChat(data);
             });
 
