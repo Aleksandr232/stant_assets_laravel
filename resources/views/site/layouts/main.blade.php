@@ -160,19 +160,13 @@ $(document).ready(function() {
             }
         });
 
-        /* var channel = pusher.subscribe('chat');
+        var channel = pusher.subscribe('chat');
 
         channel.bind('App\Events\MessageSent', function(data) {
             console.log('Received data:', data.message);
-        }); */
-
-        Echo.private('chat')
-        .listen('App\\Events\\MessageSent', (e) => {
-            console.log({
-                message: e.message.message,
-                user: e.user
-            });
         });
+
+
     });
 });
 </script>
