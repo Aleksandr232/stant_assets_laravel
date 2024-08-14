@@ -241,9 +241,9 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function(data) {
-                    console.log('Sent message:', data);
+                    console.log('Sent message:', data.message.message, data.user);
                     $('#message').val('');
-                    /* addMessageToChat(data.user, data.message.message); */
+                   /*  addMessageToChat(data.user, data.message.message); */
                 },
                 error: function(xhr, status, error) {
                     console.error('Error sending message:', error);
@@ -263,53 +263,72 @@
             /* var channel = pusher.subscribe('private-chat.' + currentActiveUserId + '.' + authId); */
             var channel = pusher.subscribe(getChatChannelName(currentActiveUserId, authId));
             channel.bind('App\\Events\\MessageSent', function(data) {
-                    console.log('Отправленны:', data);
-                    /* addMessageToChat(data); */
+                // Проверяем, является ли текущий пользователь отправителем или получателем сообщения
+                if (data.message.sender_id === authId || data.message.recipient_id === currentActiveUserId) {
+                    // Проверяем, было ли это сообщение уже добавлено в чат
+                    if ($('.chat_main_to, .chat_main_from').find('span[data-message-id="' + data.message.id + '"]').length === 0) {
+                        // Если нет, то добавляем сообщение в чат
+                        addMessageToChat(data);
+                    }
+                }
             });
 
         });
 
             function loadMessages(userId, recipientId) {
-            $.ajax({
+        $.ajax({
             url: '{{ route('getMessages', [':userId', ':recipientId']) }}'.replace(':userId', userId).replace(':recipientId', recipientId),
             type: 'GET',
             success: function(data) {
+                // Loop through the data and call addMessageToChat for each message
                 console.log(data);
+                /* data.forEach(function(message) {
+                    addMessageToChat({ message: message, recipient_id: message.recipient_id });
+                }); */
             },
             error: function(xhr, status, error) {
                 console.error('Error loading messages:', error);
-
             }
         });
     }
 
-        function addMessageToChat(data) {
-            // Get the current date
-            var today = new Date();
-            var messageDate = new Date(data.message.created_at);
-            // Check if the message is from the current day
-            if (messageDate.getDate() === today.getDate() &&
-                messageDate.getMonth() === today.getMonth() &&
-                messageDate.getFullYear() === today.getFullYear()) {
-                var chatElement;
-                var dateElement = null;
-                // Check if the message is from the current user
-                if (data.message.user_id === authId) {
-                    chatElement = $('<div class="chat_main_to"></div>');
-                } else if(data.message.recipient_id === authId) {
-                    chatElement = $('<div class="chat_main_from"></div>');
-                }
-                // Show the time only for the first message of the day
-                if ($('.chat_main_to-date, .chat_main_from-date').length === 0) {
-                    dateElement = $('<label class="chat_main_to-date chat_main_from-date">Сьогодні о ' + messageDate.getHours() + ':' + messageDate.getMinutes() + '</label>');
-                    chatElement.append(dateElement);
-                }
-                var messageElement = $('<span><img src=""/><p>' + data.message.message + '</p></span>');
-            chatElement.append(messageElement);
-            // Append the new message to the bottom of the chat
-            $('.chat_main_to, .chat_main_from').last().after(chatElement);
+
+
+    function addMessageToChat(data) {
+    // Get the current date
+    var today = new Date();
+    var messageDate = new Date(data.message.created_at);
+
+    // Check if the message is from the current day
+    if (messageDate.getDate() === today.getDate() &&
+        messageDate.getMonth() === today.getMonth() &&
+        messageDate.getFullYear() === today.getFullYear()) {
+        var chatElement;
+        var dateElement = null;
+        var avatarElement = null;
+        var nameElement = null;
+
+        // Check if the message is from the current user
+        if (data.message.user_id === authId) {
+            chatElement = $('<div class="chat_main_to"></div>');
+        } else if(data.message.user_id === data.message.recipient_id) {
+            chatElement = $('<div class="chat_main_from"></div>');
+
         }
+
+        // Show the time only for the first message of the day
+        if ($('.chat_main_to-date, .chat_main_from-date').length === 0 || $('.chat_main_to-date, .chat_main_from-date').last().text() !== 'Сьогодні о ' + messageDate.getHours() + ':' + messageDate.getMinutes()) {
+            dateElement = $('<label class="chat_main_to-date chat_main_from-date">Сьогодні о ' + messageDate.getHours() + ':' + messageDate.getMinutes() + '</label>');
+            chatElement.append(dateElement);
+        }
+
+        var messageElement = $('<span data-message-id="' + data.message.id + '"><p>' + data.message.message + '</p></span>');
+        chatElement.append(messageElement);
+
+        // Append the new message to the bottom of the chat
+        $('.chat_main_to, .chat_main_from').last().after(chatElement);
     }
+}
 
 
 });
