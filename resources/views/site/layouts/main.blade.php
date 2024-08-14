@@ -215,8 +215,8 @@ window.onclick = function(event) {
             /* var channel = pusher.subscribe('private-chat.' + currentActiveUserId + '.' + authId); */
             var channel = pusher.subscribe(getChatChannelName(currentActiveUserId, authId));
             channel.bind('App\\Events\\MessageSent', function(data) {
-                    console.log('Отправленны:', data.message);
-                    addMessageToChat(data);
+                    console.log('Отправленны:', data);
+                    /* addMessageToChat(data); */
             });
 
         });

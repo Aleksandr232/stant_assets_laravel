@@ -240,8 +240,8 @@
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            success: function(data) {
-                console.log('Sent message:', data);
+            success: function(data_send) {
+                console.log('Sent message:', data_send);
                 $('#message').val('');
 
 
@@ -251,7 +251,7 @@
             }
         });
 
-            function getChatChannelNameSend(currentActiveUserId, authId) {
+        function getChatChannelNameSend(currentActiveUserId, authId) {
             // Сортируем userId1 и userId2, чтобы порядок всегда был одинаковым
             const sortedIds = [currentActiveUserId, authId].sort((a, b) => a - b);
             return `private-chat.${sortedIds[0]}.${sortedIds[1]}`;
@@ -260,16 +260,26 @@
             // Получение сообщений в реальном времени
             var channelSend = pusher.subscribe(getChatChannelNameSend( authId, currentActiveUserId));
             channelSend.bind('App\\Events\\MessageSent', function(data) {
-                console.log('Отправлены:', data);
+                console.log('Полученны:', data);
 
             });
 
+            function getChatChannelName(currentActiveUserId, authId) {
+            // Сортируем userId1 и userId2, чтобы порядок всегда был одинаковым
+            const sortedIds = [currentActiveUserId, authId].sort((a, b) => a - b);
+            return `private-chat.${sortedIds[0]}.${sortedIds[1]}`;
+            }
 
+            // Получение сообщений в реальном времени
+            /* var channel = pusher.subscribe('chat.' + currentActiveUserId + '-' + authId); */
+            /* var channel = pusher.subscribe('private-chat.' + currentActiveUserId + '.' + authId); */
             var channel = pusher.subscribe(getChatChannelName(currentActiveUserId, authId));
             channel.bind('App\\Events\\MessageSent', function(data) {
-                console.log('Получены:', data);
-                addMessageToChat(data.user, data.message);
+                    console.log('Отправленны:', data);
+                    /* addMessageToChat(data); */
             });
+
+        });
 
         });
 
