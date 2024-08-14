@@ -281,7 +281,7 @@
 
         });
 
-        });
+        
 
             function loadMessages(userId, recipientId) {
             $.ajax({
