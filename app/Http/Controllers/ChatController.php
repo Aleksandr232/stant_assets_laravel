@@ -71,7 +71,7 @@ public function getMessages($userId, $recipientId)
 {
     $chatId = $this->getChatId($userId, $recipientId);
 
-    $messages = Message::whereHas('chatMessages', function ($query) use ($chatId) {
+    $messages = Message::whereHas('chatMessage', function ($query) use ($chatId) {
         $query->where('chat_id', $chatId);
     })
     ->orderBy('created_at', 'asc')
