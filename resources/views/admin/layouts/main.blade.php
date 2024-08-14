@@ -194,6 +194,12 @@
 
         var pusher = new Pusher('13d5f420787d5aa468b8', {
             cluster: 'eu',
+            authEndpoint: '/broadcasting/auth',
+            auth: {
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                }
+            }
         });
 
 
@@ -243,19 +249,11 @@
 
             // Получение сообщений в реальном времени
             /* var channel = pusher.subscribe('chat.' + currentActiveUserId + '-' + authId); */
-            var channel = pusher.subscribe('chat.' + currentActiveUserId);
+            var channel = pusher.subscribe('private-chat');
             channel.bind('App\\Events\\MessageSent', function(data) {
                     console.log('Received data:', data.message);
                     addMessageToChat(data);
             });
-
-            pusher.trigger('private-chat.' + currentActiveUserId, 'App\\Events\\MessageSent', function(data) {
-                console.log('trigger:', data);
-                addMessageToChat(data);
-            });
-
-
-
 
         });
 
