@@ -133,6 +133,12 @@ $(document).ready(function() {
 
     var pusher = new Pusher('13d5f420787d5aa468b8', {
         cluster: 'eu',
+        authEndpoint: '/broadcasting/auth',
+        auth: {
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+            }
+        }
     });
 
     $('#send-button').click(function(e) {
@@ -160,14 +166,7 @@ $(document).ready(function() {
             }
         });
 
-        var channel = pusher.subscribe('private-chat', {
-            authEndpoint: '/pusher/auth',
-            auth: {
-                headers: {
-                    'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                }
-            }
-        });
+        var channel = pusher.subscribe('private-chat');
 
         channel.bind('App\Events\MessageSent', function(data) {
             console.log('Received data:', data.message);
