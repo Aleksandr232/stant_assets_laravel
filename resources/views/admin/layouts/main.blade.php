@@ -230,7 +230,7 @@
             formData.append('recipient_id', currentActiveUserId);
 
             $.ajax({
-                url: '{{ route('sendMessageAdmin', [':id', ':userId']) }}'
+                url: '{{ route('sendMessage', [':id', ':userId']) }}'
                 .replace(':id', currentActiveUserId)
                 .replace(':userId', authId),
                 type: 'POST',
@@ -250,16 +250,15 @@
                 }
             });
 
-            /* function getChatChannelName(currentActiveUserId, authId) {
+            function getChatChannelName(currentActiveUserId, authId) {
             // Сортируем userId1 и userId2, чтобы порядок всегда был одинаковым
             const sortedIds = [currentActiveUserId, authId].sort((a, b) => a - b);
             return `private-chat.${sortedIds[0]}.${sortedIds[1]}`;
-            } */
+            }
 
             // Получение сообщений в реальном времени
-            /* var channel = pusher.subscribe('chat.' + currentActiveUserId + '-' + authId); */
-            var channel = pusher.subscribe('private-chat.' + currentActiveUserId + '.' + authId);
-            /* var channel = pusher.subscribe(getChatChannelName(currentActiveUserId, authId)); */
+
+            var channel = pusher.subscribe(getChatChannelName(currentActiveUserId, authId));
             channel.bind('App\\Events\\MessageSent', function(data) {
                     console.log('Received data:', data.message);
                     addMessageToChat(data);
