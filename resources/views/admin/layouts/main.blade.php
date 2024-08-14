@@ -41,7 +41,7 @@
     </script>
 @endif --}}
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
   <script src="{{ asset('site/js/index.js')}}?v={{ time() }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/laravel-echo/dist/echo.js"></script>
