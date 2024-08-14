@@ -184,16 +184,16 @@ window.onclick = function(event) {
                 success: function(data) {
                     console.log('Sent message:', data.message.message, data.user);
                     $('#message').val('');
-                    addMessageToChat(data.user, data.message.message);
+                    /* addMessageToChat(data.user, data.message.message); */
                 },
                 error: function(xhr, status, error) {
                     console.error('Error sending message:', error);
                 }
             });
 
-            function getChatChannelNameSend(currentActiveUserId, authId) {
+            function getChatChannelNameSend(authId,currentActiveUserId) {
             // Сортируем userId1 и userId2, чтобы порядок всегда был одинаковым
-            const sortedIds = [currentActiveUserId, authId].sort((a, b) => a - b);
+            const sortedIds = [authId, currentActiveUserId].sort((a, b) => a - b);
             return `private-chat.${sortedIds[0]}.${sortedIds[1]}`;
             }
 
