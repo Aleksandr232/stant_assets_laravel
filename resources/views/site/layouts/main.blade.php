@@ -167,7 +167,7 @@ $(document).ready(function() {
         }); */
 
         Echo.private('chat')
-        .listen('App\Events\MessageSent', (e) => {
+        .listen('App\\Events\\MessageSent', (e) => {
             console.log({
                 message: e.message.message,
                 user: e.user
