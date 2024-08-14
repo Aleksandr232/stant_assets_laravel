@@ -230,25 +230,32 @@
             formData.append('recipient_id', currentActiveUserId);
 
             $.ajax({
-                url: '{{ route('sendMessageAdmin', [':id', ':userId']) }}'
+            url: '{{ route('sendMessageAdmin', [':id', ':userId']) }}'
                 .replace(':id', currentActiveUserId)
                 .replace(':userId', authId),
-                type: 'POST',
-                data: formData,
-                processData: false,
-                contentType: false,
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function(data) {
-                    console.log('Sent message:', data.message.message, data.user);
-                    $('#message').val('');
-                    addMessageToChat(data.user, data.message.message);
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error sending message:', error);
-                }
-            });
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(data) {
+                console.log('Sent message:', data.message.message, data.user);
+                $('#message').val('');
+                addMessageToChat(data.user, data.message.message);
+
+                // Отправляем событие Pusher
+                var channel = pusher.subscribe(getChatChannelName(currentActiveUserId, authId));
+                channel.trigger('App\\Events\\MessageSent', {
+                    message: data.message.message,
+                    user: data.user
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error('Error sending message:', error);
+            }
+        });
 
             function getChatChannelName(currentActiveUserId, authId) {
             // Сортируем userId1 и userId2, чтобы порядок всегда был одинаковым
@@ -260,8 +267,8 @@
 
             var channel = pusher.subscribe(getChatChannelName(currentActiveUserId, authId));
             channel.bind('App\\Events\\MessageSent', function(data) {
-                    console.log('Received data:', data);
-                    addMessageToChat(data);
+                console.log('Received data:', data);
+                addMessageToChat(data.user, data.message);
             });
 
         });
