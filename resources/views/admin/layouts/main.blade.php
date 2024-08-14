@@ -240,8 +240,8 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                success: function(datas) {
-                    console.log('Sent message:', datas);
+                success: function(data) {
+                    console.log('Sent message:', data);
                     $('#message').val('');
                     /* addMessageToChat(data.user, data.message.message); */
                 },
@@ -250,7 +250,7 @@
                 }
             });
 
-            
+
 
             function getChatChannelName(currentActiveUserId, authId) {
             // Сортируем userId1 и userId2, чтобы порядок всегда был одинаковым
