@@ -243,7 +243,7 @@
                 success: function(data) {
                     console.log('Sent message:', data.message.message, data.user);
                     $('#message').val('');
-                    /* addMessageToChat(data.user, data.message.message); */
+                    addMessageToChat(data.user, data.message.message);
                 },
                 error: function(xhr, status, error) {
                     console.error('Error sending message:', error);
