@@ -167,7 +167,7 @@ $(document).ready(function() {
         }); */
 
         window.Echo.channel('chat')
-        .listen('App\\Events\\MessageSent', (data) => {
+        .listen('MessageSent', (data) => {
             console.log('Received data:', data.message);
         });
     });
