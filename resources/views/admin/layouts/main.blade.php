@@ -243,7 +243,7 @@
                 success: function(data) {
                     console.log('Sent message:', data.message.message, data.user);
                     $('#message').val('');
-                    addMessageToChat(data.user, data.message.message);
+                    /* addMessageToChat(data.user, data.message.message); */
                 },
                 error: function(xhr, status, error) {
                     console.error('Error sending message:', error);
@@ -259,9 +259,9 @@
             // Получение сообщений в реальном времени
 
             var channel = pusher.subscribe(getChatChannelName(currentActiveUserId, authId));
-            channel.bind('App\\Events\\MessageSent', function(dataadmin) {
-                    console.log('Received data:', dataadmin);
-                    /* addMessageToChat(data); */
+            channel.bind('App\\Events\\MessageSent', function(data) {
+                    console.log('Received data:', data;)
+                    addMessageToChat(data);
             });
 
         });
