@@ -57,17 +57,29 @@ class ChatController extends Controller
 public function getMessages($userId, $recipientId)
 {
     $messages = Message::where(function ($query) use ($userId, $recipientId) {
-        $query->where(function ($subQuery) use ($userId, $recipientId) {
-            $subQuery->where('user_id', $userId)
-                     ->where('recipient_id', $recipientId);
-        })
-        ->orWhere(function ($subQuery) use ($userId, $recipientId) {
-            $subQuery->where('user_id', $recipientId)
-                     ->where('recipient_id', $userId);
-        });
+        $query->where('user_id', $userId)
+              ->where('recipient_id', $recipientId);
+    })
+    ->orWhere(function ($query) use ($userId, $recipientId) {
+        $query->where('user_id', $recipientId)
+              ->where('recipient_id', $userId);
     })
     ->orderBy('created_at', 'asc')
     ->get();
+
+    $formattedMessages = $messages->map(function ($message) use ($userId) {
+        return [
+            'id' => $message->id,
+            'text' => $message->text,
+            'created_at' => $message->created_at->format('Y-m-d H:i:s'),
+            'sender_id' => $message->user_id,
+            'recipient_id' => $message->recipient_id,
+            'is_sent_by_user' => $message->user_id == $userId,
+        ];
+    });
+
+    return response()->json($formattedMessages);
 }
+
 
 }
