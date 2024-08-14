@@ -230,7 +230,7 @@
             formData.append('recipient_id', currentActiveUserId);
 
             $.ajax({
-                url: '{{ route('sendMessageAdmin', [':id', ':userId']) }}'
+                url: '{{ route('sendMessage', [':id', ':userId']) }}'
                 .replace(':id', currentActiveUserId)
                 .replace(':userId', authId),
                 type: 'POST',
