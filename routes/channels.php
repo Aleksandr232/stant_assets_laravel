@@ -21,4 +21,4 @@ use Illuminate\Support\Facades\Auth;
     return Auth::check();
   }); */
 
-  Broadcast::channel('chat', ChatChannel::class);
+  Broadcast::channel('chat.{recipientId}', ChatChannel::class);
