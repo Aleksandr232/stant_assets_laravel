@@ -53,7 +53,7 @@ class ChatController extends Controller
     $chatId = $this->getChatId($userId, $recipientId);
 
     $messages = Message::whereHas('chatMessage', function ($query) use ($chatId) {
-        $query->where('id', 'like', $chatId . '%');
+        $query->where('chat_id', 'like', $chatId . '%');
     })
     ->orderBy('created_at', 'asc')
     ->get();
