@@ -46,39 +46,19 @@ class ChatController extends Controller
         return implode('-', $participants);
     }
 
-    public function getAllUsers()
+
+    public function getMessages($userId, $recipientId)
     {
-        $users = User::all();
-        return response()->json($users);
+        $chatId = $this->getChatId($userId, $recipientId);
+
+        $messages = Message::whereHas('chatMessage', function ($query) use ($chatId) {
+            $query->where('chat_id', $chatId);
+        })
+        ->orderBy('created_at', 'asc')
+        ->get();
+
+        return response()->json($messages);
     }
-
-   /*  public function getMessages($userId, $recipientId)
-{
-    $messages = Message::where(function ($query) use ($userId, $recipientId) {
-        $query->where('user_id', $userId)
-              ->where('recipient_id', $recipientId);
-    })->orWhere(function ($query) use ($userId, $recipientId) {
-        $query->where('user_id', $recipientId)
-              ->where('recipient_id', $userId);
-    })
-    ->orderBy('created_at', 'asc')
-    ->get();
-
-    return response()->json($messages);
-} */
-
-public function getMessages($userId, $recipientId)
-{
-    $chatId = $this->getChatId($userId, $recipientId);
-
-    $messages = Message::whereHas('chatMessage', function ($query) use ($chatId) {
-        $query->where('chat_id', 'chat_id' . $chatId . $recipientId);
-    })
-    ->orderBy('created_at', 'asc')
-    ->get();
-
-    return response()->json($messages);
-}
 
 
 
