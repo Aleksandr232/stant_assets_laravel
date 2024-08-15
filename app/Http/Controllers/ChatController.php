@@ -56,7 +56,7 @@ class ChatController extends Controller
             $query->where('chat_id', 'like', $chatId . '%');
         })
         ->orderBy('id', 'asc')
-        ->orderBy('create_dat', 'asc')
+        ->orderBy('created_at', 'asc')
         ->get()
         ->groupBy('chat_id');
 
