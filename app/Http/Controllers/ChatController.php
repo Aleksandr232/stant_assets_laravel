@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\MessageForm;
 use App\Models\User;
+use App\Models\ChatMessage;
 use App\Models\Message;
 use App\Events\MessageSent;
 
@@ -51,7 +52,7 @@ class ChatController extends Controller
     {
         $chatId = $this->getChatId($userId, $recipientId);
 
-        $messages = Message::whereHas('ChatMessage', function ($query) use ($chatId) {
+        $messages = ChatMessage::whereHas('chatMessage', function ($query) use ($chatId) {
             $query->where('chat_id', $chatId);
         })
         ->orderBy('created_at', 'asc')
