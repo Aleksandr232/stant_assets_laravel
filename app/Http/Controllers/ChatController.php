@@ -49,17 +49,17 @@ class ChatController extends Controller
 
 
     public function getMessages($userId, $recipientId)
-    {
-        $chatId = $this->getChatId($userId, $recipientId);
+{
+    $chatId = $this->getChatId($userId, $recipientId);
 
-        $messages = ChatMessage::whereHas('message', function ($query) use ($chatId) {
-            $query->where('chat_id', $chatId);
-        })
-        ->orderBy('created_at', 'asc')
-        ->get();
+    $messages = ChatMessage::whereHas('message', function ($query) use ($chatId) {
+        $query->where('id', 'like', $chatId . '%');
+    })
+    ->orderBy('created_at', 'asc')
+    ->get();
 
-        return response()->json($messages);
-    }
+    return response()->json($messages);
+}
 
 
 
