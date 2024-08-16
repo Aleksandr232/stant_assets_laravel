@@ -52,7 +52,6 @@ class ChatController extends Controller
     public function getMessages($chatId)
     {
         $messages = Message::where('chat_id', 'chat_id' . $chatId)
-            ->with('ChatMessage')
             ->orderBy('created_at', 'asc')
             ->get();
 
