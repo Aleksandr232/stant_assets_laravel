@@ -218,7 +218,7 @@ window.onclick = function(event) {
 
             function loadMessages(userId, recipientId) {
         $.ajax({
-            url: '{{ route('getMessages', [':userId', ':recipientId']) }}'.replace(':userId', userId).replace(':recipientId', recipientId),
+            url: '{{ route('getMessages', [':recipientId', ':userId',]) }}'.replace(':userId', userId).replace(':recipientId', recipientId),
             type: 'GET',
             success: function(data) {
                 // Loop through the data and call addMessageToChat for each message
