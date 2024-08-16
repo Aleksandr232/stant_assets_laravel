@@ -221,20 +221,7 @@ window.onclick = function(event) {
         url: '{{ route('getMessages', [':userId', ':recipientId']) }}'.replace(':userId', userId).replace(':recipientId', recipientId),
         type: 'GET',
         success: function(data) {
-            // Очищаем чат
-            $('.chat_main_to, .chat_main_from').remove();
-
-            // Добавляем сообщения в чат
-            $.each(data.messages, function(index, message) {
-                addMessageToChat({
-                    message: {
-                        id: message.id,
-                        message: message.message,
-                        created_at: message.created_at,
-                        user_id: message.user_id
-                    }
-                });
-            });
+            
         },
         error: function(xhr, status, error) {
             console.error('Error loading messages:', error);
