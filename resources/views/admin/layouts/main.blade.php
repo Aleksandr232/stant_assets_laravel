@@ -277,7 +277,7 @@
 
         function loadMessages(userId, recipientId) {
         $.ajax({
-        url: '{{ route('getMessages', [':userId', ':recipientId']) }}'.replace(':userId', userId).replace(':recipientId', recipientId),
+        url: '{{ route('getMessagesAdmin', [':userId', ':recipientId']) }}'.replace(':userId', userId).replace(':recipientId', recipientId),
         type: 'GET',
         success: function(data) {
 
