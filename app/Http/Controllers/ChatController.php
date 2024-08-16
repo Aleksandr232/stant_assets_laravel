@@ -49,7 +49,7 @@ class ChatController extends Controller
     }
 
 
-    /* public function getMessages($recipientId, $senderId)
+    public function getMessages($recipientId, $senderId)
     {
         $chatId = $this->getChatId($recipientId, $senderId);
 
@@ -57,20 +57,9 @@ class ChatController extends Controller
             ->get();
 
         return response()->json($messages);
-    } */
+    }
 
-    public function getMessages($recipientId, $senderId)
-{
-    $chatId = $this->getChatId($recipientId, $senderId);
 
-    $messages = Message::where('chat_id', "chat_id{$chatId}")
-        ->join('users', 'messages.user_id', '=', 'users.id')
-        ->select('messages.*', 'users.name')
-        ->orderBy('messages.created_at', 'asc')
-        ->get();
-
-    return response()->json($messages);
-}
 
 
 
