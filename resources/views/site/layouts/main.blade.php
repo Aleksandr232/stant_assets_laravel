@@ -254,8 +254,8 @@ window.onclick = function(event) {
                     var messageElement = $('<span data-message-id="' + message.id + '"><p>' + message.message + '</p></span>');
                     chatElement.append(messageElement);
 
-                    // Append the new message to the bottom of the chat
-                    $('.chat_main_to, .chat_main_from').last().after(chatElement);
+                   /*  // Append the new message to the bottom of the chat
+                    $('.chat_main_to, .chat_main_from').last().after(chatElement); */
                 }
             });
         },
