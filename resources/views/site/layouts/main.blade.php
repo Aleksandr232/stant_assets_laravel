@@ -222,10 +222,7 @@ window.onclick = function(event) {
             type: 'GET',
             success: function(data) {
                 // Loop through the data and call addMessageToChat for each message
-                console.log(data);
-                /* data.forEach(function(message) {
-                    addMessageToChat({ message: message, recipient_id: message.recipient_id });
-                }); */
+                addMessageToChat(data);
             },
             error: function(xhr, status, error) {
                 console.error('Error loading messages:', error);
