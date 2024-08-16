@@ -373,6 +373,11 @@ $('.toggle-password').each(function() {
        $('.chat.profile_chat').show();
     });
 
+    $('.chat.profile_chat .arrow-back').click(function(e) {
+        e.preventDefault();
+        $('.chat_list').show();
+        $('.chat.profile_chat').hide();
+    });
 
     $('#supportOpen').click(function(e) {
         e.preventDefault();
@@ -533,7 +538,7 @@ const ratePicker = document.getElementById('ratePicker');
 const rateStars = ratePicker.getElementsByClassName('rate-star');
 const ratingInput = document.getElementById('rating');
 const submitLink = document.getElementById('sendReview');
-const myForm = document.getElementById('myFormId'); 
+const myForm = document.getElementById('myFormId');
 
 let selectedRating = 0;
 

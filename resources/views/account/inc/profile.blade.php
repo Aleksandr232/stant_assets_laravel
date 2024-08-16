@@ -119,6 +119,7 @@
             <div class="chat_header">
 
             <span class="chat_header_to">
+                <div class="arrow-back">стрелка обратно</div>
                 {{-- <img src="https://content.freelancehunt.com/profile/photo/225/bonzaznob.png"/> --}}
                 <span>Admin</span>
             </span>
