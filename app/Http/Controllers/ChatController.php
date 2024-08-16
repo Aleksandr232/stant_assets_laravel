@@ -29,6 +29,7 @@ class ChatController extends Controller
             ->create(array_merge($request->validated(), [
                 'recipient_id' => $recipientId,
                 'sender_id' => $senderId,
+                'chat_id' => 'chat_id' . $chatId . $senderId,
             ]));
 
         $chatMessage = $message->chatMessage()->create([

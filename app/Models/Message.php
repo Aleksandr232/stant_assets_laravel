@@ -13,7 +13,8 @@ class Message extends Model
         'user_id',
         'message',
         'recipient_id',
-        'sender_id'
+        'sender_id',
+        'chat_id'
     ];
 
     public function user()
