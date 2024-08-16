@@ -216,19 +216,30 @@ window.onclick = function(event) {
 
         });
 
-            function loadMessages(userId, recipientId) {
-        $.ajax({
-            url: '{{ route('getMessages', [':userId', ':recipientId']) }}'.replace(':userId', userId).replace(':recipientId', recipientId),
-            type: 'GET',
-            success: function(data) {
-                // Loop through the data and call addMessageToChat for each message
-                addMessageToChat(data);
-            },
-            error: function(xhr, status, error) {
-                console.error('Error loading messages:', error);
+        function loadMessages(userId, recipientId) {
+    $.ajax({
+        url: '{{ route('getMessages', [':userId', ':recipientId']) }}'.replace(':userId', userId).replace(':recipientId', recipientId),
+        type: 'GET',
+        success: function(data) {
+            // Очищаем чат
+            $('.chat_main_to, .chat_main_from').remove();
+
+            // Добавляем сообщения в чат
+            for (var i = 0; i < data.length; i++) {
+                addMessageToChat(data[i]);
             }
-        });
-    }
+        },
+        error: function(xhr, status, error) {
+            console.error('Error loading messages:', error);
+        }
+    });
+}
+
+// Вызываем функцию для загрузки сообщений при загрузке страницы
+$(document).ready(function() {
+    // Здесь вам нужно передать userId и recipientId
+    loadMessages(currentActiveUserId, authId);
+});
 
 
 
