@@ -50,30 +50,39 @@ class ChatController extends Controller
 
 
     public function getMessages($userId, $recipientId)
-{
-    $chatId = $this->getChatId($userId, $recipientId);
+    {
+        $chatId = $this->getChatId($userId, $recipientId);
 
-    $messages = Message::whereHas('ChatMessage', function ($query) use ($chatId) {
-        $query->where('chat_id', 'like', $chatId . '%');
-    })
-    ->with('ChatMessage')
-    ->orderBy('id', 'asc')
-    ->orderBy('created_at', 'asc')
-    ->get();
+        $messages = Message::whereHas('ChatMessage', function ($query) use ($chatId) {
+            $query->where('chat_id', 'like', $chatId . '%');
+        })
+        ->with('ChatMessage')
+        ->orderBy('id', 'asc')
+        ->orderBy('created_at', 'asc')
+        ->get();
 
-    $response = [];
-    foreach ($messages as $message) {
-        $chatId = $message->ChatMessage->chat_id;
-        if (!isset($response[$chatId])) {
-            $response[$chatId] = [];
+        $response = [];
+        foreach ($messages as $message) {
+            $chatId = $message->ChatMessage->chat_id;
+            if (!isset($response[$chatId])) {
+                $response[$chatId] = [
+                    'chat_id' => $chatId,
+                    'messages' => []
+                ];
+            }
+            $response[$chatId]['messages'][] = [
+                'id' => $message->id,
+                'sender_id' => $message->sender_id,
+                'recipient_id' => $message->recipient_id,
+                'message' => $message->message,
+                'created_at' => $message->created_at->format('Y-m-d H:i:s')
+            ];
         }
-        $response[$chatId][] = $message;
+
+        ksort($response);
+
+        return response()->json($response);
     }
-
-    ksort($response);
-
-    return response()->json($response);
-}
 
 
 
