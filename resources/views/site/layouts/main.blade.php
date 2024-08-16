@@ -238,7 +238,7 @@ window.onclick = function(event) {
 // Вызываем функцию для загрузки сообщений при загрузке страницы
 $(document).ready(function() {
     // Здесь вам нужно передать userId и recipientId
-    loadMessages(currentActiveUserId, authId);
+    loadMessages(userId, recipientId);
 });
 
 
