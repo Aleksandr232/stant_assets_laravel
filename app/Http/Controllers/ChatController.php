@@ -54,7 +54,8 @@ class ChatController extends Controller
         $chatId = $this->getChatId($recipientId, $senderId);
 
         $messages = Message::where('chat_id', "chat_id{$chatId}")
-            /* ->latest() */
+            ->join('users', 'messages.user_id', '=', 'users.id')
+            ->select('messages.*', 'users.name')
             ->get();
 
         return response()->json($messages);
