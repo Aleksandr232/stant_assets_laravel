@@ -222,7 +222,7 @@ window.onclick = function(event) {
         type: 'GET',
         success: function(data) {
             // Очищаем чат
-            $('.chat_main_to, .chat_main_from').remove();
+            
 
             // Добавляем сообщения в чат
             for (var i = 0; i < data.length; i++) {
