@@ -29,11 +29,11 @@ class ChatController extends Controller
             ->create(array_merge($request->validated(), [
                 'recipient_id' => $recipientId,
                 'sender_id' => $senderId,
-                'chat_id' => 'chat_id' . $chatId . $senderId,
+                'chat_id' => 'chat_id' . $chatId,
             ]));
 
         $chatMessage = $message->ChatMessage()->create([
-            'chat_id' => 'chat_id' . $chatId . $senderId,
+            'chat_id' => 'chat_id' . $chatId,
         ]);
 
         broadcast(new MessageSent($message, $recipientId, $senderId));
