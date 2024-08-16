@@ -371,7 +371,7 @@ $('.toggle-password').each(function() {
         e.preventDefault();
        $('.chat_list').hide();
        $('.chat.profile_chat').show();
-       $('.chat_main').fadeIn();
+       /* $('.chat_main').fadeIn(); */
     });
 
     $('.arrow-back').click(function(e) {
