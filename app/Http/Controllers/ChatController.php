@@ -32,7 +32,7 @@ class ChatController extends Controller
                 'chat_id' => 'chat_id' . $chatId . $senderId,
             ]));
 
-        $chatMessage = $message->chatMessage()->create([
+        $chatMessage = $message->ChatMessage()->create([
             'chat_id' => 'chat_id' . $chatId . $senderId,
         ]);
 
