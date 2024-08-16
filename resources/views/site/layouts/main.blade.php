@@ -222,12 +222,8 @@ window.onclick = function(event) {
         type: 'GET',
         success: function(data) {
             // Очищаем чат
+                addMessageToChat(data);
 
-
-            // Добавляем сообщения в чат
-            for (var i = 0; i < data.length; i++) {
-                addMessageToChat(data[i]);
-            }
         },
         error: function(xhr, status, error) {
             console.error('Error loading messages:', error);
