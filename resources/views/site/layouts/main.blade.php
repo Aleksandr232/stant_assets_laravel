@@ -221,7 +221,20 @@ window.onclick = function(event) {
         url: '{{ route('getMessages', [':userId', ':recipientId']) }}'.replace(':userId', userId).replace(':recipientId', recipientId),
         type: 'GET',
         success: function(data) {
-            
+            // Clear the existing messages
+            $('.chat_main_to').empty();
+            $('.chat_main_from').empty();
+
+            // Iterate through the received messages and append them to the HTML
+            $.each(data, function(index, message) {
+                if (message.user_id === userId) {
+                    // Append the message to the "chat_main_from" div
+                    $('.chat_main_from').append('<div>' + message.message + '</div>');
+                } else {
+                    // Append the message to the "chat_main_to" div
+                    $('.chat_main_to').append('<div>' + message.message + '</div>');
+                }
+            });
         },
         error: function(xhr, status, error) {
             console.error('Error loading messages:', error);
