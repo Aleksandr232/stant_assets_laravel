@@ -144,7 +144,7 @@ window.onclick = function(event) {
             }
         });
 
-
+        
 
         // Получаем активный ID пользователя, когда страница загружается
         var activeUserId = $('.chat_list-item').data('user-id');
@@ -235,11 +235,7 @@ window.onclick = function(event) {
     });
 }
 
-// Вызываем функцию для загрузки сообщений при загрузке страницы
-$(document).ready(function() {
-    // Здесь вам нужно передать userId и recipientId
-    loadMessages(userId, recipientId);
-});
+
 
 
 
