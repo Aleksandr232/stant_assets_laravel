@@ -258,6 +258,10 @@ window.onclick = function(event) {
                     $('.chat_main_to, .chat_main_from').last().after(chatElement);
                 }
             });
+
+            // Scroll to the bottom of the chat
+            var chatContainer = $('.chat_main');
+            chatContainer.scrollTop(chatContainer[0].scrollHeight);
         },
         error: function(xhr, status, error) {
             console.error('Error loading messages:', error);
