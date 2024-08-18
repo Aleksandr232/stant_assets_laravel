@@ -220,7 +220,7 @@ window.onclick = function(event) {
                         addMessageToChat(data);
 
                         // Проигрываем звуковое уведомление
-                        playNotificationSound();
+                        /* playNotificationSound(); */
 
                     }
                 }
