@@ -3950,6 +3950,9 @@ footer {
   position: relative;
   width: 100%;
 }
+chat_main_to-time chat_main_from-time{
+    color: #B0B0B0;
+}
 .feedback_container .review-date {
   position: absolute;
   right: 0;
