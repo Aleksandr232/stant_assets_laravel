@@ -229,34 +229,27 @@ window.onclick = function(event) {
                 var today = new Date();
                 var messageDate = new Date(message.created_at);
 
-                // Check if the message is from the current day
-                if (messageDate.getDate() === today.getDate() &&
-                    messageDate.getMonth() === today.getMonth() &&
-                    messageDate.getFullYear() === today.getFullYear()) {
-                    var chatElement;
-                    var dateElement = null;
-                    var avatarElement = null;
-                    var nameElement = null;
+                var chatElement;
+                var dateElement = null;
+                var avatarElement = null;
+                var nameElement = null;
 
-                    // Check if the message is from the current user
-                    if (message.user_id === authId) {
-                        chatElement = $('<div class="chat_main_to"></div>');
-                    } else if(message.user_id === currentActiveUserId) {
-                        chatElement = $('<div class="chat_main_from"></div>');
-                    }
-
-                    // Show the time only for the first message of the day
-                    if ($('.chat_main_to-date, .chat_main_from-date').length === 0 || $('.chat_main_to-date, .chat_main_from-date').last().text() !== 'Сьогодні о ' + messageDate.getHours() + ':' + messageDate.getMinutes()) {
-                        dateElement = $('<label class="chat_main_to-date chat_main_from-date">Сьогодні о ' + messageDate.getHours() + ':' + messageDate.getMinutes() + '</label>');
-                        chatElement.append(dateElement);
-                    }
-
-                    var messageElement = $('<span data-message-id="' + message.id + '"><p>' + message.message + '</p></span>');
-                    chatElement.append(messageElement);
-
-                    // Append the new message to the bottom of the chat
-                    $('.chat_main_to, .chat_main_from').last().after(chatElement);
+                // Check if the message is from the current user
+                if (message.user_id === authId) {
+                    chatElement = $('<div class="chat_main_to"></div>');
+                } else if(message.user_id === currentActiveUserId) {
+                    chatElement = $('<div class="chat_main_from"></div>');
                 }
+
+                // Show the time for each message
+                dateElement = $('<label class="chat_main_to-date chat_main_from-date">Сьогодні о ' + messageDate.getHours() + ':' + messageDate.getMinutes() + '</label>');
+                chatElement.append(dateElement);
+
+                var messageElement = $('<span data-message-id="' + message.id + '"><p>' + message.message + '</p></span>');
+                chatElement.append(messageElement);
+
+                // Append the new message to the bottom of the chat
+                $('.chat_main_to, .chat_main_from').last().after(chatElement);
             });
 
             // Scroll to the bottom of the chat
