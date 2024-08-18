@@ -326,7 +326,12 @@
 
                 var options = { hour: 'numeric', minute: 'numeric', timeZone: 'Europe/Moscow' };
                 var formattedTime = messageDate.toLocaleString('ru-RU', options);
-                var messageElement = $('<span data-message-id="' + message.id + '"><p>' + message.message + '</p><label class="chat_main_to-time chat_main_from-time">' + formattedTime + '</label></span>');
+                var messageElement = $('<span data-message-id="' + data.message.id + '"><p>' + data.message.message + ' <span class="message-time">(' + formattedTime + ')</span></p></span>');
+                messageElement.find('.message-time').css({
+                    'font-size': '0.6em',
+                    'margin-left': '5px',
+                    'color':'#B0B0B0'
+                });
                 chatElement.append(messageElement);
 
                 // Append the new message to the bottom of the chat
@@ -378,8 +383,9 @@ function addMessageToChat(data) {
         var formattedTime = messageDate.toLocaleString('ru-RU', options);
         var messageElement = $('<span data-message-id="' + data.message.id + '"><p>' + data.message.message + ' <span class="message-time">(' + formattedTime + ')</span></p></span>');
         messageElement.find('.message-time').css({
-            'font-size': '0.8em',
-            'margin-left': '5px'
+            'font-size': '0.6em',
+            'margin-left': '5px',
+            'color':'#B0B0B0'
         });
         chatElement.append(messageElement);
 
