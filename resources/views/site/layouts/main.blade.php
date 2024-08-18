@@ -242,7 +242,9 @@ window.onclick = function(event) {
                 }
 
                 // Show the time for each message
-                dateElement = $('<label class="chat_main_to-date chat_main_from-date">Сьогодні о ' + messageDate.getHours() + ':' + messageDate.getMinutes() + '</label>');
+                var options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', timeZone: 'Europe/Moscow' };
+                var formattedDate = messageDate.toLocaleString('ru-RU', options);
+                dateElement = $('<label class="chat_main_to-date chat_main_from-date">' + formattedDate + '</label>');
                 chatElement.append(dateElement);
 
                 var messageElement = $('<span data-message-id="' + message.id + '"><p>' + message.message + '</p></span>');
