@@ -376,7 +376,11 @@ function addMessageToChat(data) {
         // Show the time in the message
         var options = { hour: 'numeric', minute: 'numeric', timeZone: 'Europe/Moscow' };
         var formattedTime = messageDate.toLocaleString('ru-RU', options);
-        var messageElement = $('<span data-message-id="' + data.message.id + '"><p>' + data.message.message + ' <span class="message-time">' + formattedTime + '</span></p></span>');
+        var messageElement = $('<span data-message-id="' + data.message.id + '"><p>' + data.message.message + ' <span class="message-time">(' + formattedTime + ')</span></p></span>');
+        messageElement.find('.message-time').css({
+            'font-size': '0.8em',
+            'margin-left': '5px'
+        });
         chatElement.append(messageElement);
 
         // Append the new message to the bottom of the chat
