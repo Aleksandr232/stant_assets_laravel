@@ -370,8 +370,8 @@ $('.toggle-password').each(function() {
     $('.chat_list-item').click(function(e) {
         e.preventDefault();
        $('.chat_list').hide();
-       $('.chat.profile_chat').show();
-       $('.chat.profile_chat').fadeIn();
+       $('.chat.profile_chat').slideDown();
+
     });
 
     $('.arrow-back').click(function(e) {
