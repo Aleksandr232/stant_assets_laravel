@@ -129,7 +129,7 @@ window.onclick = function(event) {
 <script>
     var currentActiveUserId;
     var authId;
-    var audio = new Audio('../../../../public/chat/chat.mp3');
+    var audio = new Audio('public/chat/chat.mp3');
 
     $(document).ready(function() {
         // Инициализация Pusher
