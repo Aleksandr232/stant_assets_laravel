@@ -288,7 +288,7 @@
         type: 'GET',
         success: function(data) {
             // Очистить содержимое элемента, где будут отображаться сообщения
-            $('.chat_main_to, .chat_main_from').empty();
+            $('.chat_main').empty();
 
             let prevDate = null;
 
@@ -305,9 +305,9 @@
 
                 // Check if the message is from the current user
                 if (message.user_id === authId) {
-                    chatElement = $('<div class="chat_main_to"></div>');
-                } else if(message.user_id === currentActiveUserId) {
-                    chatElement = $('<div class="chat_main_from"></div>');
+                    chatElement = $(`<div class="chat_main_to"></div>`);
+                } else if (message.user_id === currentActiveUserId) {
+                    chatElement = $(`<div class="chat_main_from"></div>`);
                 }
 
                 // Show the date only if it's different from the previous message
@@ -319,23 +319,23 @@
                     } else {
                         formattedDate = messageDate.toLocaleString('ru-RU', options);
                     }
-                    dateElement = $('<label class="chat_main_to-date chat_main_from-date">' + formattedDate + '</label>');
+                    dateElement = $(`<label class="chat_main_to-date chat_main_from-date">${formattedDate}</label>`);
                     chatElement.append(dateElement);
                     prevDate = messageDate;
                 }
 
                 var options = { hour: 'numeric', minute: 'numeric', timeZone: 'Europe/Moscow' };
                 var formattedTime = messageDate.toLocaleString('ru-RU', options);
-                var messageElement = $('<span data-message-id="' + data.message.id + '"><p>' + data.message.message + ' <span class="message-time">(' + formattedTime + ')</span></p></span>');
+                var messageElement = $(`<span data-message-id="${message.id}"><p>${message.message} <span class="message-time">(${formattedTime})</span></p></span>`);
                 messageElement.find('.message-time').css({
                     'font-size': '0.6em',
                     'margin-left': '5px',
-                    'color':'#B0B0B0'
+                    'color': '#B0B0B0'
                 });
                 chatElement.append(messageElement);
 
                 // Append the new message to the bottom of the chat
-                $('.chat_main_to, .chat_main_from').last().after(chatElement);
+                $('.chat_main').append(chatElement);
             });
 
             // Scroll to the bottom of the chat
