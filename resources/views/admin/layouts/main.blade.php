@@ -375,7 +375,7 @@ function addMessageToChat(data) {
         // Show the date only if it's the first message of the day
         if (prevDate === null || prevDate.getDate() !== messageDate.getDate() || prevDate.getMonth() !== messageDate.getMonth() || prevDate.getFullYear() !== messageDate.getFullYear()) {
             dateElement = $('<label class="chat_main_to-date chat_main_from-date">Сегодня</label>');
-            chatElement.append(dateElement);
+            chatElement.prepend(dateElement);
         }
 
         // Show the time in the message
