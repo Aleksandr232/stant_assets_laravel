@@ -290,6 +290,8 @@
             // Очистить содержимое элемента, где будут отображаться сообщения
             $('.chat_main').empty();
 
+            $('.chat_header_to span').text(data[0].sender_name);
+
             let prevDate = null;
 
             // Iterate through the received messages and append them to the HTML
