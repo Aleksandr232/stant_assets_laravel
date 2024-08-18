@@ -293,6 +293,8 @@ window.onclick = function(event) {
     var today = new Date();
     var messageDate = new Date(data.message.created_at);
 
+    let prevDate = null;
+
     // Check if the message is from the current day
     if (messageDate.getDate() === today.getDate() &&
         messageDate.getMonth() === today.getMonth() &&
