@@ -211,20 +211,42 @@ window.onclick = function(event) {
             /* var channel = pusher.subscribe('chat.' + currentActiveUserId + '-' + authId); */
             /* var channel = pusher.subscribe('private-chat.' + currentActiveUserId + '.' + authId); */
             var channel = pusher.subscribe(getChatChannelName(currentActiveUserId, authId));
-            channel.bind('App\\Events\\MessageSent', function(data) {
-                // Проверяем, является ли текущий пользователь отправителем или получателем сообщения
-                if (data.message.sender_id === authId || data.message.recipient_id === currentActiveUserId) {
-                    // Проверяем, было ли это сообщение уже добавлено в чат
-                    if ($('.chat_main_to, .chat_main_from').find('span[data-message-id="' + data.message.id + '"]').length === 0) {
-                        // Если нет, то добавляем сообщение в чат
-                        addMessageToChat(data);
+            if (Notification.permission === 'granted') {
+                // Если разрешение есть, то можно отображать уведомления
+                channel.bind('App\\Events\\MessageSent', function(data) {
+                    // Проверяем, является ли текущий пользователь отправителем или получателем сообщения
+                    if (data.message.sender_id === authId || data.message.recipient_id === currentActiveUserId) {
+                        // Проверяем, было ли это сообщение уже добавлено в чат
+                        if ($('.chat_main_to, .chat_main_from').find('span[data-message-id="' + data.message.id + '"]').length === 0) {
+                            // Если нет, то добавляем сообщение в чат
+                            addMessageToChat(data);
 
-                        // Проигрываем звуковое уведомление
-                        /* playNotificationSound(); */
-
+                            // Отображаем уведомление
+                            console.log('Новое сообщение от ' + data.message.sender_name + ': ' + data.message.content);
+                        }
                     }
-                }
-            });
+                });
+            } else if (Notification.permission !== 'denied') {
+                // Если разрешение не предоставлено, то запрашиваем его
+                Notification.requestPermission().then(function(permission) {
+                    if (permission === 'granted') {
+                        // Если разрешение предоставлено, то можно отображать уведомления
+                        channel.bind('App\\Events\\MessageSent', function(data) {
+                            // Проверяем, является ли текущий пользователь отправителем или получателем сообщения
+                            if (data.message.sender_id === authId || data.message.recipient_id === currentActiveUserId) {
+                                // Проверяем, было ли это сообщение уже добавлено в чат
+                                if ($('.chat_main_to, .chat_main_from').find('span[data-message-id="' + data.message.id + '"]').length === 0) {
+                                    // Если нет, то добавляем сообщение в чат
+                                    addMessageToChat(data);
+
+                                    // Отображаем уведомление
+                                    onsole.log('Новое сообщение от ' + data.message.sender_name + ': ' + data.message.content);
+                                }
+                            }
+                        });
+                    }
+                });
+            }
 
         });
 
