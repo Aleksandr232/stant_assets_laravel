@@ -129,6 +129,7 @@ window.onclick = function(event) {
 <script>
     var currentActiveUserId;
     var authId;
+    var audio = new Audio('../../../../public/chat/chat.mp3');
 
     $(document).ready(function() {
         // Инициализация Pusher
@@ -218,8 +219,9 @@ window.onclick = function(event) {
                         // Если нет, то добавляем сообщение в чат
                         addMessageToChat(data);
 
-                        // Показываем уведомление о новом сообщении
-                        showNewMessageNotification(data.message.sender_id, data.message.text);
+                        // Проигрываем звуковое уведомление
+                        playNotificationSound();
+
                     }
                 }
             });
@@ -345,22 +347,10 @@ function addMessageToChat(data) {
 }
 
 
-function showNewMessageNotification(senderId, messageText) {
-    // Проверяем, поддерживает ли браузер уведомления
-    if (window.Notification && Notification.permission === 'granted') {
-        // Создаем уведомление
-        new Notification(`Новое сообщение от пользователя ${senderId}`, {
-            body: messageText
-        });
-    } else if (Notification.permission !== 'denied') {
-        // Запрашиваем разрешение на показ уведомлений
-        Notification.requestPermission().then(permission => {
-            if (permission === 'granted') {
-                new Notification(`Новое сообщение от пользователя ${senderId}`, {
-                    body: messageText
-                });
-            }
-        });
+function playNotificationSound() {
+    // Проверяем, поддерживает ли браузер HTML5 Audio API
+    if (audio && audio.play) {
+        audio.play();
     }
 }
 
