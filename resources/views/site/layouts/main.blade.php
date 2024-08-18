@@ -224,10 +224,13 @@ window.onclick = function(event) {
             // Очистить содержимое элемента, где будут отображаться сообщения
             $('.chat_main_to, .chat_main_from').empty();
 
+            let prevDate = null;
+
             // Iterate through the received messages and append them to the HTML
             $.each(data, function(index, message) {
-                var today = new Date();
                 var messageDate = new Date(message.created_at);
+                var today = new Date();
+                today.setHours(0, 0, 0, 0);
 
                 var chatElement;
                 var dateElement = null;
@@ -241,13 +244,23 @@ window.onclick = function(event) {
                     chatElement = $('<div class="chat_main_from"></div>');
                 }
 
-                // Show the time for each message
-                var options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', timeZone: 'Europe/Moscow' };
-                var formattedDate = messageDate.toLocaleString('ru-RU', options);
-                dateElement = $('<label class="chat_main_to-date chat_main_from-date">' + formattedDate + '</label>');
-                chatElement.append(dateElement);
+                // Show the date only if it's different from the previous message
+                if (prevDate === null || messageDate.getDate() !== prevDate.getDate() || messageDate.getMonth() !== prevDate.getMonth() || messageDate.getFullYear() !== prevDate.getFullYear()) {
+                    var options = { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Europe/Moscow' };
+                    var formattedDate;
+                    if (messageDate.getTime() >= today.getTime()) {
+                        formattedDate = 'Сегодня';
+                    } else {
+                        formattedDate = messageDate.toLocaleString('ru-RU', options);
+                    }
+                    dateElement = $('<label class="chat_main_to-date chat_main_from-date">' + formattedDate + '</label>');
+                    chatElement.append(dateElement);
+                    prevDate = messageDate;
+                }
 
-                var messageElement = $('<span data-message-id="' + message.id + '"><p>' + message.message + '</p></span>');
+                var options = { hour: 'numeric', minute: 'numeric', timeZone: 'Europe/Moscow' };
+                var formattedTime = messageDate.toLocaleString('ru-RU', options);
+                var messageElement = $('<span data-message-id="' + message.id + '"><p>' + message.message + '</p><label class="chat_main_to-time chat_main_from-time">' + formattedTime + '</label></span>');
                 chatElement.append(messageElement);
 
                 // Append the new message to the bottom of the chat
