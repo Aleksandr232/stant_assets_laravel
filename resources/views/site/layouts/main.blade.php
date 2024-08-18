@@ -240,7 +240,7 @@ window.onclick = function(event) {
                                     addMessageToChat(data);
 
                                     // Отображаем уведомление
-                                    onsole.log('Новое сообщение от ' + data.message.sender_name + ': ' + data.message.content);
+                                    console.log('Новое сообщение от ' + data.message.sender_name + ': ' + data.message.content);
                                 }
                             }
                         });
