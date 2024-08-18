@@ -217,11 +217,16 @@ window.onclick = function(event) {
                     if ($('.chat_main_to, .chat_main_from').find('span[data-message-id="' + data.message.id + '"]').length === 0) {
                         // Если нет, то добавляем сообщение в чат
                         addMessageToChat(data);
+
+                        // Показываем уведомление о новом сообщении
+                        showNewMessageNotification(data.message.sender_id, data.message.text);
                     }
                 }
             });
 
         });
+
+
 
         function loadMessages(userId, recipientId) {
     $.ajax({
@@ -336,6 +341,26 @@ function addMessageToChat(data) {
 
         // Update the prevDate variable
         prevDate = messageDate;
+    }
+}
+
+
+function showNewMessageNotification(senderId, messageText) {
+    // Проверяем, поддерживает ли браузер уведомления
+    if (window.Notification && Notification.permission === 'granted') {
+        // Создаем уведомление
+        new Notification(`Новое сообщение от пользователя ${senderId}`, {
+            body: messageText
+        });
+    } else if (Notification.permission !== 'denied') {
+        // Запрашиваем разрешение на показ уведомлений
+        Notification.requestPermission().then(permission => {
+            if (permission === 'granted') {
+                new Notification(`Новое сообщение от пользователя ${senderId}`, {
+                    body: messageText
+                });
+            }
+        });
     }
 }
 
