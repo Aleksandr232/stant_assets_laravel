@@ -350,21 +350,22 @@
 
 
 
+var prevDate = null; // Переменная для хранения даты предыдущего сообщения
+
 function addMessageToChat(data) {
     // Get the current date
     var today = new Date();
     var messageDate = new Date(data.message.created_at);
-    var prevDate = null; // Переменная для хранения даты предыдущего сообщения
+
+    var chatElement;
+    var dateElement = null;
+    var avatarElement = null;
+    var nameElement = null;
 
     // Check if the message is from the current day
     if (messageDate.getDate() === today.getDate() &&
         messageDate.getMonth() === today.getMonth() &&
         messageDate.getFullYear() === today.getFullYear()) {
-        var chatElement;
-        var dateElement = null;
-        var avatarElement = null;
-        var nameElement = null;
-
         // Check if the message is from the current user
         if (data.message.user_id === authId) {
             chatElement = $('<div class="chat_main_to"></div>');
