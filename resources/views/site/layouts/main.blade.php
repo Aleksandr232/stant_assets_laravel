@@ -260,7 +260,7 @@ window.onclick = function(event) {
 
                 var options = { hour: 'numeric', minute: 'numeric', timeZone: 'Europe/Moscow' };
                 var formattedTime = messageDate.toLocaleString('ru-RU', options);
-                var messageElement = $('<span data-message-id="' + message.id + '"><p>' + message.message + '</p><label class="chat_main_to-time chat_main_from-time">' + formattedTime + '</label></span>');
+                var messageElement = $('<div class="message-container"><p>' + message.message + '</p><label class="message-time">' + formattedTime + '</label></div>');
                 chatElement.append(messageElement);
 
                 // Append the new message to the bottom of the chat
