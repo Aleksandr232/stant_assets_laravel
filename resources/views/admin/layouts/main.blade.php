@@ -374,7 +374,9 @@ function addMessageToChat(data) {
         }
 
         // Show the time under each message
-        var timeElement = $('<label class="chat_main_to-time chat_main_from-time">' + messageDate.getHours() + ':' + (messageDate.getMinutes() < 10 ? '0' + messageDate.getMinutes() : messageDate.getMinutes()) + '</label>');
+        var options = { hour: 'numeric', minute: 'numeric', timeZone: 'Europe/Moscow' };
+        var formattedTime = messageDate.toLocaleString('ru-RU', options);
+        var timeElement = $('<label class="chat_main_to-time chat_main_from-time">' + formattedTime + '</label>');
         chatElement.append(timeElement);
 
         var messageElement = $('<span data-message-id="' + data.message.id + '"><p>' + data.message.message + '</p></span>');
@@ -387,6 +389,7 @@ function addMessageToChat(data) {
         prevDate = messageDate;
     }
 }
+
 
 
 });
