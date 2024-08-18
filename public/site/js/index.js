@@ -369,7 +369,7 @@ $('.toggle-password').each(function() {
 
     $('.chat_list-item').click(function(e) {
         e.preventDefault();
-        $('.chat_list').slideUp(500); // скорость анимации 500 мс
+        $('.chat_list').hide(); // скорость анимации 500 мс
         $('.chat.profile_chat').delay(500).slideDown(500);
     });
 
