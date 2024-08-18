@@ -126,7 +126,7 @@
                     </svg>
                   </div>
                 {{-- <img src="https://content.freelancehunt.com/profile/photo/225/bonzaznob.png"/> --}}
-                <span>Admin</span>
+                {{-- <span>Admin</span> --}}
             </span>
             <span class="chat_header-underline"></span>
             </div>
