@@ -69,7 +69,7 @@ class AccountController extends Controller
         $user = Auth::user();
 
         $request->validate([
-            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'avatar' => 'required',
         ]);
 
         if ($request->hasFile('avatar')) {
@@ -80,10 +80,10 @@ class AccountController extends Controller
 
             $avatar = $request->file('avatar');
             $avatarName = time() . '.' . $avatar->getClientOriginalExtension();
-            $avatarPath = 'avatars/' . $avatarName;
+            $avatarPath = 'img/' . $avatarName;
 
             // Сохраняем аватар в системе хранения
-            Storage::disk('public')->put($avatarPath, file_get_contents($avatar));
+            Storage::disk('avatars')->put($avatarPath, file_get_contents($avatar));
 
             $user->avatar = $avatarPath;
             $user->save();
