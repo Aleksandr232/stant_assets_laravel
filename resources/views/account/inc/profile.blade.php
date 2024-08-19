@@ -1,7 +1,16 @@
 <section class="profile">
     <aside class="profile_side" id="account">
         <span class="profile_side-name">
+            <div id="modal_avatar" class="modal">
+                <div class="modal-content">
+                  <span class="close-button">&times;</span>
+                  <h2>Добавить аватар</h2>
+                  <input type="file" id="avatar-input">
+                  <button id="save-avatar">Сохранить</button>
+                </div>
+              </div>
             <img src="{{ asset('site/assets/images/profile/profileIcon.png')}}"/>
+
 
             <span>Привет,<br/><span class="nickname">{{$user->name}}</span></span>
 

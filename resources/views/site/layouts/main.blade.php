@@ -64,7 +64,36 @@
             submitButton.textContent = 'Создать';
         });
     </script>
+    <script>
+        $(document).ready(function() {
+  const $modal = $("#modal_avatar");
+  const $profileSideName = $(".profile_side-name");
+  const $closeButton = $(".close-button");
+  const $saveAvatarButton = $("#save-avatar");
+  const $avatarInput = $("#avatar-input");
 
+  $profileSideName.on("click", function() {
+    $modal.css("display", "block");
+  });
+
+  $closeButton.on("click", function() {
+    $modal.css("display", "none");
+  });
+
+  $(window).on("click", function(event) {
+    if (event.target == $modal[0]) {
+      $modal.css("display", "none");
+    }
+  });
+
+  $saveAvatarButton.on("click", function() {
+    const file = $avatarInput[0].files[0];
+    // Здесь вы можете добавить логику для сохранения аватара на сервере
+    console.log("Аватар сохранен:", file);
+    $modal.css("display", "none");
+  });
+});
+    </script>
 
    <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -234,7 +263,7 @@ window.onclick = function(event) {
             // Очистить содержимое элемента, где будут отображаться сообщения
             $('.chat_main').empty();
 
-            
+
             $('.chat_header_to span').text(data[0].recipient_name);
 
             let prevDate = null;
