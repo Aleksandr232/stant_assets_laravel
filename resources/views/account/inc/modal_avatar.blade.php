@@ -2,10 +2,13 @@
     <div class="modal-content">
       <span class="close-button">&times;</span>
       <h2>Добавить аватар</h2>
-      <div class="user-image">
-        <img  src="{{ asset('site/assets/images/profile/profileIcon.png')}}" alt="Аватар пользователя" id="user-avatar">
-        <input type="file" id="avatar-input" class="hidden">
-      </div>
-      <button id="save-avatar">Сохранить</button>
+      <form action="{{ route('addAvatar') }}" method="post">
+        @csrf
+            <div class="user-image">
+                <img  src="{{ asset('site/assets/images/profile/profileIcon.png')}}" alt="Аватар пользователя" id="user-avatar">
+                <input type="file" id="avatar-input" class="hidden">
+            </div>
+            <button type="submit" id="save-avatar">Сохранить</button>
+    </form>
     </div>
 </div>

@@ -62,4 +62,32 @@ class AccountController extends Controller
 
         return redirect()->route('account')->with('success', 'Баланс пополнен');
     }
+
+    public function addAvatar(Request $request)
+    {
+        $user = Auth::user();
+
+        $request->validate([
+            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        if ($request->hasFile('avatar')) {
+            // Удаляем старый аватар, если он существует
+            if ($user->avatar) {
+                Storage::delete($user->avatar);
+            }
+
+            $avatar = $request->file('avatar');
+            $avatarName = time() . '.' . $avatar->getClientOriginalExtension();
+            $avatarPath = 'avatars/' . $avatarName;
+
+            // Сохраняем аватар в системе хранения
+            Storage::disk('public')->put($avatarPath, file_get_contents($avatar));
+
+            $user->avatar = $avatarPath;
+            $user->save();
+        }
+
+        return redirect()->route('account')->with('success', 'Аватар успешно обновлен.');
+    }
 }
