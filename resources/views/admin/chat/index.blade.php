@@ -14,7 +14,7 @@
             <a href="" class="chat_list-item" data-user-id="{{ $post->id }}" data-auth-id="{{ $authUsersId }}">
                 <span class="chat_list-item-left">
                     @if($post->avatar)
-                        <img style="border-radius: 30px;" src="{{ asset('avatars/' . $post->avatar) }}"/>
+                        <img style="border-radius: 25px;" src="{{ asset('avatars/' . $post->avatar) }}"/>
                     @else
                         <img src="{{ asset('site/assets/images/profile/profileIcon.png') }}"/>
                     @endif
