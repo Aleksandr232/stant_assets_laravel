@@ -6,7 +6,7 @@
         @csrf
             <div class="user-image">
                 <img  src="{{ asset('site/assets/images/profile/profileIcon.png')}}" alt="Аватар пользователя" id="user-avatar">
-                <input type="file" id="avatar-input" class="hidden">
+                <input name="avatar" type="file" id="avatar-input" class="hidden">
             </div>
             <button type="submit" id="save-avatar">Сохранить</button>
     </form>
