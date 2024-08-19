@@ -1,14 +1,6 @@
 <section class="profile">
     <aside class="profile_side" id="account">
         <span class="profile_side-name">
-            <div id="modal_avatar" class="modal">
-                <div class="modal-content">
-                  <span class="close-button">&times;</span>
-                  <h2>Добавить аватар</h2>
-                  <input type="file" id="avatar-input">
-                  <button id="save-avatar">Сохранить</button>
-                </div>
-              </div>
             <img src="{{ asset('site/assets/images/profile/profileIcon.png')}}"/>
 
 
@@ -162,6 +154,7 @@
 
    @include('account.inc.table_product')
    @include('account.inc.modal_balance')
+   @include('account.inc.modal_avatar')
 
     <div class="profile_settings">
         <div class="profile_settings-item">
