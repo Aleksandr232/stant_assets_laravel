@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Message;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 
 class AccountController extends Controller
