@@ -71,6 +71,16 @@
   const $closeButton = $(".close-button");
   const $saveAvatarButton = $("#save-avatar");
   const $avatarInput = $("#avatar-input");
+  const $userAvatar = $("#user-avatar");
+
+    $userAvatar.on("click", function() {
+    $avatarInput.click();
+    });
+
+    $avatarInput.on("change", function() {
+    const file = this.files[0];
+    $userAvatar.attr("src", URL.createObjectURL(file));
+    });
 
   $profileSideName.on("click", function() {
     $modal.css("display", "block");
