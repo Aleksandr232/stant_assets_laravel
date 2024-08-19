@@ -2,7 +2,7 @@
     <aside class="profile_side" id="account">
         <span class="profile_side-name">
             @if($user->avatar)
-                <img src="{{ asset('avatars/' . $user->avatar) }}"/>
+                <img style="border-radius: 10px;" src="{{ asset('avatars/' . $user->avatar) }}"/>
             @else
                 <img src="{{ asset('site/assets/images/profile/profileIcon.png') }}"/>
             @endif
