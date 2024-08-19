@@ -75,7 +75,7 @@ class AccountController extends Controller
         if ($request->hasFile('avatar')) {
             // Удаляем старый аватар, если он существует
             if ($user->avatar) {
-                Storage::delete($user->avatar);
+                Storage::disk('avatars')->delete($user->avatar);
             }
 
             $avatar = $request->file('avatar');
