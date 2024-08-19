@@ -12,20 +12,29 @@
                 <div id="success-message" style="color:#06B25F">
                     {{ session('success') }}
                 </div>
+                <script>
+                    window.addEventListener('load', function() {
+                        var successMessage = document.getElementById('success-message');
+                        if (successMessage) {
+                            setTimeout(function() {
+                                successMessage.style.display = 'none';
+                            }, 5000);
+                        }
+                    });
+                </script>
             @elseif(session()->has('error'))
                 <div id="success-message" style="color:red">
                     {{ session('error') }}
                 </div>
                 <script>
-                    // Получаем элемент сообщения
-                    var successMessage = document.getElementById('success-message');
-
-                    // Если сообщение существует, то скрываем его через 5 секунд
-                    if (successMessage) {
-                        setTimeout(function() {
-                            successMessage.style.display = 'none';
-                        }, 5000); // 5000 миллисекунд = 5 секунд
-                    }
+                    window.addEventListener('load', function() {
+                        var successMessage = document.getElementById('success-message');
+                        if (successMessage) {
+                            setTimeout(function() {
+                                successMessage.style.display = 'none';
+                            }, 5000);
+                        }
+                    });
                 </script>
             @endif
         </span>
