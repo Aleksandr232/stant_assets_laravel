@@ -20,7 +20,7 @@ class PoliticsController extends Controller
      */
     public function create_politics(Request $request)
     {
-        $politics = Politics::findOrFail(1); // Предполагается, что ID политики равен 1
+        $politics = Politics::firstOrNew(['id' => 1]); // Предполагается, что ID политики равен 1
 
         $politics->content_politics = $request->content_politics;
         $politics->save();
