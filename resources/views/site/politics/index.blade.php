@@ -7,12 +7,21 @@
 @section('content')
 <div class="container-politics">
     <div class="row-politics">
-        <div class="col-politics">
+        <div class="col-politics" id="politics">
             <h1 class="title-politics">Политика конфиденциальности</h1>
             {!! $politics->content_politics !!}
         </div>
     </div>
+    @if(isset($scrollToPolitics) && $scrollToPolitics)
+<script>
+    window.onload = function() {
+        var scroll = document.getElementById('politics');
+        scroll.scrollIntoView({ behavior: 'smooth' });
+    };
+</script>
+@endif
 </div>
+
 @endsection
 
 @section('footer_desc')
@@ -22,3 +31,5 @@
 @section('footer')
     @include('site.inc.footer_home')
 @endsection
+
+

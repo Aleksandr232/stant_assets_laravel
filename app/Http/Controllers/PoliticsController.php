@@ -36,7 +36,7 @@ class PoliticsController extends Controller
 
         $category = Category::all();
 
-        return view('site.politics.index', compact('politics', 'category'));
+        return view('site.politics.index', compact('politics', 'category'),['scrollToPolitics' => true]);
     }
 
 
