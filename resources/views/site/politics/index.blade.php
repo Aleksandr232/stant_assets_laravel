@@ -4,9 +4,9 @@
 
 @section('description', 'WebSite')
 
-@section('content')
+{{-- @section('content')
     @include('site.inc.main')
-@endsection
+@endsection --}}
 
 @section('footer_desc')
     @include('site.inc.footer__home_desc')
