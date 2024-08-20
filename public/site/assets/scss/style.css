@@ -3965,10 +3965,15 @@ footer {
     width: 100%;
 }
 
+.col-politics p{
+    color: black;
+}
+
 .title-politics {
     margin-bottom: 30px;
     font-size: 32px;
     font-weight: bold;
+    color: #000;
 }
 chat_main_to-time chat_main_from-time{
     color: #B0B0B0;
