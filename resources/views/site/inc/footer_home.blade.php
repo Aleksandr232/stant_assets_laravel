@@ -99,7 +99,7 @@
         </div>
         <div class="footer__line__right">
             <div class="links">
-                <a href="{{ route('politics/1')}}">Privacy policy</a>
+                <a href="{{ route('politics', 1)}}">Privacy policy</a>
                 <a href="">Cookies policy</a>
             </div>
         </div>
