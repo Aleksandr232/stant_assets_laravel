@@ -3950,6 +3950,26 @@ footer {
   position: relative;
   width: 100%;
 }
+.container-politics {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.row-politics {
+    display: flex;
+    justify-content: center;
+}
+
+.col-politics {
+    width: 100%;
+}
+
+.title-politics {
+    margin-bottom: 30px;
+    font-size: 32px;
+    font-weight: bold;
+}
 chat_main_to-time chat_main_from-time{
     color: #B0B0B0;
 }

@@ -5,10 +5,10 @@
 @section('description', 'WebSite')
 
 @section('content')
-<div class="container content-politics">
-    <div class="row">
-        <div class="col-12 col-md-8 offset-md-2">
-            <h1 class="mb-4">Политика конфиденциальности</h1>
+<div class="container-politics">
+    <div class="row-politics">
+        <div class="col-politics">
+            <h1 class="title-politics">Политика конфиденциальности</h1>
             {!! $politics->content_politics !!}
         </div>
     </div>
