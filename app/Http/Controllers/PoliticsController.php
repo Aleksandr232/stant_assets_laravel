@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Politics;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class PoliticsController extends Controller
@@ -32,7 +33,9 @@ class PoliticsController extends Controller
 
         $politics = Politics::query()->find($id);
 
-        return view('site.politics.index', compact('politics'));
+        $category = Category::all();
+
+        return view('site.politics.index', compact('politics', 'category'));
     }
 
 
