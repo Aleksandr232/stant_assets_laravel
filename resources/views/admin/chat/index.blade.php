@@ -20,7 +20,9 @@
                     @endif
                     <span>
                         <label>{{ $post->name }}</label>
-                        <p>Dinner</p>
+                        @foreach($message->where('user_id', '!=', $authUsersId)->latest() as $post)
+                            <p>{{ $post->message }}</p>
+                        @endforeach
                     </span>
                 </span>
                 <span class="chat_list-item-right">
