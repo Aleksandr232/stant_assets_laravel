@@ -9,6 +9,7 @@
         <div  class="chat_list">
             @php
                 $authUsersId = auth()->user()->id;
+                $latestMessage = $message->where('user_id', '!=', $authUsersId)->sortByDesc('created_at')->first();
             @endphp
             @foreach($chat as $post)
             <a href="" class="chat_list-item" data-user-id="{{ $post->id }}" data-auth-id="{{ $authUsersId }}">
@@ -20,9 +21,9 @@
                     @endif
                     <span>
                         <label>{{ $post->name }}</label>
-                        @foreach($message->where('user_id', '!=', $authUsersId)->sortByDesc('created_at') as $post)
-                            <p>{{ $post->message }}</p>
-                        @endforeach
+                        @if($latestMessage)
+                            <p>{{ $latestMessage->message }}</p>
+                        @endif
                     </span>
                 </span>
                 <span class="chat_list-item-right">
