@@ -24,8 +24,8 @@
                     </span>
                 </span>
                 <span class="chat_list-item-right">
-                    <span>Today, 8:56pm</span>
-                    <div class="chat_list-item-right-messages"></div>
+                    {{-- <span>Today, 8:56pm</span> --}}
+                    {{-- <div class="chat_list-item-right-messages"></div> --}}
                 </span>
             </a>
             @endforeach
