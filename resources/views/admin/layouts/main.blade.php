@@ -7,6 +7,7 @@
   <title>@yield('title')</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('admin_panel/css/chat.css')}}?v={{ time() }}">
@@ -43,6 +44,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
 <script src="{{ asset('site/js/index.js')}}?v={{ time() }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
@@ -269,6 +271,27 @@
             /* var channel = pusher.subscribe('chat.' + currentActiveUserId + '-' + authId); */
             /* var channel = pusher.subscribe('private-chat.' + currentActiveUserId + '.' + authId); */
             var channel = pusher.subscribe(getChatChannelName(currentActiveUserId, authId));
+            var shownNotifications = {};
+
+            channel.bind('App\\Events\\MessageSent', function(data) {
+                // Проверяем, является ли текущий пользователь отправителем или получателем сообщения
+                if (data.message.sender_id === currentActiveUserId  || data.message.recipient_id === authId) {
+                    // Проверяем, было ли это сообщение уже добавлено в чат
+                    if ($('.chat_main_to, .chat_main_from').find('span[data-message-id="' + data.message.id + '"]').length === 0) {
+                        // Если нет, то добавляем сообщение в чат
+                        addMessageToChat(data);
+                    }
+
+                    // Проверяем, было ли уже показано уведомление для этого сообщения
+                    if (data.message.user_id === currentActiveUserId && !shownNotifications[data.message.id]) {
+                        // Показываем уведомление с помощью Toastr
+                        toastr.info(data.message.message, 'Новое сообщение');
+                        // Отмечаем, что уведомление было показано
+                        shownNotifications[data.message.id] = true;
+                    }
+                }
+            });
+            /* var channel = pusher.subscribe(getChatChannelName(currentActiveUserId, authId));
             channel.bind('App\\Events\\MessageSent', function(data) {
                 // Проверяем, является ли текущий пользователь отправителем или получателем сообщения
                 if (data.message.sender_id === currentActiveUserId || data.message.recipient_id === authId ) {
@@ -278,7 +301,7 @@
                         addMessageToChat(data);
                     }
                 }
-            });
+            }); */
 
         });
 
