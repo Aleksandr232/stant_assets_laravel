@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Blog;
+use App\Models\Text;
 use Illuminate\Http\Request;
 
 class HomePageController extends Controller
@@ -42,9 +43,10 @@ class HomePageController extends Controller
     $product = $query->paginate(5);
     $category = Category::all();
     $blog = Blog::all();
+    $text = Text::all();
 
 
-        return view('site.page.index', compact('category', 'product', 'blog'), ['scrollToFilter' => true], ['scrollToFilterMobile' => true] );
+        return view('site.page.index', compact('category', 'product', 'blog', 'text'), ['scrollToFilter' => true], ['scrollToFilterMobile' => true] );
     }
 
 

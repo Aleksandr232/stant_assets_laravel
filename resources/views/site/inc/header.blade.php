@@ -84,12 +84,10 @@
 
     <div class="main-page">
         <div class="main-page-head">
-            <h1>Namesite - биржа игровых ценностей</h1>
-            <p>Name site это: Name site это: Name site это: Name site это: Name site это: Name site это: Name
-                site это: Name site это: Name site это: Name site это: Name site это: Name site это: Name site
-                это: Name site это: Name site это: Name site это: Name site это: Name site это: Name site это:
-                Name site это: Name site это: Name site это: Name site это: Name site это: Name site это: Name
-                site это: Name site это: Name site это: Name site это:</p>
+            @foreach ($text as $post)
+            <h1>{{$post->text_h1}}</h1>
+            <p>{{$post->text_p}}</p>
+            @endforeach
         </div>
 
         <div class="main-page-footer">
