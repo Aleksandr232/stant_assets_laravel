@@ -426,3 +426,26 @@
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="h1Modal" tabindex="-1" aria-labelledby="h1ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="platformModalLabel">Добавить загаловок</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Форма для добавления категории -->
+          <form  method="post" action="#">
+            @csrf
+            <div class="mb-3">
+              <label for="categoryName" class="form-label">Загаловок</label>
+              <input type="text" name="text_h1" class="form-control"  placeholder="Введите название ">
+
+            </div>
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
