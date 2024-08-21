@@ -272,7 +272,6 @@
             /* var channel = pusher.subscribe('private-chat.' + currentActiveUserId + '.' + authId); */
             var channel = pusher.subscribe(getChatChannelName(currentActiveUserId, authId));
             var shownNotifications = {};
-            var lastNotificationTime = null;
 
             channel.bind('App\\Events\\MessageSent', function(data) {
                 // Проверяем, является ли текущий пользователь отправителем или получателем сообщения
@@ -285,16 +284,10 @@
 
                     // Проверяем, было ли уже показано уведомление для этого сообщения
                     if (data.message.user_id === currentActiveUserId && !shownNotifications[data.message.id]) {
-                        // Проверяем, прошло ли достаточно времени с момента последнего показанного уведомления
-                        var currentTime = new Date().getTime();
-                        if (lastNotificationTime === null || currentTime - lastNotificationTime >= 5000) { // 5 секунд
-                            // Показываем уведомление с помощью Toastr
-                            toastr.info(data.message.message, 'Новое сообщение');
-                            // Отмечаем, что уведомление было показано
-                            shownNotifications[data.message.id] = true;
-                            // Сохраняем время последнего показанного уведомления
-                            lastNotificationTime = currentTime;
-                        }
+                        // Показываем уведомление с помощью Toastr
+                        toastr.info(data.message.message, 'Новое сообщение');
+                        // Отмечаем, что уведомление было показано
+                        shownNotifications[data.message.id] = true;
                     }
                 }
             });
