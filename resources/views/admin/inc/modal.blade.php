@@ -436,12 +436,12 @@
         </div>
         <div class="modal-body">
           <!-- Форма для добавления категории -->
-          <form  method="post" action="#">
+          <form  method="post" action="{{ route('storeText') }}">
             @csrf
             <div class="mb-3">
               <label for="categoryName" class="form-label">Загаловок</label>
               <input type="text" name="text_h1" class="form-control"  placeholder="Введите название ">
-
+              <textarea name="text_p" id="text_textarea" cols="30" rows="10"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Сохранить</button>
           </form>

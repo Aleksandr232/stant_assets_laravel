@@ -115,6 +115,20 @@
         ['view', ['fullscreen', 'codeview', 'help']]
       ]
     });
+    $('#text_textarea').summernote({
+      placeholder: 'Введите текст',
+      tabsize: 2,
+      height: 120,
+      toolbar: [
+        ['style', ['style']],
+        ['font', ['bold', 'underline', 'clear']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['table', ['table']],
+        ['insert', ['link', 'picture', 'video']],
+        ['view', ['fullscreen', 'codeview', 'help']]
+      ]
+    });
   </script>
   <script>
     $(document).ready(function() {
@@ -318,7 +332,7 @@
                 var avatarElement = null;
                 var nameElement = null;
 
-                
+
 
                 // Check if the message is from the current user
                 if (message.user_id === authId) {

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('texts', function (Blueprint $table) {
             $table->id();
             $table->text('text_h1');
+            $table->text('text_p');
             $table->timestamps();
         });
     }

@@ -18,6 +18,7 @@ use App\Http\Controllers\DataUserController;
 use App\Http\Controllers\PlatformController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ChatAdminController;
+use App\Http\Controllers\AddTextController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +57,7 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::resource('/users', DataUserController::class);
     Route::resource('/platform', PlatformController::class);
     Route::resource('/chat', ChatAdminController::class);
+    Route::post('/update-text', [AddTextController::class, 'storeText'])->name('storeText');
     Route::post('/send-message/{id}/{userId}', [ChatController::class, 'sendMessage'])->name('sendMessageAdmin');
     Route::get('/chat/{userId}/{recipientId}', [ChatController::class, 'getMessages'])->name('getMessagesAdmin');
     Route::get('/user/{id}/data', [DataUserController::class, 'data'])->name('data');

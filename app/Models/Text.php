@@ -10,6 +10,7 @@ class Text extends Model
     use HasFactory;
 
     protected $fillable = [
-        'text_h1'
+        'text_h1',
+        'text_p'
     ];
 }
