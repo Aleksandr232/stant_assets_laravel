@@ -20,7 +20,7 @@
                     @endif
                     <span>
                         <label>{{ $post->name }}</label>
-                        {{-- <p>Dinner</p> --}}
+                        <p>Dinner</p>
                     </span>
                 </span>
                 <span class="chat_list-item-right">
