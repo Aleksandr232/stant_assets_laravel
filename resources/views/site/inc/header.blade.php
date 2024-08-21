@@ -86,7 +86,7 @@
         <div class="main-page-head">
             @foreach ($text as $post)
             <h1>{{$post->text_h1}}</h1>
-            <p>{{$post->text_p}}</p>
+            <p>{!!$post->text_p !!}</p>
             @endforeach
         </div>
 
