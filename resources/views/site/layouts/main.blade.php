@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <!-- Add the slick-theme.css if you want default styling -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 </head>
 
 <body>
@@ -36,6 +36,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/laravel-echo/dist/echo.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="{{ asset('site/js/share.js') }}"></script>
    {{--  <script src="{{ mix('js/app.js') }}"></script> --}}
     <script src="{{ asset('site/js/index.js')}}?v={{ time() }}"></script>
@@ -259,7 +260,15 @@ window.onclick = function(event) {
                     if ($('.chat_main_to, .chat_main_from').find('span[data-message-id="' + data.message.id + '"]').length === 0) {
                         // Если нет, то добавляем сообщение в чат
                         addMessageToChat(data);
+
+                        // Показываем уведомление с помощью Toastr
+
                     }
+                }
+
+                if (data.message.recipient_id === currentActiveUserId ) {
+                    // Проверяем, было ли это сообщение уже добавлено в чат
+                    toastr.info(data.message.text, 'Новое сообщение');
                 }
             });
 
