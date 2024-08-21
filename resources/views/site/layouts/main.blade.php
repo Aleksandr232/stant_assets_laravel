@@ -253,6 +253,8 @@ window.onclick = function(event) {
             /* var channel = pusher.subscribe('chat.' + currentActiveUserId + '-' + authId); */
             /* var channel = pusher.subscribe('private-chat.' + currentActiveUserId + '.' + authId); */
             var channel = pusher.subscribe(getChatChannelName(currentActiveUserId, authId));
+            var shownNotifications = {};
+
             channel.bind('App\\Events\\MessageSent', function(data) {
                 // Проверяем, является ли текущий пользователь отправителем или получателем сообщения
                 if (data.message.sender_id === authId || data.message.recipient_id === currentActiveUserId) {
@@ -260,13 +262,15 @@ window.onclick = function(event) {
                     if ($('.chat_main_to, .chat_main_from').find('span[data-message-id="' + data.message.id + '"]').length === 0) {
                         // Если нет, то добавляем сообщение в чат
                         addMessageToChat(data);
-
-
                     }
                 }
-                if (data.message.user_id === currentActiveUserId) {
+
+                // Проверяем, было ли уже показано уведомление для этого сообщения
+                if (data.message.user_id === currentActiveUserId && !shownNotifications[data.message.id]) {
                     // Показываем уведомление с помощью Toastr
                     toastr.info(data.message.message, 'Новое сообщение');
+                    // Отмечаем, что уведомление было показано
+                    shownNotifications[data.message.id] = true;
                 }
             });
 
