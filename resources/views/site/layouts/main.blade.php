@@ -262,7 +262,7 @@ window.onclick = function(event) {
                         addMessageToChat(data);
 
                         // Показываем уведомление с помощью Toastr
-                        if (data.message.recipient_id === currentActiveUserId) {
+                        if (data.message.sender_id === authId) {
                             toastr.info(data.message.message, 'Новое сообщение');
                         }
                     }
