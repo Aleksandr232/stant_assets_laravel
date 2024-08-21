@@ -318,13 +318,7 @@
                 var avatarElement = null;
                 var nameElement = null;
 
-                if (message.user_id === authId) {
-                    chatElement = $('<span class="chat_list-item-right"></span>');
-                    chatElement.append('<span><p>' + message.message + '</p></span>');
-                } else if (message.user_id === currentActiveUserId) {
-                    chatElement = $('<span class="chat_list-item-left"></span>');
-                    chatElement.append('<span><label>' + message.sender_name + '</label><p>' + message.message + '</p></span>');
-                }
+                
 
                 // Check if the message is from the current user
                 if (message.user_id === authId) {
