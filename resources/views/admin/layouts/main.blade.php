@@ -272,10 +272,11 @@
             /* var channel = pusher.subscribe('private-chat.' + currentActiveUserId + '.' + authId); */
             var channel = pusher.subscribe(getChatChannelName(currentActiveUserId, authId));
             var shownNotifications = {};
+            var lastNotificationTime = null;
 
             channel.bind('App\\Events\\MessageSent', function(data) {
                 // Проверяем, является ли текущий пользователь отправителем или получателем сообщения
-                if (data.message.sender_id === currentActiveUserId  || data.message.recipient_id === authId) {
+                if (data.message.sender_id === authId || data.message.recipient_id === currentActiveUserId) {
                     // Проверяем, было ли это сообщение уже добавлено в чат
                     if ($('.chat_main_to, .chat_main_from').find('span[data-message-id="' + data.message.id + '"]').length === 0) {
                         // Если нет, то добавляем сообщение в чат
@@ -284,24 +285,20 @@
 
                     // Проверяем, было ли уже показано уведомление для этого сообщения
                     if (data.message.user_id === currentActiveUserId && !shownNotifications[data.message.id]) {
-                        // Показываем уведомление с помощью Toastr
-                        toastr.info(data.message.message, 'Новое сообщение');
-                        // Отмечаем, что уведомление было показано
-                        shownNotifications[data.message.id] = true;
+                        // Проверяем, прошло ли достаточно времени с момента последнего показанного уведомления
+                        var currentTime = new Date().getTime();
+                        if (lastNotificationTime === null || currentTime - lastNotificationTime >= 5000) { // 5 секунд
+                            // Показываем уведомление с помощью Toastr
+                            toastr.info(data.message.message, 'Новое сообщение');
+                            // Отмечаем, что уведомление было показано
+                            shownNotifications[data.message.id] = true;
+                            // Сохраняем время последнего показанного уведомления
+                            lastNotificationTime = currentTime;
+                        }
                     }
                 }
             });
-            /* var channel = pusher.subscribe(getChatChannelName(currentActiveUserId, authId));
-            channel.bind('App\\Events\\MessageSent', function(data) {
-                // Проверяем, является ли текущий пользователь отправителем или получателем сообщения
-                if (data.message.sender_id === currentActiveUserId || data.message.recipient_id === authId ) {
-                    // Проверяем, было ли это сообщение уже добавлено в чат
-                    if ($('.chat_main_to, .chat_main_from').find('span[data-message-id="' + data.message.id + '"]').length === 0) {
-                        // Если нет, то добавляем сообщение в чат
-                        addMessageToChat(data);
-                    }
-                }
-            }); */
+
 
         });
 
