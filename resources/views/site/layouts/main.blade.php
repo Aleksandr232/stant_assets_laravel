@@ -264,7 +264,7 @@ window.onclick = function(event) {
 
                     }
                 }
-                if (data.message.recipient_id === currentActiveUserId) {
+                if (data.message.user_id === currentActiveUserId) {
                     // Показываем уведомление с помощью Toastr
                     toastr.info(data.message.message, 'Новое сообщение');
                 }
