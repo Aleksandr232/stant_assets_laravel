@@ -270,7 +270,7 @@
             // Получение сообщений в реальном времени
             /* var channel = pusher.subscribe('chat.' + currentActiveUserId + '-' + authId); */
             /* var channel = pusher.subscribe('private-chat.' + currentActiveUserId + '.' + authId); */
-            /* var channel = pusher.subscribe(getChatChannelName(currentActiveUserId, authId));
+            var channel = pusher.subscribe(getChatChannelName(currentActiveUserId, authId));
             var shownNotifications = {};
 
             channel.bind('App\\Events\\MessageSent', function(data) {
@@ -290,47 +290,7 @@
                         shownNotifications[data.message.id] = true;
                     }
                 }
-            }); */
-
-            var unreadMessages = {}; // Объект для хранения количества непрочитанных сообщений для каждого пользователя
-
-        channel.bind('App\\Events\\MessageSent', function(data) {
-            // Проверяем, является ли текущий пользователь отправителем или получателем сообщения
-            if (data.message.sender_id === currentActiveUserId || data.message.recipient_id === authId) {
-                // Проверяем, было ли это сообщение уже добавлено в чат
-                if ($('.chat_main_to, .chat_main_from').find('span[data-message-id="' + data.message.id + '"]').length === 0) {
-                    // Если нет, то добавляем сообщение в чат
-                    addMessageToChat(data);
-
-                    // Увеличиваем количество непрочитанных сообщений для получателя
-                    if (data.message.recipient_id !== currentActiveUserId) {
-                        unreadMessages[data.message.recipient_id] = (unreadMessages[data.message.recipient_id] || 0) + 1;
-                        updateUnreadMessageCount(data.message.recipient_id);
-                    }
-                }
-
-                // Проверяем, было ли уже показано уведомление для этого сообщения
-                if (data.message.user_id == currentActiveUserId && !shownNotifications[data.message.id]) {
-                    // Показываем уведомление с помощью Toastr
-                    toastr.info(data.message.message, 'Новое сообщение');
-                    // Отмечаем, что уведомление было показано
-                    shownNotifications[data.message.id] = true;
-                }
-            }
-        });
-
-        function updateUnreadMessageCount(userId) {
-            // Обновляем визуальное представление количества непрочитанных сообщений
-            var unreadCount = unreadMessages[userId] || 0;
-            $('.chat_list-item-right-messages' + userId).text(unreadCount);
-        }
-
-        // Когда пользователь открывает чат, сбрасываем количество непрочитанных сообщений
-        $('.chat_list-item').on('click', function() {
-            var userId = $(this).data('user-id');
-            unreadMessages[userId] = 0;
-            updateUnreadMessageCount(userId);
-        });
+            });
 
 
         });
