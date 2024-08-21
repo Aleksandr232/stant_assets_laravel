@@ -264,9 +264,9 @@ window.onclick = function(event) {
 
                     }
                 }
-                // Показываем уведомление с помощью Toastr
-                if (data.message.sender_id === authId) {
-                            toastr.info(data.message.message, 'Новое сообщение');
+                if (data.message.recipient_id === currentActiveUserId) {
+                    // Показываем уведомление с помощью Toastr
+                    toastr.info(data.message.message, 'Новое сообщение');
                 }
             });
 
