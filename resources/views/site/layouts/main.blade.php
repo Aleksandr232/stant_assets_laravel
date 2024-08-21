@@ -263,14 +263,14 @@ window.onclick = function(event) {
                         // Если нет, то добавляем сообщение в чат
                         addMessageToChat(data);
                     }
-                }
 
-                // Проверяем, было ли уже показано уведомление для этого сообщения
-                if (data.message.user_id === currentActiveUserId && !shownNotifications[data.message.id]) {
-                    // Показываем уведомление с помощью Toastr
-                    toastr.info(data.message.message, 'Новое сообщение');
-                    // Отмечаем, что уведомление было показано
-                    shownNotifications[data.message.id] = true;
+                    // Проверяем, было ли уже показано уведомление для этого сообщения
+                    if (data.message.user_id === currentActiveUserId && !shownNotifications[data.message.id]) {
+                        // Показываем уведомление с помощью Toastr
+                        toastr.info(data.message.message, 'Новое сообщение');
+                        // Отмечаем, что уведомление было показано
+                        shownNotifications[data.message.id] = true;
+                    }
                 }
             });
 
