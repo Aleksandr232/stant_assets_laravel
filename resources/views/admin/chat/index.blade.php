@@ -20,7 +20,7 @@
                     @endif
                     <span>
                         <label>{{ $post->name }}</label>
-                        @foreach($message->where('user_id', '!=', $authUsersId)->latest() as $post)
+                        @foreach($message->where('user_id', '!=', $authUsersId)->sortByDesc('created_at') as $post)
                             <p>{{ $post->message }}</p>
                         @endforeach
                     </span>
