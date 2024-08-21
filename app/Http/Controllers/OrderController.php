@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Text;
 
 class OrderController extends Controller
 {
@@ -11,6 +12,8 @@ class OrderController extends Controller
 
         $order = Product::query()->find($id);
 
-        return view('site.order.order', compact('order', 'name'), ['scrollToProduct' => true]);
+        $text = Text::all();
+
+        return view('site.order.order', compact('order', 'name', 'text'), ['scrollToProduct' => true]);
     }
 }

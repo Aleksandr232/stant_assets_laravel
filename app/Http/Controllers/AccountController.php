@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Purchase;
 use App\Models\User;
 use App\Models\Message;
+use App\Models\Text;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -22,10 +23,10 @@ class AccountController extends Controller
 
     $onlineUsers = User::where('is_admin', '1')->get();
 
+    $text = Text::all();
 
 
-
-    return view('account.page.index', compact('user', 'purchases', 'onlineUsers'), ['scrollToAccount' => true]);
+    return view('account.page.index', compact('user', 'purchases', 'onlineUsers', 'text'), ['scrollToAccount' => true]);
 }
 
 

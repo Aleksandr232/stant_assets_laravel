@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Politics;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Text;
 use Illuminate\Http\Request;
 
 class PoliticsController extends Controller
@@ -36,7 +37,9 @@ class PoliticsController extends Controller
 
         $category = Category::all();
 
-        return view('site.politics.index', compact('politics', 'category'),['scrollToPolitics' => true]);
+        $text = Text::all();
+
+        return view('site.politics.index', compact('politics', 'category', 'text'),['scrollToPolitics' => true]);
     }
 
 

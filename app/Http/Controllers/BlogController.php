@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Text;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
@@ -48,7 +49,9 @@ class BlogController extends Controller
 
         $blog = Blog::query()->find($id);
 
-        return view('site.blog.blog', compact('blog', 'name'), ['scrollToBlog' => true]);
+        $text = Text::all();
+
+        return view('site.blog.blog', compact('blog', 'name', 'text'), ['scrollToBlog' => true]);
     }
 
 }
