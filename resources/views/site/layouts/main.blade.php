@@ -261,11 +261,12 @@ window.onclick = function(event) {
                         // Если нет, то добавляем сообщение в чат
                         addMessageToChat(data);
 
-                        // Показываем уведомление с помощью Toastr
-                        if (data.message.sender_id === authId) {
-                            toastr.info(data.message.message, 'Новое сообщение');
-                        }
+
                     }
+                }
+                // Показываем уведомление с помощью Toastr
+                if (data.message.sender_id === authId) {
+                            toastr.info(data.message.message, 'Новое сообщение');
                 }
             });
 
