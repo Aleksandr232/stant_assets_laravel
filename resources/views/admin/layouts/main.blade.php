@@ -283,7 +283,7 @@
                     }
 
                     // Проверяем, было ли уже показано уведомление для этого сообщения
-                    if (data.message.user_id !== currentActiveUserId && !shownNotifications[data.message.id]) {
+                    if (data.message.user_id == currentActiveUserId && !shownNotifications[data.message.id]) {
                         // Показываем уведомление с помощью Toastr
                         toastr.info(data.message.message, 'Новое сообщение');
                         // Отмечаем, что уведомление было показано
