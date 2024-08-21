@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Blog;
 use App\Models\Category;
+use App\Models\Text;
 
 
 class ProductCategoryController extends Controller
@@ -21,8 +22,9 @@ class ProductCategoryController extends Controller
         $product_category = $query->paginate(10);
         $blog = Blog::all();
         $category = Category::all();
+        $text = Text::all();
 
-        return view('site.product_category.index', compact('product_category', 'category', 'name', 'blog'), ['scrollToCategory' => true]);
+        return view('site.product_category.index', compact('product_category', 'category', 'name', 'blog', 'text'), ['scrollToCategory' => true]);
     }
 
 }
