@@ -42,6 +42,7 @@
                 $comments = explode(',', $order->comment);
                 $ratings = explode(',', $order->rating);
                 $date = explode(',', $order->date_send_rating);
+                $avatars = explode(',', $order->avatar);
             @endphp
 
             <div class="review-container">
@@ -52,6 +53,11 @@
                         <div class="review {{ $key >= 5 ? 'hidden' : '' }}">
                             <span class="review-date">{{ date('d.m.Y', strtotime($date[$key])) }}</span>
                             <div class="review_info">
+                                @if($avatars[$key])
+                                    <img style="border-radius: 35px;" src="{{ asset('avatars/' . $avatars[$key]) }}"/>
+                                @else
+                                    <img src="{{ asset('site/assets/images/profile/profileIcon.png') }}"/>
+                                @endif
                                 <span>
                                     {{ $name }}
                                     <div class="review_info-stars">
