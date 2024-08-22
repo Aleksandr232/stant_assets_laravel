@@ -32,6 +32,7 @@ class Product extends Model
         'name',
         'rating',
         'comment',
+        'avatar',
         'average_rating',
         'date_send_rating',
         'count_send',

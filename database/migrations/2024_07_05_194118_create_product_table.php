@@ -31,6 +31,7 @@ return new class extends Migration
             $table->string('filter_service')->nullable();
             $table->text('rating')->nullable();
             $table->text('name')->nullable();
+            $table->text('avatar')->nullable();
             $table->text('comment')->nullable();
             $table->string('average_rating')->nullable();
             $table->string('date_send_rating')->nullable();
