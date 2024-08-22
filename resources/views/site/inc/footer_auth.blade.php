@@ -5,7 +5,7 @@
     <div class="footer__row">
         <div class="footer__block">
             <div class="footer__logo">
-                <img src="./assets/images/logo_footer.svg" alt="logo">
+                <img src="{{ asset("site/assets/images/logo_footer.svg") }}" alt="logo">
             </div>
             <div class="footer__socials">
                 <a class="ss__hover" href="">
