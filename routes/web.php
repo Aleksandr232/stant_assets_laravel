@@ -19,6 +19,7 @@ use App\Http\Controllers\PlatformController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ChatAdminController;
 use App\Http\Controllers\AddTextController;
+use App\Models\Text;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,5 +91,9 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 
 Route::get('/404', function () {
-    return view('site.errors.404', ['scrollToError' => true]);
+
+    $text = Text::all();
+
+    return view('site.errors.404', compact('text'), ['scrollToError' => true]);
+
 })->name('404');
