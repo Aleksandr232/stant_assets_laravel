@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Text;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -13,7 +14,9 @@ class AuthController extends Controller
 
     public function authorization()
     {
-        return view('auth.auth',  ['scrollToForm' => true]);
+        $text = Text::all();
+
+        return view('auth.auth',compact('text'),  ['scrollToForm' => true]);
     }
 
 
