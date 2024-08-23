@@ -53,7 +53,7 @@
                         <div class="review {{ $key >= 5 ? 'hidden' : '' }}">
                             <span class="review-date">{{ date('d.m.Y', strtotime($date[$key])) }}</span>
                             <div class="review_info">
-                                @if($avatars[$key])
+                                @if(isset($avatars[$key]) && $avatars[$key])
                                     <img style="border-radius: 35px;" src="{{ asset('avatars/' . $avatars[$key]) }}"/>
                                 @else
                                     <img src="{{ asset('site/assets/images/profile/profileIcon.png') }}"/>
@@ -92,7 +92,7 @@
         </div>
 
     </div>
-    
+
 
     {{-- <div class="chat">
         <div class="chat_header">
