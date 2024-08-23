@@ -56,7 +56,7 @@
                                 @if(isset($avatars[$key]) && $avatars[$key])
                                     <img style="border-radius: 35px;" src="{{ asset('avatars/' . $avatars[$key]) }}"/>
                                 @else
-                                    <img src="{{ asset('site/assets/images/profile/profileIcon.png') }}"/>
+                                    <img style="border-radius: 35px;" src="{{ asset('site/assets/images/profile/profileIcon.png') }}"/>
                                 @endif
                                 <span>
                                     {{ $name }}
