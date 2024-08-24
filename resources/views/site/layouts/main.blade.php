@@ -346,7 +346,7 @@ window.onclick = function(event) {
             console.error('Error loading messages:', error);
         }
 
-        $(document).ready(function() {
+
         $.ajax({
             url: '{{ route('get_product') }}',
             type: 'GET',
@@ -357,7 +357,7 @@ window.onclick = function(event) {
                 console.error(error);
             }
         });
-    });
+    
 
     });
 }
