@@ -345,6 +345,17 @@ window.onclick = function(event) {
         error: function(xhr, status, error) {
             console.error('Error loading messages:', error);
         }
+
+            $.ajax({
+            url: '{{ route("get_product") }}',
+            type: 'GET',
+            success: function(data) {
+                console.log(data);
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
     });
 }
 
