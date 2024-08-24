@@ -358,54 +358,50 @@ $.ajax({
     url: '{{ route('get_product') }}',
     type: 'GET',
     success: function(data) {
-        // Clear the existing content in the container
-        $('.container_products_list-item').empty();
+        // Очищаем существующее содержимое контейнера
+        $('.container_products_list-item').removeClass('active');
 
-        // Loop through the data and create the HTML structure
-        $.each(data, function(index, product) {
-            var imageHtml = '';
-            switch (product.image_platform) {
-                case 'Steam':
-                    imageHtml = '<img src="{{ asset('site/assets/images/STEAM.png') }}" />';
-                    break;
-                case 'PS':
-                    imageHtml = '<img src="{{ asset('site/assets/images/PS.png') }}" />';
-                    break;
-                case 'Epic Games':
-                    imageHtml = '<img src="{{ asset('site/assets/images/EPIC.png') }}" />';
-                    break;
-                case 'Ubisoft':
-                    imageHtml = '<img src="{{ asset('site/assets/images/ubisoft.png') }}" />';
-                    break;
-                case 'Rockstar':
-                    imageHtml = '<img src="{{ asset('site/assets/images/rockstar.png') }}" />';
-                    break;
-                default:
-                    break;
-            }
+        // Создаем HTML-структуру для первой игры
+        var firstProduct = data[0];
+        var firstHtml = createProductHtml(firstProduct);
+        $('.container_products_list').append(firstHtml);
+        $('.container_products_list-item:first').addClass('active');
 
-            var html = `
-                <tr class="container_products_list-item">
-                    <td>
-                        <div class="item_name">
-                            <div class="item_name-logo">
-                                ${imageHtml}
-                                <label>${product.image_platform}</label>
-                            </div>
-                            <span>${product.product}</span>
-                        </div>
-                    </td>
-                </tr>
-            `;
-
-            // Append the HTML to the container
-            $('.container_products_list-item').append(html);
-        });
+        // Создаем HTML-структуру для остальных игр
+        for (var i = 1; i < data.length; i++) {
+            var product = data[i];
+            var html = createProductHtml(product);
+            $('.container_products_list').append(html);
+        }
     },
     error: function(xhr, status, error) {
         console.error(error);
     }
 });
+
+function createProductHtml(product) {
+    var imageHtml = '';
+    switch (product.image_platform) {
+        case 'Steam':
+            imageHtml = '<img src="{{ asset('site/assets/images/STEAM.png') }}" />';
+            break;
+        // Остальные случаи
+    }
+
+    return `
+        <tr class="container_products_list-item">
+            <td>
+                <div class="item_name">
+                    <div class="item_name-logo">
+                        ${imageHtml}
+                        <label>${product.image_platform}</label>
+                    </div>
+                    <span>${product.product}</span>
+                </div>
+            </td>
+        </tr>
+    `;
+}
 
 
 var prevDate = null; // Переменная для хранения даты предыдущего сообщения
