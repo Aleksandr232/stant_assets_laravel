@@ -421,7 +421,21 @@ function createProductHtml(product) {
                         </div>
                     <span class="item_description-purchases">Всего покупок: ${product.count_buy}</span>
                 </div>
-
+            </td>
+            <td>
+                <div class="item_price">
+                    <span>166 800 <span class="item_price-currency">руб</span></span>
+                    <span class="item_price-dollar">1 500$</span>
+                </div>
+            </td>
+            <td>
+                <div class="item_delivery">
+                    <div class="item_delivery-clock">
+                        <img src="{{ asset('site/assets/images/clock.svg') }}" alt="clock" />
+                            <span>В любое время</span>
+                    </div>
+                            <span>от 1 до 12 часов</span>
+                </div>
             </td>
         </tr>
     `;
