@@ -347,7 +347,7 @@ window.onclick = function(event) {
         }
 
             $.ajax({
-            url: '{{ route("get_product") }}',
+            url: '{{ route('get_product') }}',
             type: 'GET',
             success: function(data) {
                 console.log(data);
