@@ -351,19 +351,39 @@ window.onclick = function(event) {
 
     });
 
-    
+
 }
 
 $.ajax({
-        url: '{{ route('get_product') }}',
-        type: 'GET',
-        success: function(data) {
-            console.log(data);
-        },
-        error: function(xhr, status, error) {
-            console.error(error);
-        }
-    });
+    url: '{{ route('get_product') }}',
+    type: 'GET',
+    success: function(data) {
+        // Clear the existing content in the container
+        $('.container_products_list-item').empty();
+
+        // Loop through the data and create the HTML structure
+        $.each(data, function(index, product) {
+            var html = `
+                <tr class="container_products_list-item">
+                    <td>
+                        <div class="item_name">
+                            <div class="item_name-logo">
+                                <label>${product.image_platform}</label>
+                            </div>
+                            <span>${product.product}</span>
+                        </div>
+                    </td>
+                </tr>
+            `;
+
+            // Append the HTML to the container
+            $('.container_products_list-item').append(html);
+        });
+    },
+    error: function(xhr, status, error) {
+        console.error(error);
+    }
+});
 
 
 var prevDate = null; // Переменная для хранения даты предыдущего сообщения
