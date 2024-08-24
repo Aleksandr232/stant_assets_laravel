@@ -228,7 +228,7 @@
 
          <div class="container_pages">
             <div class="d-flex justify-content-center">
-                {{ $product->links('vendor.pagination.custom') }}
+                {{-- {{ $product->links('vendor.pagination.custom') }} --}}
             </div>
         </div>
      </div>
