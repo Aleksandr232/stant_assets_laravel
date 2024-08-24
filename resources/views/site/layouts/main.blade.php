@@ -419,7 +419,7 @@ function createProductHtml(product) {
                             <img src="{{ asset('site/assets/images/rate-star.svg') }}" alt="">
                             <span>${product.average_rating}</span>
                         </div>
-                    <span class="item_description-purchases">Всего покупок: {{$post->count_buy}}</span>
+                    <span class="item_description-purchases">Всего покупок: ${product.count_buy}</span>
                 </div>
 
             </td>
