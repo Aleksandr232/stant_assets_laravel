@@ -412,6 +412,17 @@ function createProductHtml(product) {
                     <span>${product.product}</span>
                 </div>
             </td>
+            <td>
+                <div class="item_description">
+                    <label>${product.price} руб, Торговая площадка</label>
+                        <div class="item_description-rate">
+                            <img src="{{ asset('site/assets/images/rate-star.svg') }}" alt="">
+                            <span>${product.average_rating}</span>
+                        </div>
+                    <span class="item_description-purchases">Всего покупок: {{$post->count_buy}}</span>
+                </div>
+
+            </td>
         </tr>
     `;
 }
