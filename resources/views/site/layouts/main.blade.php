@@ -381,6 +381,7 @@ $.ajax({
 
 function createProductHtml(product) {
     var imageHtml = '';
+    var textHtml = '';
     switch (product.image_platform) {
                 case 'Steam':
                     imageHtml = '<img src="{{ asset('site/assets/images/STEAM.png') }}" />';
@@ -396,6 +397,14 @@ function createProductHtml(product) {
                     break;
                 case 'Rockstar':
                     imageHtml = '<img src="{{ asset('site/assets/images/rockstar.png') }}" />';
+                    break;
+                default:
+                    break;
+    }
+
+    switch (product.image_platform) {
+                case 'Steam':
+                    textHtml = '<label>Steam[PC]</label>';
                     break;
                 default:
                     break;
@@ -463,21 +472,7 @@ function createProductHtml(product) {
                                         <div class="item_facility-row-img">
                                             <img src="{{ asset('site/assets/images/platform_icon.svg')}}" />
                                         </div>
-                                        @if($post->image_platform === 'Steam')
-                                            <label>Steam[PC]</label>
-                                        @elseif($post->image_platform === 'Origin')
-                                            <label>Origin[PC]</label>
-                                        @elseif($post->image_platform === 'PS')
-                                            <label>PS Store[PS]</label>
-                                        @elseif($post->image_platform === 'XBOX')
-                                            <label>XboxStore[XBOX]</label>
-                                        @elseif($post->image_platform === 'Epic Games')
-                                            <label>EpicGames[PC]</label>
-                                        @elseif($post->image_platform === 'Ubisoft')
-                                            <label>Ubisoft[PC]</label>
-                                        @elseif($post->image_platform === 'Rockstar')
-                                            <label>Rockstar[PC]</label>
-                                        @endif
+                                        ${textHtml}
                                     </div>
                                 </div>
 
