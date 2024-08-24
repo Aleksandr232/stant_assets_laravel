@@ -34,11 +34,11 @@
                 </div>
 
                 <div class="filter">
-                    <form action="{{ route('home') }}" method="GET">
+
                     <label class="filter_header">Цена</label>
                     <ul class="filter_group">
                         <ul class="filter_group-items">
-                            @if(count($filterprice))
+                            {{-- @if(count($filterprice))
                             @foreach($filterprice as $post)
                                 @if($post->filter_price)
                                     <li class="filter_group-item-right">
@@ -56,40 +56,40 @@
                                     нет данных
                                 </label>
                             </li>
-                        @endif
+                        @endif --}}
                         </ul>
-                    </form>
+
                         <li>
-                            <form action="{{ route('home') }}">
+
                             <div class="double-slider">
 
                                 <div class="double-slider_container">
                                     <div class="slider-track"></div>
-                                    <input  type="range" min="{{ $minPrice }}" max="{{ $maxPrice }}"
+                                    <input  type="range" min="50" max="70"
                                     value="0"  id="slider-1" oninput="slideOne()">
-                                    <input name="price[]" type="range" min="{{ $minPrice }}" max="{{ $maxPrice }}" value="{{ request()->input('price', [])['0'] ?? '' }}" @if(in_array(request()->input('price', [])['0'] ?? '', request()->input('price', []))) checked @endif onchange="this.form.submit()" id="slider-2" oninput="slideTwo()">
+                                    <input name="price[]" type="range" min="50" max="70" >
                                 </div>
                                 <div class="double-slider_values">
                                     <span class="range-count" id="range1">
-                                        {{ $minPrice }}
+
                                     </span>
                                     <span class="range-dash"></span>
                                     <span class="range-count" id="range2">
-                                        {{ $maxPrice }}
+
                                     </span>
                                 </div>
 
                             </div>
-                        </form>
+
                         </li>
                     </ul>
                 </div>
 
                 <div class="filter">
-                    {{-- <label class="filter_header">Платформа</label> --}}
-                    <form action="{{ route('home') }}" method="GET">
+                    <label class="filter_header">Платформа</label>
+
                         <label class="filter_header">Платформа</label>
-                        <ul class="filter_group">
+                        {{-- <ul class="filter_group">
                             @if(count($filterplatform))
                                 @foreach($filterplatform as $post)
                                     @if($post->filter_platform)
@@ -108,9 +108,9 @@
                                         нет данных
                                     </label>
                                 </li>
-                            @endif
+                            @endif --}}
                         </ul>
-                    </form>
+
 
                         {{-- <li class="filter_group-item">
                             <label class="control control-checkbox control-right">
@@ -124,10 +124,9 @@
                 </div>
 
                 <div class="filter">
-                    <form action="{{ route('home') }}" method="GET">
                     <label class="filter_header">Услуги</label>
                     <ul class="filter_group">
-                        @if(count($filterservice))
+                       {{--  @if(count($filterservice))
                                 @foreach($filterservice as $post)
                                     @if($post->filter_service)
                                         <li class="filter_group-item">
@@ -145,9 +144,8 @@
                                             нет данных
                                         </label>
                                     </li>
-                            @endif
+                            @endif --}}
                     </ul>
-                </form>
                 </div>
 
                 <div class="filter">
