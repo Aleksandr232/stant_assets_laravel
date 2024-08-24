@@ -38,7 +38,6 @@
     <script src="https://cdn.jsdelivr.net/npm/laravel-echo/dist/echo.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="{{ asset('site/js/share.js') }}"></script>
-    <script src="{{ asset('site/js/product.js') }}"></script>
    {{--  <script src="{{ mix('js/app.js') }}"></script> --}}
     <script src="{{ asset('site/js/index.js')}}?v={{ time() }}"></script>
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
@@ -357,7 +356,7 @@ window.onclick = function(event) {
                 console.error(error);
             }
         });
-    
+
 
     });
 }
