@@ -18,8 +18,8 @@ class HomePageController extends Controller
         $product = Product::all();
 
 
-            return view('site.page.index', compact('category','blog', 'text', 'product'), ['scrollToFilter' => true], ['scrollToFilterMobile' => true] );
-        }
+        return view('site.page.index', compact('category','blog', 'text', 'product'), ['scrollToFilter' => true], ['scrollToFilterMobile' => true] );
+    }
 
     protected function applyFilters(Request $request, $query)
     {
@@ -52,6 +52,12 @@ class HomePageController extends Controller
         return $query;
     }
 
+
+    public function get_product(Request $request)
+    {
+        $product = Product::all();
+        return response()->json($product);
+    }
 
 
 
