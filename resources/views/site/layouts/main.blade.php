@@ -351,7 +351,10 @@ window.onclick = function(event) {
 
     });
 
-    $.ajax({
+    
+}
+
+$.ajax({
         url: '{{ route('get_product') }}',
         type: 'GET',
         success: function(data) {
@@ -361,8 +364,6 @@ window.onclick = function(event) {
             console.error(error);
         }
     });
-}
-
 
 
 var prevDate = null; // Переменная для хранения даты предыдущего сообщения
