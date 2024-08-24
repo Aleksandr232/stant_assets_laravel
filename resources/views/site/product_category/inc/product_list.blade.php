@@ -22,25 +22,12 @@
                     <circle cx="9.01538" cy="9.91309" r="9.01562" fill="#00D254"/>
                     </svg>
         </button>
-
-
-
-        {{-- <input value="#" type="text" placeholder="Поиск по играм" /> --}}
-        {{-- <form action="{{ route('home') }}" method="GET">
-            <input type="text" name="search" placeholder="Search products">
-            <button type="submit">Search</button>
-        </form> --}}
-        <form id="search-form" action="{{ route('home') }}" method="GET">
-            <input type="text"  value="{{ request()->input('search') }}" id="search-input" name="search" placeholder="Поиск по играм" onchange="this.form.submit()">
-        </form>
-
-
-
+        <input type="text" name="search" placeholder="Search products">
     </div>
 
-    <div class="product_list_container" id="category">
+    <div class="product_list_container" id="filter">
         <div class="container_filter">
-            <label class="container_filter-label">Найдено {{count($product_category)}}  товаров</label>
+            <label class="container_filter-label">Найдено {{count($product)}}  товаров</label>
             <div  class="container_filter-list">
                 <div class="container_filter-list-header mobile-filter">
                     <span>Фильтры</span>
@@ -48,61 +35,62 @@
                 </div>
 
                 <div class="filter">
-                    <form action="{{ route('home') }}" method="GET">
+
                     <label class="filter_header">Цена</label>
                     <ul class="filter_group">
                         <ul class="filter_group-items">
-                                @if(count($filterprice))
-                                    @foreach($filterprice as $post)
-                                        @if($post->filter_price)
-                                            <li class="filter_group-item-right">
-                                                <label class="control control-checkbox">
-                                                    {{ $post->filter_price }}
-                                                    <input name="filter_price[]" type="checkbox" value="{{ $post->filter_price }}" @if(in_array($post->filter_price, request()->input('filter_price', []))) checked @endif onchange="this.form.submit()" />
-                                                    <div class="control_indicator"></div>
-                                                </label>
-                                            </li>
-                                        @endif
-                                    @endforeach
-                                @else
+                            {{-- @if(count($filterprice))
+                            @foreach($filterprice as $post)
+                                @if($post->filter_price)
                                     <li class="filter_group-item-right">
                                         <label class="control control-checkbox">
-                                            нет данных
+                                            {{ $post->filter_price }}
+                                            <input name="filter_price[]" type="checkbox" value="{{ $post->filter_price }}" @if(in_array($post->filter_price, request()->input('filter_price', []))) checked @endif onchange="this.form.submit()" />
+                                            <div class="control_indicator"></div>
                                         </label>
                                     </li>
                                 @endif
+                            @endforeach
+                        @elseif(count($filterprice) == 0)
+                            <li class="filter_group-item-right">
+                                <label class="control control-checkbox">
+                                    нет данных
+                                </label>
+                            </li>
+                        @endif --}}
                         </ul>
-                    </form>
+
                         <li>
-                            <form action="{{ route('home') }}">
+
                             <div class="double-slider">
 
                                 <div class="double-slider_container">
                                     <div class="slider-track"></div>
-                                    <input  type="range" min="{{ $minPrice }}" max="{{ $maxPrice }}"
+                                    <input  type="range" min="50" max="70"
                                     value="0"  id="slider-1" oninput="slideOne()">
-                                    <input name="price[]"  type="range" min="{{ $minPrice }}" max="{{ $maxPrice }}"  value="{{ $post->price }}" @if(in_array($post->price, request()->input('price', []))) checked @endif onchange="this.form.submit()"  id="slider-2" oninput="slideTwo()">
+                                    <input name="price[]" type="range" min="50" max="70" >
                                 </div>
                                 <div class="double-slider_values">
                                     <span class="range-count" id="range1">
-                                        {{ $minPrice }}
+
                                     </span>
                                     <span class="range-dash"></span>
                                     <span class="range-count" id="range2">
-                                        {{ $maxPrice }}
+
                                     </span>
                                 </div>
 
                             </div>
-                        </form>
+
                         </li>
                     </ul>
                 </div>
 
                 <div class="filter">
-                    <form action="{{ route('home') }}" method="GET">
+                    <label class="filter_header">Платформа</label>
+
                         <label class="filter_header">Платформа</label>
-                        <ul class="filter_group">
+                        {{-- <ul class="filter_group">
                             @if(count($filterplatform))
                                 @foreach($filterplatform as $post)
                                     @if($post->filter_platform)
@@ -121,17 +109,25 @@
                                         нет данных
                                     </label>
                                 </li>
-                            @endif
+                            @endif --}}
                         </ul>
-                    </form>
+
+
+                        {{-- <li class="filter_group-item">
+                            <label class="control control-checkbox control-right">
+                                Другие...
+                                <input type="checkbox" />
+                                <div class="control_indicator control_indicator-right"></div>
+                            </label>
+
+                        </li> --}}
                     </ul>
                 </div>
 
                 <div class="filter">
-                    <form action="{{ route('home') }}" method="GET">
                     <label class="filter_header">Услуги</label>
                     <ul class="filter_group">
-                        @if(count($filterservice))
+                       {{--  @if(count($filterservice))
                                 @foreach($filterservice as $post)
                                     @if($post->filter_service)
                                         <li class="filter_group-item">
@@ -149,9 +145,8 @@
                                             нет данных
                                         </label>
                                     </li>
-                            @endif
+                            @endif --}}
                     </ul>
-                </form>
                 </div>
 
                 <div class="filter">
@@ -238,11 +233,12 @@
                     </tr>
                 </thead>
                 <tbody class="container_products_list">
-                    @foreach($product_category as $post)
+                   {{--  @foreach($product as $post)
                     <tr class="container_products_list-item">
                         <td>
                             <div class="item_name">
                                 <div class="item_name-logo">
+                                    <img src="{{ asset('site/assets/images/steam-logo.png') }}" alt="" />
                                     @if($post->image_platform === 'Steam')
                                         <img src="{{ asset('site/assets/images/STEAM.png')}}" />
                                     @elseif($post->image_platform === 'PS')
@@ -311,7 +307,6 @@
                                     </div>
                                     <div class="item_facility-row">
                                         <div class="item_facility-row-img">
-
                                             <img src="{{ asset('site/assets/images/platform_icon.svg')}}" />
                                         </div>
                                         @if($post->image_platform === 'Steam')
@@ -353,34 +348,34 @@
                             </div>
                         </td>
                     </tr>
-                    @endforeach
+                    @endforeach --}}
 
                 </tbody>
             </table>
-            {{-- <div class="container_pages">
+            <div class="container_pages">
                 <button class="container_pages-button pages_button-active">1</button>
                 <button class="container_pages-button">2</button>
                 <button class="container_pages-button">3</button>
                 <button class="container_pages-button">4</button>
                 <span class="container_pages-more">. . .</span>
                 <button class="container_pages-button">9</button>
-            </div> --}}
-
-            <div class="container_pages">
-                <div class="d-flex justify-content-center">
-                    {{ $product_category->links('vendor.pagination.custom') }}
-                </div>
             </div>
+
+            {{-- <div class="container_pages">
+                <div class="d-flex justify-content-center">
+                    {{ $product->links('vendor.pagination.custom') }}
+                </div>
+            </div> --}}
 
 
         </div>
 
     </div>
 </section>
-@if(isset($scrollToCategory) && $scrollToCategory)
+@if(isset($scrollToFilter) && $scrollToFilter)
 <script>
     window.onload = function() {
-        var scroll = document.getElementById('category');
+        var scroll = document.getElementById('filter');
         scroll.scrollIntoView({ behavior: 'smooth' });
     };
 </script>
