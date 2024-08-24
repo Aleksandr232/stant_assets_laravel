@@ -381,7 +381,6 @@ $.ajax({
                     imageHtml = '<img src="{{ asset('site/assets/images/rockstar.png') }}" />';
                     break;
                 default:
-                    imageHtml = '<label>' + product.image_platform + '</label>';
                     break;
             }
 
@@ -391,6 +390,7 @@ $.ajax({
                         <div class="item_name">
                             <div class="item_name-logo">
                                 ${imageHtml}
+                                <label>${product.image_platform}</label>
                             </div>
                             <span>${product.product}</span>
                         </div>
