@@ -363,12 +363,34 @@ $.ajax({
 
         // Loop through the data and create the HTML structure
         $.each(data, function(index, product) {
+            var imageHtml = '';
+            switch (product.image_platform) {
+                case 'Steam':
+                    imageHtml = '<img src="{{ asset('site/assets/images/STEAM.png') }}" />';
+                    break;
+                case 'PS':
+                    imageHtml = '<img src="{{ asset('site/assets/images/PS.png') }}" />';
+                    break;
+                case 'Epic Games':
+                    imageHtml = '<img src="{{ asset('site/assets/images/EPIC.png') }}" />';
+                    break;
+                case 'Ubisoft':
+                    imageHtml = '<img src="{{ asset('site/assets/images/ubisoft.png') }}" />';
+                    break;
+                case 'Rockstar':
+                    imageHtml = '<img src="{{ asset('site/assets/images/rockstar.png') }}" />';
+                    break;
+                default:
+                    imageHtml = '<label>' + product.image_platform + '</label>';
+                    break;
+            }
+
             var html = `
                 <tr class="container_products_list-item">
                     <td>
                         <div class="item_name">
                             <div class="item_name-logo">
-                                <label>${product.image_platform}</label>
+                                ${imageHtml}
                             </div>
                             <span>${product.product}</span>
                         </div>
