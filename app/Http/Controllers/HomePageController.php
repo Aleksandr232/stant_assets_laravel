@@ -21,7 +21,7 @@ class HomePageController extends Controller
         return view('site.page.index', compact('category','blog', 'text', 'product'), ['scrollToFilter' => true], ['scrollToFilterMobile' => true] );
     }
 
-    protected function applyFilters(Request $request, $query)
+    /* protected function applyFilters(Request $request, $query)
     {
         // Apply search filter
         if ($request->has('search')) {
@@ -50,7 +50,7 @@ class HomePageController extends Controller
         }
 
         return $query;
-    }
+    } */
 
 
     public function get_product(Request $request)
