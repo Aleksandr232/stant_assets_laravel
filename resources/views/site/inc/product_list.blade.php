@@ -21,17 +21,7 @@
                     <circle cx="9.01538" cy="9.91309" r="9.01562" fill="#00D254"/>
                     </svg>
         </button>
-
-
-
-        {{-- <input value="#" type="text" placeholder="Поиск по играм" /> --}}
-        {{-- <form action="{{ route('home') }}" method="GET">
-            <input type="text" name="search" placeholder="Search products">
-            <button type="submit">Search</button>
-        </form> --}}
         <input type="text" name="search" placeholder="Search products">
-
-
     </div>
 
     <div class="product_list_container" id="filter">
