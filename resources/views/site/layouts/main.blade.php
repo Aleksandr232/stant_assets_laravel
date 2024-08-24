@@ -346,18 +346,20 @@ window.onclick = function(event) {
         }
 
 
-        $.ajax({
-            url: '{{ route('get_product') }}',
-            type: 'GET',
-            success: function(data) {
-                console.log(data);
-            },
-            error: function(xhr, status, error) {
-                console.error(error);
-            }
-        });
 
 
+
+    });
+
+    $.ajax({
+        url: '{{ route('get_product') }}',
+        type: 'GET',
+        success: function(data) {
+            console.log(data);
+        },
+        error: function(xhr, status, error) {
+            console.error(error);
+        }
     });
 }
 
