@@ -232,13 +232,13 @@
                     </tr>
                 </thead>
                 <tbody class="container_products_list">
-                    {{-- @foreach($product as $post) --}}
-                    {{-- <tr class="container_products_list-item"> --}}
+                   {{--  @foreach($product as $post)
+                    <tr class="container_products_list-item">
                         <td>
                             <div class="item_name">
                                 <div class="item_name-logo">
-                                    {{-- <img src="{{ asset('site/assets/images/steam-logo.png') }}" alt="" /> --}}
-                                    {{-- @if($post->image_platform === 'Steam')
+                                    <img src="{{ asset('site/assets/images/steam-logo.png') }}" alt="" />
+                                    @if($post->image_platform === 'Steam')
                                         <img src="{{ asset('site/assets/images/STEAM.png')}}" />
                                     @elseif($post->image_platform === 'PS')
                                         <img src="{{ asset('site/assets/images/PS.png')}}" />
@@ -248,22 +248,22 @@
                                         <img src="{{ asset('site/assets/images/ubisoft.png')}}" />
                                     @elseif($post->image_platform === 'Rockstar')
                                         <img src="{{ asset('site/assets/images/rockstar.png')}}" />
-                                    @endif --}}
-                                    {{-- <label>{{$post->image_platform}}</label> --}}
+                                    @endif
+                                    <label>{{$post->image_platform}}</label>
                                 </div>
                                 <span>
-                                    {{-- {{$post->product}} --}}
+                                    {{$post->product}}
                                 </span>
                             </div>
                         </td>
                         <td>
                             <div class="item_description">
-                                <label>{{-- {{$post->price}} --}} руб, Торговая площадка</label>
+                                <label>{{$post->price}} руб, Торговая площадка</label>
                                 <div class="item_description-rate">
                                     <img src="{{ asset('site/assets/images/rate-star.svg') }}" alt="">
-                                   {{--  <span>{{ $post->average_rating ? number_format($post->average_rating, 1) : '0.0' }}</span> --}}
+                                    <span>{{ $post->average_rating ? number_format($post->average_rating, 1) : '0.0' }}</span>
                                 </div>
-                                <span class="item_description-purchases">Всего покупок: {{-- {{$post->count_buy}} --}}</span>
+                                <span class="item_description-purchases">Всего покупок: {{$post->count_buy}}</span>
                             </div>
 
                         </td>
@@ -308,7 +308,7 @@
                                         <div class="item_facility-row-img">
                                             <img src="{{ asset('site/assets/images/platform_icon.svg')}}" />
                                         </div>
-                                        {{-- @if($post->image_platform === 'Steam')
+                                        @if($post->image_platform === 'Steam')
                                             <label>Steam[PC]</label>
                                         @elseif($post->image_platform === 'Origin')
                                             <label>Origin[PC]</label>
@@ -322,7 +322,7 @@
                                             <label>Ubisoft[PC]</label>
                                         @elseif($post->image_platform === 'Rockstar')
                                             <label>Rockstar[PC]</label>
-                                        @endif --}}
+                                        @endif
                                     </div>
                                 </div>
 
@@ -330,11 +330,11 @@
                         </td>
                         <td>
                             <div class="item_order">
-                                {{-- <a href="{{ route('order', [$post->id, $post->product]) }}" class="item_order-take">
+                                <a href="{{ route('order', [$post->id, $post->product]) }}" class="item_order-take">
                                     <span>
                                         Оформление заказа
                                     </span>
-                                </a> --}}
+                                </a>
                                 <a href="" class="item_order-contact">
                                     <span>
                                         Связаться с нами
@@ -346,8 +346,8 @@
                                 </a>
                             </div>
                         </td>
-                    {{-- </tr> --}}
-                    {{-- @endforeach --}}
+                    </tr>
+                    @endforeach --}}
 
                 </tbody>
             </table>
