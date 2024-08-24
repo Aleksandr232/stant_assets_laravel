@@ -330,11 +330,11 @@
                         </td>
                         <td>
                             <div class="item_order">
-                                <a href="{{ route('order', [$post->id, $post->product]) }}" class="item_order-take">
+                                {{-- <a href="{{ route('order', [$post->id, $post->product]) }}" class="item_order-take">
                                     <span>
                                         Оформление заказа
                                     </span>
-                                </a>
+                                </a> --}}
                                 <a href="" class="item_order-contact">
                                     <span>
                                         Связаться с нами
