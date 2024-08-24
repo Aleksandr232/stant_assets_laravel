@@ -249,7 +249,7 @@
                                     @elseif($post->image_platform === 'Rockstar')
                                         <img src="{{ asset('site/assets/images/rockstar.png')}}" />
                                     @endif --}}
-                                    <label>{{$post->image_platform}}</label>
+                                    {{-- <label>{{$post->image_platform}}</label> --}}
                                 </div>
                                 <span>
                                     {{-- {{$post->product}} --}}
