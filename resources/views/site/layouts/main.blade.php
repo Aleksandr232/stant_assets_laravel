@@ -437,6 +437,70 @@ function createProductHtml(product) {
                             <span>от 1 до 12 часов</span>
                 </div>
             </td>
+            <td class="mobile-table">
+                            <div class="item_facility">
+                                <div class="item_facility-container">
+                                    <div class="item_facility-row">
+                                        <div class="item_facility-row-img">
+                                            <img src="{{ asset('site/assets/images/developer_icon.svg') }}" />
+                                        </div>
+                                        <label>Навсегда</label>
+                                    </div>
+                                    <div class="item_facility-row">
+                                        <div class="item_facility-row-img">
+                                            <img src="{{ asset('site/assets/images/gamepad_icon.svg') }}" />
+                                        </div>
+                                        <label>0 часов</label>
+                                    </div>
+                                    <div class="item_facility-row">
+                                        <div class="item_facility-row-img">
+                                            <img src="{{ asset('site/assets/images/smartphone_icon.svg') }}" />
+
+                                        </div>
+                                        <label>Родная почта</label>
+                                    </div>
+                                    <div class="item_facility-row">
+                                        <div class="item_facility-row-img">
+                                            <img src="{{ asset('site/assets/images/platform_icon.svg')}}" />
+                                        </div>
+                                        @if($post->image_platform === 'Steam')
+                                            <label>Steam[PC]</label>
+                                        @elseif($post->image_platform === 'Origin')
+                                            <label>Origin[PC]</label>
+                                        @elseif($post->image_platform === 'PS')
+                                            <label>PS Store[PS]</label>
+                                        @elseif($post->image_platform === 'XBOX')
+                                            <label>XboxStore[XBOX]</label>
+                                        @elseif($post->image_platform === 'Epic Games')
+                                            <label>EpicGames[PC]</label>
+                                        @elseif($post->image_platform === 'Ubisoft')
+                                            <label>Ubisoft[PC]</label>
+                                        @elseif($post->image_platform === 'Rockstar')
+                                            <label>Rockstar[PC]</label>
+                                        @endif
+                                    </div>
+                                </div>
+
+                            </div>
+                        </td>
+                        <td>
+                            <div class="item_order">
+                                <a href="{{ route('order', [$post->id, $post->product]) }}" class="item_order-take">
+                                    <span>
+                                        Оформление заказа
+                                    </span>
+                                </a>
+                                <a href="" class="item_order-contact">
+                                    <span>
+                                        Связаться с нами
+                                    </span>
+                                </a>
+                                <a href="" class="item_order-details mobile-table">
+                                    <img src="{{ asset('site/assets/images/shuffle.svg')}}" />
+                                    Подробная информация
+                                </a>
+                            </div>
+                        </td>
         </tr>
     `;
 }
