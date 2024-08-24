@@ -232,7 +232,7 @@
                     </tr>
                 </thead>
                 <tbody class="container_products_list">
-                    @foreach($product as $post)
+                    {{-- @foreach($product as $post) --}}
                     <tr class="container_products_list-item">
                         <td>
                             <div class="item_name">
@@ -347,7 +347,7 @@
                             </div>
                         </td>
                     </tr>
-                    @endforeach
+                    {{-- @endforeach --}}
 
                 </tbody>
             </table>
