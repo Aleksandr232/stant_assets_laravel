@@ -417,7 +417,7 @@ function createProductHtml(product) {
                     <label>${product.price} руб, Торговая площадка</label>
                         <div class="item_description-rate">
                             <img src="{{ asset('site/assets/images/rate-star.svg') }}" alt="">
-                            <span>${product.average_rating ? product.average_rating : '0.0'}</span>
+                            <span>${(product.average_rating || '0.0').toFixed(1)}</span>
                         </div>
                     <span class="item_description-purchases">Всего покупок: ${product.count_buy}</span>
                 </div>
