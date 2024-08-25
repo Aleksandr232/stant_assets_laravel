@@ -387,7 +387,8 @@ $.ajax({
 });
 
 
-function createPagination(currentPage, lastPage, productsPerPage) {
+function createPagination(currentPage, lastPage) {
+    const productsPerPage = 5;
     var paginationContainer = $('.container_pages');
     paginationContainer.empty();
 
