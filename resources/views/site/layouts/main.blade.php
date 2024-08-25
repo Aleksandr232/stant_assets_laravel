@@ -355,7 +355,7 @@ window.onclick = function(event) {
 }
 
 
-$.ajax({
+/* $.ajax({
     url: '{{ route('get_product') }}',
     type: 'GET',
 
@@ -382,7 +382,7 @@ $.ajax({
     error: function(xhr, status, error) {
         console.error(error);
     }
-});
+}); */
 
 
 function loadProducts(page) {
