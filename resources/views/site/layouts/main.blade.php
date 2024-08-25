@@ -358,7 +358,7 @@ var currentPage = 1; // Начальная страница
 
 function updatePagination(currentPage, lastPage) {
     // Очищаем существующие кнопки пагинации
-   /*  $('.container_pages-button').remove(); */
+    $('.container_pages-button').remove();
 
     // Создаем новые кнопки пагинации
     for (var i = 1; i <= lastPage; i++) {
