@@ -232,141 +232,16 @@
                     </tr>
                 </thead>
                 <tbody class="container_products_list">
-                   {{--  @foreach($product as $post)
-                    <tr class="container_products_list-item">
-                        <td>
-                            <div class="item_name">
-                                <div class="item_name-logo">
-                                    <img src="{{ asset('site/assets/images/steam-logo.png') }}" alt="" />
-                                    @if($post->image_platform === 'Steam')
-                                        <img src="{{ asset('site/assets/images/STEAM.png')}}" />
-                                    @elseif($post->image_platform === 'PS')
-                                        <img src="{{ asset('site/assets/images/PS.png')}}" />
-                                    @elseif($post->image_platform === 'Epic Games')
-                                        <img src="{{ asset('site/assets/images/EPIC.png')}}" />
-                                    @elseif($post->image_platform === 'Ubisoft')
-                                        <img src="{{ asset('site/assets/images/ubisoft.png')}}" />
-                                    @elseif($post->image_platform === 'Rockstar')
-                                        <img src="{{ asset('site/assets/images/rockstar.png')}}" />
-                                    @endif
-                                    <label>{{$post->image_platform}}</label>
-                                </div>
-                                <span>
-                                    {{$post->product}}
-                                </span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="item_description">
-                                <label>{{$post->price}} руб, Торговая площадка</label>
-                                <div class="item_description-rate">
-                                    <img src="{{ asset('site/assets/images/rate-star.svg') }}" alt="">
-                                    <span>{{ $post->average_rating ? number_format($post->average_rating, 1) : '0.0' }}</span>
-                                </div>
-                                <span class="item_description-purchases">Всего покупок: {{$post->count_buy}}</span>
-                            </div>
-
-                        </td>
-                        <td>
-                            <div class="item_price">
-                                <span>166 800 <span class="item_price-currency">руб</span></span>
-                                <span class="item_price-dollar">1 500$</span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="item_delivery">
-                                <div class="item_delivery-clock">
-                                    <img src="{{ asset('site/assets/images/clock.svg') }}" alt="clock" />
-                                    <span>В любое время</span>
-                                </div>
-                                <span>от 1 до 12 часов</span>
-                            </div>
-                        </td>
-                        <td class="mobile-table">
-                            <div class="item_facility">
-                                <div class="item_facility-container">
-                                    <div class="item_facility-row">
-                                        <div class="item_facility-row-img">
-                                            <img src="{{ asset('site/assets/images/developer_icon.svg') }}" />
-                                        </div>
-                                        <label>Навсегда</label>
-                                    </div>
-                                    <div class="item_facility-row">
-                                        <div class="item_facility-row-img">
-                                            <img src="{{ asset('site/assets/images/gamepad_icon.svg') }}" />
-                                        </div>
-                                        <label>0 часов</label>
-                                    </div>
-                                    <div class="item_facility-row">
-                                        <div class="item_facility-row-img">
-                                            <img src="{{ asset('site/assets/images/smartphone_icon.svg') }}" />
-
-                                        </div>
-                                        <label>Родная почта</label>
-                                    </div>
-                                    <div class="item_facility-row">
-                                        <div class="item_facility-row-img">
-                                            <img src="{{ asset('site/assets/images/platform_icon.svg')}}" />
-                                        </div>
-                                        @if($post->image_platform === 'Steam')
-                                            <label>Steam[PC]</label>
-                                        @elseif($post->image_platform === 'Origin')
-                                            <label>Origin[PC]</label>
-                                        @elseif($post->image_platform === 'PS')
-                                            <label>PS Store[PS]</label>
-                                        @elseif($post->image_platform === 'XBOX')
-                                            <label>XboxStore[XBOX]</label>
-                                        @elseif($post->image_platform === 'Epic Games')
-                                            <label>EpicGames[PC]</label>
-                                        @elseif($post->image_platform === 'Ubisoft')
-                                            <label>Ubisoft[PC]</label>
-                                        @elseif($post->image_platform === 'Rockstar')
-                                            <label>Rockstar[PC]</label>
-                                        @endif
-                                    </div>
-                                </div>
-
-                            </div>
-                        </td>
-                        <td>
-                            <div class="item_order">
-                                <a href="{{ route('order', [$post->id, $post->product]) }}" class="item_order-take">
-                                    <span>
-                                        Оформление заказа
-                                    </span>
-                                </a>
-                                <a href="" class="item_order-contact">
-                                    <span>
-                                        Связаться с нами
-                                    </span>
-                                </a>
-                                <a href="" class="item_order-details mobile-table">
-                                    <img src="{{ asset('site/assets/images/shuffle.svg')}}" />
-                                    Подробная информация
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    @endforeach --}}
-
                 </tbody>
             </table>
-            {{-- <div class="container_pages">
+            <div class="container_pages">
                 <button class="container_pages-button pages_button-active">1</button>
                 <button class="container_pages-button">2</button>
                 <button class="container_pages-button">3</button>
                 <button class="container_pages-button">4</button>
                 <span class="container_pages-more">. . .</span>
                 <button class="container_pages-button">9</button>
-            </div> --}}
-
-            {{-- <div class="container_pages">
-                <div class="d-flex justify-content-center">
-                    {{ $product->links('vendor.pagination.custom') }}
-                </div>
-            </div> --}}
-
-
+            </div>
         </div>
 
     </div>
