@@ -368,7 +368,7 @@ $.ajax({
 
             // Обновляем ссылку на оформление заказа для текущего продукта
             var orderLink = $('.container_products_list-item:last .item_order-take');
-            orderLink.attr('href', route('order', {id: product.id, product: product.product}));
+            orderLink.attr('href', '{{ route('order', ['id', 'product']) }}'.replace('id', product.id).replace('product', product.product));
         });
 
         // Добавляем класс 'active' для первого продукта
