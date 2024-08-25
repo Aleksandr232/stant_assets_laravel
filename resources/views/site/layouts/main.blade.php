@@ -444,7 +444,7 @@ function createPagination(currentPage, lastPage) {
 
 function loadProducts(page) {
     $.ajax({
-        url: '{{ route('get_product') }}?page=' + page,
+        url: '{{ route('get_product') }}?page',
         type: 'GET',
         success: function(data) {
             // Очищаем существующее содержимое контейнера
