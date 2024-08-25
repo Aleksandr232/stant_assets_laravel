@@ -59,7 +59,8 @@ class HomePageController extends Controller
 
         if ($request->has('search')) {
             $searchTerm = $request->input('search');
-            $query->where('product', 'like', '%' . $searchTerm . '%');
+            $query->where('product', 'like', '%' . $searchTerm . '%')
+            ->where('image_platform', 'like', '%' . $searchTerm . '%');
 
         }
 
