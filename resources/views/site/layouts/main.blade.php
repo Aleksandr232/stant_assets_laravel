@@ -409,7 +409,7 @@ function loadProducts(page) {
     });
 }
 
-loadProducts(currentPage);
+
 
 function createProductHtml(product) {
     var imageHtml = '';
@@ -531,6 +531,8 @@ function createProductHtml(product) {
 
     `;
 }
+
+loadProducts(currentPage);
 
 
 var prevDate = null; // Переменная для хранения даты предыдущего сообщения
