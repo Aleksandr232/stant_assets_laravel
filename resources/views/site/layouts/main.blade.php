@@ -358,11 +358,15 @@ window.onclick = function(event) {
 
 
 
-
+var currentPage = 1;
 
 $.ajax({
     url: '{{ route('get_product') }}',
     type: 'GET',
+    data: {
+        page: currentPage,
+        per_page: 5 // количество продуктов на странице
+    },
     success: function(data) {
         // Очищаем существующее содержимое контейнера
         $('.container_products_list').empty();
@@ -379,11 +383,81 @@ $.ajax({
 
         // Добавляем класс 'active' для первого продукта
         $('.container_products_list-item:first').addClass('active');
+
+
+        updatePagination(data.current_page, data.last_page);
     },
     error: function(xhr, status, error) {
         console.error(error);
     }
 });
+
+function updatePagination(currentPage, lastPage) {
+    // Очищаем существующую пагинацию
+    $('.container_pages-button').remove();
+    $('.container_pages-more').remove();
+
+    // Создаем элементы пагинации
+    var $paginationContainer = $('.container_pages');
+
+    // Добавляем кнопку "1"
+    var $firstPageButton = $('<button class="container_pages-button"></button>').text('1');
+    if (currentPage === 1) {
+        $firstPageButton.addClass('pages_button-active');
+    }
+    $firstPageButton.on('click', function(e) {
+        e.preventDefault();
+        currentPage = 1;
+        loadProducts();
+    });
+    $paginationContainer.append($firstPageButton);
+
+    // Добавляем кнопки с номерами страниц
+    if (lastPage <= 5) {
+        for (var i = 2; i <= lastPage; i++) {
+            var $pageButton = $('<button class="container_pages-button"></button>').text(i);
+            if (i === currentPage) {
+                $pageButton.addClass('pages_button-active');
+            }
+            $pageButton.on('click', function(e) {
+                e.preventDefault();
+                currentPage = parseInt($(this).text());
+                loadProducts();
+            });
+            $paginationContainer.append($pageButton);
+        }
+    } else {
+        // Добавляем кнопки с номерами страниц, если их больше 5
+        for (var i = 2; i <= 5; i++) {
+            var $pageButton = $('<button class="container_pages-button"></button>').text(i);
+            if (i === currentPage) {
+                $pageButton.addClass('pages_button-active');
+            }
+            $pageButton.on('click', function(e) {
+                e.preventDefault();
+                currentPage = parseInt($(this).text());
+                loadProducts();
+            });
+            $paginationContainer.append($pageButton);
+        }
+
+        // Добавляем многоточие
+        var $moreButton = $('<span class="container_pages-more">. . .</span>');
+        $paginationContainer.append($moreButton);
+
+        // Добавляем кнопку с последней страницей
+        var $lastPageButton = $('<button class="container_pages-button"></button>').text(lastPage);
+        if (currentPage === lastPage) {
+            $lastPageButton.addClass('pages_button-active');
+        }
+        $lastPageButton.on('click', function(e) {
+            e.preventDefault();
+            currentPage = lastPage;
+            loadProducts();
+        });
+        $paginationContainer.append($lastPageButton);
+    }
+}
 
 function createProductHtml(product) {
     var imageHtml = '';
