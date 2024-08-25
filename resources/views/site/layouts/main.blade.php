@@ -392,7 +392,7 @@ function loadProductsWithSearch(page, search) {
         type: 'GET',
         data: {
             search: search,
-            page: page
+            
         },
         success: function(data) {
             // Очищаем существующее содержимое контейнера
