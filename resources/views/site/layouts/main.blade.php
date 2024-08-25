@@ -424,7 +424,7 @@ function loadProductsPage(page) {
     $('.container_products_list').empty();
 
     // Получаем данные о продуктах для текущей страницы
-    
+    var productsPerPage = 5; // Количество продуктов на странице
     var startIndex = (page - 1) * productsPerPage;
     var endIndex = Math.min(startIndex + productsPerPage, data.length);
 
@@ -443,7 +443,7 @@ function loadProductsPage(page) {
     $('.container_products_list-item:first').addClass('active');
 
     // Обновляем пагинацию
-    createPagination(page, totalPages);
+    createPagination(page, Math.ceil(data.length / productsPerPage));
 }
 
 
