@@ -354,26 +354,7 @@ window.onclick = function(event) {
 
 }
 
-var currentPage = 1; // Начальная страница
 
-function updatePagination(currentPage, lastPage) {
-    // Очищаем существующие кнопки пагинации
-    $('.container_pages-button').remove();
-
-    // Создаем новые кнопки пагинации
-    for (var i = 1; i <= lastPage; i++) {
-        var buttonClass = (i === currentPage) ? 'container_pages-button pages_button-active' : 'container_pages-button';
-        var button = $('<button>').addClass(buttonClass).text(i);
-
-        // Добавляем обработчик клика на кнопки пагинации
-        button.click(function() {
-            currentPage = parseInt($(this).text());
-            loadProducts(currentPage);
-        });
-
-        $('.container_pages').append(button);
-    }
-}
 
 function loadProducts(page) {
     currentPage = page;
@@ -400,8 +381,7 @@ function loadProducts(page) {
             // Добавляем класс 'active' для первого продукта
             $('.container_products_list-item:first').addClass('active');
 
-            // Обновляем пагинацию
-            updatePagination(data.current_page, data.last_page);
+
         },
         error: function(xhr, status, error) {
             console.error(error);
@@ -530,7 +510,7 @@ function createProductHtml(product) {
         </tr>
 
     `;
-    
+
 }
 
 
