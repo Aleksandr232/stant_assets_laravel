@@ -366,9 +366,9 @@ $.ajax({
             var html = createProductHtml(product);
             $('.container_products_list').append(html);
 
-            // Обновляем ссылку на оформление заказа для текущего продукта
-            var orderLink = $('.container_products_list-item:last .item_order-take');
-            orderLink.attr('href', '{{ route('order', ['id' => 'id', 'product' => 'product']) }}'.replace('id', product.id).replace('product', product.product));
+           // Обновляем ссылку на оформление заказа для текущего продукта
+    var orderLink = $('.container_products_list-item:last .item_order-take');
+    orderLink.attr('href', '{{ route('order', ['id' => 'id', 'name' => 'name']) }}'.replace('id', product.id).replace('name', product.product));
         });
 
         // Добавляем класс 'active' для первого продукта
