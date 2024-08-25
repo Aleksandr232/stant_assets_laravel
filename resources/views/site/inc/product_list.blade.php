@@ -21,7 +21,7 @@
                     <circle cx="9.01538" cy="9.91309" r="9.01562" fill="#00D254"/>
                     </svg>
         </button>
-        <input type="text" name="search" placeholder="Search products">
+        <input type="text" name="search" id="search-input" placeholder="Search products">
     </div>
 
     <div class="product_list_container" id="filter">

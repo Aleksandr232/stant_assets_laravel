@@ -381,6 +381,42 @@ $.ajax({
     }
 });
 
+$('#search-input').on('input', function() {
+    var searchTerm = $(this).val();
+    loadProductsWithSearch(1, searchTerm);
+});
+
+function loadProductsWithSearch(page, searchTerm) {
+    $.ajax({
+        url: '{{ route('get_product') }}',
+        type: 'GET',
+        data: {
+            search: searchTerm,
+            page: page
+        },
+        success: function(data) {
+            // Очищаем существующее содержимое контейнера
+            $('.container_products_list').empty();
+
+            // Получаем общее количество продуктов
+            var totalProducts = data.total;
+
+            // Определяем количество страниц
+            var productsPerPage = 5;
+            var totalPages = Math.ceil(totalProducts / productsPerPage);
+
+            // Отображаем продукты на текущей странице
+            loadProductsPage(page, data.data, productsPerPage);
+
+            // Создаем пагинацию
+            createPagination(page, totalPages, data.data, productsPerPage);
+        },
+        error: function(xhr, status, error) {
+            console.error(error);
+        }
+    });
+}
+
 function createPagination(currentPage, totalPages, data, productsPerPage) {
     // Очищаем существующую пагинацию
     $('.container_pages').empty();
