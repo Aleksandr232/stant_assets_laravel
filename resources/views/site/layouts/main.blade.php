@@ -393,24 +393,27 @@ $.ajax({
 
 function updatePagination(currentPage, lastPage) {
     // Очищаем существующую пагинацию
-    $('.pagination').empty();
+    $('.container_pages-button').remove();
 
     // Создаем элементы пагинации
     for (var i = 1; i <= lastPage; i++) {
-        var pageLink = $('<a>').attr('href', '#').text(i);
+        var pageButton = $('<button>').addClass('container_pages-button');
         if (i === currentPage) {
-            pageLink.addClass('active');
+            pageButton.addClass('pages_button-active');
         }
-        $('.pagination').append(pageLink);
+        pageButton.text(i).click(function(e) {
+            e.preventDefault();
+            currentPage = $(this).text();
+            loadProducts();
+        });
+        $('.container_pages').append(pageButton);
     }
 
-    // Добавляем обработчик событий для ссылок пагинации
-    $('.pagination a').click(function(e) {
-        e.preventDefault();
-        var page = $(this).text();
-        currentPage = page;
-        loadProducts();
-    });
+    // Добавляем кнопку "..."
+    if (lastPage > 5) {
+        var moreButton = $('<span>').addClass('container_pages-more').text('. . .');
+        $('.container_pages').append(moreButton);
+    }
 }
 
 var currentPage = 1;
