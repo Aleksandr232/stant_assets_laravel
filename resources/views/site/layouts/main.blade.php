@@ -372,7 +372,7 @@ $.ajax({
                 // Обновляем ссылку на оформление заказа для текущего продукта
                 var orderLink = $('.container_products_list-item:last .item_order-take');
                 orderLink.attr('href', '{{ route('order', ['id' => 'id', 'name' => 'name']) }}'.replace('id', product.id).replace('name', product.product));
-                count++;
+                
 
         });
 
