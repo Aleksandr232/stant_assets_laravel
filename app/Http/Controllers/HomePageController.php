@@ -55,8 +55,17 @@ class HomePageController extends Controller
 
     public function get_product(Request $request)
     {
-        $product = Product::all();
-        return response()->json($product);
+        $query = Product::query();
+
+        if ($request->has('search')) {
+            $searchTerm = $request->input('search');
+            $query->where('name', 'like', '%' . $searchTerm . '%')
+                ->orWhere('description', 'like', '%' . $searchTerm . '%');
+        }
+
+        $products = $query->get();
+
+        return response()->json($products);
     }
 
 
