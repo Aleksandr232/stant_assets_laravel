@@ -382,16 +382,16 @@ $.ajax({
 });
 
 $('#search-input').on('input', function() {
-    var searchTerm = $(this).val();
-    loadProductsWithSearch(1, searchTerm);
+    var search = $(this).val();
+    loadProductsWithSearch(1, search);
 });
 
-function loadProductsWithSearch(page, searchTerm) {
+function loadProductsWithSearch(page, search) {
     $.ajax({
         url: '{{ route('get_product') }}',
         type: 'GET',
         data: {
-            search: searchTerm,
+            search: search,
             page: page
         },
         success: function(data) {
