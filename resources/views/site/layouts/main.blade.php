@@ -371,17 +371,17 @@ $.ajax({
         var totalPages = Math.ceil(totalProducts / productsPerPage);
 
         // Отображаем первые 5 продуктов на первой странице
-        loadProductsPage(1, data);
+        loadProductsPage(1, data, productsPerPage);
 
         // Создаем пагинацию
-        createPagination(1, totalPages, data);
+        createPagination(1, totalPages, data, productsPerPage);
     },
     error: function(xhr, status, error) {
         console.error(error);
     }
 });
 
-function createPagination(currentPage, totalPages, data) {
+function createPagination(currentPage, totalPages, data, productsPerPage) {
     // Очищаем существующую пагинацию
     $('.container_pages').empty();
 
@@ -397,7 +397,7 @@ function createPagination(currentPage, totalPages, data) {
     // Добавляем обработчик клика на кнопки страниц
     $('.container_pages-button').click(function() {
         var page = parseInt($(this).text());
-        loadProductsPage(page, data);
+        loadProductsPage(page, data, productsPerPage);
     });
 
     // Добавляем элемент "..." если необходимо
@@ -407,12 +407,11 @@ function createPagination(currentPage, totalPages, data) {
     }
 }
 
-function loadProductsPage(page, data) {
+function loadProductsPage(page, data, productsPerPage) {
     // Очищаем существующее содержимое контейнера
     $('.container_products_list').empty();
 
     // Получаем данные о продуктах для текущей страницы
-    var productsPerPage = (page === 1) ? 5 : 1; // Количество продуктов на странице
     var startIndex = (page - 1) * productsPerPage;
     var endIndex = Math.min(startIndex + productsPerPage, data.length);
 
@@ -431,7 +430,7 @@ function loadProductsPage(page, data) {
     $('.container_products_list-item:first').addClass('active');
 
     // Обновляем пагинацию
-    createPagination(page, Math.ceil(data.length / productsPerPage), data);
+    createPagination(page, Math.ceil(data.length / productsPerPage), data, productsPerPage);
 }
 
 
