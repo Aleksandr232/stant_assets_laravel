@@ -481,7 +481,9 @@ function createProductHtml(product) {
                         </td>
                         <td>
                             <div class="item_order">
-
+                                <a href="#" class="item_order-take" >
+                                    <span>Оформление заказа</span>
+                                </a>
                                 <a href="" class="item_order-contact">
                                     <span>
                                         Связаться с нами
