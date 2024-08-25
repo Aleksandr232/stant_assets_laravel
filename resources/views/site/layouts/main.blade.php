@@ -369,9 +369,10 @@ $.ajax({
             // Обновляем ссылку на оформление заказа для текущего продукта
             var orderLink = $('.container_products_list-item:last .item_order-take');
             orderLink.attr('href', route('order', {id: product.id, product: product.product}));
-        });
+
         // Добавляем класс 'active' для первого продукта
         $('.container_products_list-item:first').addClass('active');
+        });
     },
     error: function(xhr, status, error) {
         console.error(error);
