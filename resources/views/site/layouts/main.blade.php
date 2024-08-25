@@ -424,7 +424,7 @@ function loadProductsPage(page) {
     $('.container_products_list').empty();
 
     // Получаем данные о продуктах для текущей страницы
-    var productsPerPage = 5; // Количество продуктов на странице
+    var productsPerPage = (page === 1) ? 5 : 1; // Количество продуктов на странице
     var startIndex = (page - 1) * productsPerPage;
     var endIndex = Math.min(startIndex + productsPerPage, data.length);
 
