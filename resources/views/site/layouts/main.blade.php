@@ -371,29 +371,17 @@ $.ajax({
         var totalPages = Math.ceil(totalProducts / productsPerPage);
 
         // Отображаем первые 5 продуктов на первой странице
-        for (var i = 0; i < Math.min(productsPerPage, totalProducts); i++) {
-            var product = data[i];
-            var html = createProductHtml(product);
-            $('.container_products_list').append(html);
-
-            // Обновляем ссылку на оформление заказа для текущего продукта
-            var orderLink = $('.container_products_list-item:last .item_order-take');
-            orderLink.attr('href', '{{ route('order', ['id' => 'id', 'name' => 'name']) }}'.replace('id', product.id).replace('name', product.product));
-        }
-
-        // Добавляем класс 'active' для первого продукта
-        $('.container_products_list-item:first').addClass('active');
+        loadProductsPage(1, data);
 
         // Создаем пагинацию
-        createPagination(1, totalPages);
+        createPagination(1, totalPages, data);
     },
     error: function(xhr, status, error) {
         console.error(error);
     }
 });
 
-
-function createPagination(currentPage, totalPages) {
+function createPagination(currentPage, totalPages, data) {
     // Очищаем существующую пагинацию
     $('.container_pages').empty();
 
@@ -409,7 +397,7 @@ function createPagination(currentPage, totalPages) {
     // Добавляем обработчик клика на кнопки страниц
     $('.container_pages-button').click(function() {
         var page = parseInt($(this).text());
-        loadProductsPage(page);
+        loadProductsPage(page, data);
     });
 
     // Добавляем элемент "..." если необходимо
@@ -419,7 +407,7 @@ function createPagination(currentPage, totalPages) {
     }
 }
 
-function loadProductsPage(page) {
+function loadProductsPage(page, data) {
     // Очищаем существующее содержимое контейнера
     $('.container_products_list').empty();
 
@@ -443,7 +431,7 @@ function loadProductsPage(page) {
     $('.container_products_list-item:first').addClass('active');
 
     // Обновляем пагинацию
-    createPagination(page, Math.ceil(data.length / productsPerPage));
+    createPagination(page, Math.ceil(data.length / productsPerPage), data);
 }
 
 
