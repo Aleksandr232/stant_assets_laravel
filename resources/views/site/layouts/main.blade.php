@@ -394,22 +394,22 @@ function loadProductsWithSearch(page, search) {
             page: page,
             search: search
         },
-        success: function(response) {
+        success: function(data) {
             // Очищаем существующее содержимое контейнера
             $('.container_products_list').empty();
 
             // Получаем общее количество продуктов
-            var totalProducts = response.total;
+            var totalProducts = data.length;
 
             // Определяем количество страниц
             var productsPerPage = 5;
             var totalPages = Math.ceil(totalProducts / productsPerPage);
 
             // Отображаем продукты на текущей странице
-            loadProductsPage(page, response.data, productsPerPage);
+            loadProductsPage(page, data, productsPerPage);
 
             // Создаем пагинацию
-            createPagination(page, totalPages, response.data, productsPerPage);
+            createPagination(page, totalPages, data, productsPerPage);
         },
         error: function(xhr, status, error) {
             console.error(error);
