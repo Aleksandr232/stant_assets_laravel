@@ -381,7 +381,7 @@ $.ajax({
         // Добавляем класс 'active' для первого продукта
         $('.container_products_list-item:first').addClass('active');
 
-        updatePagination(data.current_page, data.last_page);
+        
 
 
     },
@@ -391,66 +391,9 @@ $.ajax({
 });
 
 
-function updatePagination(currentPage, lastPage) {
-    // Очищаем существующую пагинацию
-    
 
-    // Создаем элементы пагинации
-    for (var i = 1; i <= lastPage; i++) {
-        var pageButton = $('<button>').addClass('container_pages-button');
-        if (i === currentPage) {
-            pageButton.addClass('pages_button-active');
-        }
-        pageButton.text(i).click(function(e) {
-            e.preventDefault();
-            currentPage = $(this).text();
-            loadProducts();
-        });
-        $('.container_pages').append(pageButton);
-    }
 
-    // Добавляем кнопку "..."
-    if (lastPage > 5) {
-        var moreButton = $('<span>').addClass('container_pages-more').text('. . .');
-        $('.container_pages').append(moreButton);
-    }
-}
 
-var currentPage = 1;
-
-function loadProducts() {
-    $.ajax({
-        url: '{{ route('get_product') }}',
-        type: 'GET',
-        data: {
-            page: currentPage,
-            per_page: 5
-        },
-        success: function(data) {
-            // Очищаем существующее содержимое контейнера
-            $('.container_products_list').empty();
-
-            // Создаем HTML-структуру для каждого продукта
-            $.each(data.data, function(index, product) {
-                var html = createProductHtml(product);
-                $('.container_products_list').append(html);
-
-                // Обновляем ссылку на оформление заказа для текущего продукта
-                var orderLink = $('.container_products_list-item:last .item_order-take');
-                orderLink.attr('href', '{{ route('order', ['id' => 'id', 'name' => 'name']) }}'.replace('id', product.id).replace('name', product.product));
-            });
-
-            // Добавляем класс 'active' для первого продукта
-            $('.container_products_list-item:first').addClass('active');
-
-            // Обновляем пагинацию
-            updatePagination(data.current_page, data.last_page);
-        },
-        error: function(xhr, status, error) {
-            console.error(error);
-        }
-    });
-}
 
 
 function createProductHtml(product) {
