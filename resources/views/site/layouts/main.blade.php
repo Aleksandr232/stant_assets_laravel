@@ -411,6 +411,7 @@ function createProductHtml(product) {
     }
 
     return `
+    @foreach($product as $post)
         <tr class="container_products_list-item">
             <td>
                 <div class="item_name">
@@ -480,7 +481,7 @@ function createProductHtml(product) {
                         </td>
                         <td>
                             <div class="item_order">
-                                <a href="{{ route('order', [product.id, product.product]) }}" class="item_order-take">
+                                <a href="{{ route('order', [$post->id, $post->product]) }}" class="item_order-take">
                                     <span>
                                         Оформление заказа
                                     </span>
@@ -497,6 +498,7 @@ function createProductHtml(product) {
                             </div>
                         </td>
         </tr>
+        @endforeach
     `;
 }
 
