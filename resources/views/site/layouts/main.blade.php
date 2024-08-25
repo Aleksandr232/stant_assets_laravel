@@ -393,92 +393,51 @@ $.ajax({
 });
 
 
-function createPagination(currentPage, lastPage) {
-    const productsPerPage = 5;
-    var paginationContainer = $('.container_pages');
-    paginationContainer.empty();
+function createPagination(currentPage, totalPages) {
+    // Очищаем существующую пагинацию
+    $('.pagination').empty();
 
-    // Создаем ссылки для пагинации
-    if (currentPage > 1) {
-        var prevButton = $('<button class="container_pages-button">Prev</button>');
-        prevButton.click(function() {
-            loadProducts(currentPage - 1, productsPerPage);
-        });
-        paginationContainer.append(prevButton);
-    }
-
-    // Отображаем первую страницу
-    var firstPageButton = $('<button class="container_pages-button pages_button-active">1</button>');
-    firstPageButton.click(function() {
-        loadProducts(1, productsPerPage);
-    });
-    paginationContainer.append(firstPageButton);
-
-    // Отображаем страницы в диапазоне от 2 до 4
-    var startPage = Math.max(2, currentPage - 2);
-    var endPage = Math.min(startPage + 4, lastPage);
-    for (var i = startPage; i <= endPage; i++) {
-        var pageButton = $('<button class="container_pages-button"></button>');
-        pageButton.text(i);
+    // Создаем ссылки на страницы
+    for (var i = 1; i <= totalPages; i++) {
+        var pageLink = $('<a href="#" class="pagination-link">').text(i);
         if (i === currentPage) {
-            pageButton.addClass('pages_button-active');
+            pageLink.addClass('active');
         }
-        pageButton.click(function() {
-            loadProducts($(this).text(), productsPerPage);
-        });
-        paginationContainer.append(pageButton);
+        $('.pagination').append(pageLink);
     }
 
-    // Отображаем многоточие, если есть страницы после 4-й
-    if (endPage < lastPage) {
-        var moreButton = $('<span class="container_pages-more">. . .</span>');
-        paginationContainer.append(moreButton);
-    }
-
-    // Отображаем последнюю страницу
-    var lastPageButton = $('<button class="container_pages-button">' + lastPage + '</button>');
-    lastPageButton.click(function() {
-        loadProducts(lastPage, productsPerPage);
+    // Добавляем обработчик клика на ссылки страниц
+    $('.pagination-link').click(function() {
+        var page = parseInt($(this).text());
+        loadProductsPage(page);
     });
-    paginationContainer.append(lastPageButton);
-
-    // Отображаем кнопку "Next", если есть следующая страница
-    if (currentPage < lastPage) {
-        var nextButton = $('<button class="container_pages-button">Next</button>');
-        nextButton.click(function() {
-            loadProducts(currentPage + 1, productsPerPage);
-        });
-        paginationContainer.append(nextButton);
-    }
 }
 
-function loadProducts(page) {
-    $.ajax({
-        url: '{{ route('get_product') }}',
-        type: 'GET',
-        success: function(data) {
-            // Очищаем существующее содержимое контейнера
-            $('.container_products_list').empty();
+function loadProductsPage(page) {
+    // Очищаем существующее содержимое контейнера
+    $('.container_products_list').empty();
 
-            // Создаем HTML-структуру для каждого продукта
-            $.each(data.data, function(index, product) {
-                var html = createProductHtml(product);
-                $('.container_products_list').append(html);
+    // Получаем данные о продуктах для текущей страницы
+    var productsPerPage = 5;
+    var startIndex = (page - 1) * productsPerPage;
+    var endIndex = Math.min(startIndex + productsPerPage, data.length);
 
-                // Обновляем ссылку на оформление заказа для текущего продукта
-                var orderLink = $('.container_products_list-item:last .item_order-take');
-                orderLink.attr('href', '{{ route('order', ['id' => 'id', 'name' => 'name']) }}'.replace('id', product.id).replace('name', product.product));
-            });
+    // Отображаем продукты для текущей страницы
+    for (var i = startIndex; i < endIndex; i++) {
+        var product = data[i];
+        var html = createProductHtml(product);
+        $('.container_products_list').append(html);
 
-            // Добавляем класс 'active' для первого продукта
-            $('.container_products_list-item:first').addClass('active');
+        // Обновляем ссылку на оформление заказа для текущего продукта
+        var orderLink = $('.container_products_list-item:last .item_order-take');
+        orderLink.attr('href', '{{ route('order', ['id' => 'id', 'name' => 'name']) }}'.replace('id', product.id).replace('name', product.product));
+    }
 
-            createPagination(data.current_page, data.last_page);
-        },
-        error: function(xhr, status, error) {
-            console.error(error);
-        }
-    });
+    // Добавляем класс 'active' для первого продукта на текущей странице
+    $('.container_products_list-item:first').addClass('active');
+
+    // Обновляем пагинацию
+    createPagination(page, totalPages);
 }
 
 
