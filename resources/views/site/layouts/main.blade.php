@@ -530,9 +530,10 @@ function createProductHtml(product) {
         </tr>
 
     `;
+    loadProducts(currentPage);
 }
 
-loadProducts(currentPage);
+
 
 
 var prevDate = null; // Переменная для хранения даты предыдущего сообщения
