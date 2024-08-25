@@ -364,9 +364,8 @@ $.ajax({
         $('.container_products_list').empty();
 
         // Создаем HTML-структуру для каждого продукта
-        var count = 0;
         $.each(data, function(index, product) {
-            if (count < 2) { // Ограничиваем вывод двумя продуктами
+
                 var html = createProductHtml(product);
                 $('.container_products_list').append(html);
 
@@ -374,7 +373,7 @@ $.ajax({
                 var orderLink = $('.container_products_list-item:last .item_order-take');
                 orderLink.attr('href', '{{ route('order', ['id' => 'id', 'name' => 'name']) }}'.replace('id', product.id).replace('name', product.product));
                 count++;
-            }
+
         });
 
         // Добавляем класс 'active' для первого продукта
