@@ -356,7 +356,7 @@ window.onclick = function(event) {
 
 
 $.ajax({
-    url: '{{ route('get_product') }}?page=1',
+    url: '{{ route('get_product') }}',
     type: 'GET',
     success: function(data) {
         // Очищаем существующее содержимое контейнера
