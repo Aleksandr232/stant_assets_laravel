@@ -483,7 +483,7 @@ function createProductHtml(product) {
                         </td>
                         <td>
                             <div class="item_order">
-                                <a href="#" class="item_order-take" data-id="{{ $post->id }}" data-product="{{ $post->product }}">
+                                <a href="#" class="item_order-take" data-id="${product.id}" data-product="${product.product}">
                                     <span>Оформление заказа</span>
                                 </a>
                                 <a href="" class="item_order-contact">
