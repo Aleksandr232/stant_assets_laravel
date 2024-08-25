@@ -393,7 +393,7 @@ $.ajax({
 
 function updatePagination(currentPage, lastPage) {
     // Очищаем существующую пагинацию
-    $('.container_pages-button').remove();
+    
 
     // Создаем элементы пагинации
     for (var i = 1; i <= lastPage; i++) {
