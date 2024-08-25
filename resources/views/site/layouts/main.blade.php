@@ -391,25 +391,25 @@ function loadProductsWithSearch(page, search) {
         url: '{{ route('get_product') }}',
         type: 'GET',
         data: {
-            search: search,
-
+            page: page,
+            search: search
         },
-        success: function(data) {
+        success: function(response) {
             // Очищаем существующее содержимое контейнера
             $('.container_products_list').empty();
 
             // Получаем общее количество продуктов
-            var totalProducts = data.total;
+            var totalProducts = response.total;
 
             // Определяем количество страниц
             var productsPerPage = 5;
             var totalPages = Math.ceil(totalProducts / productsPerPage);
 
             // Отображаем продукты на текущей странице
-            loadProductsPage(1, data.data, productsPerPage);
+            loadProductsPage(page, response.data, productsPerPage);
 
             // Создаем пагинацию
-            createPagination(1, totalPages, data.data, productsPerPage);
+            createPagination(page, totalPages, response.data, productsPerPage);
         },
         error: function(xhr, status, error) {
             console.error(error);
