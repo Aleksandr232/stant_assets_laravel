@@ -387,7 +387,7 @@ $.ajax({
 });
 
 
-function createPagination(currentPage, lastPage) {
+function createPagination(currentPage, lastPage, productsPerPage) {
     var paginationContainer = $('.container_pages');
     paginationContainer.empty();
 
@@ -395,7 +395,7 @@ function createPagination(currentPage, lastPage) {
     if (currentPage > 1) {
         var prevButton = $('<button class="container_pages-button">Prev</button>');
         prevButton.click(function() {
-            loadProducts(currentPage - 1);
+            loadProducts(currentPage - 1, productsPerPage);
         });
         paginationContainer.append(prevButton);
     }
@@ -403,13 +403,13 @@ function createPagination(currentPage, lastPage) {
     // Отображаем первую страницу
     var firstPageButton = $('<button class="container_pages-button pages_button-active">1</button>');
     firstPageButton.click(function() {
-        loadProducts(1);
+        loadProducts(1, productsPerPage);
     });
     paginationContainer.append(firstPageButton);
 
     // Отображаем страницы в диапазоне от 2 до 4
-    var startPage = Math.max(2, currentPage - 1);
-    var endPage = Math.min(startPage + 2, lastPage);
+    var startPage = Math.max(2, currentPage - 2);
+    var endPage = Math.min(startPage + 4, lastPage);
     for (var i = startPage; i <= endPage; i++) {
         var pageButton = $('<button class="container_pages-button"></button>');
         pageButton.text(i);
@@ -417,7 +417,7 @@ function createPagination(currentPage, lastPage) {
             pageButton.addClass('pages_button-active');
         }
         pageButton.click(function() {
-            loadProducts($(this).text());
+            loadProducts($(this).text(), productsPerPage);
         });
         paginationContainer.append(pageButton);
     }
@@ -431,7 +431,7 @@ function createPagination(currentPage, lastPage) {
     // Отображаем последнюю страницу
     var lastPageButton = $('<button class="container_pages-button">' + lastPage + '</button>');
     lastPageButton.click(function() {
-        loadProducts(lastPage);
+        loadProducts(lastPage, productsPerPage);
     });
     paginationContainer.append(lastPageButton);
 
@@ -439,7 +439,7 @@ function createPagination(currentPage, lastPage) {
     if (currentPage < lastPage) {
         var nextButton = $('<button class="container_pages-button">Next</button>');
         nextButton.click(function() {
-            loadProducts(currentPage + 1);
+            loadProducts(currentPage + 1, productsPerPage);
         });
         paginationContainer.append(nextButton);
     }
