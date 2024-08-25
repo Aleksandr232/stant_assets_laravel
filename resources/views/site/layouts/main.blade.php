@@ -356,38 +356,34 @@ window.onclick = function(event) {
 
 
 
-function loadProducts() {
-
-    $.ajax({
-        url: '{{ route('get_product') }}',
-        type: 'GET',
-
-        success: function(data) {
-            // Очищаем существующее содержимое контейнера
-            $('.container_products_list').empty();
-
-            // Создаем HTML-структуру для каждого продукта
-            $.each(data.data, function(index, product) {
-                var html = createProductHtml(product);
-                $('.container_products_list').append(html);
-
-                // Обновляем ссылку на оформление заказа для текущего продукта
-                var orderLink = $('.container_products_list-item:last .item_order-take');
-                orderLink.attr('href', '{{ route('order', ['id' => 'id', 'name' => 'name']) }}'.replace('id', product.id).replace('name', product.product));
-            });
-
-            // Добавляем класс 'active' для первого продукта
-            $('.container_products_list-item:first').addClass('active');
 
 
-        },
-        error: function(xhr, status, error) {
-            console.error(error);
-        }
-    });
-}
 
-loadProducts();
+
+$.ajax({
+    url: '{{ route('get_product') }}',
+    type: 'GET',
+    success: function(data) {
+        // Очищаем существующее содержимое контейнера
+        $('.container_products_list').empty();
+
+        // Создаем HTML-структуру для каждого продукта
+        $.each(data, function(index, product) {
+            var html = createProductHtml(product);
+            $('.container_products_list').append(html);
+
+            // Обновляем ссылку на оформление заказа для текущего продукта
+            var orderLink = $('.container_products_list-item:last .item_order-take');
+            orderLink.attr('href', '{{ route('order', ['id' => 'id', 'name' => 'name']) }}'.replace('id', product.id).replace('name', product.product));
+        });
+
+        // Добавляем класс 'active' для первого продукта
+        $('.container_products_list-item:first').addClass('active');
+    },
+    error: function(xhr, status, error) {
+        console.error(error);
+    }
+});
 
 function createProductHtml(product) {
     var imageHtml = '';
@@ -491,7 +487,7 @@ function createProductHtml(product) {
                         </td>
                         <td>
                             <div class="item_order">
-                                <a href="#" class="item_order-take" >
+                                <a href="#" class="item_order-take">
                                     <span>Оформление заказа</span>
                                 </a>
                                 <a href="" class="item_order-contact">
@@ -508,7 +504,6 @@ function createProductHtml(product) {
         </tr>
 
     `;
-
 }
 
 
