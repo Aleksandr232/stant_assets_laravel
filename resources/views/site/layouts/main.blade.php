@@ -355,40 +355,41 @@ window.onclick = function(event) {
 }
 
 
+var currentPage = 1;
+var itemsPerPage = 5;
 
+loadProducts(currentPage);
 
+    function loadProducts(page) {
+        $.ajax({
+            url: '{{ route('get_product') }}',
+            type: 'GET',
+            data: { page: page },
+            success: function(data) {
+                // Очищаем существующее содержимое контейнера
+                $('.container_products_list').empty();
 
+                // Создаем HTML-структуру для каждого продукта
+                $.each(data.data, function(index, product) {
+                    var html = createProductHtml(product);
+                    $('.container_products_list').append(html);
 
+                    // Обновляем ссылку на оформление заказа для текущего продукта
+                    var orderLink = $('.container_products_list-item:last .item_order-take');
+                    orderLink.attr('href', '{{ route('order', ['id' => 'id', 'name' => 'name']) }}'.replace('id', product.id).replace('name', product.product));
+                });
 
-$.ajax({
-    url: '{{ route('get_product') }}',
-    type: 'GET',
+                // Добавляем класс 'active' для первого продукта
+                $('.container_products_list-item:first').addClass('active');
 
-    success: function(data) {
-        // Очищаем существующее содержимое контейнера
-        $('.container_products_list').empty();
-
-        // Создаем HTML-структуру для каждого продукта
-        $.each(data, function(index, product) {
-            var html = createProductHtml(product);
-            $('.container_products_list').append(html);
-
-            // Обновляем ссылку на оформление заказа для текущего продукта
-            var orderLink = $('.container_products_list-item:last .item_order-take');
-            orderLink.attr('href', '{{ route('order', ['id' => 'id', 'name' => 'name']) }}'.replace('id', product.id).replace('name', product.product));
+                // Отображаем пагинацию
+                renderPagination(data.total, data.current_page, data.last_page);
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
         });
-
-        // Добавляем класс 'active' для первого продукта
-        $('.container_products_list-item:first').addClass('active');
-
-        
-
-
-    },
-    error: function(xhr, status, error) {
-        console.error(error);
     }
-});
 
 
 
@@ -517,6 +518,34 @@ function createProductHtml(product) {
     `;
 }
 
+function renderPagination(total, currentPage, lastPage) {
+        var paginationHtml = '<div class="container_pages">';
+
+        // Отображаем кнопки пагинации
+        for (var i = 1; i <= lastPage; i++) {
+            paginationHtml += '<button class="container_pages-button' + (i === currentPage ? ' pages_button-active' : '') + '">' + i + '</button>';
+        }
+
+        // Добавляем кнопку "Далее"
+        if (currentPage < lastPage) {
+            paginationHtml += '<button class="container_pages-button">Далее</button>';
+        }
+
+        paginationHtml += '</div>';
+
+        // Вставляем HTML-структуру пагинации в DOM
+        $('.container_pages').replaceWith(paginationHtml);
+
+        // Добавляем обработчик событий для кнопок пагинации
+        $('.container_pages-button').click(function() {
+            var page = $(this).text();
+            if (page === 'Далее') {
+                page = currentPage + 1;
+            }
+            currentPage = parseInt(page);
+            loadProducts(currentPage);
+        });
+    }
 
 
 
