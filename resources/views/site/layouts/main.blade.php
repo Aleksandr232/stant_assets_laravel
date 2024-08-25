@@ -354,6 +354,7 @@ window.onclick = function(event) {
 
 }
 
+var current_page = 5;
 
 $.ajax({
     url: '{{ route('get_product') }}',
@@ -379,7 +380,7 @@ $.ajax({
         // Добавляем класс 'active' для первого продукта
         $('.container_products_list-item:first').addClass('active');
 
-        createPagination(data.current_page, data.last_page);
+        createPagination(current_page, data.last_page);
     },
     error: function(xhr, status, error) {
         console.error(error);
