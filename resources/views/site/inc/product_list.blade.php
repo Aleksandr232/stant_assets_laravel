@@ -351,14 +351,14 @@
 
                 </tbody>
             </table>
-            <div class="container_pages">
+            {{-- <div class="container_pages">
                 <button class="container_pages-button pages_button-active">1</button>
                 <button class="container_pages-button">2</button>
                 <button class="container_pages-button">3</button>
                 <button class="container_pages-button">4</button>
                 <span class="container_pages-more">. . .</span>
                 <button class="container_pages-button">9</button>
-            </div>
+            </div> --}}
 
             {{-- <div class="container_pages">
                 <div class="d-flex justify-content-center">
