@@ -530,7 +530,7 @@ function createProductHtml(product) {
         </tr>
 
     `;
-    loadProducts(currentPage);
+    
 }
 
 
