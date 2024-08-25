@@ -373,6 +373,8 @@ $.ajax({
             var html = createProductHtml(product);
             $('.container_products_list').append(html);
         }
+
+        $('.item_order-take').attr('href', '{{ route('order', ['id', 'product']) }}'.replace('id', data[0].id).replace('product', data[0].product));
     },
     error: function(xhr, status, error) {
         console.error(error);
@@ -481,7 +483,9 @@ function createProductHtml(product) {
                         </td>
                         <td>
                             <div class="item_order">
-                                
+                                <a href="#" class="item_order-take" data-id="{{ $post->id }}" data-product="{{ $post->product }}">
+                                    <span>Оформление заказа</span>
+                                </a>
                                 <a href="" class="item_order-contact">
                                     <span>
                                         Связаться с нами
