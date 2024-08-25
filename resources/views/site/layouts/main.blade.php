@@ -481,11 +481,7 @@ function createProductHtml(product) {
                         </td>
                         <td>
                             <div class="item_order">
-                                <a href="{{ route('order', [${product.id}->id, ${product.product}->product]) }}" class="item_order-take">
-                                    <span>
-                                        Оформление заказа
-                                    </span>
-                                </a>
+                                
                                 <a href="" class="item_order-contact">
                                     <span>
                                         Связаться с нами
