@@ -398,6 +398,11 @@ function createPagination(currentPage, totalPages, data, productsPerPage) {
     $('.container_pages-button').click(function() {
         var page = parseInt($(this).text());
         loadProductsPage(page, data, productsPerPage);
+
+        // Прокручиваем страницу вверх
+        $('html, body').animate({
+            scrollTop: $('.container_products_list').offset().top
+        }, 500);
     });
 
     // Добавляем элемент "..." если необходимо
