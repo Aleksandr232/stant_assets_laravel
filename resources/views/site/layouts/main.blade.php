@@ -358,12 +358,13 @@ window.onclick = function(event) {
 $.ajax({
     url: '{{ route('get_product') }}',
     type: 'GET',
-    success: function(response) {
+
+    success: function(data) {
         // Очищаем существующее содержимое контейнера
         $('.container_products_list').empty();
 
         // Создаем HTML-структуру для каждого продукта
-        $.each(response.data, function(index, product) {
+        $.each(data, function(index, product) {
             var html = createProductHtml(product);
             $('.container_products_list').append(html);
 
@@ -374,6 +375,7 @@ $.ajax({
 
         // Добавляем класс 'active' для первого продукта
         $('.container_products_list-item:first').addClass('active');
+
 
 
     },
