@@ -358,18 +358,22 @@ window.onclick = function(event) {
 $.ajax({
     url: '{{ route('get_product') }}',
     type: 'GET',
+
     success: function(data) {
         // Очищаем существующее содержимое контейнера
         $('.container_products_list').empty();
 
         // Создаем HTML-структуру для каждого продукта
-        $.each(data.data, function(index, product) {
-            var html = createProductHtml(product);
-            $('.container_products_list').append(html);
+        $.each(data, function(index, product) {
 
-            // Обновляем ссылку на оформление заказа для текущего продукта
-            var orderLink = $('.container_products_list-item:last .item_order-take');
-            orderLink.attr('href', '{{ route('order', ['id' => 'id', 'name' => 'name']) }}'.replace('id', product.id).replace('name', product.product));
+                var html = createProductHtml(product);
+                $('.container_products_list').append(html);
+
+                // Обновляем ссылку на оформление заказа для текущего продукта
+                var orderLink = $('.container_products_list-item:last .item_order-take');
+                orderLink.attr('href', '{{ route('order', ['id' => 'id', 'name' => 'name']) }}'.replace('id', product.id).replace('name', product.product));
+
+
         });
 
         // Добавляем класс 'active' для первого продукта
