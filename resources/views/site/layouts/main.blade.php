@@ -361,12 +361,12 @@ $.ajax({
     data: {
         page: 1 // Начинаем с первой страницы
     },
-    success: function(data) {
+    success: function(response) {
         // Очищаем существующее содержимое контейнера
         $('.container_products_list').empty();
 
         // Создаем HTML-структуру для каждого продукта
-        $.each(data.data, function(index, product) {
+        $.each(response.data, function(index, product) {
             var html = createProductHtml(product);
             $('.container_products_list').append(html);
 
@@ -379,7 +379,7 @@ $.ajax({
         $('.container_products_list-item:first').addClass('active');
 
         // Создаем пагинацию
-        createPagination(data.current_page, data.last_page);
+        createPagination(response.current_page, response.last_page);
     },
     error: function(xhr, status, error) {
         console.error(error);
@@ -413,12 +413,12 @@ function loadProducts(page) {
         data: {
             page: page
         },
-        success: function(data) {
+        success: function(response) {
             // Очищаем существующее содержимое контейнера
             $('.container_products_list').empty();
 
             // Создаем HTML-структуру для каждого продукта
-            $.each(data.data, function(index, product) {
+            $.each(response.data, function(index, product) {
                 var html = createProductHtml(product);
                 $('.container_products_list').append(html);
 
@@ -431,7 +431,7 @@ function loadProducts(page) {
             $('.container_products_list-item:first').addClass('active');
 
             // Обновляем пагинацию
-            createPagination(data.current_page, data.last_page);
+            createPagination(response.current_page, response.last_page);
         },
         error: function(xhr, status, error) {
             console.error(error);
