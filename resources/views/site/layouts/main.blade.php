@@ -392,7 +392,7 @@ function loadProductsWithSearch(page, search) {
         type: 'GET',
         data: {
             search: search,
-            
+
         },
         success: function(data) {
             // Очищаем существующее содержимое контейнера
@@ -406,10 +406,10 @@ function loadProductsWithSearch(page, search) {
             var totalPages = Math.ceil(totalProducts / productsPerPage);
 
             // Отображаем продукты на текущей странице
-            loadProductsPage(page, data.data, productsPerPage);
+            loadProductsPage(1, data.data, productsPerPage);
 
             // Создаем пагинацию
-            createPagination(page, totalPages, data.data, productsPerPage);
+            createPagination(1, totalPages, data.data, productsPerPage);
         },
         error: function(xhr, status, error) {
             console.error(error);
