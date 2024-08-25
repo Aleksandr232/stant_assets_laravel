@@ -370,15 +370,16 @@ $.ajax({
         var productsPerPage = 5;
         var totalPages = Math.ceil(totalProducts / productsPerPage);
 
-        // Создаем HTML-структуру для каждого продукта
-        $.each(data, function(index, product) {
+        // Отображаем первые 5 продуктов на первой странице
+        for (var i = 0; i < Math.min(productsPerPage, totalProducts); i++) {
+            var product = data[i];
             var html = createProductHtml(product);
             $('.container_products_list').append(html);
 
             // Обновляем ссылку на оформление заказа для текущего продукта
             var orderLink = $('.container_products_list-item:last .item_order-take');
             orderLink.attr('href', '{{ route('order', ['id' => 'id', 'name' => 'name']) }}'.replace('id', product.id).replace('name', product.product));
-        });
+        }
 
         // Добавляем класс 'active' для первого продукта
         $('.container_products_list-item:first').addClass('active');
