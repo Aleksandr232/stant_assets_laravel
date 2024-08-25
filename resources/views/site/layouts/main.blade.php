@@ -388,25 +388,60 @@ $.ajax({
 
 
 function createPagination(currentPage, lastPage) {
-    var paginationContainer = $('.pagination');
+    var paginationContainer = $('.container_pages');
     paginationContainer.empty();
 
     // Создаем ссылки для пагинации
-    for (var i = 1; i <= lastPage; i++) {
-        var pageLink = $('<a href="#" class="pagination-link"></a>');
-        pageLink.text(i);
-        pageLink.data('page', i);
-
-        if (i === currentPage) {
-            pageLink.addClass('active');
-        }
-
-        pageLink.click(function() {
-            var page = $(this).data('page');
-            loadProducts(page);
+    if (currentPage > 1) {
+        var prevButton = $('<button class="container_pages-button">Prev</button>');
+        prevButton.click(function() {
+            loadProducts(currentPage - 1);
         });
+        paginationContainer.append(prevButton);
+    }
 
-        paginationContainer.append(pageLink);
+    // Отображаем первую страницу
+    var firstPageButton = $('<button class="container_pages-button pages_button-active">1</button>');
+    firstPageButton.click(function() {
+        loadProducts(1);
+    });
+    paginationContainer.append(firstPageButton);
+
+    // Отображаем страницы в диапазоне от 2 до 4
+    var startPage = Math.max(2, currentPage - 1);
+    var endPage = Math.min(startPage + 2, lastPage);
+    for (var i = startPage; i <= endPage; i++) {
+        var pageButton = $('<button class="container_pages-button"></button>');
+        pageButton.text(i);
+        if (i === currentPage) {
+            pageButton.addClass('pages_button-active');
+        }
+        pageButton.click(function() {
+            loadProducts($(this).text());
+        });
+        paginationContainer.append(pageButton);
+    }
+
+    // Отображаем многоточие, если есть страницы после 4-й
+    if (endPage < lastPage) {
+        var moreButton = $('<span class="container_pages-more">. . .</span>');
+        paginationContainer.append(moreButton);
+    }
+
+    // Отображаем последнюю страницу
+    var lastPageButton = $('<button class="container_pages-button">' + lastPage + '</button>');
+    lastPageButton.click(function() {
+        loadProducts(lastPage);
+    });
+    paginationContainer.append(lastPageButton);
+
+    // Отображаем кнопку "Next", если есть следующая страница
+    if (currentPage < lastPage) {
+        var nextButton = $('<button class="container_pages-button">Next</button>');
+        nextButton.click(function() {
+            loadProducts(currentPage + 1);
+        });
+        paginationContainer.append(nextButton);
     }
 }
 
