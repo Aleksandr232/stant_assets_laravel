@@ -356,14 +356,12 @@ window.onclick = function(event) {
 
 
 
-function loadProducts(page) {
-    currentPage = page;
+function loadProducts() {
+
     $.ajax({
         url: '{{ route('get_product') }}',
         type: 'GET',
-        data: {
-            page: currentPage
-        },
+
         success: function(data) {
             // Очищаем существующее содержимое контейнера
             $('.container_products_list').empty();
@@ -389,7 +387,7 @@ function loadProducts(page) {
     });
 }
 
-loadProducts(currentPage);
+loadProducts();
 
 function createProductHtml(product) {
     var imageHtml = '';
