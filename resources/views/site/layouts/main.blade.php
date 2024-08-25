@@ -389,7 +389,7 @@ function loadProducts(page) {
     });
 }
 
-
+loadProducts(currentPage);
 
 function createProductHtml(product) {
     var imageHtml = '';
