@@ -395,22 +395,28 @@ $.ajax({
 
 function createPagination(currentPage, totalPages) {
     // Очищаем существующую пагинацию
-    $('.pagination').empty();
+    $('.container_pages').empty();
 
-    // Создаем ссылки на страницы
+    // Создаем кнопки страниц
     for (var i = 1; i <= totalPages; i++) {
-        var pageLink = $('<a href="#" class="pagination-link">').text(i);
+        var pageButton = $('<button class="container_pages-button">').text(i);
         if (i === currentPage) {
-            pageLink.addClass('active');
+            pageButton.addClass('pages_button-active');
         }
-        $('.pagination').append(pageLink);
+        $('.container_pages').append(pageButton);
     }
 
-    // Добавляем обработчик клика на ссылки страниц
-    $('.pagination-link').click(function() {
+    // Добавляем обработчик клика на кнопки страниц
+    $('.container_pages-button').click(function() {
         var page = parseInt($(this).text());
         loadProductsPage(page);
     });
+
+    // Добавляем элемент "..." если необходимо
+    if (totalPages > 7) {
+        var moreButton = $('<span class="container_pages-more">').text('. . .');
+        $('.container_pages').append(moreButton);
+    }
 }
 
 function loadProductsPage(page) {
