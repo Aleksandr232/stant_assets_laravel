@@ -386,7 +386,73 @@ $.ajax({
 });
 
 
+function loadProducts(page) {
+    $.ajax({
+        url: '{{ route('get_product') }}',
+        type: 'GET',
+        data: { page: page },
+        success: function(data) {
+            // Очищаем существующее содержимое контейнера
+            $('.container_products_list').empty();
 
+            // Создаем HTML-структуру для каждого продукта
+            $.each(data.data, function(index, product) {
+                var html = createProductHtml(product);
+                $('.container_products_list').append(html);
+
+                // Обновляем ссылку на оформление заказа для текущего продукта
+                var orderLink = $('.container_products_list-item:last .item_order-take');
+                orderLink.attr('href', '{{ route('order', ['id' => 'id', 'name' => 'name']) }}'.replace('id', product.id).replace('name', product.product));
+            });
+
+            // Добавляем класс 'active' для первого продукта
+            $('.container_products_list-item:first').addClass('active');
+
+            // Обновляем пагинацию
+            updatePagination(data.current_page, data.last_page);
+        },
+        error: function(xhr, status, error) {
+            console.error(error);
+        }
+    });
+}
+
+var currentPage = 1; // Текущая страница
+var totalPages = 9; // Общее количество страниц
+
+// Обработчик клика на кнопках пагинации
+$('.container_pages-button').on('click', function() {
+    var page = parseInt($(this).text());
+    if (!isNaN(page)) {
+        currentPage = page;
+        loadProducts(currentPage);
+        updatePagination();
+    }
+});
+
+function updatePagination() {
+    // Очищаем существующие кнопки пагинации
+    $('.container_pages-button').remove();
+
+    // Добавляем новые кнопки пагинации
+    for (var i = 1; i <= totalPages; i++) {
+        var buttonClass = (i === currentPage) ? 'container_pages-button pages_button-active' : 'container_pages-button';
+        var button = $('<button>').addClass(buttonClass).text(i);
+        $('.container_pages').append(button);
+    }
+
+    // Добавляем многоточие, если есть больше 7 страниц
+    if (totalPages > 7) {
+        var moreButton = $('<span>').addClass('container_pages-more').text('. . .');
+        $('.container_pages').append(moreButton);
+    }
+}
+
+// Загружаем первую страницу
+loadProducts(currentPage);
+
+// Обновляем пагинацию
+updatePagination();
 
 
 
