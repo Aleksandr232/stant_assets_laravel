@@ -71,12 +71,13 @@ class HomePageController extends Controller
             $query->whereBetween('price', [$minPrice, $maxPrice]);
         }
 
-        /* if ($request->has('filterPrice')){
-            $filterPrice = $request->input('filterPrice');
+        $validSortDirections = ['asc', 'desc'];
+        $filterPrice = $request->input('filterPrice');
+        if ($filterPrice && in_array($filterPrice, $validSortDirections)) {
             $query->orderBy('filter_price', $filterPrice);
-        } */
-        $filterPrice = $request->input('filterPrice', 'asc'); // Получаем направление сортировки из запроса, если оно не указано, используем "asc"
-        $query->orderBy('filter_price', $filterPrice);
+        } else {
+            $query->orderBy('filter_price', 'asc'); // Используем значение по умолчанию, если направление сортировки некорректно
+        }
 
         $products = $query->get();
 
