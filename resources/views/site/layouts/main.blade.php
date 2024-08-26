@@ -370,6 +370,16 @@ $.ajax({
         var productsPerPage = 5;
         var totalPages = Math.ceil(totalProducts / productsPerPage);
 
+        // Находим минимальную и максимальную цену
+        var minPrice = Math.min.apply(Math, data.map(function(item) { return item.price; }));
+        var maxPrice = Math.max.apply(Math, data.map(function(item) { return item.price; }));
+
+        // Отображаем двойной слайдер
+        $('.double-slider #slider-1').attr('min', minPrice).attr('max', maxPrice).val(minPrice);
+        $('.double-slider #slider-2').attr('min', minPrice).attr('max', maxPrice).val(maxPrice);
+        $('.double-slider .range-count#range1').text(minPrice);
+        $('.double-slider .range-count#range2').text(maxPrice);
+
         // Отображаем первые 5 продуктов на первой странице
         loadProductsPage(1, data, productsPerPage);
 
