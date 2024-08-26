@@ -420,7 +420,7 @@ function loadProductsWithSearch(page, search, minPrice, maxPrice, filter_price) 
             search: search,
             min_price: minPrice,
             max_price: maxPrice,
-            filter_price: filter_price
+            filterPrice: filter_price
         },
         success: function(data) {
             // Очищаем существующее содержимое контейнера

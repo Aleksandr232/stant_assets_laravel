@@ -71,8 +71,8 @@ class HomePageController extends Controller
             $query->whereBetween('price', [$minPrice, $maxPrice]);
         }
 
-        if ($request->has('filter_price')){
-            $filterPrice = $request->input('filter_price');
+        if ($request->has('filterPrice')){
+            $filterPrice = $request->input('filterPrice');
             $query->where('filter_price', $filterPrice);
         }
 
