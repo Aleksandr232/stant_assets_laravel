@@ -65,6 +65,11 @@ class HomePageController extends Controller
             });
         }
 
+        if ($request->has('sort_price')) {
+            $sort = $request->input('sort_price');
+            $query->where('price', 'like', '%' . $sort . '%');
+        }
+
         $products = $query->get();
 
         return response()->json($products);

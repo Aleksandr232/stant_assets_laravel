@@ -381,18 +381,44 @@ $.ajax({
     }
 });
 
-$('#search-input').on('input', function() {
+/* $('#search-input').on('input', function() {
     var search = $(this).val();
     loadProductsWithSearch(1, search);
+}); */
+
+$('#search-input').on('input', function() {
+    var search = $(this).val();
+    var minPrice = $('#slider-1').val();
+    var maxPrice = $('#slider-2').val();
+    loadProductsWithSearch(1, search, minPrice, maxPrice);
 });
 
-function loadProductsWithSearch(page, search) {
+
+function slideOne() {
+    var slider1 = document.getElementById("slider-1");
+    var slider2 = document.getElementById("slider-2");
+    var range1 = document.getElementById("range1");
+    range1.innerHTML = slider1.value;
+    $('#search-input').trigger('input');
+}
+
+function slideTwo() {
+    var slider1 = document.getElementById("slider-1");
+    var slider2 = document.getElementById("slider-2");
+    var range2 = document.getElementById("range2");
+    range2.innerHTML = slider2.value;
+    $('#search-input').trigger('input');
+}
+
+function loadProductsWithSearch(page, search, minPrice, maxPrice) {
     $.ajax({
         url: '{{ route('get_product') }}',
         type: 'GET',
         data: {
             page: page,
-            search: search
+            search: search,
+            minPrice: minPrice,
+            maxPrice: maxPrice
         },
         success: function(data) {
             // Очищаем существующее содержимое контейнера
