@@ -375,8 +375,8 @@ $.ajax({
         var maxPrice = Math.max.apply(Math, data.map(function(item) { return item.price; }));
 
         // Отображаем двойной слайдер
-        $('.double-slider #slider-1').attr('min', minPrice).attr('max', maxPrice).val(minPrice);
-        $('.double-slider #slider-2').attr('min', minPrice).attr('max', maxPrice).val(maxPrice);
+        $('.double-slider #slider-1').attr('min', minPrice).val(minPrice);
+        $('.double-slider #slider-2').attr('max', maxPrice).val(maxPrice);
         $('.double-slider .range-count#range1').text(30);
         $('.double-slider .range-count#range2').text(70);
 
