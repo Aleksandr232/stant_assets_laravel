@@ -35,26 +35,13 @@
                     <label class="filter_header">Цена</label>
                     <ul class="filter_group">
                         <ul class="filter_group-items">
-                        @if(count($filterprice))
-                            @foreach($filterprice as $post)
-                                @if($post->filter_price)
                                     <li class="filter_group-item-right">
                                         <label class="control control-checkbox">
-                                            {{ $post->filter_price }}
-                                            <input  id="filterPrice" type="checkbox" value="{{ $post->filter_price }}" />
+
+                                            <input  id="filterPrice" type="checkbox" value="" />
                                             <div class="control_indicator"></div>
                                         </label>
                                     </li>
-                                @endif
-                            @endforeach
-                        @elseif(count($filterprice) == 0)
-                            <li class="filter_group-item-right">
-                                <label class="control control-checkbox">
-                                    нет данных
-                                </label>
-                            </li>
-                        @endif
-
                         </ul>
 
                         <li>
