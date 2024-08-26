@@ -361,7 +361,11 @@ $.ajax({
     success: function(data) {
         // Очистить существующие фильтры
         $('.filter_group-item-right').html('');
-        $.each(data, function(index, filter) {
+
+        // Установите максимальное количество отображаемых фильтров
+        var maxFilters = 5;
+
+        $.each(data.slice(0, maxFilters), function(index, filter) {
             var filterItem = $('<li>').addClass('filter_group-item-right');
             var label = $('<label>').addClass('control control-checkbox');
             var input = $('<input>').attr('type', 'checkbox')
@@ -374,6 +378,35 @@ $.ajax({
             filterItem.append(label);
             $('.filter_group-item-right').append(filterItem);
         });
+
+        // Проверьте, есть ли еще фильтры, которые не были показаны
+        if (data.length > maxFilters) {
+            // Добавьте кнопку "Показать еще"
+            var showMoreButton = $('<button>').addClass('show-more-filters')
+                                             .text('Показать еще');
+            $('.filter_group-item-right').after(showMoreButton);
+
+            // Добавьте обработчик клика на кнопку "Показать еще"
+            $('.show-more-filters').click(function() {
+                // Отобразите оставшиеся фильтры
+                $.each(data.slice(maxFilters), function(index, filter) {
+                    var filterItem = $('<li>').addClass('filter_group-item-right');
+                    var label = $('<label>').addClass('control control-checkbox');
+                    var input = $('<input>').attr('type', 'checkbox')
+                                           .attr('id', 'filter_' + (index + maxFilters))
+                                           .attr('value', filter.value);
+                    var indicator = $('<div>').addClass('control_indicator');
+                    var filterName = $('<span>').text(filter.filter_price);
+
+                    label.append(input, indicator, filterName);
+                    filterItem.append(label);
+                    $('.filter_group-item-right').append(filterItem);
+                });
+
+                // Скройте кнопку "Показать еще"
+                $(this).hide();
+            });
+        }
     },
     error: function(xhr, status, error) {
         console.error(error);
