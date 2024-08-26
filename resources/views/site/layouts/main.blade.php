@@ -398,12 +398,12 @@ $('#search-input').on('input', function() {
 
 $('#slider-2').on('input', function() {
     var maxPrice = $(this).val();
-    loadProductsWithSearch(1, maxPrice);
+    loadProductsWithSearch(1, '', minPrice, maxPrice);
 });
 
 $('#slider-1').on('input', function() {
     var minPrice = $(this).val();
-    loadProductsWithSearch(1, minPrice);
+    loadProductsWithSearch(1, '', minPrice, maxPrice);
 });
 
 
