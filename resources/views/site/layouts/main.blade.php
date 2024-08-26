@@ -363,6 +363,7 @@ $.ajax({
         $('.filter_group-item-right').empty();
 
         // Перебрать данные и создать новые элементы
+        var filterCount = 0;
         $.each(data, function(index, filter) {
             var filterItem = $('<li>').addClass('filter_group-item-right');
             var label = $('<label>').addClass('control control-checkbox');
@@ -375,7 +376,16 @@ $.ajax({
             label.append(input, indicator, filterName);
             filterItem.append(label);
             $('.filter_group-item-right').append(filterItem);
+
+            filterCount++;
         });
+
+        // Если всего 2 фильтра, скрыть кнопку "Показать еще"
+        /* if (filterCount === 2) {
+            $('.show-more-filters').hide();
+        } else {
+            $('.show-more-filters').show();
+        } */
     },
     error: function(xhr, status, error) {
         console.error(error);
