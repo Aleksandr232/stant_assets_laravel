@@ -407,7 +407,7 @@ $('#slider-1').on('input', function() {
 });
 
 $('#filterPrice').on('change', function() {
-    var selectedPrices = [];
+    /* var selectedPrices = []; */
     $('#filterPrice:checked').each(function() {
         selectedPrices.push($(this).val());
     });
