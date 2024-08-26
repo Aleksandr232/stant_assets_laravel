@@ -386,12 +386,10 @@ $('#search-input').on('input', function() {
     loadProductsWithSearch(1, search);
 });
 
-/* $('#search-input').on('input', function() {
-    var search = $(this).val();
-    var minPrice = $('#slider-1').val();
-    var maxPrice = $('#slider-2').val();
-    loadProductsWithSearch(1, search, minPrice, maxPrice);
-}); */
+$('#slider-2').on('input', function() {
+    var maxPrice = $(this).val();
+    loadProductsWithSearch(1, maxPrice);
+});
 
 $('#slider-1').on('input', function() {
     var minPrice = $(this).val();
@@ -406,7 +404,8 @@ function loadProductsWithSearch(page, search, minPrice, maxPrice) {
         data: {
             page: page,
             search: search,
-            minPrice: minPrice
+            minPrice: minPrice,
+            maxPrice: maxPrice
         },
         success: function(data) {
             // Очищаем существующее содержимое контейнера
