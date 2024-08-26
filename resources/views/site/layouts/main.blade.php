@@ -411,8 +411,8 @@ $('#filterPrice').on('change', function() {
     $('#filterPrice:checked').each(function() {
         selectedPrices.push($(this).val());
     });
-    console.log(selectedPrices);
-    loadProductsWithSearch(1, selectedPrices.join(','));
+    console.log('Selected prices:', selectedPrices);
+    loadProductsWithSearch(1, null, null, null, selectedPrices.join(','));
 });
 
 function loadProductsWithSearch(page, search, minPrice, maxPrice, selectedPrices) {
