@@ -355,6 +355,18 @@ window.onclick = function(event) {
 }
 
 
+$.ajax({
+    url: '{{ route('get_filter') }}',
+    type: 'GET',
+    success: function(data) {
+        console.log(data);
+    },
+    error: function(xhr, status, error) {
+        console.error(error);
+    }
+});
+
+
 
 $.ajax({
     url: '{{ route('get_product') }}',
@@ -390,6 +402,8 @@ $.ajax({
         console.error(error);
     }
 });
+
+
 
 $('#search-input').on('input', function() {
     var search = $(this).val();
