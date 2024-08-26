@@ -414,8 +414,8 @@ function loadProductsWithSearch(page, search, minPrice, maxPrice) {
         data: {
             page: page,
             search: search,
-            minPrice: minPrice,
-            maxPrice: maxPrice
+            min_price: minPrice,
+            max_price: maxPrice
         },
         success: function(data) {
             // Очищаем существующее содержимое контейнера
