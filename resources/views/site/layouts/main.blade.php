@@ -375,10 +375,10 @@ $.ajax({
         var maxPrice = Math.max.apply(Math, data.map(function(item) { return item.price; }));
 
         // Отображаем двойной слайдер
-        $('.double-slider #slider-1').attr('min', minPrice).val(30);
-        $('.double-slider #slider-2').attr('max', maxPrice).val(70);
-        $('.double-slider .range-count#range1').text(30);
-        $('.double-slider .range-count#range2').text(70);
+        $('.double-slider #slider-1').attr('min', minPrice).val(minPrice);
+        $('.double-slider #slider-2').attr('max', maxPrice).val(maxPrice);
+        $('.double-slider .range-count#range1').text(minPrice);
+        $('.double-slider .range-count#range2').text(maxPrice);
 
         // Отображаем первые 5 продуктов на первой странице
         loadProductsPage(1, data, productsPerPage);
