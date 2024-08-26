@@ -406,9 +406,12 @@ $('#slider-1').on('input', function() {
     loadProductsWithSearch(1, minPrice);
 });
 
+$('#filterPrice').on('input', function() {
+    var filter_price = $(this).val();
+    loadProductsWithSearch(1, filter_price);
+})
 
-
-function loadProductsWithSearch(page, search, minPrice, maxPrice) {
+function loadProductsWithSearch(page, search, minPrice, maxPrice, filter_price) {
     $.ajax({
         url: '{{ route('get_product') }}',
         type: 'GET',
@@ -416,7 +419,8 @@ function loadProductsWithSearch(page, search, minPrice, maxPrice) {
             page: page,
             search: search,
             min_price: minPrice,
-            max_price: maxPrice
+            max_price: maxPrice,
+            filter_price: filter_price
         },
         success: function(data) {
             // Очищаем существующее содержимое контейнера
