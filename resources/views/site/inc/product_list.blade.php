@@ -57,6 +57,12 @@
                                 </label>
                             </li>
                         @endif --}}
+                        <li class="filter_group-item-right">
+                            <label class="control control-checkbox">
+                                <input name="" type="checkbox" value="" />
+                                <div class="control_indicator"></div>
+                            </label>
+                        </li>
                         </ul>
 
                         <li>
