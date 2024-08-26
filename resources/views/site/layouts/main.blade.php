@@ -363,7 +363,7 @@ $.ajax({
         $('.filter_group-item-right').empty();
 
         // Проверить, сколько фильтров в данных
-        if (data.length === 2) {
+
             // Если 2 фильтра, создать только 2 элемента
             $.each(data, function(index, filter) {
                 var filterItem = $('<li>').addClass('filter_group-item-right');
@@ -379,26 +379,6 @@ $.ajax({
                 $('.filter_group-item-right').append(filterItem);
             });
 
-            // Скрыть кнопку "Показать еще"
-            $('.show-more-filters').hide();
-        } else {
-            // Если фильтров больше 2, создать все элементы
-            $.each(data, function(index, filter) {
-                var filterItem = $('<li>').addClass('filter_group-item-right');
-                var label = $('<label>').addClass('control control-checkbox');
-                var input = $('<input>').attr('type', 'checkbox')
-                                       .attr('id', 'filter_' + index)
-                                       .attr('value', filter.value);
-                var indicator = $('<div>').addClass('control_indicator');
-                var filterName = $('<span>').text(filter.filter_price);
-
-                label.append(input, indicator, filterName);
-                filterItem.append(label);
-                $('.filter_group-item-right').append(filterItem);
-            });
-
-            // Показать кнопку "Показать еще"
-            $('.show-more-filters').show();
         }
     },
     error: function(xhr, status, error) {
