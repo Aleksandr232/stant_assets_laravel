@@ -7,9 +7,6 @@
         $filterplatform = FilterPlatform::all();
         $filterservice = FilterService::all();
 
-        $minPrice = $product->min('price');
-        $maxPrice = $product->max('price');
-
 @endphp
 <section class="product_list">
     <div class="list-search">
@@ -38,13 +35,13 @@
                     <label class="filter_header">Цена</label>
                     <ul class="filter_group">
                         <ul class="filter_group-items">
-                            {{-- @if(count($filterprice))
+                        @if(count($filterprice))
                             @foreach($filterprice as $post)
                                 @if($post->filter_price)
                                     <li class="filter_group-item-right">
                                         <label class="control control-checkbox">
                                             {{ $post->filter_price }}
-                                            <input name="filter_price[]" type="checkbox" value="{{ $post->filter_price }}" @if(in_array($post->filter_price, request()->input('filter_price', []))) checked @endif onchange="this.form.submit()" />
+                                            <input name="filter_price[]" type="checkbox" value="" />
                                             <div class="control_indicator"></div>
                                         </label>
                                     </li>
@@ -56,13 +53,8 @@
                                     нет данных
                                 </label>
                             </li>
-                        @endif --}}
-                        <li class="filter_group-item-right">
-                            <label class="control control-checkbox">
-                                <input name="" type="checkbox" value="" />
-                                <div class="control_indicator"></div>
-                            </label>
-                        </li>
+                        @endif
+
                         </ul>
 
                         <li>
