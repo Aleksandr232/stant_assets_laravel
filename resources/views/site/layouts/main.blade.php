@@ -381,34 +381,23 @@ $.ajax({
     }
 });
 
-/* $('#search-input').on('input', function() {
+$('#search-input').on('input', function() {
     var search = $(this).val();
     loadProductsWithSearch(1, search);
-}); */
+});
 
-$('#search-input').on('input', function() {
+/* $('#search-input').on('input', function() {
     var search = $(this).val();
     var minPrice = $('#slider-1').val();
     var maxPrice = $('#slider-2').val();
     loadProductsWithSearch(1, search, minPrice, maxPrice);
+}); */
+
+$('#slider-1').on('input', function() {
+    var minPrice = $(this).val();
+    loadProductsWithSearch(1, minPrice);
 });
 
-
-function slideOne() {
-    var slider1 = document.getElementById("slider-1");
-    var slider2 = document.getElementById("slider-2");
-    var range1 = document.getElementById("range1");
-    range1.innerHTML = slider1.value;
-    $('#search-input').trigger('input');
-}
-
-function slideTwo() {
-    var slider1 = document.getElementById("slider-1");
-    var slider2 = document.getElementById("slider-2");
-    var range2 = document.getElementById("range2");
-    range2.innerHTML = slider2.value;
-    $('#search-input').trigger('input');
-}
 
 function loadProductsWithSearch(page, search, minPrice, maxPrice) {
     $.ajax({
@@ -417,8 +406,7 @@ function loadProductsWithSearch(page, search, minPrice, maxPrice) {
         data: {
             page: page,
             search: search,
-            minPrice: minPrice,
-            maxPrice: maxPrice
+            minPrice: minPrice
         },
         success: function(data) {
             // Очищаем существующее содержимое контейнера
