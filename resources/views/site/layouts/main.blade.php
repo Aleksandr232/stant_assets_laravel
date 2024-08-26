@@ -397,16 +397,16 @@ $('#search-input').on('input', function() {
 });
 
 $('#slider-2').on('input', function() {
-    maxPrice = $(this).val();
-    loadProductsWithSearch(1, '');
+    var maxPrice = $(this).val();
+    loadProductsWithSearch(1, maxPrice);
 });
 
 $('#slider-1').on('input', function() {
-    minPrice = $(this).val();
-    loadProductsWithSearch(1, '');
+    var minPrice = $(this).val();
+    loadProductsWithSearch(1, minPrice);
 });
 
-var minPrice, maxPrice;
+
 
 function loadProductsWithSearch(page, search, minPrice, maxPrice) {
     $.ajax({
