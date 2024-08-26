@@ -374,15 +374,11 @@ $.ajax({
         var minPrice = Math.min.apply(Math, data.map(function(item) { return item.price; }));
         var maxPrice = Math.max.apply(Math, data.map(function(item) { return item.price; }));
 
-        // Устанавливаем значения слайдеров по умолчанию
-        var defaultMin = minPrice + (maxPrice - minPrice) * 0.3;
-        var defaultMax = minPrice + (maxPrice - minPrice) * 0.7;
-
         // Отображаем двойной слайдер
-        $('.double-slider #slider-1').attr('min', minPrice).attr('max', maxPrice).val(defaultMin);
-        $('.double-slider #slider-2').attr('min', minPrice).attr('max', maxPrice).val(defaultMax);
-        $('.double-slider .range-count#range1').text(defaultMin);
-        $('.double-slider .range-count#range2').text(defaultMax);
+        $('.double-slider #slider-1').attr('min', minPrice).attr('max', maxPrice).val(minPrice);
+        $('.double-slider #slider-2').attr('min', minPrice).attr('max', maxPrice).val(maxPrice);
+        $('.double-slider .range-count#range1').text(minPrice);
+        $('.double-slider .range-count#range2').text(maxPrice);
 
         // Отображаем первые 5 продуктов на первой странице
         loadProductsPage(1, data, productsPerPage);
