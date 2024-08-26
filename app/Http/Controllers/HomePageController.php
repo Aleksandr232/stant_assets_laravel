@@ -65,9 +65,10 @@ class HomePageController extends Controller
             });
         }
 
-        if ($request->has('sort_price')) {
-            $sort = $request->input('sort_price');
-            $query->where('price', 'like', '%' . $sort . '%');
+        if ($request->has('min_price') && $request->has('max_price')) {
+            $minPrice = $request->input('min_price');
+            $maxPrice = $request->input('max_price');
+            $query->whereBetween('price', [$minPrice, $maxPrice]);
         }
 
         $products = $query->get();
