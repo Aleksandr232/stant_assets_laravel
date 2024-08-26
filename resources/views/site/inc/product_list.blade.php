@@ -41,7 +41,7 @@
                                     <li class="filter_group-item-right">
                                         <label class="control control-checkbox">
                                             {{ $post->filter_price }}
-                                            <input  id="filterPrice" type="checkbox" value="" />
+                                            <input  id="filterPrice" type="checkbox" value="{{ $post->filter_price }}" />
                                             <div class="control_indicator"></div>
                                         </label>
                                     </li>
