@@ -362,15 +362,17 @@ $.ajax({
         // Очистить существующие фильтры
         $('.filter_group-item-right').html('');
         $.each(data, function(index, filter) {
+            var filterItem = $('<li>').addClass('filter_group-item-right');
             var label = $('<label>').addClass('control control-checkbox');
             var input = $('<input>').attr('type', 'checkbox')
                                    .attr('id', 'filter_' + index)
                                    .attr('value', filter.value);
             var indicator = $('<div>').addClass('control_indicator');
-            var filterName = $('<span>').text(filter.name);
+            var filterName = $('<span>').text(filter.filter_price);
 
             label.append(input, indicator, filterName);
-            $('.filter_group-item-right').append(label);
+            filterItem.append(label);
+            $('.filter_group-item-right').append(filterItem);
         });
     },
     error: function(xhr, status, error) {
