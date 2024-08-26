@@ -412,7 +412,7 @@ $('#filterPrice').on('change', function() {
         selectedPrices.push($(this).val());
     });
     console.log('Selected prices:', selectedPrices);
-    loadProductsWithSearch(1, null, null, null, selectedPrices.join(','));
+    loadProductsWithSearch(1, selectedPrices.join(','));
 });
 
 function loadProductsWithSearch(page, search, minPrice, maxPrice, selectedPrices) {
