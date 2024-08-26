@@ -361,10 +361,6 @@ $.ajax({
     success: function(data) {
         // Очистить существующие фильтры
         $('.filter_group-item-right').empty();
-
-        // Проверить, сколько фильтров в данных
-
-            // Если 2 фильтра, создать только 2 элемента
             $.each(data, function(index, filter) {
                 var filterItem = $('<li>').addClass('filter_group-item-right');
                 var label = $('<label>').addClass('control control-checkbox');
@@ -380,12 +376,11 @@ $.ajax({
             });
 
         }
-    },
+
     error: function(xhr, status, error) {
         console.error(error);
     }
-});
-
+})
 
 
 $.ajax({
