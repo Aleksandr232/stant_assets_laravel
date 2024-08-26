@@ -407,12 +407,11 @@ $('#slider-1').on('input', function() {
 });
 
 $('#filterPrice').on('change', function() {
-    var selectedPrices = [];
-    $('#filterPrice:checked').each(function() {
-        selectedPrices.push($(this).val());
-    });
+    var selectedPrices = $('#filterPrice:checked').map(function() {
+        return $(this).val();
+    }).get();
     console.log('Selected prices:', selectedPrices);
-    loadProductsWithSearch(1, null, null, null, selectedPrices.join(','));
+    loadProductsWithSearch(1, null, null, null, selectedPrices);
 });
 
 function loadProductsWithSearch(page, search, minPrice, maxPrice, selectedPrices) {
