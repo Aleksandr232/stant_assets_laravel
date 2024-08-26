@@ -35,13 +35,13 @@
                     <label class="filter_header">Цена</label>
                     <ul class="filter_group">
                         <ul class="filter_group-items">
-                                    {{-- <li class="filter_group-item-right">
+                                    <li class="filter_group-item-right">
                                         <label class="control control-checkbox">
 
-                                            <input  id="filterPrice" type="checkbox" value="" />
-                                            <div class="control_indicator"></div>
+                                            {{-- <input  id="filterPrice" type="checkbox" value="" />
+                                            <div class="control_indicator"></div> --}}
                                         </label>
-                                    </li> --}}
+                                    </li>
                         </ul>
 
                         <li>
