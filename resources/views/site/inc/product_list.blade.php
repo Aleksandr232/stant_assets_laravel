@@ -60,27 +60,24 @@
                         </ul>
 
                         <li>
-
                             <div class="double-slider">
-
                                 <div class="double-slider_container">
                                     <div class="slider-track"></div>
-                                    <input  type="range" min="50" max="70"
-                                    value="0"  id="slider-1" oninput="slideOne()">
-                                    <input name="price[]" type="range" min="50" max="70" >
+                                    <input type="range" min="0" max="100" value="30" id="slider-1"
+                                        oninput="slideOne()">
+                                    <input type="range" min="0" max="100" value="70" id="slider-2"
+                                        oninput="slideTwo()">
                                 </div>
                                 <div class="double-slider_values">
                                     <span class="range-count" id="range1">
-
+                                        0
                                     </span>
                                     <span class="range-dash"></span>
                                     <span class="range-count" id="range2">
-
+                                        100
                                     </span>
                                 </div>
-
                             </div>
-
                         </li>
                     </ul>
                 </div>
