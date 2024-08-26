@@ -362,7 +362,7 @@ $.ajax({
         // Очистить существующие фильтры
         $('.filter_group-item-right').html('');
 
-        // Выводим все фильтры
+        // Выводим все уникальные фильтры
         $.each(data, function(index, filter) {
             var filterItem = $('<li>').addClass('filter_group-item-right');
             var label = $('<label>').addClass('control control-checkbox');
@@ -376,10 +376,6 @@ $.ajax({
             filterItem.append(label);
             $('.filter_group-item-right').append(filterItem);
         });
-
-        // Показываем только необходимое количество фильтров
-        var numFilters = data.length;
-        $('.filter_group-item-right').slice(0, numFilters).show();
     },
     error: function(xhr, status, error) {
         console.error(error);
