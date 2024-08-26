@@ -71,6 +71,11 @@ class HomePageController extends Controller
             $query->whereBetween('price', [$minPrice, $maxPrice]);
         }
 
+        if ($request->has('filter_price')){
+            $filterPrice = $request->input('filter_price');
+            $query->where('filter_price', $filterPrice);
+        }
+
         $products = $query->get();
 
         return response()->json($products);
