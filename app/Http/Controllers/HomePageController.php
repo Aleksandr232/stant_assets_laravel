@@ -73,7 +73,7 @@ class HomePageController extends Controller
 
         if ($request->has('filterPrice')){
             $filterPrice = $request->input('filterPrice');
-            $query->where('filter_price', $filterPrice);
+            $query->orderBy('filter_price', $filterPrice);
         }
 
         $products = $query->get();
