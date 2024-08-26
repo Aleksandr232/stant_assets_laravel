@@ -393,22 +393,22 @@ $.ajax({
 
 $('#search-input').on('input', function() {
     var search = $(this).val();
-    loadProductsWithSearch(1, search);
+    loadProductsWithSearch(1, search, null, null, null);
 });
 
 $('#slider-2').on('input', function() {
     var maxPrice = $(this).val();
-    loadProductsWithSearch(1, maxPrice);
+    loadProductsWithSearch(1, maxPrice, null, null, null);
 });
 
 $('#slider-1').on('input', function() {
     var minPrice = $(this).val();
-    loadProductsWithSearch(1, minPrice);
+    loadProductsWithSearch(1, minPrice, null, null, null);
 });
 
 $('#filterPrice').on('input', function() {
     var filter_price = $(this).val();
-    loadProductsWithSearch(1, filter_price);
+    loadProductsWithSearch(1, filter_price, null, null, null);
 })
 
 function loadProductsWithSearch(page, search, minPrice, maxPrice, filter_price) {
