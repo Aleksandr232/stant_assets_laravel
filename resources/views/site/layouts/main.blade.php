@@ -393,17 +393,17 @@ $.ajax({
 
 $('#search-input').on('input', function() {
     var search = $(this).val();
-    loadProductsWithSearch(1, search, null, null, null);
+    loadProductsWithSearch(1, search);
 });
 
 $('#slider-2').on('input', function() {
     var maxPrice = $(this).val();
-    loadProductsWithSearch(1, maxPrice, null, null, null);
+    loadProductsWithSearch(1, maxPrice);
 });
 
 $('#slider-1').on('input', function() {
     var minPrice = $(this).val();
-    loadProductsWithSearch(1, minPrice, null, null, null);
+    loadProductsWithSearch(1, minPrice);
 });
 
 $('#filterPrice').on('change', function() {
@@ -411,7 +411,7 @@ $('#filterPrice').on('change', function() {
         return $(this).val();
     }).get();
     console.log('Selected prices:', selectedPrices);
-    loadProductsWithSearch(1, null, null, null, selectedPrices);
+    loadProductsWithSearch(1, selectedPrices);
 });
 
 function loadProductsWithSearch(page, search, minPrice, maxPrice, selectedPrices) {
