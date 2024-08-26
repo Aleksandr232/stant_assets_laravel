@@ -38,8 +38,8 @@
                                     <li class="filter_group-item-right">
                                         <label class="control control-checkbox">
 
-                                            <input  id="filterPrice" type="checkbox" value="" />
-                                            <div class="control_indicator"></div>
+                                            {{-- <input  id="filterPrice" type="checkbox" value="" />
+                                            <div class="control_indicator"></div> --}}
                                         </label>
                                     </li>
                         </ul>
