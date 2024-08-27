@@ -529,17 +529,35 @@ $('#slider-1').on('input', function() {
 
 
 function loadProductsWithSearch(page, search, minPrice, maxPrice, filterPrice, platform) {
+    var data = {};
+
+    if (page) {
+        data.page = page;
+    }
+
+    if (search) {
+        data.search = search;
+    }
+
+    if (minPrice) {
+        data.min_price = minPrice;
+    }
+
+    if (maxPrice) {
+        data.max_price = maxPrice;
+    }
+
+    if (filterPrice) {
+        data.filter_price = filterPrice;
+    }
+
+    if (platform) {
+        data.filter_platform = platform;
+    }
     $.ajax({
         url: '{{ route('get_product') }}',
         type: 'GET',
-        data: {
-            page: page,
-            search: search,
-            min_price: minPrice,
-            max_price: maxPrice,
-            filter_price: filterPrice,
-            filter_platform: platform
-        },
+        data: data,
         success: function(data) {
             // Очищаем существующее содержимое контейнера
             $('.container_products_list').empty();
