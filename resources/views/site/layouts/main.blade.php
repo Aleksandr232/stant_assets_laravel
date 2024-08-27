@@ -413,7 +413,8 @@ $.ajax({
 
             // Добавляем обработчик события change на input-checkbox
             input.on('change', function() {
-                var platform = $(this).val();
+                var platform = getSelectedFiltersPlatform();
+
                 loadProductsWithSearch(1, null, null, null, null, platform);
                 console.log('Выбран чекбокс с значением: ' + platform);
                     $('html, body').animate({
@@ -426,6 +427,15 @@ $.ajax({
         console.error(error);
     }
 });
+
+function getSelectedFiltersPlatform() {
+    var selectedFilters = [];
+    $('.filter_group-item input[type="checkbox"]:checked').each(function() {
+        selectedFilters.push($(this).val());
+    });
+    return selectedFilters;
+}
+
 
 $.ajax({
     url: '{{ route('get_filter') }}',
