@@ -362,22 +362,19 @@ $.ajax({
         // Очистить существующие фильтры
         $('.filter_group-item-right').html('');
 
-        // Создаем уникальный идентификатор для каждого фильтра
-        var filterIds = {};
+        // Создаем объект для хранения уникальных фильтров
+        var uniqueFilters = {};
 
         // Выводим все фильтры
         $.each(data, function(index, filter) {
-            // Создаем уникальный идентификатор для фильтра
-            var filterId = 'filter_' + filter.id;
-
             // Проверяем, был ли уже такой фильтр
-            if (!filterIds[filterId]) {
-                filterIds[filterId] = true;
+            if (!uniqueFilters[filter.value]) {
+                uniqueFilters[filter.value] = true;
 
                 var filterItem = $('<li>').addClass('filter_group-item-right');
                 var label = $('<label>').addClass('control control-checkbox');
                 var input = $('<input>').attr('type', 'checkbox')
-                                       .attr('id', filterId)
+                                       .attr('id', 'filter_' + filter.value)
                                        .attr('value', filter.value);
                 var indicator = $('<div>').addClass('control_indicator');
                 var filterName = $('<span>').text(filter.filter_price);
