@@ -88,8 +88,7 @@ class HomePageController extends Controller
         }
 
         if ($request->has('filter_platform')) {
-            $filterPlatforms = explode(',', $request->input('filter_platform'));
-            $query->whereIn('filter_platform', $filterPlatforms);
+            $query->where('filter_platform', $request->input('filter_platform'));
         }
 
 
