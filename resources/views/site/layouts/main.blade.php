@@ -416,6 +416,9 @@ $.ajax({
                 var platform = $(this).val();
                 loadProductsWithSearch(1, null, null, null, null, platform);
                 console.log('Выбран чекбокс с значением: ' + platform);
+                    $('html, body').animate({
+                        scrollTop: $('.container_products_list').offset().top
+                    }, 500);
             });
         });
     },
