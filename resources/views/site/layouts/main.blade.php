@@ -390,7 +390,7 @@ $.ajax({
     type: 'GET',
     success: function(data) {
         // Очистить существующие фильтры
-        $('.filter_group').html('');
+        $('#platform').html('');
 
         // Выводим количество фильтров
         $('.filter-count').text('(' + data.length + ')');
@@ -409,7 +409,7 @@ $.ajax({
 
             label.append(input, indicator, filterName);
             filterItem.append(label);
-            $('.filter_group').append(filterItem);
+            $('#platform').append(filterItem);
 
             // Добавляем обработчик события change для каждого фильтра
             /* $('#' + filterId).on('change', function() {

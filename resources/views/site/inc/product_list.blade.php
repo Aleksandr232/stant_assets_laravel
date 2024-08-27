@@ -69,7 +69,7 @@
 
                 <div class="filter">
                     <label class="filter_header">Платформа</label>
-                         <ul class="filter_group">
+                         <ul id="platform" class="filter_group">
                             <li class="filter_group-item">
                                 <label class="control control-checkbox control-right">
                                     <input name="filter_platform" type="checkbox" />
