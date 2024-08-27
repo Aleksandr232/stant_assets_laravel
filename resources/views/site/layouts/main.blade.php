@@ -415,7 +415,7 @@ $.ajax({
             $('#' + filterId).on('change', function() {
                 var filter_price = getSelectedFilters();
                 /* loadProductsWithSearch(1, filter_price.join(',')); */
-                loadProductsWithSearch(1, 'filter_price_asc');
+                loadProductsWithSearch(1, 'filter_price_asc=Бесплатные');
                 console.log(filter_price);
             });
         });
