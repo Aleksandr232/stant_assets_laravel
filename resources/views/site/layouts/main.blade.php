@@ -397,7 +397,7 @@ $.ajax({
 
         // Выводим все фильтры
         $.each(data, function(index, filter) {
-            var filterId = 'filter_' + index;
+            var filterId = 'filter_platform' + index;
             var filterItem = $('<li>').addClass('filter_group-item');
             var label = $('<label>').addClass('control control-checkbox control-right');
             var input = $('<input>').attr('type', 'checkbox')
