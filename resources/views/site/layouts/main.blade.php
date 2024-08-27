@@ -509,7 +509,7 @@ $.ajax({
 
 
 
-$('#search-input').on('input', function() {
+/* $('#search-input').on('input', function() {
     var search = $(this).val();
     loadProductsWithSearch(1, search, null, null, null, null );
 });
@@ -522,6 +522,18 @@ $('#slider-2').on('input', function() {
 $('#slider-1').on('input', function() {
     var minPrice = $(this).val();
     loadProductsWithSearch(1, minPrice);
+}); */
+
+$(document).ready(function() {
+  $('#search-input').on('input', function() {
+    var search = $(this).val();
+    var minPrice = $('#min-price').val();
+    var maxPrice = $('#max-price').val();
+    var filterPrice = $('input[name="filter_price"]:checked').val();
+    var platform = $('select[name="filter_platform"]').val();
+
+    loadProductsWithSearch(1, search, minPrice, maxPrice, filterPrice, platform);
+  });
 });
 
 
