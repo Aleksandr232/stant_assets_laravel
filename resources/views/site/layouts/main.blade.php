@@ -467,7 +467,7 @@ $.ajax({
                 loadProductsWithSearch(1, null, null, null, null, platform);
                 console.log(filter_price);
             }); */
-            input.on('change', function() {
+            $('#' + filterId).on('change', function() {
                 var filterPrice = getSelectedFiltersPrice();
                 loadProductsWithSearch(1, null, null, null, filterPrice, null);
                     $('html, body').animate({
