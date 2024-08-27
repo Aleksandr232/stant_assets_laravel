@@ -411,12 +411,10 @@ $.ajax({
             filterItem.append(label);
             $('#platform').append(filterItem);
 
-            // Добавляем обработчик события change для каждого фильтра
-            /* $('#' + filterId).on('change', function() {
-                var filter_price = getSelectedFilters();
-                loadProductsWithSearch(1, filter_price.join(','));
-                console.log(filter_price);
-            }); */
+            // Добавляем обработчик события change на input-checkbox
+            input.on('change', function() {
+                console.log('Выбран чекбокс с значением: ' + $(this).val());
+            });
         });
     },
     error: function(xhr, status, error) {
