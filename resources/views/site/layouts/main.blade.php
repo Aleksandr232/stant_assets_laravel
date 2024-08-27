@@ -367,17 +367,19 @@ $.ajax({
 
         // Выводим все фильтры
         $.each(data, function(index, filter) {
-            var filterItem = $('<li>').addClass('filter_group-item-right');
-            var label = $('<label>').addClass('control control-checkbox');
-            var input = $('<input>').attr('type', 'checkbox')
-                                   .attr('id', 'filter_' + filter.value)
-                                   .attr('value', filter.value);
-            var indicator = $('<div>').addClass('control_indicator');
-            var filterName = $('<span>').text(filter.filter_price);
+            if (filter.filter_price) {
+                var filterItem = $('<li>').addClass('filter_group-item-right');
+                var label = $('<label>').addClass('control control-checkbox');
+                var input = $('<input>').attr('type', 'checkbox')
+                                       .attr('name', 'filter_price[]')
+                                       .attr('value', filter.value);
+                var indicator = $('<div>').addClass('control_indicator');
+                var filterName = $('<span>').text(filter.filter_price);
 
-            label.append(input, indicator, filterName);
-            filterItem.append(label);
-            $('.filter_group-item-right').append(filterItem);
+                label.append(input, indicator, filterName);
+                filterItem.append(label);
+                $('.filter_group-item-right').append(filterItem);
+            }
         });
     },
     error: function(xhr, status, error) {
