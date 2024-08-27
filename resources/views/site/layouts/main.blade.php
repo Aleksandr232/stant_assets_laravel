@@ -416,7 +416,7 @@ $.ajax({
                 var platform = getSelectedFiltersPlatform();
                 loadProductsWithSearch(1, null, null, null, null, platform);
                     $('html, body').animate({
-                        scrollTop: $('.container_products_list').offset().top
+                        scrollTop: $('.product_list_container').offset().top
                     }, 500);
             });
         });
@@ -471,7 +471,7 @@ $.ajax({
                 var filterPrice = getSelectedFiltersPrice();
                 loadProductsWithSearch(1, null, null, null, filterPrice, null);
                     $('html, body').animate({
-                        scrollTop: $('.container_products_list').offset().top
+                        scrollTop: $('.product_list_container').offset().top
                     }, 500);
             });
         });
