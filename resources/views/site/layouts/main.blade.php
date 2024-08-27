@@ -414,6 +414,7 @@ $.ajax({
             // Добавляем обработчик события change на input-checkbox
             input.on('change', function() {
                 var platform = $(this).val();
+                loadProductsWithSearch(1, platform);
                 console.log('Выбран чекбокс с значением: ' + platform);
             });
         });
