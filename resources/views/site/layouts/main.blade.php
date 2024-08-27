@@ -414,7 +414,7 @@ $.ajax({
             // Добавляем обработчик события change для каждого фильтра
             $('#' + filterId).on('change', function() {
                 var filter_price = getSelectedFilters();
-                loadProductsWithSearch(1, filter_price);
+                loadProductsWithSearch(1, filter_price.join(','));
             });
         });
     },
