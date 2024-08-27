@@ -39,6 +39,7 @@ Route::get('/product_category/{id}/{name}', [ProductCategoryController::class, '
 Route::get('/blog/{id}/{name}', [BlogController::class, 'blog'])->name('blog');
 Route::get('/politics/{id}', [PoliticsController::class, 'politics'])->name('politics');
 Route::get('/filter', [HomePageController::class, 'get_filter'])->name('get_filter');
+Route::get('/filter_platform', [HomePageController::class, 'get_filter_platform'])->name('get_filter_platform');
 Route::get('/all', [HomePageController::class, 'get_product'])->name('get_product');
 
 Route::middleware('guest')->group(function () {

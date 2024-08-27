@@ -386,6 +386,45 @@ window.onclick = function(event) {
 }); */
 
 $.ajax({
+    url: '{{ route('get_filter_platform') }}',
+    type: 'GET',
+    success: function(data) {
+        // Очистить существующие фильтры
+        $('.filter_group-item').html('');
+
+        // Выводим количество фильтров
+        $('.filter-count').text('(' + data.length + ')');
+
+        // Выводим все фильтры
+        $.each(data, function(index, filter) {
+            var filterId = 'filter_platform_' + index;
+            var filterItem = $('<li>').addClass('filter_group-item');
+            var label = $('<label>').addClass('control control-checkbox control-right');
+            var input = $('<input>').attr('type', 'checkbox')
+                                   .attr('id', filterId)
+                                   .attr('name', 'filter_platform[]')
+                                   .attr('value', filter.filter_platform);
+            var indicator = $('<div>').addClass('control_indicator control_indicator-right');
+            var filterName = $('<span>').text(filter.filter_platform);
+
+            label.append(input, indicator, filterName);
+            filterItem.append(label);
+            $('.filter_group-item').append(filterItem);
+
+            // Добавляем обработчик события change для каждого фильтра
+            /* $('#' + filterId).on('change', function() {
+                var filter_price = getSelectedFilters();
+                loadProductsWithSearch(1, filter_price.join(','));
+                console.log(filter_price);
+            }); */
+        });
+    },
+    error: function(xhr, status, error) {
+        console.error(error);
+    }
+});
+
+$.ajax({
     url: '{{ route('get_filter') }}',
     type: 'GET',
     success: function(data) {

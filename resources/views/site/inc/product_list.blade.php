@@ -69,39 +69,14 @@
 
                 <div class="filter">
                     <label class="filter_header">Платформа</label>
-
-                        <label class="filter_header">Платформа</label>
-                        {{-- <ul class="filter_group">
-                            @if(count($filterplatform))
-                                @foreach($filterplatform as $post)
-                                    @if($post->filter_platform)
-                                        <li class="filter_group-item">
-                                            <label class="control control-checkbox control-right">
-                                                {{ $post->filter_platform }}
-                                                <input name="filter_platform[]" type="checkbox" value="{{ $post->filter_platform }}" @if(in_array($post->filter_platform, request()->input('filter_platform', []))) checked @endif onchange="this.form.submit()" />
-                                                <div class="control_indicator control_indicator-right"></div>
-                                            </label>
-                                        </li>
-                                    @endif
-                                @endforeach
-                            @else
-                                <li class="filter_group-item">
-                                    <label class="control control-checkbox control-right">
-                                        нет данных
-                                    </label>
-                                </li>
-                            @endif --}}
+                         <ul class="filter_group">
+                            <li class="filter_group-item">
+                                <label class="control control-checkbox control-right">
+                                    <input name="filter_platform" type="checkbox" />
+                                    <div class="control_indicator control_indicator-right"></div>
+                                </label>
+                            </li>
                         </ul>
-
-
-                        {{-- <li class="filter_group-item">
-                            <label class="control control-checkbox control-right">
-                                Другие...
-                                <input type="checkbox" />
-                                <div class="control_indicator control_indicator-right"></div>
-                            </label>
-
-                        </li> --}}
                     </ul>
                 </div>
 

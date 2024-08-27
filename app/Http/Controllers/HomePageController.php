@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Blog;
 use App\Models\Text;
 use App\Models\FilterPrice;
+use App\Models\FilterPlatform;
 use Illuminate\Http\Request;
 
 class HomePageController extends Controller
@@ -56,6 +57,12 @@ class HomePageController extends Controller
     {
         $filter = FilterPrice::all();
         return response()->json($filter);
+    }
+
+    public function get_filter_platform(Request $request)
+    {
+        $filterPlatform = filterPlatform::all();
+        return response()->json($filterPlatform);
     }
 
     public function get_product(Request $request)
