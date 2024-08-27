@@ -67,35 +67,7 @@ class HomePageController extends Controller
 
     public function get_product(Request $request)
     {
-        /* $query = Product::query();
-
-        if ($request->has('search')) {
-            $searchTerm = $request->input('search');
-            $query->where(function ($q) use ($searchTerm) {
-                $q->where('product', 'like', '%' . $searchTerm . '%')
-                  ->orWhere('image_platform', 'like', '%' . $searchTerm . '%');
-            });
-        }
-
-        if ($request->has('min_price') && $request->has('max_price')) {
-            $minPrice = $request->input('min_price');
-            $maxPrice = $request->input('max_price');
-            $query->whereBetween('price', [$minPrice, $maxPrice]);
-        }
-
-        if ($request->has('filter_price')) {
-            $query->where('filter_price', $request->input('filter_price'));
-        }
-
-        if ($request->has('filter_platform')) {
-            $filterPlatforms = explode(',', $request->input('filter_platform'));
-            $query->whereIn('filter_platform', $filterPlatforms);
-        }
-
-
-        $products = $query->get();
-
-        return response()->json($products); */
+        
 
         $query = Product::query();
 
