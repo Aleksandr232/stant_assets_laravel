@@ -362,27 +362,22 @@ $.ajax({
         // Очистить существующие фильтры
         $('.filter_group-item-right').html('');
 
-        // Создаем объект для хранения уникальных фильтров
-        var uniqueFilters = {};
+        // Выводим количество фильтров
+        $('.filter-count').text('(' + data.length + ')');
 
         // Выводим все фильтры
         $.each(data, function(index, filter) {
-            // Проверяем, был ли уже такой фильтр
-            if (!uniqueFilters[filter.value]) {
-                uniqueFilters[filter.value] = true;
+            var filterItem = $('<li>').addClass('filter_group-item-right');
+            var label = $('<label>').addClass('control control-checkbox');
+            var input = $('<input>').attr('type', 'checkbox')
+                                   .attr('id', 'filter_' + filter.value)
+                                   .attr('value', filter.value);
+            var indicator = $('<div>').addClass('control_indicator');
+            var filterName = $('<span>').text(filter.filter_price);
 
-                var filterItem = $('<li>').addClass('filter_group-item-right');
-                var label = $('<label>').addClass('control control-checkbox');
-                var input = $('<input>').attr('type', 'checkbox')
-                                       .attr('id', 'filter_' + filter.value)
-                                       .attr('value', filter.value);
-                var indicator = $('<div>').addClass('control_indicator');
-                var filterName = $('<span>').text(filter.filter_price);
-
-                label.append(input, indicator, filterName);
-                filterItem.append(label);
-                $('.filter_group-item-right').append(filterItem);
-            }
+            label.append(input, indicator, filterName);
+            filterItem.append(label);
+            $('.filter_group-item-right').append(filterItem);
         });
     },
     error: function(xhr, status, error) {
