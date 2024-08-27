@@ -413,7 +413,8 @@ $.ajax({
 
             // Добавляем обработчик события change на input-checkbox
             input.on('change', function() {
-                console.log('Выбран чекбокс с значением: ' + $(this).val());
+                var platform = $(this).val();
+                console.log('Выбран чекбокс с значением: ' + platform);
             });
         });
     },
