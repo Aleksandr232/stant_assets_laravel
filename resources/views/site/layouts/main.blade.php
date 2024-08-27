@@ -355,7 +355,7 @@ window.onclick = function(event) {
 }
 
 
-$.ajax({
+/* $.ajax({
     url: '{{ route('get_filter') }}',
     type: 'GET',
     success: function(data) {
@@ -378,6 +378,43 @@ $.ajax({
             label.append(input, indicator, filterName);
             filterItem.append(label);
             $('.filter_group-items').append(filterItem);
+        });
+    },
+    error: function(xhr, status, error) {
+        console.error(error);
+    }
+}); */
+
+$.ajax({
+    url: '{{ route('get_filter') }}',
+    type: 'GET',
+    success: function(data) {
+        // Очистить существующие фильтры
+        $('.filter_group-items').html('');
+
+        // Выводим количество фильтров
+        $('.filter-count').text('(' + data.length + ')');
+
+        // Выводим все фильтры
+        $.each(data, function(index, filter) {
+            var filterId = 'filter_' + index;
+            var filterItem = $('<li>').addClass('filter_group-item-right');
+            var label = $('<label>').addClass('control control-checkbox');
+            var input = $('<input>').attr('type', 'checkbox')
+                                   .attr('id', filterId)
+                                   .attr('name', 'filter_price[]')
+                                   .attr('value', filter.value);
+            var indicator = $('<div>').addClass('control_indicator');
+            var filterName = $('<span>').text(filter.filter_price);
+
+            label.append(input, indicator, filterName);
+            filterItem.append(label);
+            $('.filter_group-items').append(filterItem);
+
+            // Добавляем обработчик события change для каждого фильтра
+            $('#' + filterId).on('change', function() {
+                loadProductsWithSearch(1);
+            });
         });
     },
     error: function(xhr, status, error) {
@@ -438,16 +475,9 @@ $('#slider-1').on('input', function() {
     loadProductsWithSearch(1, minPrice);
 });
 
-$('#filterPrice').on('change', function() {
-    var selectedPrices = [];
-    $('#filterPrice:checked').each(function() {
-        selectedPrices.push($(this).val());
-    });
-    console.log('Selected prices:', selectedPrices);
-    loadProductsWithSearch(1, selectedPrices.join(','));
-});
 
-function loadProductsWithSearch(page, search, minPrice, maxPrice, selectedPrices) {
+
+function loadProductsWithSearch(page, search, minPrice, maxPrice, filter_price) {
     $.ajax({
         url: '{{ route('get_product') }}',
         type: 'GET',
@@ -456,7 +486,7 @@ function loadProductsWithSearch(page, search, minPrice, maxPrice, selectedPrices
             search: search,
             min_price: minPrice,
             max_price: maxPrice,
-            filterPrice: selectedPrices
+            filterPrice: filter_price
         },
         success: function(data) {
             // Очищаем существующее содержимое контейнера
