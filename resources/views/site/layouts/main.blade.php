@@ -360,33 +360,24 @@ $.ajax({
     type: 'GET',
     success: function(data) {
         // Очистить существующие фильтры
-        $('.filter_group-item-right').html('');
-
-        // Создаем объект для хранения уникальных фильтров
-        var uniqueFilters = {};
+        $('.filter_group-items').html('');
 
         // Выводим количество фильтров
         $('.filter-count').text('(' + data.length + ')');
 
         // Выводим все фильтры
         $.each(data, function(index, filter) {
-            // Проверяем, есть ли фильтр в объекте uniqueFilters
-            if (!uniqueFilters[filter.value]) {
-                // Если нет, добавляем его в объект
-                uniqueFilters[filter.value] = true;
+            var filterItem = $('<li>').addClass('filter_group-item-right');
+            var label = $('<label>').addClass('control control-checkbox');
+            var input = $('<input>').attr('type', 'checkbox')
+                                   .attr('name', 'filter_price[]')
+                                   .attr('value', filter.value);
+            var indicator = $('<div>').addClass('control_indicator');
+            var filterName = $('<span>').text(filter.filter_price);
 
-                var filterItem = $('<li>').addClass('filter_group-item-right');
-                var label = $('<label>').addClass('control control-checkbox');
-                var input = $('<input>').attr('type', 'checkbox')
-                                       .attr('name', 'filter_price[]')
-                                       .attr('value', filter.value);
-                var indicator = $('<div>').addClass('control_indicator');
-                var filterName = $('<span>').text(filter.filter_price);
-
-                label.append(input, indicator, filterName);
-                filterItem.append(label);
-                $('.filter_group-item-right').append(filterItem);
-            }
+            label.append(input, indicator, filterName);
+            filterItem.append(label);
+            $('.filter_group-items').append(filterItem);
         });
     },
     error: function(xhr, status, error) {
