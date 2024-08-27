@@ -412,11 +412,11 @@ $.ajax({
             $('#platform').append(filterItem);
 
             // Добавляем обработчик события change на input-checkbox
-            /* input.on('change', function() {
+            input.on('change', function() {
                 var platform = $(this).val();
                 loadProductsWithSearch(1, null, null, null, null, platform );
                 console.log('Выбран чекбокс с значением: ' + platform);
-            }); */
+            });
         });
     },
     error: function(xhr, status, error) {
@@ -509,9 +509,9 @@ $.ajax({
 
 
 
-/* $('#search-input').on('input', function() {
+$('#search-input').on('input', function() {
     var search = $(this).val();
-    loadProductsWithSearch(1, search, null, null, null, null );
+    loadProductsWithSearch(1, search);
 });
 
 $('#slider-2').on('input', function() {
@@ -522,41 +522,11 @@ $('#slider-2').on('input', function() {
 $('#slider-1').on('input', function() {
     var minPrice = $(this).val();
     loadProductsWithSearch(1, minPrice);
-}); */
-
-$(document).ready(function() {
-  var search = '';
-  var minPrice = 0;
-  var maxPrice = 0;
-  var platform = '';
-
-  $('#search-input').on('input', function() {
-    search = $(this).val();
-    loadProductsWithSearch(1, search, minPrice, maxPrice, platform);
-  });
-
-  $('#slider-1').on('input', function() {
-    minPrice = $(this).val();
-    loadProductsWithSearch(1, search, minPrice, maxPrice, platform);
-  });
-
-  $('#slider-2').on('input', function() {
-    maxPrice = $(this).val();
-    loadProductsWithSearch(1, search, minPrice, maxPrice, platform);
-  });
-
-  $('input[name="platform"]').on('change', function() {
-    platform = $(this).val();
-    loadProductsWithSearch(1, search, minPrice, maxPrice, platform);
-  });
-
-  loadProductsWithSearch(1, search, minPrice, maxPrice, platform);
 });
 
-/* var minPrice = $('#min-price').val();
-    var maxPrice = $('#max-price').val();
-    var filterPrice = $('input[name="filter_price"]:checked').val();
-    var platform = $('input[name="filter_platform"]:checked').val(); */
+
+
+
 
 function loadProductsWithSearch(page, search, minPrice, maxPrice, filterPrice, platform) {
     $.ajax({
