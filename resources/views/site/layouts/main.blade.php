@@ -485,7 +485,7 @@ $('#slider-1').on('input', function() {
     loadProductsWithSearch(1, minPrice);
 });
 
-
+var filter_price = 'Платные';
 
 function loadProductsWithSearch(page, search, minPrice, maxPrice, filter_price) {
     $.ajax({
