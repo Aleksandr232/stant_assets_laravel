@@ -98,7 +98,7 @@ class HomePageController extends Controller
         }
 
 
-        $products = $query->get()->toArray();
+        $products = $query->get();
 
         return response()->json($products);
     }
