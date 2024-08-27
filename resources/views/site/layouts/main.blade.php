@@ -368,7 +368,7 @@ $.ajax({
         // Выводим все фильтры
         $.each(data, function(index, filter) {
             // Создаем уникальный идентификатор для фильтра
-            var filterId = 'filter_' + filter.value;
+            var filterId = 'filter_' + filter.id;
 
             // Проверяем, был ли уже такой фильтр
             if (!filterIds[filterId]) {
