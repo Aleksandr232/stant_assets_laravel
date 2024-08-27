@@ -117,8 +117,8 @@ class HomePageController extends Controller
             $q->where('filter_price', $request->input('filter_price'));
         });
 
-        $query->when($request->has('filter_platform'), function ($q) use ($request) {
-            $filterPlatforms = explode(',', $request->input('filter_platform'));
+        $query->when($request->has('platform'), function ($q) use ($request) {
+            $filterPlatforms = explode(',', $request->input('platform'));
             $q->whereIn('filter_platform', $filterPlatforms);
         });
 

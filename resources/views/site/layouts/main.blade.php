@@ -536,7 +536,7 @@ function loadProductsWithSearch(page, search, minPrice, maxPrice, filterPrice, p
             min_price: minPrice,
             max_price: maxPrice,
             filter_price: filterPrice,
-            filter_platform: platform
+            platform: platform
         },
         success: function(data) {
             // Очищаем существующее содержимое контейнера
