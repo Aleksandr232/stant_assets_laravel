@@ -84,7 +84,7 @@ class HomePageController extends Controller
                     $query->orderBy('filter_price', 'asc');
                     break;
                 case 'filter_price_desc':
-                    $query->sortByDesc('filter_price');
+                    $query->orderBy('filter_price', 'desc');
                     break;
                 default:
                     // Значение $sortBy не является допустимым, можно вернуть ошибку или использовать значение по умолчанию
