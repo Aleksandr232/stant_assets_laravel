@@ -412,10 +412,10 @@ $.ajax({
             $('.filter_group-items').append(filterItem);
 
             // Добавляем обработчик события change для каждого фильтра
-            $('#' + filterId).on('change', function() {
+           /*  $('#' + filterId).on('change', function() {
                 var filter_price = $(this).val();
                 loadProductsWithSearch(1, filter_price);
-            });
+            }); */
         });
     },
     error: function(xhr, status, error) {
