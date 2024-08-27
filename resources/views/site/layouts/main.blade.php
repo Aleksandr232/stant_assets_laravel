@@ -528,7 +528,7 @@ $('#slider-1').on('input', function() {
 
 
 
-function loadProductsWithSearch(page, search, minPrice, maxPrice, filterPrice, platform) {
+function loadProductsWithSearch(page, search='', minPrice='', maxPrice='', filterPrice='', platform='') {
     $.ajax({
         url: '{{ route('get_product') }}',
         type: 'GET',
