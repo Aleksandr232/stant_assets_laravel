@@ -414,9 +414,7 @@ $.ajax({
             // Добавляем обработчик события change на input-checkbox
             input.on('change', function() {
                 var platform = getSelectedFiltersPlatform();
-
                 loadProductsWithSearch(1, null, null, null, null, platform);
-                console.log('Выбран чекбокс с значением: ' + platform);
                     $('html, body').animate({
                         scrollTop: $('.container_products_list').offset().top
                     }, 500);
@@ -464,10 +462,17 @@ $.ajax({
             $('.filter_group-items').append(filterItem);
 
             // Добавляем обработчик события change для каждого фильтра
-            $('#' + filterId).on('change', function() {
-                var filter_price = getSelectedFilters();
-                loadProductsWithSearch(1, filter_price.join(','));
+            /* $('#' + filterId).on('change', function() {
+                var filter_price = getSelectedFiltersPrice();
+                loadProductsWithSearch(1, null, null, null, null, platform);
                 console.log(filter_price);
+            }); */
+            input.on('change', function() {
+                var filterPrice = getSelectedFiltersPrice();
+                loadProductsWithSearch(1, null, null, null, filterPrice, null);
+                    $('html, body').animate({
+                        scrollTop: $('.container_products_list').offset().top
+                    }, 500);
             });
         });
     },
@@ -476,7 +481,7 @@ $.ajax({
     }
 });
 
-function getSelectedFilters() {
+function getSelectedFiltersPrice() {
     var selectedFilters = [];
     $('.filter_group-items input[type="checkbox"]:checked').each(function() {
         selectedFilters.push($(this).val());
