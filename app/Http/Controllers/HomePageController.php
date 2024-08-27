@@ -78,10 +78,17 @@ class HomePageController extends Controller
 
         if ($request->has('filterPrice')) {
             $sortBy = $request->input('filterPrice');
-            if ($sortBy === 'filter_price_asc') {
-                $query->orderBy('filter_price', 'asc');
-            } elseif ($sortBy === 'filter_price_desc') {
-                $query->orderBy('filter_price', 'desc');
+
+            switch ($sortBy) {
+                case 'filter_price_asc':
+                    $query->orderBy('filter_price', 'asc');
+                    break;
+                case 'filter_price_desc':
+                    $query->orderBy('filter_price', 'desc');
+                    break;
+                default:
+                    // Значение $sortBy не является допустимым, можно вернуть ошибку или использовать значение по умолчанию
+                    break;
             }
         }
 
