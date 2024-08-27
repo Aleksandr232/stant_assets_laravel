@@ -67,32 +67,31 @@ class HomePageController extends Controller
 
     public function get_product(Request $request)
     {
-        
-
         $query = Product::query();
 
-        $query->when($request->has('search'), function ($q) use ($request) {
+        if ($request->has('search')) {
             $searchTerm = $request->input('search');
-            $q->where(function ($q) use ($searchTerm) {
+            $query->where(function ($q) use ($searchTerm) {
                 $q->where('product', 'like', '%' . $searchTerm . '%')
-                ->orWhere('image_platform', 'like', '%' . $searchTerm . '%');
+                  ->orWhere('image_platform', 'like', '%' . $searchTerm . '%');
             });
-        });
+        }
 
-        $query->when($request->has('min_price') && $request->has('max_price'), function ($q) use ($request) {
+        if ($request->has('min_price') && $request->has('max_price')) {
             $minPrice = $request->input('min_price');
             $maxPrice = $request->input('max_price');
-            $q->whereBetween('price', [$minPrice, $maxPrice]);
-        });
+            $query->whereBetween('price', [$minPrice, $maxPrice]);
+        }
 
-        $query->when($request->has('filter_price'), function ($q) use ($request) {
-            $q->where('filter_price', $request->input('filter_price'));
-        });
+        if ($request->has('filter_price')) {
+            $query->where('filter_price', $request->input('filter_price'));
+        }
 
-        $query->when($request->has('platform'), function ($q) use ($request) {
-            $filterPlatforms = explode(',', $request->input('platform'));
-            $q->whereIn('filter_platform', $filterPlatforms);
-        });
+        if ($request->has('filter_platform')) {
+            $filterPlatforms = explode(',', $request->input('filter_platform'));
+            $query->whereIn('filter_platform', $filterPlatforms);
+        }
+
 
         $products = $query->get();
 
