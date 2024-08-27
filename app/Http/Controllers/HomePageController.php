@@ -76,7 +76,7 @@ class HomePageController extends Controller
             $query->whereBetween('price', [$minPrice, $maxPrice]);
         }
 
-        /* if ($request->has('filterPrice')) {
+        if ($request->has('filterPrice')) {
             $sortBy = $request->input('filterPrice');
 
             switch ($sortBy) {
@@ -84,17 +84,12 @@ class HomePageController extends Controller
                     $query->orderBy('filter_price', 'asc');
                     break;
                 case 'filter_price_desc':
-                    $query->orderBy('filter_price', 'desc');
+                    $query->sortByDesc('filter_price');
                     break;
                 default:
                     // Значение $sortBy не является допустимым, можно вернуть ошибку или использовать значение по умолчанию
                     break;
             }
-        } */
-
-
-        if ($request->has('filterPrice')) {
-            $query->where('filter_price', $request->input('filterPrice'));
         }
 
 
