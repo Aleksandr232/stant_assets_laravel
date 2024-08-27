@@ -476,9 +476,15 @@ $('#slider-1').on('input', function() {
     loadProductsWithSearch(1, minPrice);
 });
 
+$('.filter_group-item-right input[type="checkbox"]').on('change', function() {
+    var filterPrices = [];
+    $('.filter_group-item-right input[type="checkbox"]:checked').each(function() {
+        filterPrices.push($(this).val());
+    });
+    loadProductsWithSearch(1, filterPrices.join(','));
+});
 
-
-function loadProductsWithSearch(page, search, minPrice, maxPrice, filter_price) {
+function loadProductsWithSearch(page, search, minPrice, maxPrice, filterPrices) {
     $.ajax({
         url: '{{ route('get_product') }}',
         type: 'GET',
@@ -487,7 +493,7 @@ function loadProductsWithSearch(page, search, minPrice, maxPrice, filter_price) 
             search: search,
             min_price: minPrice,
             max_price: maxPrice,
-            filterPrice: filter_price
+            filterPrice:filterPrices
         },
         success: function(data) {
             // Очищаем существующее содержимое контейнера
