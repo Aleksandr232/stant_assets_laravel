@@ -403,7 +403,7 @@ $.ajax({
             var input = $('<input>').attr('type', 'checkbox')
                                    .attr('id', filterId)
                                    .attr('name', 'filter_price[]')
-                                   .attr('value', filter.value);
+                                   .attr('value', filter.filter_price);
             var indicator = $('<div>').addClass('control_indicator');
             var filterName = $('<span>').text(filter.filter_price);
 
