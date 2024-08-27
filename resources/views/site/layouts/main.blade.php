@@ -527,16 +527,23 @@ $('#slider-1').on('input', function() {
 $(document).ready(function() {
   $('#search-input').on('input', function() {
     var search = $(this).val();
-    var minPrice = $('#min-price').val();
-    var maxPrice = $('#max-price').val();
-    var filterPrice = $('input[name="filter_price"]:checked').val();
-    var platform = $('select[name="filter_platform"]').val();
-
-    loadProductsWithSearch(1, search, minPrice, maxPrice, filterPrice, platform);
   });
+  $('#slider-1').on('input', function() {
+    var minPrice = $(this).val();
+    });
+  $('#slider-2').on('input', function() {
+    var maxPrice = $(this).val();
+    });
+    input.on('change', function() {
+    var platform = $(this).val();
+    });
+    loadProductsWithSearch(1, search, minPrice, maxPrice, filterPrice, platform);
 });
 
-
+/* var minPrice = $('#min-price').val();
+    var maxPrice = $('#max-price').val();
+    var filterPrice = $('input[name="filter_price"]:checked').val();
+    var platform = $('input[name="filter_platform"]:checked').val(); */
 
 function loadProductsWithSearch(page, search, minPrice, maxPrice, filterPrice, platform) {
     $.ajax({
