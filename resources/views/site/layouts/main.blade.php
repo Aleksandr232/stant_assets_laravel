@@ -412,16 +412,24 @@ $.ajax({
             $('.filter_group-items').append(filterItem);
 
             // Добавляем обработчик события change для каждого фильтра
-           /*  $('#' + filterId).on('change', function() {
-                var filter_price = $(this).val();
+            $('#' + filterId).on('change', function() {
+                var filter_price = getSelectedFilters();
                 loadProductsWithSearch(1, filter_price);
-            }); */
+            });
         });
     },
     error: function(xhr, status, error) {
         console.error(error);
     }
 });
+
+function getSelectedFilters() {
+    var selectedFilters = [];
+    $('.filter_group-items input[type="checkbox"]:checked').each(function() {
+        selectedFilters.push($(this).val());
+    });
+    return selectedFilters;
+}
 
 
 $.ajax({
@@ -476,15 +484,9 @@ $('#slider-1').on('input', function() {
     loadProductsWithSearch(1, minPrice);
 });
 
-$('.filter_group-item-right input[type="checkbox"]').on('change', function() {
-    var filterPrices = [];
-    $('.filter_group-item-right input[type="checkbox"]:checked').each(function() {
-        filterPrices.push($(this).val());
-    });
-    loadProductsWithSearch(1, filterPrices.join(','));
-});
 
-function loadProductsWithSearch(page, search, minPrice, maxPrice, filterPrices) {
+
+function loadProductsWithSearch(page, search, minPrice, maxPrice, filter_price) {
     $.ajax({
         url: '{{ route('get_product') }}',
         type: 'GET',
@@ -493,7 +495,7 @@ function loadProductsWithSearch(page, search, minPrice, maxPrice, filterPrices) 
             search: search,
             min_price: minPrice,
             max_price: maxPrice,
-            filterPrice:filterPrices
+            filterPrice:filter_price
         },
         success: function(data) {
             // Очищаем существующее содержимое контейнера
