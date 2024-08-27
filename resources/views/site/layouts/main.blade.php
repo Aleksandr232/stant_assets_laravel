@@ -511,7 +511,7 @@ $.ajax({
 
 $('#search-input').on('input', function() {
     var search = $(this).val();
-    loadProductsWithSearch(1, search);
+    loadProductsWithSearch(1, search, null, null, null, null );
 });
 
 $('#slider-2').on('input', function() {
