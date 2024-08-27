@@ -412,11 +412,11 @@ $.ajax({
             $('#platform').append(filterItem);
 
             // Добавляем обработчик события change на input-checkbox
-            input.on('change', function() {
+            /* input.on('change', function() {
                 var platform = $(this).val();
                 loadProductsWithSearch(1, null, null, null, null, platform );
                 console.log('Выбран чекбокс с значением: ' + platform);
-            });
+            }); */
         });
     },
     error: function(xhr, status, error) {
@@ -525,19 +525,32 @@ $('#slider-1').on('input', function() {
 }); */
 
 $(document).ready(function() {
+  var search = '';
+  var minPrice = 0;
+  var maxPrice = 0;
+  var platform = '';
+
   $('#search-input').on('input', function() {
-    var search = $(this).val();
+    search = $(this).val();
+    loadProductsWithSearch(1, search, minPrice, maxPrice, platform);
   });
+
   $('#slider-1').on('input', function() {
-    var minPrice = $(this).val();
-    });
+    minPrice = $(this).val();
+    loadProductsWithSearch(1, search, minPrice, maxPrice, platform);
+  });
+
   $('#slider-2').on('input', function() {
-    var maxPrice = $(this).val();
-    });
-    input.on('change', function() {
-    var platform = $(this).val();
-    });
-    loadProductsWithSearch(1, search, minPrice, maxPrice, filterPrice, platform);
+    maxPrice = $(this).val();
+    loadProductsWithSearch(1, search, minPrice, maxPrice, platform);
+  });
+
+  $('input[name="platform"]').on('change', function() {
+    platform = $(this).val();
+    loadProductsWithSearch(1, search, minPrice, maxPrice, platform);
+  });
+
+  loadProductsWithSearch(1, search, minPrice, maxPrice, platform);
 });
 
 /* var minPrice = $('#min-price').val();
