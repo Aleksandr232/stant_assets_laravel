@@ -87,6 +87,10 @@ class HomePageController extends Controller
             $query->where('filter_price', $request->input('filter_price'));
         }
 
+        if ($request->has('filter_platform')) {
+            $query->where('filter_platform', $request->input('filter_platform'));
+        }
+
 
         $products = $query->get();
 
