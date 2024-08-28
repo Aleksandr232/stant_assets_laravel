@@ -576,7 +576,7 @@ $('.achievement').click(function(event) {
             scrollTop: $('.product_list_container').offset().top
             }, 500);
     // Можете добавить здесь дополнительную логику, например, перенаправить на страницу категории
-    window.location.href = $(this).attr('href');
+    /* window.location.href = $(this).attr('href'); */
   });
 
 
