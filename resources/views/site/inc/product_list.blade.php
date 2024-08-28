@@ -85,7 +85,7 @@
                     <ul id="service" class="filter_group">
                         <li class="filter_group-item">
                             <label class="control control-checkbox control-right">
-                                <input name="filter_service" type="checkbox"  />
+                                <input id="filterService" name="filter_service" type="checkbox"  />
                                     <div class="control_indicator control_indicator-right"></div>
                             </label>
                         </li>
