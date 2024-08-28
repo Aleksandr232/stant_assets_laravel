@@ -24,7 +24,8 @@ class ProductCategoryController extends Controller
         $category = Category::all();
         $text = Text::all();
 
-        return view('site.product_category.index', compact('product_category', 'category', 'name', 'blog', 'text'), ['scrollToCategory' => true]);
+        return view('site.product_category.index', compact('product_category', 'category', 'name', 'blog', 'text'))
+    ->with('scrollToCategory', true);
     }
 
 }
