@@ -385,7 +385,7 @@ $.ajax({
             // Добавляем обработчик события change на input-checkbox
             $('#' + filterIdService).on('change', function() {
                 var service = getSelectedFiltersService();
-                loadProductsWithSearch(1, null, null, null, null, null, null, service);
+                loadProductsWithSearch(1, null, null, null, null, null, service);
                     $('html, body').animate({
                         scrollTop: $('.product_list_container').offset().top
                     }, 500);
