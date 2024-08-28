@@ -185,50 +185,29 @@ class ProductController extends Controller
     }
 
     public function filter(Request $request)
-{
-    $filter = new Filter([
-        'filter_price' => $request->filter_price,
-        'filter_service' => $request->filter_service,
-        'filter_platform' => $request->filter_platform,
-    ]);
+    {
+        $filter = new Filter();
+        $filterprice = new FilterPrice();
+        $filterservice = new FilterService();
+        $filterplatform = new FilterPlatform();
 
-    $filterprice = null;
-    if ($request->has('filter_price')) {
-        $filterprice = new FilterPrice([
-            'filter_price' => $request->filter_price,
-        ]);
+        if ($request->has('filter_price') && $request->filter_price !== null) {
+            $filterprice->filter_price = $request->filter_price;
+            $filterprice->save();
+        }
+
+        if ($request->has('filter_service') && $request->filter_service !== null) {
+            $filterservice->filter_service = $request->filter_service;
+            $filterservice->save();
+        }
+
+        if ($request->has('filter_platform') && $request->filter_platform !== null) {
+            $filterplatform->filter_platform = $request->filter_platform;
+            $filterplatform->save();
+        }
+
+        return redirect()->route('product.index');
     }
-
-    $filterservice = null;
-    if ($request->has('filter_service')) {
-        $filterservice = new FilterService([
-            'filter_service' => $request->filter_service,
-        ]);
-    }
-
-    $filterplatform = null;
-    if ($request->has('filter_platform')) {
-        $filterplatform = new FilterPlatform([
-            'filter_platform' => $request->filter_platform,
-        ]);
-    }
-
-    $filter->save();
-
-    if ($filterprice) {
-        $filterprice->save();
-    }
-
-    if ($filterservice) {
-        $filterservice->save();
-    }
-
-    if ($filterplatform) {
-        $filterplatform->save();
-    }
-
-    return redirect()->route('product.index');
-}
 
     public function destroy($id)
     {
