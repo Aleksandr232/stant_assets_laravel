@@ -379,12 +379,30 @@ $.ajax({
             label.append(input, indicator, filterName);
             filterItem.append(label);
             $('#service').append(filterItem);
+
+            // Добавляем обработчик события change на input-checkbox
+            input.on('change', function() {
+                var service = getSelectedFiltersService();
+                loadProductsWithSearch(1, null, null, null, null, null, null, service);
+                    $('html, body').animate({
+                        scrollTop: $('.product_list_container').offset().top
+                    }, 500);
+            });
         });
+
     },
     error: function(xhr, status, error) {
         console.error(error);
     }
 });
+
+function getSelectedFiltersService() {
+    var selectedFilters = [];
+    $('.filter_group-item input[type="checkbox"]:checked').each(function() {
+        selectedFilters.push($(this).val());
+    });
+    return selectedFilters;
+}
 
 $.ajax({
     url: '{{ route('get_filter_platform') }}',
@@ -415,7 +433,7 @@ $.ajax({
             // Добавляем обработчик события change на input-checkbox
             input.on('change', function() {
                 var platform = getSelectedFiltersPlatform();
-                loadProductsWithSearch(1, null, null, null, null, platform);
+                loadProductsWithSearch(1, null, null, null, null, platform, null);
                     $('html, body').animate({
                         scrollTop: $('.product_list_container').offset().top
                     }, 500);
@@ -470,7 +488,7 @@ $.ajax({
             }); */
             $('#' + filterId).on('change', function() {
                 var filterPrice = getSelectedFiltersPrice();
-                loadProductsWithSearch(1, null, null, null, filterPrice, null);
+                loadProductsWithSearch(1, null, null, null, filterPrice, null, null);
                     $('html, body').animate({
                         scrollTop: $('.product_list_container').offset().top
                     }, 500);
@@ -547,7 +565,7 @@ $('#slider-1').on('input', function() {
 
 
 
-function loadProductsWithSearch(page, search, minPrice, maxPrice, filterPrice, platform) {
+function loadProductsWithSearch(page, search, minPrice, maxPrice, filterPrice, platform, service) {
     var data = {};
 
     if (page) {
@@ -572,6 +590,10 @@ function loadProductsWithSearch(page, search, minPrice, maxPrice, filterPrice, p
 
     if (platform) {
         data.filter_platform = platform;
+    }
+
+    if (service) {
+        data.filter_service = service;
     }
     $.ajax({
         url: '{{ route('get_product') }}',
