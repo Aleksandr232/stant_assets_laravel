@@ -193,24 +193,33 @@ class ProductController extends Controller
 
         ]);
 
+        if ($request->has('filter_price')) {
         $filterprice = new FilterPrice([
             'filter_price' => $request->filter_price,
         ]);
+            $filterprice->save();
+        }
 
+        if ($request->has('filter_service')) {
         $filterservice = new FilterService([
             'filter_service' => $request->filter_service,
         ]);
+            $filterservice->save();
+        }
 
-        $filterplatform = new FilterPlatform([
-            'filter_platform' => $request->filter_platform,
-        ]);
+        if ($request->has('filter_platform')) {
+            $filterplatform = new FilterPlatform([
+                'filter_platform' => $request->filter_platform,
+            ]);
 
+            $filterplatform->save();
+        }
 
 
         $filter->save();
-        $filterprice->save();
-        $filterservice->save();
-        $filterplatform->save();
+
+
+
 
         return redirect()->route('product.index');
     }
