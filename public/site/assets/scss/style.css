@@ -4000,7 +4000,7 @@ footer {
     left: 0;
     width: 20px;
     height: 20px;
-    content: '';
+    content: none;
     text-align: center;
     opacity: .25;
     color: black;
