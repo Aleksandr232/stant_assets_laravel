@@ -82,26 +82,13 @@
 
                 <div class="filter">
                     <label class="filter_header">Услуги</label>
-                    <ul class="filter_group">
-                       {{--  @if(count($filterservice))
-                                @foreach($filterservice as $post)
-                                    @if($post->filter_service)
-                                        <li class="filter_group-item">
-                                            <label class="control control-checkbox control-right">
-                                                {{ $post->filter_service }}
-                                                <input name="filter_service[]" type="checkbox" value="{{ $post->filter_service }}" @if(in_array($post->filter_service, request()->input('filter_service', []))) checked @endif onchange="this.form.submit()" />
-                                                <div class="control_indicator control_indicator-right"></div>
-                                            </label>
-                                        </li>
-                                    @endif
-                                @endforeach
-                            @else
-                                    <li class="filter_group-item">
-                                        <label class="control control-checkbox control-right">
-                                            нет данных
-                                        </label>
-                                    </li>
-                            @endif --}}
+                    <ul id="service" class="filter_group">
+                        <li class="filter_group-item">
+                            <label class="control control-checkbox control-right">
+                                <input name="filter_service" type="checkbox"  />
+                                    <div class="control_indicator control_indicator-right"></div>
+                            </label>
+                        </li>
                     </ul>
                 </div>
 

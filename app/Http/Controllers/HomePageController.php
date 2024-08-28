@@ -7,6 +7,7 @@ use App\Models\Blog;
 use App\Models\Text;
 use App\Models\FilterPrice;
 use App\Models\FilterPlatform;
+use App\Models\FilterService;
 use Illuminate\Http\Request;
 
 class HomePageController extends Controller
@@ -65,6 +66,12 @@ class HomePageController extends Controller
         return response()->json($filterPlatform);
     }
 
+    public function get_filter_service(Request $request)
+    {
+        $filterService = FilterService::all();
+        return response()->json($filterService);
+    }
+
     public function get_product(Request $request)
     {
         $query = Product::query();
@@ -91,6 +98,9 @@ class HomePageController extends Controller
             $query->where('filter_platform', $request->input('filter_platform'));
         }
 
+        if ($request->has('filter_service')) {
+            $query->where('filter_service', $request->input('filter_service'));
+        }
 
         $products = $query->get();
 

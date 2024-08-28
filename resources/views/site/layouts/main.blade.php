@@ -355,35 +355,35 @@ window.onclick = function(event) {
 }
 
 
-/* $.ajax({
-    url: '{{ route('get_filter') }}',
+$.ajax({
+    url: '{{ route('get_filter_service') }}',
     type: 'GET',
     success: function(data) {
         // Очистить существующие фильтры
-        $('.filter_group-items').html('');
+        $('#service').html('');
 
         // Выводим количество фильтров
         $('.filter-count').text('(' + data.length + ')');
 
         // Выводим все фильтры
         $.each(data, function(index, filter) {
-            var filterItem = $('<li>').addClass('filter_group-item-right');
-            var label = $('<label>').addClass('control control-checkbox');
+            var filterItem = $('<li>').addClass('filter_group-item');
+            var label = $('<label>').addClass('control control-checkbox control-right');
             var input = $('<input>').attr('type', 'checkbox')
                                    .attr('name', 'filter_price[]')
                                    .attr('value', filter.value);
-            var indicator = $('<div>').addClass('control_indicator');
+            var indicator = $('<div>').addClass('control_indicator control_indicator-right');
             var filterName = $('<span>').text(filter.filter_price);
 
             label.append(input, indicator, filterName);
             filterItem.append(label);
-            $('.filter_group-items').append(filterItem);
+            $('#service').append(filterItem);
         });
     },
     error: function(xhr, status, error) {
         console.error(error);
     }
-}); */
+});
 
 $.ajax({
     url: '{{ route('get_filter_platform') }}',
