@@ -23,7 +23,7 @@
 
     <div class="product_list_container" id="filter">
         <div class="container_filter">
-            <label class="container_filter-label">{{-- Найдено {{count($product)}}  товаров --}}</label>
+            <label class="container_filter-label"></label>
             <div  class="container_filter-list">
                 <div class="container_filter-list-header mobile-filter">
                     <span>Фильтры</span>
