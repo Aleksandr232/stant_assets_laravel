@@ -400,7 +400,7 @@ $.ajax({
 
 function getSelectedFiltersService() {
     var selectedFilters = [];
-    $('#filterService input[type="checkbox"]:checked').each(function() {
+    $('.filter_group-item input[type="checkbox"]:checked').each(function() {
         selectedFilters.push($(this).val());
     });
     return selectedFilters;
