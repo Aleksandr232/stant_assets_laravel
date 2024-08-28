@@ -563,7 +563,8 @@ $('#slider-1').on('input', function() {
     loadProductsWithSearch(1, null, minPrice, maxPrice, null, null);
 });
 
-$('.achievement').click(function(event) {
+document.addEventListener('DOMContentLoaded', function() {
+  $('.achievement').click(function(event) {
     event.preventDefault(); // Отменяем стандартное поведение ссылки
 
     // Получаем категорию из атрибута href
@@ -572,12 +573,13 @@ $('.achievement').click(function(event) {
     // Выводим категорию в консоль
     console.log('Clicked category:', category);
     loadProductsWithSearch(1, null, null, null, null, null, null, category);
-        $('html, body').animate({
-            scrollTop: $('.product_list_container').offset().top
-            }, 500);
+    $('html, body').animate({
+      scrollTop: $('.product_list_container').offset().top
+    }, 500);
     // Можете добавить здесь дополнительную логику, например, перенаправить на страницу категории
-    /* window.location.href = $(this).attr('href'); */
+    window.location.href = $(this).attr('href');
   });
+});
 
 
 
