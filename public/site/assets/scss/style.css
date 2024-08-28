@@ -3978,17 +3978,17 @@ footer {
 }
 
 .achievements-dots li button {
-    width: 15px;
-    height: 15px;
+    width: 10px;
+    height: 25px;
     background-color: #ccc;
     border: none;
     outline: none;
-    transition: width 0.3s ease;
+    transition: height 0.3s ease;
 }
 
 .achievements-dots li.slick-active button {
-    height: 15px;
-    width: 15px;
+    height: 25px;
+    width: 10px;
     background-color: #333;
 }
 
