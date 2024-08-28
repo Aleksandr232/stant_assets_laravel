@@ -3977,6 +3977,15 @@ footer {
     cursor: pointer;
 }
 
+.achievements-dots li button {
+    width: 15px;
+    height: 5px;
+    background-color: #ccc;
+    border: none;
+    outline: none;
+    transition: height 0.3s ease;
+}
+
 .achievements-dots li button:before {
     width: 15px;
     height: 5px;
