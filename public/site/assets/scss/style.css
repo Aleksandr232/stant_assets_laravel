@@ -3986,23 +3986,14 @@ footer {
     transition: height 0.3s ease;
 }
 
-.achievements-dots li button:before {
-    width: 15px;
-    height: 5px;
-    background-color: #ccc;
-    border: none;
-    outline: none;
-    transition: height 0.3s ease;
-    content: '|';
-    font-size: 16px;
-    color: #ccc;
-}
 
-/* .achievements-dots li.slick-active button {
+
+
+.achievements-dots li.slick-active button {
     width: 30px;
-    background-color: #333;
+    background-color: #01E45C;
     color: #333;
-} */
+}
 
 .col-politics p{
     color: black;
