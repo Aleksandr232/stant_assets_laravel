@@ -634,7 +634,7 @@ $('.achievement').click(function(event) {
     console.log('Clicked category:', category);
 
     // Можете добавить здесь дополнительную логику, например, перенаправить на страницу категории
-    // window.location.href = $(this).attr('href');
+    window.location.href = $(this).attr('href');
   });
 
 function createPagination(currentPage, totalPages, data, productsPerPage) {
