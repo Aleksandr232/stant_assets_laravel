@@ -368,9 +368,11 @@ $.ajax({
 
         // Выводим все фильтры
         $.each(data, function(index, filter) {
+            var filterIdService= 'filter_service' + index;
             var filterItem = $('<li>').addClass('filter_group-item');
             var label = $('<label>').addClass('control control-checkbox control-right');
             var input = $('<input>').attr('type', 'checkbox')
+                                    .attr('id', filterIdService)
                                    .attr('name', 'filter_service[]')
                                    .attr('value', filter.value);
             var indicator = $('<div>').addClass('control_indicator control_indicator-right');
@@ -381,7 +383,7 @@ $.ajax({
             $('#service').append(filterItem);
 
             // Добавляем обработчик события change на input-checkbox
-            input.on('change', function() {
+            $('#' + filterIdService).on('change', function() {
                 var service = getSelectedFiltersService();
                 loadProductsWithSearch(1, null, null, null, null, null, null, service);
                     $('html, body').animate({
