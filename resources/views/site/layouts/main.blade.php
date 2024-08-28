@@ -644,7 +644,7 @@ function createPagination(currentPage, totalPages, data, productsPerPage) {
 
         // Прокручиваем страницу вверх
         $('html, body').animate({
-            scrollTop: $('.container_products_list').offset().top
+            scrollTop: $('.product_list_container').offset().top
         }, 500);
     });
 
