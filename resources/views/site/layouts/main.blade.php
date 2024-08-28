@@ -374,7 +374,7 @@ $.ajax({
             var input = $('<input>').attr('type', 'checkbox')
                                     .attr('id', filterIdService)
                                    .attr('name', 'filter_service[]')
-                                   .attr('value', filter.value);
+                                   .attr('value', filter.filter_service);
             var indicator = $('<div>').addClass('control_indicator control_indicator-right');
             var filterName = $('<span>').text(filter.filter_service);
 
