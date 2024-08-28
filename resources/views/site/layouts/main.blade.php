@@ -91,7 +91,7 @@
   });
 
   $closeButton.on("click", function() {
-    $modal.css("display", "none");я
+    $modal.css("display", "none");
   });
 
   $(window).on("click", function(event) {
