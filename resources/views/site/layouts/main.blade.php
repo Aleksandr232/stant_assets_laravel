@@ -563,11 +563,25 @@ $('#slider-1').on('input', function() {
     loadProductsWithSearch(1, null, minPrice, maxPrice, null, null);
 });
 
+$('.achievement').click(function(event) {
+    event.preventDefault(); // Отменяем стандартное поведение ссылки
+
+    // Получаем категорию из атрибута href
+    var category = $(this).attr('href').split('/').pop();
+
+    // Выводим категорию в консоль
+    console.log('Clicked category:', category);
+    loadProductsWithSearch(1, null, null, null, null, null, null, category);
+        $('html, body').animate({
+            scrollTop: $('.product_list_container').offset().top
+            }, 500);
+    // Можете добавить здесь дополнительную логику, например, перенаправить на страницу категории
+    window.location.href = $(this).attr('href');
+  });
 
 
 
-
-function loadProductsWithSearch(page, search, minPrice, maxPrice, filterPrice, platform, service) {
+function loadProductsWithSearch(page, search, minPrice, maxPrice, filterPrice, platform, service, category) {
     var data = {};
 
     if (page) {
@@ -597,6 +611,10 @@ function loadProductsWithSearch(page, search, minPrice, maxPrice, filterPrice, p
     if (service) {
         data.filter_service = service;
     }
+
+    if (category) {
+        data.category = category;
+    }
     $.ajax({
         url: '{{ route('get_product') }}',
         type: 'GET',
@@ -624,18 +642,7 @@ function loadProductsWithSearch(page, search, minPrice, maxPrice, filterPrice, p
     });
 }
 
-$('.achievement').click(function(event) {
-    event.preventDefault(); // Отменяем стандартное поведение ссылки
 
-    // Получаем категорию из атрибута href
-    var category = $(this).attr('href').split('/').pop();
-
-    // Выводим категорию в консоль
-    console.log('Clicked category:', category);
-
-    // Можете добавить здесь дополнительную логику, например, перенаправить на страницу категории
-    window.location.href = $(this).attr('href');
-  });
 
 function createPagination(currentPage, totalPages, data, productsPerPage) {
     // Очищаем существующую пагинацию
