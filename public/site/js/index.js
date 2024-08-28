@@ -107,6 +107,7 @@ $(document).ready(function() {
             prevArrow: $('.achievements-arrow-left'),
             nextArrow: $('.achievements-arrow'),
             variableWidth: true,
+            dots: true,
             responsive: [
                 {
                     breakpoint: 1024,
