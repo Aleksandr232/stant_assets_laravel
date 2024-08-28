@@ -193,8 +193,8 @@
 @if(isset($scrollToCategory) && $scrollToCategory)
 <script>
     window.onload = function() {
-        var scroll = document.getElementById('filter_category');
-        scroll.scrollIntoView({ behavior: 'smooth' });
+        var scrolls = document.getElementById('filter_category');
+        scrolls.scrollIntoView({ behavior: 'smooth' });
     };
 </script>
 @endif
