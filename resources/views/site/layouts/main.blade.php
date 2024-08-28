@@ -564,27 +564,22 @@ $('#slider-1').on('input', function() {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-  // Проверяем, что элементы с классом .achievement существуют
-  var achievements = document.querySelectorAll('.achievement');
-  if (achievements.length > 0) {
-    // Добавляем обработчик клика на каждый элемент с классом .achievement
-    achievements.forEach(function(achievement) {
-      achievement.addEventListener('click', function(event) {
-        event.preventDefault(); // Отменяем стандартное поведение ссылки
+  $('.achievement').click(function(event) {
+    event.preventDefault(); // Отменяем стандартное поведение ссылки
 
-        // Получаем категорию из атрибута href
-        var category = this.getAttribute('href').split('/').pop();
+    // Получаем категорию из атрибута href
+    var category = $(this).attr('href').split('/').pop();
 
-        // Выводим категорию в консоль
-        console.log('Clicked category:', category);
-        loadProductsWithSearch(1, null, null, null, null, null, null, category);
-        document.documentElement.scrollTop = document.querySelector('.product_list_container').offsetTop;
-        // Можете добавить здесь дополнительную логику, например, перенаправить на страницу категории
-        window.location.href = this.getAttribute('href');
-      });
-    });
-  }
-});
+    // Выводим категорию в консоль
+    console.log('Clicked category:', category);
+    loadProductsWithSearch(1, null, null, null, null, null, null, category);
+    $('html, body').animate({
+      scrollTop: $('.product_list_container').offset().top
+    }, 500);
+    // Можете добавить здесь дополнительную логику, например, перенаправить на страницу категории
+    /* window.location.href = $(this).attr('href'); */
+  });
+})
 
 
 
