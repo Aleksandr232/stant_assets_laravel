@@ -368,7 +368,7 @@ $.ajax({
 
         // Выводим все фильтры
         $.each(data, function(index, filter) {
-            var filterIdService= 'filter_service_' + index;
+            var filterIdService= 'filter_' + index;
             var filterItem = $('<li>').addClass('filter_group-item');
             var label = $('<label>').addClass('control control-checkbox control-right');
             var input = $('<input>').attr('type', 'checkbox')
