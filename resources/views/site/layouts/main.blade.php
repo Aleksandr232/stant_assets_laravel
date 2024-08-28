@@ -563,7 +563,7 @@ $('#slider-1').on('input', function() {
     loadProductsWithSearch(1, null, minPrice, maxPrice, null, null);
 });
 
-document.addEventListener('DOMContentLoaded', function() {
+
   $('.achievement').click(function(event) {
     event.preventDefault(); // Отменяем стандартное поведение ссылки
 
@@ -579,7 +579,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Можете добавить здесь дополнительную логику, например, перенаправить на страницу категории
     /* window.location.href = $(this).attr('href'); */
   });
-})
+
 
 
 
