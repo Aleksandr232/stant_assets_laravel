@@ -624,6 +624,19 @@ function loadProductsWithSearch(page, search, minPrice, maxPrice, filterPrice, p
     });
 }
 
+$('.achievement').click(function(event) {
+    event.preventDefault(); // Отменяем стандартное поведение ссылки
+
+    // Получаем категорию из атрибута href
+    var category = $(this).attr('href').split('/').pop();
+
+    // Выводим категорию в консоль
+    console.log('Clicked category:', category);
+
+    // Можете добавить здесь дополнительную логику, например, перенаправить на страницу категории
+    // window.location.href = $(this).attr('href');
+  });
+
 function createPagination(currentPage, totalPages, data, productsPerPage) {
     // Очищаем существующую пагинацию
     $('.container_pages').empty();

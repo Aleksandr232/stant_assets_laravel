@@ -102,6 +102,10 @@ class HomePageController extends Controller
             $query->where('filter_service', $request->input('filter_service'));
         }
 
+        if ($request->has('category')) {
+            $query->where('category', $request->input('category'));
+        }
+
         $products = $query->get();
 
         return response()->json($products);
