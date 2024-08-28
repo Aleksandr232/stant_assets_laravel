@@ -103,7 +103,7 @@ $(document).ready(function() {
             horizontal: true,
             infinity: true,
             slidesToShow: 4,
-            slidesToScroll: 4,
+            slidesToScroll: 1,
             prevArrow: $('.achievements-arrow-left'),
             nextArrow: $('.achievements-arrow'),
             variableWidth: true,
