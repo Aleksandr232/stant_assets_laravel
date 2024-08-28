@@ -23,5 +23,6 @@
             <img src="{{ asset('site/assets/images/dropdown.svg')}}" />
         </button>
     </div>
-    <img class="achievements-img" src="{{ asset('site/assets/images/slider_static.svg')}}" alt="">
+    {{-- <img class="achievements-img" src="{{ asset('site/assets/images/slider_static.svg')}}" alt=""> --}}
+    <div class="achievements-dots"></div>
 </section>

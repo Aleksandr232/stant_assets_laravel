@@ -108,6 +108,7 @@ $(document).ready(function() {
             nextArrow: $('.achievements-arrow'),
             variableWidth: true,
             dots: true,
+            appendDots: '.achievements-dots',
             responsive: [
                 {
                     breakpoint: 1024,
