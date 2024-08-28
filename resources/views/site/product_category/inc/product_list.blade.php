@@ -21,7 +21,7 @@
         <input type="text" name="search" id="search-input" placeholder="Search products">
     </div>
 
-    <div class="product_list_container" id="filter_category">
+    <div class="product_list_container" id="filter">
         <div class="container_filter">
             <label class="container_filter-label"></label>
             <div  class="container_filter-list">
@@ -190,11 +190,11 @@
 
     </div>
 </section>
-@if(isset($scrollToCategory) && $scrollToCategory)
+{{-- @if(isset($scrollToCategory) && $scrollToCategory)
 <script>
     window.onload = function() {
         var scrolls = document.getElementById('filter_category');
         scrolls.scrollIntoView({ behavior: 'smooth' });
     };
 </script>
-@endif
+@endif --}}
