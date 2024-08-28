@@ -3977,7 +3977,7 @@ footer {
     cursor: pointer;
 }
 
-.achievements-dots li button {
+.achievements-dots li button:before {
     width: 15px;
     height: 5px;
     background-color: #ccc;
