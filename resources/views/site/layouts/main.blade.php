@@ -663,6 +663,9 @@ function loadProductsPage(page, data, productsPerPage) {
     var startIndex = (page - 1) * productsPerPage;
     var endIndex = Math.min(startIndex + productsPerPage, data.length);
 
+    // Отображаем количество найденных товаров
+    $('.container_filter-label').text('Найдено ' + data.length + ' товаров');
+
     // Отображаем продукты для текущей страницы
     for (var i = startIndex; i < endIndex; i++) {
         var product = data[i];
