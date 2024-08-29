@@ -555,12 +555,12 @@ $('#search-input').on('input', function() {
 
 $('#slider-2').on('input', function() {
     var maxPrice = $(this).val();
-    loadProductsWithSearch(1, null, minPrice, maxPrice, null, null);
+    loadProductsWithSearch(1, null, null, maxPrice, null, null, null);
 });
 
 $('#slider-1').on('input', function() {
     var minPrice = $(this).val();
-    loadProductsWithSearch(1, null, minPrice, maxPrice, null, null);
+    loadProductsWithSearch(1, null, minPrice, null, null, null, null);
 });
 
 
