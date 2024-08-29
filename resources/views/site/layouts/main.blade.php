@@ -525,16 +525,6 @@ $.ajax({
         var productsPerPage = 5;
         var totalPages = Math.ceil(totalProducts / productsPerPage);
 
-        // Находим минимальную и максимальную цену
-        /* var minPrice = Math.min.apply(Math, data.map(function(item) { return item.price; }));
-        var maxPrice = Math.max.apply(Math, data.map(function(item) { return item.price; }));
-
-        // Отображаем двойной слайдер
-        $('.double-slider #slider-1').attr('min', minPrice).val(minPrice);
-        $('.double-slider #slider-2').attr('max', maxPrice).val(maxPrice);
-        $('.double-slider .range-count#range1').text(minPrice);
-        $('.double-slider .range-count#range2').text(maxPrice); */
-
         // Отображаем первые 5 продуктов на первой странице
         loadProductsPage(1, data, productsPerPage);
 
@@ -553,17 +543,7 @@ $('#search-input').on('input', function() {
     loadProductsWithSearch(1, search);
 });
 
-$('#slider-1, #slider-2').slider({
-    range: true,
-    min: 0,
-    max: 1000,
-    values: [0, 1000],
-    slide: function(event, ui) {
-        var minPrice = ui.values[0];
-        var maxPrice = ui.values[1];
-        loadProductsWithSearch(1, null, minPrice, maxPrice, null, null, null, null);
-    }
-});
+
 
 
 
