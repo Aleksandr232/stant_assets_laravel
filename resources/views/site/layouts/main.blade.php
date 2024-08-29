@@ -553,7 +553,7 @@ $('#search-input').on('input', function() {
     loadProductsWithSearch(1, search);
 });
 
-$('#slider-2').on('input', function() {
+/* $('#slider-2').on('input', function() {
     var maxPrice = $(this).val();
     loadProductsWithSearch(1, null, null, maxPrice, null, null, null);
 });
@@ -561,7 +561,24 @@ $('#slider-2').on('input', function() {
 $('#slider-1').on('input', function() {
     var minPrice = $(this).val();
     loadProductsWithSearch(1, null, minPrice, null, null, null, null);
-});
+}); */
+
+let slider1 = document.getElementById("slider-1");
+let slider2 = document.getElementById("slider-2");
+let range1 = document.getElementById("range1");
+let range2 = document.getElementById("range2");
+
+function slideOne() {
+    let value1 = slider1.value;
+    range1.textContent = value1;
+    sendFilterRequest();
+}
+
+function slideTwo() {
+    let value2 = slider2.value;
+    range2.textContent = value2;
+    sendFilterRequest();
+}
 
 
   $('.achievement').click(function(event) {
@@ -581,7 +598,8 @@ $('#slider-1').on('input', function() {
   });
 
 
-
+  let minPrice = slider1.value;
+let maxPrice = slider2.value;
 
 function loadProductsWithSearch(page, search, minPrice, maxPrice, filterPrice, platform, service, category) {
     var data = {};
