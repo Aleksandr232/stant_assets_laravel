@@ -553,15 +553,17 @@ $('#search-input').on('input', function() {
     loadProductsWithSearch(1, search);
 });
 
-/* $('#slider-2').on('input', function() {
-    var maxPrice = $(this).val();
-    loadProductsWithSearch(1, null, null, maxPrice, null, null, null);
+$('#slider-1, #slider-2').slider({
+    range: true,
+    min: 0,
+    max: 1000,
+    values: [0, 1000],
+    slide: function(event, ui) {
+        var minPrice = ui.values[0];
+        var maxPrice = ui.values[1];
+        loadProductsWithSearch(1, null, minPrice, maxPrice, null, null, null, null);
+    }
 });
-
-$('#slider-1').on('input', function() {
-    var minPrice = $(this).val();
-    loadProductsWithSearch(1, null, minPrice, null, null, null, null);
-}); */
 
 
 
