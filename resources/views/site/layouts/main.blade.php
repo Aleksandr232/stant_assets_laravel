@@ -554,40 +554,7 @@ $('#search-input').on('input', function() {
 
 
 
-$(document).ready(function() {
-    var sliderOne = $("#slider-1");
-    var sliderTwo = $("#slider-2");
-    var displayValOne = $("#range1");
-    var displayValTwo = $("#range2");
-    var minGap = 10;
 
-    sliderOne.on("input", function() {
-        updateSliders();
-    });
-
-    sliderTwo.on("input", function() {
-        updateSliders();
-    });
-
-    function updateSliders() {
-        var minPrice = parseInt(sliderOne.val());
-        var maxPrice = parseInt(sliderTwo.val());
-        if (maxPrice - minPrice <= minGap) {
-            if (minPrice === 0) {
-                sliderTwo.val(minPrice + minGap);
-            } else {
-                sliderOne.val(maxPrice - minGap);
-            }
-        }
-
-        displayValOne.text(minPrice);
-        displayValTwo.text(maxPrice);
-
-        console.log("Выбранный диапазон: " + minPrice + " - " + maxPrice);
-
-        loadProductsWithSearch(1, null, minPrice, maxPrice, null, null, null, category);
-    }
-});
 
 
   $('.achievement').click(function(event) {
@@ -670,7 +637,40 @@ function loadProductsWithSearch(page, search, minPrice, maxPrice, filterPrice, p
     });
 }
 
+$(document).ready(function() {
+    var sliderOne = $("#slider-1");
+    var sliderTwo = $("#slider-2");
+    var displayValOne = $("#range1");
+    var displayValTwo = $("#range2");
+    var minGap = 10;
 
+    sliderOne.on("input", function() {
+        updateSliders();
+    });
+
+    sliderTwo.on("input", function() {
+        updateSliders();
+    });
+
+    function updateSliders() {
+        var minPrice = parseInt(sliderOne.val());
+        var maxPrice = parseInt(sliderTwo.val());
+        if (maxPrice - minPrice <= minGap) {
+            if (minPrice === 0) {
+                sliderTwo.val(minPrice + minGap);
+            } else {
+                sliderOne.val(maxPrice - minGap);
+            }
+        }
+
+        displayValOne.text(minPrice);
+        displayValTwo.text(maxPrice);
+
+        console.log("Выбранный диапазон: " + minPrice + " - " + maxPrice);
+
+        loadProductsWithSearch(1, null, minPrice, maxPrice, null, null, null, category);
+    }
+});
 
 function createPagination(currentPage, totalPages, data, productsPerPage) {
     // Очищаем существующую пагинацию
