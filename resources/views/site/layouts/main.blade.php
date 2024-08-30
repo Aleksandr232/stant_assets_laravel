@@ -532,7 +532,7 @@ $.ajax({
         // Обновляем значения слайдера
         $('#slider-1').attr('max', maxPrice);
         $('#slider-2').attr('max', maxPrice);
-        $('#range2').text(maxPrice);
+        $('#range2').text(70);
 
         // Отображаем первые 5 продуктов на первой странице
         loadProductsPage(1, data, productsPerPage);
