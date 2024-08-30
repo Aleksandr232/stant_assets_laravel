@@ -668,7 +668,7 @@ $(document).ready(function() {
 
         console.log("Выбранный диапазон: " + minPrice + " - " + maxPrice);
 
-        loadProductsWithSearch(1, null, minPrice, maxPrice, null, null, null, category);
+        loadProductsWithSearch(1, null, minPrice, maxPrice, null, null, null, null);
     }
 });
 
