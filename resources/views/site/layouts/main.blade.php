@@ -545,7 +545,36 @@ $('#search-input').on('input', function() {
 
 
 
+$(document).ready(function() {
+    var sliderOne = $("#slider-1");
+    var sliderTwo = $("#slider-2");
+    var displayValOne = $("#range1");
+    var displayValTwo = $("#range2");
+    var minGap = 10;
 
+    sliderOne.on("input", function() {
+        updateSliders();
+    });
+
+    sliderTwo.on("input", function() {
+        updateSliders();
+    });
+
+    function updateSliders() {
+        if (parseInt(sliderTwo.val()) - parseInt(sliderOne.val()) <= minGap) {
+            if (sliderOne.val() == 0) {
+                sliderTwo.val(parseInt(sliderOne.val()) + minGap);
+            } else {
+                sliderOne.val(parseInt(sliderTwo.val()) - minGap);
+            }
+        }
+
+        displayValOne.text(sliderOne.val());
+        displayValTwo.text(sliderTwo.val());
+
+        console.log("Выбранный диапазон: " + sliderOne.val() + " - " + sliderTwo.val());
+    }
+});
 
 
   $('.achievement').click(function(event) {
