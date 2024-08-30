@@ -570,18 +570,22 @@ $(document).ready(function() {
     });
 
     function updateSliders() {
-        if (parseInt(sliderTwo.val()) - parseInt(sliderOne.val()) <= minGap) {
-            if (sliderOne.val() == 0) {
-                sliderTwo.val(parseInt(sliderOne.val()) + minGap);
+        var minPrice = parseInt(sliderOne.val());
+        var maxPrice = parseInt(sliderTwo.val());
+        if (maxPrice - minPrice <= minGap) {
+            if (minPrice === 0) {
+                sliderTwo.val(minPrice + minGap);
             } else {
-                sliderOne.val(parseInt(sliderTwo.val()) - minGap);
+                sliderOne.val(maxPrice - minGap);
             }
         }
 
-        displayValOne.text(sliderOne.val());
-        displayValTwo.text(sliderTwo.val());
+        displayValOne.text(minPrice);
+        displayValTwo.text(maxPrice);
 
-        console.log("Выбранный диапазон: " + sliderOne.val() + " - " + sliderTwo.val());
+        console.log("Выбранный диапазон: " + minPrice + " - " + maxPrice);
+
+        loadProductsWithSearch(1, null, minPrice, maxPrice, null, null, null, category);
     }
 });
 
