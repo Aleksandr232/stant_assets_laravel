@@ -49,9 +49,9 @@
                                 <div class="double-slider_container">
                                     <div class="slider-track"></div>
                                     <input type="range" min="0" max="100" value="30" id="slider-1"
-                                        oninput="slideOne()">
+                                        oninput="sliderOne()">
                                     <input type="range" min="0" max="100" value="70" id="slider-2"
-                                        oninput="slideTwo()">
+                                        oninput="sliderTwo()">
                                 </div>
                                 <div class="double-slider_values">
                                     <span class="range-count" id="range1">
