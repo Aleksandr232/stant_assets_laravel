@@ -666,9 +666,7 @@ $(document).ready(function() {
         displayValOne.text(minPrice);
         displayValTwo.text(maxPrice);
 
-        $('html, body').animate({
-        scrollTop: $('.product_list_container').offset().top
-        }, 500);
+        
 
         loadProductsWithSearch(1, null, minPrice, maxPrice, null, null, null, null);
     }
