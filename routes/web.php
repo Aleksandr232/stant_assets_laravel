@@ -19,6 +19,7 @@ use App\Http\Controllers\PlatformController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ChatAdminController;
 use App\Http\Controllers\AddTextController;
+use App\Http\Controllers\SitemapController;
 use App\Models\Text;
 
 /*
@@ -77,6 +78,7 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::post('/create_blog', [BlogController::class, 'create_blog'])->name('create_blog');
     Route::post('/create_politics', [PoliticsController::class, 'create_politics'])->name('create_politics');
     Route::delete('/delete_product/{id}', [ProductController::class, 'destroy'])->name('destroy');
+    Route::get('/sitemap', [SitemapController::class, 'update_dev'])->name('update_dev');
 });
 
 Route::prefix('account')->middleware('profile')->group(function () {
