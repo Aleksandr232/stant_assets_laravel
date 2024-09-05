@@ -21,7 +21,7 @@ class HomePageController extends Controller
         $product = Product::all();
 
 
-        return view('site.page.index', compact('category','blog', 'text', 'product'), ['scrollToFilter' => true], ['scrollToFilterMobile' => true] );
+        return view('site.page.index', compact('category','blog', 'text', 'product'), /* ['scrollToFilter' => true], */ ['scrollToFilterMobile' => true] );
     }
 
     /* protected function applyFilters(Request $request, $query)
